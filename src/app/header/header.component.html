@@ -1,3 +1,18 @@
-<p>
-  header works!
-</p>
+<header fxLayout="row">
+  <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
+  <ul class="nav-group" fxLayout="row">
+    <li class="nav-group__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}">
+      <a>
+        {{ navItem.name }}
+      </a>
+    </li>
+  </ul>
+  <ul class="langs-group">
+    <li class="langs-group__item" *ngFor="let lang of langsList">
+      <img src="{{deployPath}}{{lang.img}}" alt=""> {{lang.abbr}}
+    </li>
+  </ul>
+  <ul class="user-menu-group">
+    <button type="button" *ngFor="let item of userMenu" class="user-menu-group__item {{item.item_class}">{{item.name}}</button>
+  </ul>
+</header>
