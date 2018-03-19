@@ -33,7 +33,7 @@ export class AppStorageService {
     },
     {
       name: 'login',
-      item_class: ''
+      item_class: 'secondary'
     },
     {
       name: 'profile',
@@ -41,7 +41,7 @@ export class AppStorageService {
     },
     {
       name: 'logout',
-      item_class: ''
+      item_class: 'secondary'
     }
   ];
   constructor() {}
