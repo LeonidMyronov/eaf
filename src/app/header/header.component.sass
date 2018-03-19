@@ -1,0 +1,62 @@
+@import 'variables'
+  
+header
+  padding: 30px 40px
+  // height: 100px
+
+  #header-logo
+    height: 40px
+    width: 258px
+    cursor: pointer
+
+  // .nav-section  
+  .nav-menu
+    // margin-right: auto
+    
+    li
+      height: 40px
+      a
+        display: inline-block
+        text-transform: capitalize
+        line-height: 40px
+        padding: 0 35px
+        cursor: pointer
+      &:not(:last-child)
+        border-right: 1px solid $accentColor
+      &:hover
+        a
+          color: $accentColor
+  .lang-menu
+    position: relative
+    width: 90px
+    height: 40px
+    margin-right: 15px
+    cursor: pointer
+    .dropdown-icon
+      margin-left: 10px
+    .langs-group
+      display: none
+      position: absolute
+      left: 0
+      top: 100%
+      .langs-group__item
+        width: 90px
+        height: 40px
+        padding: 0 15px
+        box-sizing: border-box
+        &:hover
+          background-color: #f1efef
+    &:hover
+      .langs-group    
+        display: block
+    .active-lang
+      width: 90px
+      height: 40px
+      padding: 0 15px
+      box-sizing: border-box
+
+  .user-menu-group
+
+@media (max-width: 1023px)
+  #header-logo
+    margin-right: auto

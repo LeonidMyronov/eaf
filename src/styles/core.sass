@@ -1,0 +1,23 @@
+@import 'mixins'
+@import 'helper'
+@import 'fonts'
+
+html, body
+  margin: 0
+  width: 100%
+  min-height: 100vh
+  font-size: 18px
+  color: $mainColor
+  @include regular-font()
+  moz-osx-font-smoothing: grayscale
+  font-smoothing: antialiased
+  -webkit-font-smoothing: antialiased
+  overflow-x: hidden
+  
+select#lang
+  width: 200px
+  height: 60px
+  option
+    width: 120px
+    height: 50px
+    background-image: url('/assets/images/header/lang-ru.svg')

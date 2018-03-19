@@ -1,0 +1,35 @@
+<header fxLayout="row wrap" fxLayoutAlign="start">
+  <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
+  <!-- <div class="nav-section" fxFlex fxLayout.gt-xs="row wrap-reverse" fxLayoutAlign="space-between"> -->
+    <!-- <div class="nav-section__left" fxHide.lt-sm> -->
+      <!-- <ul class="nav-menu" fxLayout="row" fxFlexOrder.sm="-1" fxFlex.sm fxFlexFill.sm fxHide.lt-sm> -->
+      <ul class="nav-menu" fxLayout="row" fxFlexOrder.sm="1" fxFlex.sm="100%" fxLayoutAlign.sm="center" fxHide.lt-sm>
+        <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}">
+          <a>
+            {{ navItem.name }}
+          </a>
+        </li>
+      </ul>
+    <!-- </div> -->
+
+    <!-- <div class="nav-section__right" fxLayout.lt-sm="row wrap"> -->
+      <div class="lang-menu">
+        <div class="active-lang" fxFlex fxLayout="row" fxLayoutAlign="start center">
+          <img src="{{deployPath}}/assets/images/header/lang-{{userLang}}.svg" alt="">
+          <img class="dropdown-icon" src="{{deployPath}}/assets/images/header/dropdown-icon.svg" alt="">
+        </div>
+        
+        <ul class="langs-group">
+          <li class="langs-group__item" *ngFor="let lang of langsList" fxLayout="row" fxLayoutAlign="start center" (click)="onChangeLang(lang)">
+            <img src="{{deployPath}}{{lang.img}}" alt=""> {{lang.abbr | uppercase}}
+          </li>
+        </ul>
+      </div>
+      <!-- <div class="user-menu-group" fxFlex="0 0 auto"> -->
+      <div class="user-menu-group" fxFlex.gt-xs="none" fxFlex.xs="100%" fxLayout.xs="row" fxLayoutAlign.xs="center">
+        <button type="button" *ngFor="let item of userMenu" class="user-menu-group__item {{item.item_class}}">{{item.name}}</button>
+      </div>
+    <!-- </div> -->
+
+  <!-- </div> -->
+</header>

@@ -1,0 +1,68 @@
+
+// FONTS
+@mixin font-family($font-family)
+    font-family: $font-family, Helvetica, sans-serif
+
+
+@mixin light-font()
+  @include font-family('Muller Light')
+
+
+@mixin bold-font()
+  @include font-family('Muller Bold')
+
+
+@mixin regular-font()
+  @include font-family('Muller Regular')
+
+
+@mixin medium-font()
+  @include font-family('Muller Medium')
+
+
+// MEDIA QUERY
+
+@mixin sm-media()
+  @media(max-width: 60rem)
+    @content
+
+
+
+@mixin md-media()
+  @media(max-width: 100rem)
+    @content
+
+
+
+// LAYOUT
+
+@mixin container-layout($height, $width)
+  height: $height
+  flex: 0 0 $height
+  padding: 0 calc(100%/2 - $width/2)
+
+
+// Triangle
+
+.triangle-base
+  &:before
+    position: absolute
+    width: 0
+    height: 0
+    content: ""
+
+@mixin triangle-top ($width, $color)
+  @extend .triangle-base
+  &:before
+    border-width: $width
+    border-style: solid
+    border-color: $color
+    border-top-color: trasparent
+    border-left-color: trasparent
+    border-right-color: trasparent
+
+@mixin square($width, $color)
+  width: $width
+  height: $width
+  background-color: $color
+
