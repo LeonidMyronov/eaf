@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="34px" height="20px" viewBox="0 0 34 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="34px" height="19px" viewBox="0 0 34 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 49.1 (51147) - http://www.bohemiancoding.com/sketch -->
     <title>Page 1 Copy 3</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="HD-Desktop-1920---1440-px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="HD-Desktop_EDU-News" transform="translate(-1538.000000, -61.000000)">
-            <g id="Group-2" transform="translate(1523.000000, 50.000000)">
-                <g id="Group-8">
-                    <g id="Page-1-Copy-3" transform="translate(15.000000, 10.000000)">
-                        <polygon id="Fill-1" fill="#F3F6F7" points="0 7.527 33.563 7.527 33.563 0.999 0 0.999"></polygon>
-                        <polygon id="Fill-2" fill="#323E95" points="0 14.054 33.563 14.054 33.563 7.527 0 7.527"></polygon>
-                        <polygon id="Fill-3" fill="#D8001E" points="0 20.582 33.563 20.582 33.563 14.054 0 14.054"></polygon>
-                    </g>
+        <g id="HD-Desktop_EDU-Support-02" transform="translate(-1505.000000, -41.000000)">
+            <g id="Group-8" transform="translate(1490.000000, 30.000000)">
+                <g id="Page-1-Copy-3" transform="translate(15.000000, 10.000000)">
+                    <polygon id="Fill-1" fill="#F3F6F7" points="0 7.527 33.563 7.527 33.563 0.999 0 0.999"></polygon>
+                    <polygon id="Fill-2" fill="#323E95" transform="translate(16.140428, 11.807125) rotate(20.000000) translate(-16.140428, -11.807125) " points="2.28031567 15.0706246 30.0005409 15.0706246 30.0005409 8.54362458 2.28031567 8.54362458"></polygon>
+                    <polygon id="Fill-2-Copy" fill="#323E95" transform="translate(16.114160, 11.365269) rotate(-20.000000) translate(-16.114160, -11.365269) " points="2.25404757 14.6287686 29.9742728 14.6287686 29.9742728 8.10176865 2.25404757 8.10176865"></polygon>
                 </g>
             </g>
         </g>
