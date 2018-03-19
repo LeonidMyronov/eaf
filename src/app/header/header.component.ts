@@ -12,9 +12,9 @@ export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
   public navMenu: any;
   public userMenu: any;
+  public userLang = 'en';
 
   public langsList: any;
-  public activeLang = 'ru';
   constructor(
     private appStorage: AppStorageService
   ) { }
@@ -23,6 +23,11 @@ export class HeaderComponent implements OnInit {
     this.navMenu = this.appStorage.getNavMenu();
     this.userMenu = this.appStorage.getUserMenu();
     this.langsList = this.appStorage.getLangsList();
+  }
+
+  onChangeLang(lang: any) {
+    // debugger;
+    this.userLang = lang.abbr;
   }
 
 }

@@ -28,7 +28,7 @@ export class AppStorageService {
 
   private userMenu = [
     {
-      name: 'signup',
+      name: 'registration',
       item_class: 'primary'
     },
     {
