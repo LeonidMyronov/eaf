@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { environment } from '../../environments/environment';
 import { AppStorageService } from '../core/app-storage.service';
+
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',

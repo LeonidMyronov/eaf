@@ -1,3 +1,13 @@
-<p>
-  footer works!
-</p>
+<footer fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxFlexAlign="center">
+  <img id='footer-logo' src="{{deployPath}}/assets/images/footer/footer-logo.svg" alt="" routerLink="/">
+  <ul class="nav-menu" fxLayout="row">
+    <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}">
+      <a>
+        {{ navItem.name }}
+      </a>
+    </li>
+  </ul>
+  <div class="copyright" fxFlex.gt-xs="100%">
+      This website and its content is copyright of © Edu-affiliates.com 2017. All rights reserved
+  </div>
+</footer>
