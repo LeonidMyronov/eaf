@@ -21,7 +21,7 @@
         
         <ul class="langs-group">
           <li class="langs-group__item" *ngFor="let lang of langsList" fxLayout="row" fxLayoutAlign="start center" (click)="onChangeLang(lang)">
-            <img src="{{deployPath}}{{lang.img}}" alt=""> {{lang.abbr | uppercase}}
+            <img src="{{deployPath}}{{lang.img}}" alt="">
           </li>
         </ul>
       </div>
