@@ -14,6 +14,10 @@ import { FooterComponent } from './footer/footer.component';
 import { TariffsComponent } from './start-section/tariffs/tariffs.component';
 import { ContactsComponent } from './start-section/contacts/contacts.component';
 
+// import { StoreRouterConnectingModule } from '@ngrx/router-store';
+// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+// import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { ContactsComponent } from './start-section/contacts/contacts.component';
     FlexLayoutModule,
     AppRoutingModule,
     CustomFlexLayoutBreakPointsModule,
-    CoreModule
+    CoreModule,
+    // StoreModule.forRoot(reducers),
+    // StoreRouterConnectingModule,
+    // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
+    // StoreDevtoolsModule.instrument()
   ],
   providers: [],
   bootstrap: [AppComponent]

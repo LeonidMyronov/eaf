@@ -14,6 +14,7 @@ export class HeaderComponent implements OnInit {
   public navMenu: any;
   public userMenu: any;
   public userLang = 'en';
+  public isMobileMenuOpened = false;
 
   public langsList: any;
   constructor(
@@ -29,6 +30,10 @@ export class HeaderComponent implements OnInit {
   onChangeLang(lang: any) {
     // debugger;
     this.userLang = lang.abbr;
+  }
+
+  toggleMobileMenu() {
+
   }
 
 }
