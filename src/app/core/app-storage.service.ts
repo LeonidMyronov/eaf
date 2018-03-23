@@ -44,11 +44,42 @@ export class AppStorageService {
       item_class: 'secondary'
     }
   ];
+
+  private homeSection1Cards = [
+    {
+      iconSrc: '/assets/images/home/home-1-icon-comission.svg',
+      imgSrc: '/assets/images/home/home-1-img-comission.svg',
+      description: 'comission',
+      badge: 'от',
+      title: '50%'
+    },
+    {
+      iconSrc: '/assets/images/home/home-1-icon-rebills.svg',
+      imgSrc: '/assets/images/home/home-1-img-rebills.svg',
+      description: 'rebills',
+      badge: 'от',
+      title: '20%'
+    },
+    {
+      iconSrc: '/assets/images/home/home-1-icon-conversion.svg',
+      imgSrc: '/assets/images/home/home-1-img-conversion.svg',
+      description: 'conversion',
+      badge: 'от',
+      title: '9%'
+    },
+    {
+      iconSrc: '/assets/images/home/home-1-icon-payments.svg',
+      imgSrc: '/assets/images/home/home-1-img-payments.svg',
+      description: 'payments',
+      title: 'по запросу'
+    }
+  ];
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
   getUserMenu() { return [...this.userMenu]; }
   getLangsList() { return [...this.langsList]; }
+  getHomeSection1Cards() { return [...this.homeSection1Cards]; }
 
 
 }

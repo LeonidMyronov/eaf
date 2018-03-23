@@ -14,12 +14,14 @@
       студенческий трафик
   </h3>
   <img class="scroll-icon"src="/assets/images/home/icon-mouse.svg" alt="">
-  <div class="card">
-    <img src="/assets/images/home/home-1-icon-comission.svg" alt="">
-    <div class="content light-color">
-      <span class="badge">от</span>
-      <div class="title">50%</div>
+  <div class="cards-group" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="22px">
+    <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+      <img [src]=item.iconSrc alt="{{item.description}}">
+      <div class="content light-color">
+        <span *ngIf="item.badge" class="badge">{{item.badge}}</span>
+        <div class="title">{{item.title}}</div>
+      </div>
+      <div class="descr accent-color">{{item.description}}</div>
     </div>
-    <div class="descr accent-color">Комиссия</div>
   </div>
 </section>
