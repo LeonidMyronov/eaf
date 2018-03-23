@@ -1,16 +1,35 @@
-
-
 section
-  height: 500px
-
-  .item
-    width: 200px
-    height: 200px
-
-  .num1
-    background-color: red
-  .num2
-    background-color: green
-  .num3
-    background-color: blue
-
+  &.home-1
+    padding-top: 35px
+    padding-bottom: 60px
+    h1
+      &:first-child
+        margin-bottom: 10px
+    .banner
+      width: 100%
+      height: 140px
+      background-image: url('/assets/images/home/home-1-banner.svg') 
+      background-repeat: no-repeat
+      background-size: contain
+      margin-top: 90px
+      margin-bottom: 80px
+    .scroll-icon
+      margin: 50px auto
+      display: block
+    .card
+      width: 240px
+      padding: 38px
+      background-image: url('/assets/images/home/home-1-img-comission.svg') 
+      background-repeat: no-repeat
+      background-position: center
+      justify-content: space-between
+      img
+        align-self: flex-start
+      .content
+        display: flex
+        .badge
+          margin-right: 5px
+        .title
+          font-size: 48px
+      .descr
+        align-self: flex-end

@@ -8,6 +8,20 @@ ul
 .hidden
   display: none !important
 
+.light-color
+  color: $lightColor
+.primary-color
+  color: $primaryColor
+.accent-color
+  color: $accentColor
+
+.bg-main-color
+  background-color: $mainColor
+.bg-primary-color
+  background-color: $primaryColor
+.bg-accent-color
+  background-color: $accentColor
+
 button
   background-color: $lightColor
   border: none
@@ -59,3 +73,12 @@ button
   &:not(:last-child)
     margin-right: 15px
     
+.card
+  width: 326px
+  min-height: 226px
+  color: $accentColor
+  background-color: $mainColor
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center

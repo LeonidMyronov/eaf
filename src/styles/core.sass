@@ -13,7 +13,6 @@ html, body
   font-smoothing: antialiased
   -webkit-font-smoothing: antialiased
   overflow-x: hidden
-  
 
 app-root
   display: flex
@@ -22,12 +21,32 @@ app-root
 
 app-footer
   margin-top: auto
+h1, h2, h3, h4, h5, h6
+  @include regular-font()
+  font-weight: normal
+  margin: 0
 
+h1
+  font-size: 36px
+  line-height: 44px
+  text-transform: uppercase
+  text-align: center
 
-select#lang
-  width: 200px
-  height: 60px
-  option
-    width: 120px
-    height: 50px
-    background-image: url('/assets/images/header/lang-ru.svg')
+h2
+  font-size: 36px
+  line-height: 44px
+  text-align: center
+
+h3
+  font-size: 24px
+  line-height: 30px
+  text-align: center
+
+h4
+  font-size: 18px
+  line-height: 24px
+  text-transform: uppercase
+  text-align: center
+
+section
+  padding: 0 200px
