@@ -44,8 +44,9 @@ header
         height: 40px
         padding: 0 15px
         box-sizing: border-box
+        background-color: $listColor
         &:hover
-          background-color: #f1efef
+          background-color: $accentColor-lighter
     &:hover
       .langs-group    
         display: block
@@ -54,9 +55,59 @@ header
       height: 40px
       padding: 0 15px
       box-sizing: border-box
+      &:hover
+        background-color: $accentColor-lighter
 
   .user-menu-group
 
 @media (max-width: 1023px)
-  #header-logo
-    margin-right: auto
+  header
+    #header-logo
+      margin-right: auto
+    .nav-menu
+      margin-top: 30px
+
+@media (max-width: 767px)
+  header
+    padding: 16px 16px 30px
+    #header-logo
+      height: 30px
+      width: auto
+    .lang-menu
+      width: 68px
+      height: 30px
+      margin-right: 7px
+      .langs-group
+        .langs-group__item
+          width: 68px
+          height: 30px
+      .active-lang
+          width: 68px
+          height: 30px
+      .lang-img
+        width: 26px
+        height: 16px
+      .dropdown-icon
+        width: 10px
+        height: 7px
+    .user-menu-group
+      margin-top: 30px
+    .humburger_button
+      cursor: pointer
+      width: 40px
+      height: 40px
+      background-color: $mainColor
+      .hamburger_item
+        display: block
+        background-color: $accentColor
+        width: 20px
+        height: 3px
+        margin-bottom: 3px
+        transition: all 0.5s ease
+      &.opened
+        .hamburger_item:first-child
+          transform: translateY(6px) rotate(135deg)
+        .hamburger_item
+          transform: rotate(-225deg)
+        .hamburger_item:last-child
+          transform: translateY(-6px) rotate(45deg)

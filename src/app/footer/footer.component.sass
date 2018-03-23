@@ -1,0 +1,49 @@
+@import 'variables'
+
+footer
+  background-color: $mainColor
+  padding: 25px 0 11px 0
+  // height: 100px
+
+  #footer-logo
+    height: 30px
+    width: 184px
+    cursor: pointer
+    margin-right: 35px
+    margin-bottom: 8px
+
+  .nav-menu 
+    li
+      height: 30px
+      a
+        display: inline-block
+        text-transform: capitalize
+        color: $lightColor
+        line-height: 30px
+        padding: 0 40px
+        cursor: pointer
+      &:not(:last-child)
+        border-right: 1px solid $accentColor
+      &:hover
+        a
+          color: $accentColor
+
+  .copyright
+    color: $mainColor-lighter
+    font-size: 12px
+    line-height: 26px
+    text-align: center
+
+@media (max-width: 767px)
+  footer
+    padding: 30px 0
+    #footer-logo
+      margin-right: 0
+      margin-bottom: 30px
+    .nav-menu
+      margin-bottom: 30px
+    .copyright
+      font-size: 10px
+      max-width: 206px
+      line-height: 20px
+      
