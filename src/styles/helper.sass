@@ -20,12 +20,34 @@ button
   &.primary
     color: $lightColor
     background-color: $primaryColor
+    &:hover
+      background-color: $primaryColor-darker
+    &.active
+      color: $mainColor
+      background-color: $accentColor
+    &.disabled, &[disabled]
+      cursor: not-allowed    
+      color: $inactiveColor
+      background-color: $listColor
   &.secondary
     color: $primaryColor
     border: 0.5px solid $primaryColor
+    &:hover
+      color: $primaryColor-darker
+      border: 0.5px solid $primaryColor-darker
+    &.active
+      color: $mainColor
+      background-color: $accentColor
+      border: none
+    &.disabled, &[disabled]
+      cursor: not-allowed    
+      color: $inactiveColor
+      border: 0.5px solid $inactiveColor    
+      background-color: $lightColor
   &.accent
     color: $mainColor
     background-color: $accentColor
+
   &.btn-md
     width: 150px
   &.btn-lg
