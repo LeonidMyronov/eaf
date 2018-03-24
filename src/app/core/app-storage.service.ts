@@ -20,6 +20,29 @@ export class AppStorageService {
       img: '/assets/images/header/lang-ru.svg'
     },
     {
+      name: 'usa',
+      abbr: 'us',
+      img: '/assets/images/header/lang-us.svg'
+    },
+  ];
+
+  private countryList = [
+    {
+      name: 'usa',
+      abbr: 'us',
+      img: '/assets/images/header/lang-us.svg'
+    },
+    {
+      name: 'canada',
+      abbr: 'ca',
+      img: '/assets/images/header/lang-ca.svg'
+    },
+    {
+      name: 'australia',
+      abbr: 'au',
+      img: '/assets/images/header/lang-au.svg'
+    },
+    {
       name: 'english',
       abbr: 'en',
       img: '/assets/images/header/lang-en.svg'
@@ -79,6 +102,7 @@ export class AppStorageService {
   getNavMenu() { return [...this.navMenu]; }
   getUserMenu() { return [...this.userMenu]; }
   getLangsList() { return [...this.langsList]; }
+  getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }
 
 

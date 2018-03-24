@@ -10,7 +10,7 @@ section
       height: 140px
       background-image: url('/assets/images/home/home-1-banner.svg') 
       background-repeat: no-repeat
-      background-size: contain
+      background-position: center
       margin-top: 90px
       margin-bottom: 80px
     .scroll-icon
@@ -19,7 +19,6 @@ section
     .card
       width: 240px
       padding: 38px
-      // background-image: url('/assets/images/home/home-1-img-comission.svg') 
       background-repeat: no-repeat
       background-position: center
       justify-content: space-between
@@ -41,3 +40,30 @@ section
           .title
             font-size: 30px
             max-width: 140px
+  &.home-2
+    padding: 90px 400px
+    height: 700px
+    box-sizing: border-box    
+    background-image: url('/assets/images/home/home-2-world-map.svg')
+    background-repeat: no-repeat
+    background-position: center calc(100% - 20px)
+    .intro
+      width: 55%
+      margin-bottom: 40px
+      position: relative
+      img
+        position: absolute
+        top: -7px
+        left: 0
+      h3  
+        text-indent: 310px
+        text-align: left
+    .content
+      .content-left
+        .country-item
+          width: 60px
+          height: 60px
+          padding: 20px 13px
+          box-sizing: border-box
+      .content-right
+        width: 450px

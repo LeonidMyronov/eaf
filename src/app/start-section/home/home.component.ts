@@ -9,12 +9,14 @@ import { AppStorageService } from '../../core/app-storage.service';
 })
 export class HomeComponent implements OnInit {
   public homeSection1Cards;
+  public countryList;
   constructor(
     private appStorage: AppStorageService
   ) { }
 
   ngOnInit() {
     this.homeSection1Cards = this.appStorage.getHomeSection1Cards();
+    this.countryList = this.appStorage.getCountryList();
   }
 
 }
