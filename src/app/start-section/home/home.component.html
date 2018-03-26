@@ -50,7 +50,7 @@
     <h1>
         ЧТО  <span class="selection bg-accent-darker-color"> ЗАРАБАТЫВАЮТ</span>  НАШИ ПАРтНЕРЫ!
     </h1>
-    <div class="intro-group" fxLayout="row" fxLayoutAlign="between start" fxLayoutGap="30px">
+    <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
       <div class="intro" fxFlex="50%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
         <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
         <p>Скажем вы решили с нами поработать, подготовились, и сливаете порядка 300 уников в день на наш платник.</p>
@@ -96,7 +96,7 @@
     <h1>И не забывайте про ребилы - <br>
     ваш  <span class="selection bg-accent-darker-color"> пассивный доход!</span>
     </h1>
-    <div class="intro-group" fxLayout="row" fxLayoutAlign="between start" fxLayoutGap="30px">
+    <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
       <div class="intro" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
         <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
         <p>В среднем мы получаем 5-7 ребилов с каждого клиента. <br>
@@ -141,4 +141,22 @@
       <h2 class="accent-color">Не плохо, не так ли?</h2>
       <button type="button" class="primary">Зарегистрироваться</button>
     </div>
+</section>
+
+<section class="home-4 bg-list-lighter-color">
+  <div class="title" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
+    <h1>
+      ИТАК, КАКИЕ ИМЕННО РАБОТЫ МЫ ПИШЕМ:
+    </h1>
+    <img src="/assets/images/home/home-4-img-works.svg" alt="">
+  </div>
+
+  <div class="intro-group" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px">
+    <div class="intro" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
+      <img src="/assets/images/home/home-4-icon-doc.svg" alt="">
+      <p>{{ doc }}</p>
+    </div>
+  </div>
+  <h2>And more...</h2>
+
 </section>

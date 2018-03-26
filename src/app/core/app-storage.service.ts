@@ -97,6 +97,18 @@ export class AppStorageService {
       title: 'по запросу'
     }
   ];
+
+  private workTypes = [
+    'Essays',
+    'Term papers',
+    'Speeches',
+    'Dissertations',
+    'Thesis papers',
+    'Research papers',
+    'PowerPoint Presentations',
+    'Business writing'
+  ];
+
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
@@ -104,6 +116,6 @@ export class AppStorageService {
   getLangsList() { return [...this.langsList]; }
   getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }
-
+  getWorkTypes() { return [...this.workTypes]; }
 
 }
