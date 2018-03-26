@@ -158,5 +158,19 @@
     </div>
   </div>
   <h2>And more...</h2>
+</section>
 
+<section class="home-5">
+    <h1>ЧТО  <span class="selection bg-accent-darker-color"> МЫ ПРЕДЛАГАЕМ </span>  НАШИМ ПАРТНЕРАМ</h1>
+
+    <div class="cards-group" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+        <div class="descr">
+          {{ item.description }}
+          <span class="light-color">
+            {{ item. badge }}
+          </span>
+        </div>
+      </div>
+    </div>
 </section>

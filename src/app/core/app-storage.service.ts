@@ -109,6 +109,50 @@ export class AppStorageService {
     'Business writing'
   ];
 
+  private homeSection5Cards = [
+    {
+      imgSrc: '/assets/images/home/home-5-img-1.svg',
+      description: 'Лучшие работы от лучших авторов',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-2.svg',
+      description: 'Средняя цена заказа - ',
+      badge: '$131',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-3.svg',
+      description: 'Лучший пассивный доход: ',
+      badge: '5 ребилов с клиента',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-4.svg',
+      description: 'Креативные баннеры и платники, ',
+      badge: 'которые конвертят',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-5.svg',
+      description: 'Лучший конверт в нише: ',
+      badge: 'до 9%!',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-6.svg',
+      description: 'Своевременные выплаты',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-7.svg',
+      description: 'Выплаты через ',
+      badge: 'Webmoney, PayPal, Epese, Wire Transfer',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-8.svg',
+      description: 'Статистика в реальном времени',
+    },
+    {
+      imgSrc: '/assets/images/home/home-5-img-9.svg',
+      description: 'Отличный саппорт',
+    },
+  ];
+
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
@@ -117,5 +161,5 @@ export class AppStorageService {
   getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }
   getWorkTypes() { return [...this.workTypes]; }
-
+  getHomeSection5Cards() { return [...this.homeSection5Cards]; }
 }
