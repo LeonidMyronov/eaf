@@ -1,3 +1,5 @@
+@import 'variables'
+
 section
   &.home-1
     padding-top: 35px
@@ -67,3 +69,41 @@ section
           box-sizing: border-box
       .content-right
         width: 450px
+  &.home-3
+    padding: 0 400px
+    .content
+      padding: 100px 0
+      &:first-child
+        border-bottom: 0.5px solid $listColor
+      .selection
+        display: inline-block
+        padding: 5px 10px 0
+      h1
+        margin-bottom: 60px
+      .intro-group
+        margin-bottom: 50px
+      .formula
+        margin-top: 35px
+        .formula__item
+          img
+          .text
+            font-size: 48px
+            line-height: 66px
+            white-space: nowrap
+          .info
+            color: $infoColor
+            &:first-letter
+              text-transform: capitalize
+          &:last-of-type
+            background-color: $accentColor-darker
+            padding: 15px 21px 5px
+            margin-top: 20px
+            .info
+              color: $lightColor
+    .action
+      margin-bottom: 100px
+      h2
+        margin-bottom: 30px
+      button
+        display: block
+        margin: 0 auto
