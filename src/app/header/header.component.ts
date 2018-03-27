@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
   public navMenu: any;
   public userMenu: any;
-  public userLang = 'en';
+  public userLang = 'us';
   public isMobileMenuOpened = false;
 
   public langsList: any;

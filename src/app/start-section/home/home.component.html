@@ -6,20 +6,199 @@
   <h1 class="accent-color">
       ДОРОГО И КАЧЕСТВЕННО!
   </h1>
-  <div class="banner">
-
-  </div>
+  <div class="banner"></div>
   <h3>
       Самая прибыльная партнерка под зарубежный<br>
       студенческий трафик
   </h3>
   <img class="scroll-icon"src="/assets/images/home/icon-mouse.svg" alt="">
-  <div class="card">
-    <img src="/assets/images/home/home-1-icon-comission.svg" alt="">
-    <div class="content light-color">
-      <span class="badge">от</span>
-      <div class="title">50%</div>
+  <div class="cards-group" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="22px">
+    <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+      <img [src]=item.iconSrc alt="{{item.description}}">
+      <div class="content light-color">
+        <span *ngIf="item.badge" class="badge">{{item.badge}}</span>
+        <div class="title">{{item.title}}</div>
+      </div>
+      <div class="descr accent-color">{{item.description}}</div>
     </div>
-    <div class="descr accent-color">Комиссия</div>
   </div>
+</section>
+<section class="home-2 bg-list-lighter-color">
+  <div class="intro">
+    <div class="logo-inline">
+      <img src="/assets/images/home/site-name-logo.svg" alt="">
+    </div>
+    <h3>
+        передовая партнерская программа в зарубежной образовательной нише с опытом работы более семи лет.
+    </h3>
+  </div>
+  <div class="content" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="content-left" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+      <div class="country-item bg-light-color" *ngFor="let country of countryList">
+        <img [src]="country.img" alt="">
+      </div>
+    </div>
+    <div class="content-right">
+        Мы предоставляем услуги написания различных письменных работ для студентов из США, Канады, Австралии, Великобритании. <br><br>
+        У нас есть команда из 200+ квалифицированных авторов академических работ, которые качественно напишут любой реферат, эссе, курсовую, и даже диссертацию. <br><br>
+        Таким образом наши партнеры получают в среднем 7 заказов с каждого клиента , высокие отчисления, и самый большой средний чек - $130. <br><br>
+    </div>
+  </div>
+
+</section>
+
+<section class="home-3">
+  <div class="content">
+    <h1>
+        ЧТО  <span class="selection bg-accent-darker-color"> ЗАРАБАТЫВАЮТ</span>  НАШИ ПАРтНЕРЫ!
+    </h1>
+    <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
+      <div class="intro" fxFlex="50%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
+        <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
+        <p>Скажем вы решили с нами поработать, подготовились, и сливаете порядка 300 уников в день на наш платник.</p>
+      </div>
+      <div class="intro" fxFlex="50%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
+        <img src="/assets/images/home/home-3-img-keys.svg" alt="">
+        <p>Ключи – хорошие продающие, то есть целевые. При таком раскладе конверт у нас где-то 3.5-4%.</p>
+      </div>
+    </div>
+    <p>Прикинемся пессимистами и возьмем 3.5% за ориентир. <br>
+      Значит 300 уников это в среднем 10 новых клиентов в день, или 300 новых клиентов в месяц. <br>
+      Прикинем сколько можно заработать за 1 месяц (30 дней).</p>
+    <div class="formula" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+        <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
+        <div class="text">300</div>
+        <div class="info">клиентов</div>
+      </div>
+      <img src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+      <img src="/assets/images/home/home-3-icon-open_brace.svg" alt="">
+      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+        <img src="/assets/images/home/home-3-icon-check.svg" alt="">
+        <div class="text">130</div>
+        <div class="info">чек ($)</div>
+      </div>
+      <img src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+        <img src="/assets/images/home/home-3-icon-percent.svg" alt="">
+        <div class="text">50%</div>
+        <div class="info">процентов</div>
+      </div>      
+      <img src="/assets/images/home/home-3-icon-close_brace.svg" alt="">
+      <img src="/assets/images/home/home-3-icon-equal.svg" alt="">
+      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+        <div class="text">$ 19500</div>
+        <div class="info">в&nbsp;месяц</div>
+      </div>
+      
+    </div>
+
+  </div>
+  <div class="content">
+    <h1>И не забывайте про ребилы - <br>
+    ваш  <span class="selection bg-accent-darker-color"> пассивный доход!</span>
+    </h1>
+    <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
+      <div class="intro" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
+        <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
+        <p>В среднем мы получаем 5-7 ребилов с каждого клиента. <br>
+            Возьмем минимум 5 ребилов.</p>
+      </div>
+    </div>
+
+    <div class="formula" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="30px">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
+          <div class="text">300</div>
+          <div class="info">клиентов</div>
+        </div>
+        <img src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+        <img src="/assets/images/home/home-3-icon-open_brace.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-check.svg" alt="">
+          <div class="text">130</div>
+          <div class="info">чек ($)</div>
+        </div>
+        <img src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-percent.svg" alt="">
+          <div class="text">20%</div>
+          <div class="info">процентов</div>
+        </div>      
+        <img src="/assets/images/home/home-3-icon-close_brace.svg" alt="">
+        <img src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-rebills.svg" alt="">
+          <div class="text">5%</div>
+          <div class="info">процентов</div>
+        </div> 
+        <img src="/assets/images/home/home-3-icon-equal.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <div class="text">$ 39000</div>
+          <div class="info">за&nbsp;6 месяцев</div>
+        </div> 
+      </div>
+    </div>
+    <div class="action">
+      <h2 class="accent-color">Не плохо, не так ли?</h2>
+      <button type="button" class="primary">Зарегистрироваться</button>
+    </div>
+</section>
+
+<section class="home-4 bg-list-lighter-color">
+  <div class="title" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
+    <h1>
+      ИТАК, КАКИЕ ИМЕННО РАБОТЫ МЫ ПИШЕМ:
+    </h1>
+    <img src="/assets/images/home/home-4-img-works.svg" alt="">
+  </div>
+
+  <div class="intro-group" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px">
+    <div class="intro" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
+      <img src="/assets/images/home/home-4-icon-doc.svg" alt="">
+      <p>{{ doc }}</p>
+    </div>
+  </div>
+  <h2>And more...</h2>
+</section>
+
+<section class="home-5">
+    <h1>ЧТО  <span class="selection bg-accent-darker-color"> МЫ ПРЕДЛАГАЕМ </span>  НАШИМ ПАРТНЕРАМ</h1>
+
+    <div class="cards-group" fxLayout="row wrap" fxLayoutAlign="center center">
+      <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+        <div class="descr">
+          {{ item.description }}
+          <span class="light-color">
+            {{ item. badge }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="intro">
+      <h3>Здесь, в </h3>
+      <div class="logo-inline">
+        <img src="/assets/images/home/site-name-logo.svg" alt="">
+      </div>
+      <h3>мы работаем <br> с лучшими партнерами для продуктивного сотрудничества.</h3>
+    </div>
+
+    <p class="descr">Мы разработали нашу собственную трекинговую систему для детальных отчетов и статистики в реальном времени. 
+      Таким образом вам не стоит переживать о шейве, или о других уловках которыми мы не занимаемся :)
+      <br><br>Будучи честными с вами, мы ждем такого же отношения.
+    </p>
+
+    <div class="action" fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <h3>Все что вам остается – лить трафик!</h3>
+        <button type="button" class="primary btn-xl">Зарегистрироваться</button>
+      </div>
+      <img src="/assets/images/home/home-5-banner.svg" alt="">
+      <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <h3>А мы позаботимся об остальном.</h3>
+        <button type="button" class="primary btn-xl">Задать вопрос</button>
+      </div>
+    </div>
+
 </section>
