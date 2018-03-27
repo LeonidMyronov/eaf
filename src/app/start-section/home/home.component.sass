@@ -1,16 +1,163 @@
-
+@import 'variables'
 
 section
-  height: 500px
+  .selection
+    display: inline-block
+    padding: 5px 10px 0
+  &.home-1
+    padding-top: 35px
+    padding-bottom: 60px
+    h1
+      &:first-child
+        margin-bottom: 10px
+    .banner
+      width: 100%
+      height: 140px
+      background-image: url('/assets/images/home/home-1-banner.svg') 
+      background-repeat: no-repeat
+      background-position: center
+      margin-top: 90px
+      margin-bottom: 80px
+    .scroll-icon
+      margin: 50px auto
+      display: block
+    .card
+      width: 240px
+      padding: 38px
+      background-repeat: no-repeat
+      background-position: center
+      justify-content: space-between
+      img
+        align-self: flex-start
+      .content
+        display: flex
+        .badge
+          margin-right: 5px
+        .title
+          font-size: 48px
+          text-align: center
+      .descr
+        align-self: flex-end
+        text-transform: capitalize
 
-  .item
-    width: 200px
-    height: 200px
-
-  .num1
-    background-color: red
-  .num2
-    background-color: green
-  .num3
-    background-color: blue
-
+      &.card-payments
+        .content
+          .title
+            font-size: 30px
+            max-width: 140px
+  &.home-2
+    padding: 90px 400px
+    height: 700px
+    box-sizing: border-box    
+    background-image: url('/assets/images/home/home-2-world-map.svg')
+    background-repeat: no-repeat
+    background-position: center calc(100% - 20px)
+    .intro
+      width: 55%
+      margin-bottom: 40px
+      position: relative
+      .logo-inline
+        width: 302px
+        position: relative
+        display: inline-block
+        img
+          position: absolute
+          top: -29px
+          left: 0
+      h3  
+        display: inline
+        text-align: left
+    .content
+      .content-left
+        .country-item
+          width: 60px
+          height: 60px
+          padding: 20px 13px
+          box-sizing: border-box
+      .content-right
+        width: 450px
+  &.home-3
+    padding: 0 400px
+    .content
+      padding: 100px 0
+      &:first-child
+        border-bottom: 0.5px solid $listColor
+      h1
+        margin-bottom: 60px
+      .intro-group
+        margin-bottom: 50px
+      .formula
+        margin-top: 35px
+        .formula__item
+          img
+          .text
+            font-size: 48px
+            line-height: 66px
+            white-space: nowrap
+          .info
+            color: $infoColor
+            &:first-letter
+              text-transform: capitalize
+          &:last-of-type
+            background-color: $accentColor-darker
+            padding: 15px 21px 5px
+            margin-top: 20px
+            .info
+              color: $lightColor
+    .action
+      margin-bottom: 100px
+      h2
+        margin-bottom: 30px
+      button
+        display: block
+        margin: 0 auto
+  &.home-4
+    padding: 100px 280px
+    .title
+      margin-bottom: 30px
+      h1
+        max-width: 420px
+        text-align: left
+    .intro-group
+      .intro
+        margin-bottom: 50px
+    h2
+      text-align: right
+      color: $accentColor
+      margin-right: 50px
+  &.home-5
+    padding: 100px 280px
+    h1
+      margin-bottom: 60px
+    .cards-group
+      margin-bottom: 70px
+    .card
+      width: 440px
+      background-repeat: no-repeat
+      background-position: center
+      justify-content: space-between
+      margin: 0 10px 20px
+      .descr
+        max-width: 180px
+        text-align: center
+        margin-top: 120px
+    .intro
+      margin-bottom: 40px
+      text-align: center
+      .logo-inline
+        width: 302px
+        position: relative
+        display: inline-block
+        img
+          position: absolute
+          top: -29px
+          left: 0
+      h3  
+        display: inline
+    .descr
+      width: 720px
+      margin: 0 auto 60px
+      text-align: center
+    .action
+      h3
+        max-width: 260px

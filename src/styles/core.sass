@@ -7,13 +7,13 @@ html, body
   width: 100%
   min-height: 100vh
   font-size: 18px
+  line-height: 24px
   color: $mainColor
   @include regular-font()
   moz-osx-font-smoothing: grayscale
   font-smoothing: antialiased
   -webkit-font-smoothing: antialiased
   overflow-x: hidden
-  
 
 app-root
   display: flex
@@ -22,12 +22,49 @@ app-root
 
 app-footer
   margin-top: auto
+h1, h2, h3, h4, h5, h6
+  @include regular-font()
+  font-weight: normal
+  margin: 0
+
+h1
+  font-size: 36px
+  line-height: 44px
+  text-transform: uppercase
+  text-align: center
+
+h2
+  font-size: 36px
+  line-height: 44px
+  text-align: center
+
+h3
+  font-size: 24px
+  line-height: 30px
+  text-align: center
+
+h4
+  font-size: 18px
+  line-height: 24px
+  text-transform: uppercase
+  text-align: center
+
+p
+  padding: 0
+  margin: 0
+  
+section
+  padding: 0 280px
 
 
-select#lang
-  width: 200px
-  height: 60px
-  option
-    width: 120px
-    height: 50px
-    background-image: url('/assets/images/header/lang-ru.svg')
+@media (max-width: 1399px)
+  section
+    padding: 0 210px
+
+@media (max-width: 1023px)
+  section
+    padding: 0 50px
+
+@media (max-width: 767px)
+  section
+    padding: 0 17px
