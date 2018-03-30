@@ -11,9 +11,9 @@
       Самая прибыльная партнерка под зарубежный<br>
       студенческий трафик
   </h3>
-  <img class="scroll-icon"src="/assets/images/home/icon-mouse.svg" alt="">
-  <div class="cards-group" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="22px">
-    <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+  <img class="scroll-icon"src="/assets/images/home/icon-mouse.svg" fxHide.xs alt="">
+  <div class="cards-group" fxLayout="row" fxLayout.lt-md="row wrap" fxLayoutAlign="center">
+    <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 0 auto" fxShrink.lt-md="1">
       <img [src]=item.iconSrc alt="{{item.description}}">
       <div class="content light-color">
         <span *ngIf="item.badge" class="badge">{{item.badge}}</span>
@@ -23,6 +23,7 @@
     </div>
   </div>
 </section>
+
 <section class="home-2 bg-list-lighter-color">
   <div class="intro">
     <div class="logo-inline">
@@ -32,12 +33,13 @@
         передовая партнерская программа в зарубежной образовательной нише с опытом работы более семи лет.
     </h3>
   </div>
-  <div class="content" fxLayout="row" fxLayoutAlign="space-between">
-    <div class="content-left" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px">
+  <div class="content" fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+    <div class="content-left" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px" fxLayoutAlign.xs="space-around">
       <div class="country-item bg-light-color" *ngFor="let country of countryList">
         <img [src]="country.img" alt="">
       </div>
     </div>
+    <img fxHide.gt-xs src="/assets/images/home/home-2-world-map.svg" alt="">
     <div class="content-right">
         Мы предоставляем услуги написания различных письменных работ для студентов из США, Канады, Австралии, Великобритании. <br><br>
         У нас есть команда из 200+ квалифицированных авторов академических работ, которые качественно напишут любой реферат, эссе, курсовую, и даже диссертацию. <br><br>
