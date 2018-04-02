@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { CustomFlexLayoutBreakPointsModule } from './custom-flexlayout-breakpoints.module';
 import { CoreModule } from './core/core.module';
 
+import { AuthModule } from './auth/auth.module';
+
 import { AppComponent } from './app.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './start-section/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -22,8 +22,6 @@ import { ContactsComponent } from './start-section/contacts/contacts.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SignupComponent,
-    LoginComponent,
     HomeComponent,
     HeaderComponent,
     FooterComponent,
@@ -36,6 +34,7 @@ import { ContactsComponent } from './start-section/contacts/contacts.component';
     AppRoutingModule,
     CustomFlexLayoutBreakPointsModule,
     CoreModule,
+    AuthModule
     // StoreModule.forRoot(reducers),
     // StoreRouterConnectingModule,
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
