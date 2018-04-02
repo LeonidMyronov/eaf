@@ -64,6 +64,7 @@ section
         position: relative
         display: inline-block
         img
+          width: 100%
           position: absolute
           top: -29px
           left: 0
@@ -134,17 +135,21 @@ section
       color: $accentColor
       margin-right: 140px
   &.home-5
-    padding: 100px 280px
+    padding-top: 100px
+    padding-bottom: 100px
     h1
       margin-bottom: 60px
     .cards-group
-      margin-bottom: 70px
+      margin-bottom: 50px
     .card
       width: 440px
+      height: 226px
       background-repeat: no-repeat
       background-position: center
       justify-content: space-between
-      margin: 0 10px 20px
+      // margin: 0 10px 20px
+      margin-left: 20px
+      margin-bottom: 20px
       .descr
         max-width: 180px
         text-align: center
@@ -157,6 +162,7 @@ section
         position: relative
         display: inline-block
         img
+          width: 100%
           position: absolute
           top: -29px
           left: 0
@@ -170,6 +176,11 @@ section
       h3
         max-width: 260px
 
+@media (min-width: 1400px)
+  section
+    &.home-5
+      padding-left: 220px
+      padding-right: 220px
 
 @media (max-width: 1399px)
   section
@@ -177,6 +188,12 @@ section
       padding: 0 160px
       .card
         width: 240px
+    &.home-5
+      padding-left: 160px
+      padding-right: 160px
+      .card
+        width: 326px
+        height: 226px
 
 @media (max-width: 1023px)
   section
@@ -198,6 +215,10 @@ section
     &.home-4
       padding-top: 70px
       padding-bottom: 70px
+    &.home-5
+      padding: 50px 20px
+      .cards-group
+        margin-bottom: 30px
 
 
 @media (max-width: 767px)
@@ -218,9 +239,10 @@ section
       background-image: none
       .intro
         width: 100%
-        img
-          width: 98px
-          height: auto
+        .logo-inline
+          width: 208px
+          img
+            top: -21px
       .content
         .content-left
           margin-right: 0
@@ -274,3 +296,18 @@ section
       .intro-group
         .intro
           margin-bottom: 10px
+
+    &.home-5
+      padding: 30px 17px
+      h1
+        margin-bottom: 40px
+      .cards-group
+        margin-bottom: 20px
+      .intro
+        margin-bottom: 30px
+        .logo-inline
+          width: 208px
+          img
+            top: -21px
+      .descr
+        width: auto
