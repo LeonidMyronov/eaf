@@ -149,15 +149,15 @@
 </section>
 
 <section class="home-4 bg-list-lighter-color">
-  <div class="title" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
+  <div class="title" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
     <h1>
       ИТАК, КАКИЕ ИМЕННО РАБОТЫ МЫ ПИШЕМ:
     </h1>
     <img src="/assets/images/home/home-4-img-works.svg" alt="">
   </div>
 
-  <div class="intro-group" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px">
-    <div class="intro" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
+  <div class="intro-group" fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px" fxLayoutGap.sm="40px" fxLayoutGap.xs="10px">
+    <div class="intro" fxFlex.xs="auto" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
       <img src="/assets/images/home/home-4-icon-doc.svg" alt="">
       <p>{{ doc }}</p>
     </div>
