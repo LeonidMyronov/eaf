@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppStorageService } from '../core/app-storage.service';
 
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   public langsList: any;
   constructor(
-    private appStorage: AppStorageService
+    private appStorage: AppStorageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -36,4 +38,8 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  onUserMenuClick(url: string) {
+    debugger;
+    this.router.navigate([`${url}`]);
+  }
 }
