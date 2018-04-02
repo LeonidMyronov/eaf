@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Group 2 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="29.7823095" height="29.7823095"></rect>
+    </defs>
+    <g id="HD-Desktop-1920---1440-px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HD-Desktop_EDU-Login" transform="translate(-1235.000000, -130.000000)">
+            <g id="Group-2-Copy" transform="translate(1235.000000, 130.000000)">
+                <g id="Rectangle-17-Copy">
+                    <use fill="#EEF2F3" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <rect stroke="#2D2F45" stroke-width="1" x="0.5" y="0.5" width="28.7823095" height="28.7823095"></rect>
+                </g>
+                <path d="M16,14 L23,14 L23,16 L16,16 L16,23 L14,23 L14,16 L7,16 L7,14 L14,14 L14,7 L16,7 L16,14 Z" id="Combined-Shape" fill="#2D2F45" transform="translate(15.000000, 15.000000) rotate(45.000000) translate(-15.000000, -15.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>
