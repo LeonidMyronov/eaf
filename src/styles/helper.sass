@@ -24,9 +24,9 @@ ul
 .bg-accent-darker-color
   background-color: $accentColor-darker
 .bg-list-color
-  background-color: $listColor
+  background-color: $formColor
 .bg-list-lighter-color
-  background-color: $listColor-lighter
+  background-color: $formColor-lighter
 .bg-light-color
   background-color: $lightColor
 
@@ -53,7 +53,7 @@ button
     &.disabled, &[disabled]
       cursor: not-allowed    
       color: $inactiveColor
-      background-color: $listColor
+      background-color: $formColor
   &.secondary
     color: $primaryColor
     border: 0.5px solid $primaryColor
@@ -92,3 +92,7 @@ button
   flex-direction: column
   justify-content: center
   align-items: center
+
+.link-group
+  a:not(:last-child)
+    border-right: 1px solid $placeholderColor
