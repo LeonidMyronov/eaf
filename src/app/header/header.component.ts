@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onUserMenuClick(url: string) {
-    debugger;
     this.router.navigate([`${url}`]);
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +10,10 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  constructor() { }
+  constructor(
+    private router: Router,
+    private location: Location
+  ) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -21,4 +26,7 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm);
   }
 
+  onCloseForm() {
+    this.location.back();
+  }
 }

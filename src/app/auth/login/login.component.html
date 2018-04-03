@@ -1,8 +1,8 @@
 <article>
   <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-images">
-      <img class="form-logo" src="/assets/images/header/header-logo.svg" alt="">
-      <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="">
+      <img class="form-logo" src="/assets/images/header/header-logo.svg" alt="" routerLink="/">
+      <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
     </div>
     <div class="title">вход</div>
     <div class="form-field">
