@@ -25,6 +25,16 @@ app-root
 
 app-footer
   margin-top: auto
+
+app-login, app-signup
+  position: absolute
+  background: rgba(0,0,0, .5)
+  width: 100%
+  height: 100%
+  display: flex
+  justify-content: center
+
+
 h1, h2, h3, h4, h5, h6
   @include regular-font()
   font-weight: normal
@@ -119,6 +129,7 @@ a
   padding: 120px
   background-color: $formColor
   position: relative
+  margin-top: 100px
   .form-images
     position: absolute
     width: 100%
