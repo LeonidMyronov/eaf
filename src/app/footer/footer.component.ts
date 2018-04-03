@@ -5,7 +5,7 @@ import { AppStorageService } from '../core/app-storage.service';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'eaf-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.sass']
 })

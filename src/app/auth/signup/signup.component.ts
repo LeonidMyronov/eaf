@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-signup',
+  selector: 'eaf-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.sass']
 })

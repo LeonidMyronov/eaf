@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppStorageService } from '../core/app-storage.service';
 
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-header',
+  selector: 'eaf-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
 
   public langsList: any;
   constructor(
-    private appStorage: AppStorageService
+    private appStorage: AppStorageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -36,4 +38,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
+  onUserMenuClick(url: string) {
+    this.router.navigate([`${url}`]);
+  }
 }
