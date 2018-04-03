@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-login',
+  selector: 'eaf-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })

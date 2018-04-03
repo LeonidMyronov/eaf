@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppStorageService } from '../../core/app-storage.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'eaf-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })

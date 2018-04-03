@@ -6,7 +6,7 @@ import { AppStorageService } from '../core/app-storage.service';
 import { environment } from '../../environments/environment';
 
 @Component({
-  selector: 'app-header',
+  selector: 'eaf-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })

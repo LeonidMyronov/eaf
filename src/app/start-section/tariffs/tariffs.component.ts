@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-tariffs',
+  selector: 'eaf-tariffs',
   templateUrl: './tariffs.component.html',
   styleUrls: ['./tariffs.component.sass']
 })
