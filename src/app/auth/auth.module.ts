@@ -18,7 +18,10 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     RouterModule
   ],
-  exports: []
+  exports: [
+    SignupComponent,
+    LoginComponent,
+  ]
 })
 
 export class AuthModule {}
