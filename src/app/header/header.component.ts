@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { AppStorageService } from '../core/app-storage.service';
+import { HelperService } from '../core/helper.service';
 
 import { environment } from '../../environments/environment';
+import * as fromRoot from '../app.reducers';
+import * as fromLayoutAction from '../store/layout.actions';
 
 @Component({
   selector: 'eaf-header',
@@ -20,7 +24,9 @@ export class HeaderComponent implements OnInit {
   public langsList: any;
   constructor(
     private appStorage: AppStorageService,
-    private router: Router
+    private router: Router,
+    private helper: HelperService,
+    private store: Store<fromRoot.State>
   ) { }
 
   ngOnInit() {
@@ -38,7 +44,19 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  onUserMenuClick(url: string) {
-    this.router.navigate([`${url}`]);
+  onUserMenuClick(name: string) {
+    // this.router.navigate([`${url}`]);
+    switch (name) {
+      case 'login':
+        this.store.dispatch(new fromLayoutAction.IsLoginFormOpened(true));
+        this.helper.preventBodyToScroll(true);
+        break;
+      case 'registration':
+        this.store.dispatch(new fromLayoutAction.IsSignupFormOpened(true));
+        this.helper.preventBodyToScroll(true);
+        break;
+      default:
+        console.log(name);
+    }
   }
 }

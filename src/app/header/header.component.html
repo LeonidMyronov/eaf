@@ -26,7 +26,7 @@
         <span class="hamburger_item"></span>
       </div>
       <div class="user-menu-group" fxFlexOrder.lt-sm="2" fxFlex.gt-xs="none" fxFlex.xs="100%" fxLayout.xs="row" fxLayoutAlign.xs="center">
-        <button type="button" *ngFor="let item of userMenu" class="user-menu-group__item {{item.item_class}}" (click)="onUserMenuClick(item.url)">{{item.name}}</button>
+        <button type="button" *ngFor="let item of userMenu" class="user-menu-group__item {{item.item_class}}" (click)="onUserMenuClick(item.name)">{{item.name}}</button>
       </div>
 
 
