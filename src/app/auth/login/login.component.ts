@@ -8,7 +8,7 @@ import { HelperService } from '../../core/helper.service';
 import { AuthService } from '../auth.service';
 
 import * as fromRoot from '../../app.reducers';
-import * as UIAction from '../../store/ui.actions';
+import * as UIAction from '../../ui/ui.actions';
 
 @Component({
   selector: 'eaf-login',
@@ -41,5 +41,11 @@ export class LoginComponent implements OnInit {
     // this.location.back();
     this.store.dispatch(new UIAction.IsLoginFormOpened(false));
     this.helper.preventBodyToScroll(false);
+  }
+
+  onSignup() {
+    this.onCloseForm();
+    this.store.dispatch(new UIAction.IsSignupFormOpened(true));
+    this.helper.preventBodyToScroll(true);
   }
 }

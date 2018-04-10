@@ -7,7 +7,7 @@ import { User } from '../secure-section/user/user.model';
 import * as fromRoot from '../app.reducers';
 import * as AuthAction from './store/auth.actions';
 import * as UserAction from '../secure-section/user/store/user.actions';
-import * as UIAction from '../store/ui.actions';
+import * as UIAction from '../ui/ui.actions';
 
 @Injectable()
 export class AuthService {
