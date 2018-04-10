@@ -65,8 +65,15 @@
       <input type="text" placeholder="Promo Key:" formControlName="name">
     </div>
 
-    <div class="action-group" fxLayout="row" fxLayoutAlign="space-between center">
-      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+    <div class="action-group" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="25px">
+      <div class="captcha">
+        <re-captcha 
+        (resolved)="onCaptchaResolved($event)"
+        siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+        size="normal"
+        formControlName="recaptcha">
+      </re-captcha>
+      </div>
       <button type="submit" class="primary btn-lg" [disabled]="signupForm.invalid">Registration</button>
     </div>
   </form>

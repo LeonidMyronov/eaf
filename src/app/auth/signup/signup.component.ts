@@ -31,7 +31,8 @@ export class SignupComponent implements OnInit {
       name: new FormControl(''),
       icq: new FormControl(''),
       skype: new FormControl(''),
-      promoKey: new FormControl('')
+      promoKey: new FormControl(''),
+      recaptcha: new FormControl(null, Validators.required)
     });
   }
 
@@ -45,4 +46,7 @@ export class SignupComponent implements OnInit {
     this.helper.preventBodyToScroll(false);
   }
 
+  onCaptchaResolved(e) {
+    console.log('captcha resolved => ', e);
+  }
 }

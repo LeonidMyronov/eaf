@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CustomFlexLayoutBreakPointsModule } from './custom-flexlayout-breakpoints.module';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './start-section/home/home.component';
@@ -38,6 +39,8 @@ import { reducers } from './app.reducers';
     CoreModule,
     AuthModule,
     StoreModule.forRoot(reducers),
+    // https://github.com/DethAriel/ng-recaptcha
+    RecaptchaModule.forRoot(),
     // StoreRouterConnectingModule,
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
     // StoreDevtoolsModule.instrument()
