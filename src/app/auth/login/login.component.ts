@@ -7,7 +7,7 @@ import { Location } from '@angular/common';
 import { HelperService } from '../../core/helper.service';
 
 import * as fromRoot from '../../app.reducers';
-import * as layoutAction from '../../store/layout.actions';
+import * as UIAction from '../../store/ui.actions';
 
 @Component({
   selector: 'eaf-login',
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   onCloseForm() {
     // this.location.back();
-    this.store.dispatch(new layoutAction.IsLoginFormOpened(false));
+    this.store.dispatch(new UIAction.IsLoginFormOpened(false));
     this.helper.preventBodyToScroll(false);
   }
 }

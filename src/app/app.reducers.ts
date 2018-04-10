@@ -1,16 +1,16 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromAuth from './auth/store/auth.reducer';
-import * as fromLayout from './store/layout.reducer';
+import * as fromUI from './store/ui.reducer';
 
 
 export interface State {
   auth: fromAuth.State;
-  layout: fromLayout.State;
+  ui: fromUI.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
   auth: fromAuth.authReducer,
-  layout: fromLayout.layoutReducer
+  ui: fromUI.uiReducer
 };
 
 
@@ -18,6 +18,6 @@ export const getAuthState = createFeatureSelector<fromAuth.State>('auth');
 export const getIsAuth = createSelector(getAuthState, fromAuth.getIsAuth);
 
 
-export const getLayoutState = createFeatureSelector<fromLayout.State>('layout');
-export const getIsLoginFormOpened = createSelector(getLayoutState, fromLayout.getIsLoginFormOpened);
-export const getIsSignupFormOpened = createSelector(getLayoutState, fromLayout.getIsSignupFormOpened);
+export const getUIState = createFeatureSelector<fromUI.State>('ui');
+export const getIsLoginFormOpened = createSelector(getUIState, fromUI.getIsLoginFormOpened);
+export const getIsSignupFormOpened = createSelector(getUIState, fromUI.getIsSignupFormOpened);

@@ -1,4 +1,4 @@
-import { LayoutActions, IS_LOGIN_FORM_OPENED, IS_SIGNUP_FORM_OPENED } from './layout.actions';
+import { UIActions, IS_LOGIN_FORM_OPENED, IS_SIGNUP_FORM_OPENED } from './ui.actions';
 
 export interface State {
   isLoginFormOpened: boolean;
@@ -10,7 +10,7 @@ export const initialState: State = {
   isSignupFormOpened: false,
 };
 
-export function layoutReducer(state: State = initialState, action: LayoutActions) {
+export function uiReducer(state: State = initialState, action: UIActions) {
   switch (action.type) {
     case IS_LOGIN_FORM_OPENED:
     return {

@@ -7,7 +7,7 @@ import { HelperService } from '../core/helper.service';
 
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
-import * as fromLayoutAction from '../store/layout.actions';
+import * as fromUIAction from '../store/ui.actions';
 
 @Component({
   selector: 'eaf-header',
@@ -48,11 +48,11 @@ export class HeaderComponent implements OnInit {
     // this.router.navigate([`${url}`]);
     switch (name) {
       case 'login':
-        this.store.dispatch(new fromLayoutAction.IsLoginFormOpened(true));
+        this.store.dispatch(new fromUIAction.IsLoginFormOpened(true));
         this.helper.preventBodyToScroll(true);
         break;
       case 'registration':
-        this.store.dispatch(new fromLayoutAction.IsSignupFormOpened(true));
+        this.store.dispatch(new fromUIAction.IsSignupFormOpened(true));
         this.helper.preventBodyToScroll(true);
         break;
       default:
