@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
 import { AuthService } from './auth.service';
@@ -29,7 +30,13 @@ import { LoginComponent } from './login/login.component';
     SignupComponent,
     LoginComponent,
   ],
-  providers: [AuthService]
+  providers: [
+    AuthService,
+    {
+      provide: RECAPTCHA_LANGUAGE,
+      useValue: 'en', // use EN language
+    },
+  ]
 })
 
 export class AuthModule {}
