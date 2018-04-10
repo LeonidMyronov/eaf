@@ -1,3 +1,73 @@
-<p>
-  signup works!
-</p>
+<article>
+  <form class="form signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-images">
+      <img class="form-logo" src="/assets/images/header/header-logo.svg" alt="" routerLink="/">
+      <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
+    </div>
+
+    <div class="title">Регистрация</div>
+
+    <div class="form-field">
+      <input type="email" placeholder="E-mail:" formControlName="email">
+      <div class="form-field__actions">
+
+        <span class="form-required">*</span>
+        <div *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched && !signupForm.controls['email'].errors?.required"
+          class="form-error">
+          Please, enter valid email address
+        </div>
+        <div *ngIf="signupForm.controls['email'].errors?.required && signupForm.controls['email'].touched" class="form-error">
+          This field is required
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input type="password" placeholder="Password:" formControlName="password">
+      <div class="form-field__actions">
+
+        <span class="form-required">*</span>
+        <div *ngIf="signupForm.controls['password'].errors?.required && signupForm.controls['password'].touched" class="form-error">
+          This field is required
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input type="password" placeholder="Password (again):" formControlName="repeatPassword">
+      <div class="form-field__actions">
+
+        <span class="form-required">*</span>
+        <div *ngIf="signupForm.controls['repeatPassword'].errors?.required && signupForm.controls['repeatPassword'].touched" class="form-error">
+          This field is required
+        </div>
+
+      </div>
+    </div>
+
+    <div class="form-field">
+      <input type="text" placeholder="Full name:" formControlName="name">
+    </div>
+
+    <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
+      <img class="form-field-image" src="/assets/images/auth/icq-image.svg" alt="">
+      <input type="text" placeholder="ICQ:" formControlName="icq">
+    </div>
+
+    <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
+      <img class="form-field-image" src="/assets/images/auth/skype-image.svg" alt="">
+      <input type="text" placeholder="Skype:" formControlName="skype">
+    </div>
+
+    <div class="form-field">
+      <input type="text" placeholder="Promo Key:" formControlName="name">
+    </div>
+
+    <div class="action-group" fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+      <button type="submit" class="primary btn-lg" [disabled]="signupForm.invalid">Registration</button>
+    </div>
+  </form>
+</article>
