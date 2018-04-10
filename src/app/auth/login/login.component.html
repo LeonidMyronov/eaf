@@ -6,7 +6,7 @@
     </div>
     <div class="title">вход</div>
     <div class="form-field">
-      <input type="email" placeholder="E-mail" formControlName="email">
+      <input type="email" placeholder="E-mail:" formControlName="email">
       <div class="form-field__actions">
 
         <span class="form-required">*</span>
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="form-field">
-      <input type="password" placeholder="Password" formControlName="password">
+      <input type="password" placeholder="Password:" formControlName="password">
       <div class="form-field__actions">
 
         <span class="form-required">*</span>
@@ -34,7 +34,7 @@
     <div class="action-group" fxLayout="row" fxLayoutAlign="space-between center">
       <div class="link-group">
         <a routerLink="/forgot-password">Забыли пароль?</a>
-        <a routerLink="/sign-up">Регистрация</a>
+        <a (click)="onSignup()">Регистрация</a>
       </div>
       <button type="submit" class="primary btn-lg" [disabled]="loginForm.invalid">Вход</button>
     </div>

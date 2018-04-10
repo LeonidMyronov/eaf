@@ -1,4 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { HelperService } from '../../core/helper.service';
+import { AuthService } from '../auth.service';
+
+import * as fromRoot from '../../app.reducers';
+import * as UIAction from '../../ui/ui.actions';
 
 @Component({
   selector: 'eaf-signup',
@@ -6,10 +15,34 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.sass']
 })
 export class SignupComponent implements OnInit {
+  signupForm: FormGroup;
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private store: Store<fromRoot.State>,
+    private helper: HelperService
+  ) { }
 
   ngOnInit() {
+    this.signupForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.pattern('^([a-z0-9_\\+\\.-]+)@([a-z0-9\\.-]+)\\.([a-z\\.]{2,6})$')]),
+      password: new FormControl('', Validators.required),
+      repeatPassword: new FormControl('', Validators.required),
+      name: new FormControl(''),
+      icq: new FormControl(''),
+      skype: new FormControl(''),
+      promoKey: new FormControl('')
+    });
+  }
+
+  onSubmit() {
+    console.log(this.signupForm);
+    this.authService.login(this.signupForm.value);
+  }
+
+  onCloseForm() {
+    this.store.dispatch(new UIAction.IsSignupFormOpened(false));
+    this.helper.preventBodyToScroll(false);
   }
 
 }

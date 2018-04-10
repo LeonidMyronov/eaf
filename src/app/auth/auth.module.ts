@@ -4,6 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 
+import { AuthService } from './auth.service';
+
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
 
@@ -18,7 +20,11 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     RouterModule
   ],
-  exports: []
+  exports: [
+    SignupComponent,
+    LoginComponent,
+  ],
+  providers: [AuthService]
 })
 
 export class AuthModule {}

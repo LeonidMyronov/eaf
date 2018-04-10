@@ -53,20 +53,24 @@ export class AppStorageService {
     {
       name: 'registration',
       item_class: 'primary',
-      url: '/sign-up'
+      url: '/sign-up',
+      auth: false
     },
     {
       name: 'login',
       item_class: 'secondary',
-      url: '/login'
+      url: '/login',
+      auth: false
     },
     {
       name: 'profile',
-      item_class: 'primary'
+      item_class: 'primary',
+      auth: true
     },
     {
       name: 'logout',
-      item_class: 'secondary'
+      item_class: 'secondary',
+      auth: true
     }
   ];
 
