@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { HelperService } from '../../core/helper.service';
+import { AuthService } from '../auth.service';
 
 import * as fromRoot from '../../app.reducers';
 import * as UIAction from '../../store/ui.actions';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private location: Location,
     private store: Store<fromRoot.State>,
     private helper: HelperService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.loginForm);
+    this.authService.login(this.loginForm.value);
   }
 
   onCloseForm() {
