@@ -30,8 +30,15 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.navMenu = this.appStorage.getNavMenu();
-    this.userMenu = this.appStorage.getUserMenu();
+    this.store.select(fromRoot.getIsAuth)
+      .subscribe(
+        isAuth => {
+          this.navMenu = this.appStorage.getNavMenu();
+          this.userMenu = this.appStorage.getUserMenu().filter(item => item.auth === isAuth);
+        }
+      )
+    ;
+
     this.langsList = this.appStorage.getLangsList();
   }
 
