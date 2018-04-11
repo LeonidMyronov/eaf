@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { AppStorageService } from '../core/app-storage.service';
 import { HelperService } from '../core/helper.service';
+import { AuthService } from '../auth/auth.service';
 
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
@@ -26,7 +27,8 @@ export class HeaderComponent implements OnInit {
     private appStorage: AppStorageService,
     private router: Router,
     private helper: HelperService,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -36,8 +38,9 @@ export class HeaderComponent implements OnInit {
           this.navMenu = this.appStorage.getNavMenu();
           this.userMenu = this.appStorage.getUserMenu().filter(item => item.auth === isAuth);
         }
-      )
-    ;
+      );
+    this.store.select(fromRoot.getShortUserState)
+      .subscribe( response => console.log('userState => ', response));
 
     this.langsList = this.appStorage.getLangsList();
   }
@@ -61,6 +64,9 @@ export class HeaderComponent implements OnInit {
       case 'registration':
         this.store.dispatch(new UIAction.IsSignupFormOpened(true));
         this.helper.preventBodyToScroll(true);
+        break;
+        case 'logout':
+        this.authService.logout();
         break;
       default:
         console.log(name);

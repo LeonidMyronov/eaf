@@ -40,7 +40,8 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     console.log(this.signupForm);
-    this.authService.login(this.signupForm.value);
+    this.authService.signup(this.signupForm.value);
+    this.onCloseForm();
   }
 
   onCloseForm() {

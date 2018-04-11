@@ -31,7 +31,6 @@ export class AuthService {
     // do preloader here ...
 
     // TODO on success
-    this.store.dispatch(new UIAction.IsLoginFormOpened(false));
     this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
@@ -53,10 +52,14 @@ export class AuthService {
     // do preloader here ...
 
     // TODO on success
-    this.store.dispatch(new UIAction.IsSignupFormOpened(false));
     this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
     // do code here ...
+  }
+
+  logout() {
+    this.store.dispatch(new AuthAction.IsUnauth());
+    this.store.dispatch(new UserAction.ClearProfile());
   }
 }
