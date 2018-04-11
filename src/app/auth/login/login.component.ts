@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log(this.loginForm);
     this.authService.login(this.loginForm.value);
+    this.onCloseForm();
   }
 
   onCloseForm() {

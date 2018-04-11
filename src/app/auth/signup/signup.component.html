@@ -23,29 +23,38 @@
       </div>
     </div>
 
-    <div class="form-field">
-      <input type="password" placeholder="Password:" formControlName="password">
-      <div class="form-field__actions">
+    <ng-container formGroupName="passwords">
+      <div class="form-field">
+        <input type="password" placeholder="Password:" formControlName="password">
+        <div class="form-field__actions">
 
-        <span class="form-required">*</span>
-        <div *ngIf="signupForm.controls['password'].errors?.required && signupForm.controls['password'].touched" class="form-error">
-          This field is required
+          <span class="form-required">*</span>
+          <div *ngIf="signupForm.get('passwords.password').errors?.required && signupForm.get('passwords.password').touched" class="form-error">
+            This field is required
+          </div>
+
         </div>
-
       </div>
-    </div>
 
-    <div class="form-field">
-      <input type="password" placeholder="Password (again):" formControlName="repeatPassword">
-      <div class="form-field__actions">
+      <div class="form-field">
+        <input type="password" placeholder="Password (again):" formControlName="repeatPassword">
+        <div class="form-field__actions">
 
-        <span class="form-required">*</span>
-        <div *ngIf="signupForm.controls['repeatPassword'].errors?.required && signupForm.controls['repeatPassword'].touched" class="form-error">
-          This field is required
+          <span class="form-required">*</span>
+          <div *ngIf="signupForm.get('passwords.repeatPassword').errors?.required && signupForm.get('passwords.repeatPassword').touched"
+            class="form-error">
+            This field is required
+          </div>
+          <div *ngIf="signupForm.get('passwords').errors?.mismatch
+            && signupForm.get('passwords.repeatPassword').touched
+            && signupForm.get('passwords.password').touched"
+            class="form-error">
+            Mismatched password
+          </div>
+
         </div>
-
       </div>
-    </div>
+    </ng-container>
 
     <div class="form-field">
       <input type="text" placeholder="Full name:" formControlName="name">
@@ -65,8 +74,15 @@
       <input type="text" placeholder="Promo Key:" formControlName="name">
     </div>
 
-    <div class="action-group" fxLayout="row" fxLayoutAlign="space-between center">
-      <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+    <div class="action-group" fxLayout="row wrap" fxLayoutAlign="space-between center">
+      <div class="captcha">
+        <re-captcha
+         (resolved)="onCaptchaResolved($event)" 
+         siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" 
+         size="normal" 
+         formControlName="recaptcha">
+        </re-captcha>
+      </div>
       <button type="submit" class="primary btn-lg" [disabled]="signupForm.invalid">Registration</button>
     </div>
   </form>
