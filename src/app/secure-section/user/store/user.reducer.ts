@@ -1,5 +1,5 @@
 import { User } from '../user.model';
-import { UserActions, FILL_PROFILE } from './user.actions';
+import { UserActions, FILL_PROFILE, CLEAR_PROFILE } from './user.actions';
 
 
 export interface State {
@@ -7,7 +7,14 @@ export interface State {
 }
 
 const initialState: State = {
-  user: null
+  user: {
+    email: null,
+    id: null,
+    name: null,
+    icqAccount: null,
+    skypeAccount: null,
+    balance: null,
+  },
 };
 
 export function userReducer(state: State = initialState, action: UserActions) {
@@ -16,6 +23,18 @@ export function userReducer(state: State = initialState, action: UserActions) {
       return {
         ...state,
         user: action.payload
+      };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        user: {
+          email: null,
+          id: null,
+          name: null,
+          icqAccount: null,
+          skypeAccount: null,
+          balance: null,
+        }
       };
     default:
       return state;

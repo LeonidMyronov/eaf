@@ -7,6 +7,8 @@ import { CustomFlexLayoutBreakPointsModule } from './custom-flexlayout-breakpoin
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 
+import { AuthService } from './auth/auth.service';
+
 import { AppComponent } from './app.component';
 import { HomeComponent } from './start-section/home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -42,7 +44,9 @@ import { reducers } from './app.reducers';
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
     // StoreDevtoolsModule.instrument()
   ],
-  providers: [],
+  providers: [
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

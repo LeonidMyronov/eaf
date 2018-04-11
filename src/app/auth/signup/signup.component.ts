@@ -26,18 +26,22 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signupForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.pattern('^([a-z0-9_\\+\\.-]+)@([a-z0-9\\.-]+)\\.([a-z\\.]{2,6})$')]),
-      password: new FormControl('', Validators.required),
-      repeatPassword: new FormControl('', Validators.required),
+      passwords: new FormGroup({
+        password: new FormControl('', Validators.required),
+        repeatPassword: new FormControl('', Validators.required)
+      }, this.passwordMatchValidator),
       name: new FormControl(''),
       icq: new FormControl(''),
       skype: new FormControl(''),
-      promoKey: new FormControl('')
+      promoKey: new FormControl(''),
+      recaptcha: new FormControl(null, Validators.required)
     });
   }
 
   onSubmit() {
     console.log(this.signupForm);
-    this.authService.login(this.signupForm.value);
+    this.authService.signup(this.signupForm.value);
+    this.onCloseForm();
   }
 
   onCloseForm() {
@@ -45,4 +49,12 @@ export class SignupComponent implements OnInit {
     this.helper.preventBodyToScroll(false);
   }
 
+  onCaptchaResolved(e) {
+    console.log('captcha resolved => ', e);
+  }
+
+  passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value === g.get('repeatPassword').value
+       ? null : {'mismatch': true};
+ }
 }
