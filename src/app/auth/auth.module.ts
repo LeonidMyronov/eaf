@@ -23,7 +23,8 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     RouterModule,
     // https://github.com/DethAriel/ng-recaptcha
-    RecaptchaModule,
+    // RecaptchaModule,
+    RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
   ],
   exports: [
@@ -31,7 +32,6 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
   ],
   providers: [
-    AuthService,
     {
       provide: RECAPTCHA_LANGUAGE,
       useValue: 'en', // use EN language
