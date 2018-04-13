@@ -1,0 +1,27 @@
+@import variables
+section
+  padding: 0
+// div
+//   background-color: $primaryColor
+//   border: 1px solid
+
+.class1
+  width: 326px
+  height: 472px
+  background-color: $primaryColor
+  
+.class2_1, .class2_2
+  width: 326px
+  height: 226px
+  background-color: $primaryColor
+.class3
+  width: 670px
+  height: 472px
+  background-color: $primaryColor
+  
+@media (max-width: 1023px) and (min-width: 768px)
+  .class3
+    margin-left: -346px
+@media (max-width: 767px)
+  .class3
+    width: 326px
