@@ -1,4 +1,6 @@
 @import variables
+section
+  padding: 0
 
 .hint
   font-size: 14px
@@ -11,11 +13,11 @@
 
 .cards-group
   margin-bottom: 35px
-  width: 100%
+  width: 1362px
 
 .card
   height: 472px
-  margin: 5px
+  // margin: 5px
   padding: 30px
   &__title
     margin-top: 10px
@@ -38,6 +40,8 @@
       text-align: center
   &.card-wide
     width: 670px
+    margin-left: 20px
+    margin-right: 20px
   &.card-descr-content
     justify-content: start
     p
@@ -51,3 +55,22 @@
   button
     display: block
     margin: 0 auto
+
+@media (max-width: 1399px)
+  .cards-group
+    width: 1020px
+  .card
+    &.card-wide
+      margin-right: 0
+      margin-bottom: 20px
+    &.card-descr-content
+      width: 100%
+      height: 226px
+      flex-flow: row
+      justify-content: center
+      align-items: flex-start
+      p
+        width: 266px
+        margin-top: 35px
+        &:not(:last-child)
+          margin-right: 20px
