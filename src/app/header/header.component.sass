@@ -16,16 +16,19 @@ header
     li
       height: 40px
       a
+        color: inherit
         display: inline-block
         text-transform: capitalize
         line-height: 40px
         padding: 0 35px
+        text-decoration: none
         cursor: pointer
       &:not(:last-child)
         border-right: 1px solid $accentColor
-      &:hover
+      &:hover, &.active
         a
           color: $accentColor
+      
   .lang-menu
     position: relative
     width: 90px

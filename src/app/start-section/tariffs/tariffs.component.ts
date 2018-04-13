@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { HelperService } from '../../core/helper.service';
+
+import * as fromRoot from '../../app.reducers';
+import * as UIAction from '../../ui/ui.actions';
 
 @Component({
   selector: 'eaf-tariffs',
@@ -7,9 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TariffsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store<fromRoot.State>,
+    private helper: HelperService
+  ) { }
 
   ngOnInit() {
   }
 
+  onRegister() {
+    this.store.dispatch(new UIAction.IsSignupFormOpened(true));
+    this.helper.preventBodyToScroll(true);
+  }
 }

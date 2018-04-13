@@ -1,7 +1,7 @@
 <header fxLayout="row wrap" fxLayoutAlign="start center">
   <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
       <ul class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center" [fxShow.lt-sm]="isMobileMenuOpened">
-        <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}">
+        <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
           <a>
             {{ navItem.name }}
           </a>

@@ -1,3 +1,53 @@
-<p>
-  tariffs works!
-</p>
+<section fxLayout="column" fxLayoutAlign="start center">
+  <h1>Комиссия</h1>
+  <p class="accent-color hint">(процент от продаж)</p>
+  <p class="section-descr">Вы получаете фиксированный процент от всех продаж приведенных клиентов.</p>
+
+  <div class="cards-group"  fxLayout.lt-sm="column" fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap.lg="20px" fxLayoutGap.xs="10px">
+    <div class="card" fxLayout="column" fxLayoutAlign="start center">
+      <div class="card__title">Продажа</div>
+      <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+        <img src="/assets/images/tariffs/sales.svg" alt="">
+        <div class="value">50%</div>
+        <div class="descr">с первой продажи</div>
+      </div>
+    </div>
+
+    <div class="card card-wide" fxLayout="column" fxLayoutAlign="start center" fxFlexOrder.sm="1">
+      <div class="card__title">Ребилы
+        <span class="light-color">*</span>
+      </div>
+      <div class="card__content-group" fxLayout.xs="column" fxLayout="row" fxLayoutAlign.xs="start" fxLayoutAlign="space-around">
+
+        <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/tariffs/rebills-15.svg">
+          <div class="value">15%</div>
+          <div class="descr">0-100 новых клиентов</div>
+        </div>
+        <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/tariffs/rebills-20.svg">
+          <div class="value">20%</div>
+          <div class="descr">101+ новых клиентов</div>
+        </div>
+
+      </div>
+      <p class="hint light-color">
+        <sup>*</sup>
+        <span class="accent-color">Ребилы</span> – это повторные заказы клиента, начиная со второго.</p>
+    </div>
+
+    <div class="card card-descr-content">
+      <p>Эти рейты хоть и достаточно высокие, но не максимальные.</p>
+      <p class="smaller-text light-color">Если вы за месяц (30 дней) привели более чем 100 новых клиентов, мы можем обсудить повышение отчислений до 60%. А за
+        200 новых клиентов в месяц (30 дней) – до 70%.</p>
+      <p class="smaller-text light-color">
+        <span class="accent-color">Cookies</span> – хранятся 90 дней, так что у клиента будет достаточно времени чтобы сделать заказ.</p>
+    </div>
+  </div>
+
+  <div class="action">
+    <h2 class="accent-color">Не плохо, не так ли?</h2>
+    <button type="button" class="primary btn-xxl" (click)="onRegister()">Зарегистрироваться</button>
+  </div>
+
+</section>
