@@ -63,6 +63,9 @@ section
     &.card-wide
       margin-right: 0
       margin-bottom: 20px
+
+@media (max-width: 1399px) and (min-width: 1024px)
+  .card
     &.card-descr-content
       width: 100%
       height: 226px
@@ -74,3 +77,11 @@ section
         margin-top: 35px
         &:not(:last-child)
           margin-right: 20px
+@media (max-width: 1023px)
+  .card
+    &.card-descr-content
+      margin-left: 20px
+      margin-bottom: 20px
+    &.card-wide
+      margin-bottom: 0
+      margin-left: 0
