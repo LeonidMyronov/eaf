@@ -69,7 +69,7 @@
       Прикинем сколько можно заработать за 1 месяц (30 дней).
     </p>
 
-    <div class="formula" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
+    <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
       <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
         <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
         <div class="text">300</div>
@@ -109,7 +109,7 @@
       </div>
     </div>
 
-    <div class="formula" fxLayout="row" fxLayoutAlign="start center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
+    <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
         <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
           <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
           <div class="text">300</div>
@@ -144,7 +144,7 @@
     </div>
     <div class="action">
       <h2 class="accent-color">Не плохо, не так ли?</h2>
-      <button type="button" class="primary">Зарегистрироваться</button>
+      <button type="button" class="primary btn-xxl" (click)="onRegister()">Зарегистрироваться</button>
     </div>
 </section>
 
@@ -195,12 +195,12 @@
     <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
       <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
         <h3>Все что вам остается – лить трафик!</h3>
-        <button type="button" class="primary btn-xl">Зарегистрироваться</button>
+        <button type="button" class="primary btn-xl" (click)="onRegister()">Зарегистрироваться</button>
       </div>
       <img src="/assets/images/home/home-5-banner.svg" alt="">
       <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
         <h3>А мы позаботимся об остальном.</h3>
-        <button type="button" class="primary btn-xl">Задать вопрос</button>
+        <button type="button" class="primary btn-xl" (click)="onAskQuestion()" routerLink="/contacts">Задать вопрос</button>
       </div>
     </div>
 

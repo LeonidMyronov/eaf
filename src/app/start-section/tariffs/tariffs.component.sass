@@ -1,0 +1,106 @@
+@import variables
+section
+  padding: 0
+  padding-bottom: 65px
+
+.hint
+  font-size: 14px
+  text-align: center
+
+.section-descr
+  width: 370px
+  text-align: center
+  margin-top: 20px
+  margin-bottom: 30px
+
+.cards-group
+  margin-bottom: 35px
+  width: 1362px
+
+.card
+  height: 472px
+  // margin: 5px
+  padding: 30px
+  &__title
+    margin-top: 10px
+    margin-bottom: 40px
+    font-size: 24px
+    text-transform: uppercase
+  &__content-group
+    width: 100%
+    margin-bottom: auto
+  &__content
+    img
+      margin-bottom: 15px
+    .value
+      margin-bottom: 15px
+      font-size: 36px
+      color: $accentColor
+      text-align: center
+    .descr
+      max-width: 120px
+      text-align: center
+  &.card-wide
+    width: 670px
+    // margin-left: 20px
+    // margin-right: 20px !important
+  &.card-descr-content
+    justify-content: start
+    p
+      margin-bottom: 30px
+      &.smaller-text
+        font-size: 14px
+
+.action
+  h2
+    margin-bottom: 30px
+  button
+    display: block
+    margin: 0 auto
+
+@media (max-width: 1399px)
+  .cards-group
+    width: 1020px
+  .card
+    &.card-wide
+      margin-left: 20px
+      margin-bottom: 20px
+
+@media (max-width: 1399px) and (min-width: 1024px)
+  .card
+    &.card-descr-content
+      width: 100%
+      height: 226px
+      flex-flow: row
+      justify-content: center
+      align-items: flex-start
+      p
+        width: 266px
+        margin-top: 35px
+        &:not(:last-child)
+          margin-right: 20px
+
+@media (max-width: 1023px)
+  .card
+    &.card-descr-content
+      margin-left: 20px
+      margin-bottom: 20px
+    &.card-wide
+      margin-bottom: 0
+      margin-left: 0
+
+@media (max-width: 767px)
+  section
+    padding-bottom: 40px
+  .section-descr
+    max-width: 326px
+  .cards-group
+    width: 326px
+  .card
+    &.card-wide
+      height: auto
+    &.card-descr-content
+      margin-left: 0
+      margin-bottom: 0
+  .card__content
+    margin-bottom: 60px

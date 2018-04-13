@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
+import { HelperService } from '../../core/helper.service';
 import { AppStorageService } from '../../core/app-storage.service';
+
+import * as fromRoot from '../../app.reducers';
+import * as UIAction from '../../ui/ui.actions';
 
 @Component({
   selector: 'eaf-home',
@@ -13,7 +18,9 @@ export class HomeComponent implements OnInit {
   public countryList;
   public workTypes;
   constructor(
-    private appStorage: AppStorageService
+    private appStorage: AppStorageService,
+    private store: Store<fromRoot.State>,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
@@ -23,4 +30,8 @@ export class HomeComponent implements OnInit {
     this.workTypes = this.appStorage.getWorkTypes();
   }
 
+  onRegister() {
+    this.store.dispatch(new UIAction.IsSignupFormOpened(true));
+    this.helper.preventBodyToScroll(true);
+  }
 }
