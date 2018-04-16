@@ -74,6 +74,44 @@ export class AppStorageService {
     }
   ];
 
+  private userMenu = [
+    {
+      name: 'today',
+      iconSrc: '/assets/images/main/user-menu/icon-today.svg',
+    },
+    {
+      name: 'statistic',
+      iconSrc: '/assets/images/main/user-menu/icon-statistic.svg',
+    },
+    {
+      name: 'post back',
+      iconSrc: '/assets/images/main/user-menu/icon-postback.svg',
+    },
+    {
+      name: 'balance',
+      iconSrc: '/assets/images/main/user-menu/icon-balance.svg',
+    },
+    {
+      name: 'whiteLabel',
+      iconSrc: '/assets/images/main/user-menu/icon-whitelabel.svg',
+    },
+    {
+      name: 'offer',
+      iconSrc: '/assets/images/main/user-menu/icon-offer.svg',
+    },
+    {
+      name: 'guide',
+      iconSrc: '/assets/images/main/user-menu/icon-guide.svg',
+    },
+    {
+      name: 'news',
+      iconSrc: '/assets/images/main/user-menu/icon-news.svg',
+    },
+    {
+      name: 'support',
+      iconSrc: '/assets/images/main/user-menu/icon-support.svg',
+    },
+  ];
   private homeSection1Cards = [
     {
       iconSrc: '/assets/images/home/home-1-icon-comission.svg',
