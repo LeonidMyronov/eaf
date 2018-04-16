@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ import { reducers } from './app.reducers';
     CustomFlexLayoutBreakPointsModule,
     CoreModule,
     AuthModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     // StoreRouterConnectingModule,
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
