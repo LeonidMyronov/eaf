@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
 
 import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './start-section/home/home.component';
@@ -47,7 +48,7 @@ import { reducers } from './app.reducers';
     // StoreDevtoolsModule.instrument()
   ],
   providers: [
-    AuthService,
+    AuthService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })

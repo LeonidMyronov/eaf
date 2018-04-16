@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 import { LoginData } from './login-data.model';
 import { SignupData } from './signup-data.model';
@@ -13,7 +14,8 @@ import * as UIAction from '../ui/ui.actions';
 export class AuthService {
 
   constructor(
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private router: Router
   ) {}
 
   login(loginData: LoginData) {
@@ -31,6 +33,7 @@ export class AuthService {
     // do preloader here ...
 
     // TODO on success
+  this.router.navigate(['/main']);
     this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
@@ -52,6 +55,7 @@ export class AuthService {
     // do preloader here ...
 
     // TODO on success
+    this.router.navigate(['/main']);
     this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
