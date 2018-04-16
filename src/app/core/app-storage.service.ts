@@ -49,7 +49,7 @@ export class AppStorageService {
     }
   ];
 
-  private userMenu = [
+  private authMenu = [
     {
       name: 'registration',
       item_class: 'primary',
@@ -162,7 +162,7 @@ export class AppStorageService {
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
-  getUserMenu() { return [...this.userMenu]; }
+  getAuthMenu() { return [...this.authMenu]; }
   getLangsList() { return [...this.langsList]; }
   getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }

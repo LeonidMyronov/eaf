@@ -18,7 +18,7 @@ import * as UIAction from '../ui/ui.actions';
 export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
   public navMenu: any;
-  public userMenu: any;
+  public authMenu: any;
   public userLang = 'us';
   public isMobileMenuOpened = false;
 
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit {
       .subscribe(
         isAuth => {
           this.navMenu = this.appStorage.getNavMenu();
-          this.userMenu = this.appStorage.getUserMenu().filter(item => item.auth === isAuth);
+          this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
         }
       );
     this.store.select(fromRoot.getShortUserState)
@@ -54,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  onUserMenuClick(name: string) {
+  onAuthMenuClick(name: string) {
     // this.router.navigate([`${url}`]);
     switch (name) {
       case 'login':
