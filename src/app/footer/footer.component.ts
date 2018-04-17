@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../core/app-storage.service';
 
 import { environment } from '../../environments/environment';
+import * as fromRoot from '../app.reducers';
 
 @Component({
   selector: 'eaf-footer',
@@ -12,10 +15,18 @@ import { environment } from '../../environments/environment';
 export class FooterComponent implements OnInit {
   public deployPath = environment.deployPath;
   public navMenu: any;
-  constructor(private appStorage: AppStorageService) { }
+  public userMenu: any;
+  public isAuth$: Observable<boolean>;
+
+  constructor(
+    private appStorage: AppStorageService,
+    private store: Store<fromRoot.State>
+  ) { }
 
   ngOnInit() {
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
     this.navMenu = this.appStorage.getNavMenu();
+    this.userMenu = this.appStorage.getUserMenu();
   }
 
 }

@@ -1,13 +1,20 @@
-<footer class="bg-main-color" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxFlexAlign="center">
+<footer class="bg-main-color" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxFlexAlign="center">
   <img id='footer-logo' src="{{deployPath}}/assets/images/footer/footer-logo.svg" alt="" routerLink="/">
-  <ul class="nav-menu" fxLayout="row">
+  <ul *ngIf="!(isAuth$ | async)" class="nav-menu" fxLayout="row">
     <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
       <a>
         {{ navItem.name }}
       </a>
     </li>
   </ul>
+  <ul *ngIf="(isAuth$ | async)" class="user-menu" fxLayout="row">
+    <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+      <a *ngIf="navItem.name !== 'promo'">
+        {{ navItem.name }}
+      </a>
+    </li>
+  </ul>
   <div class="copyright" fxFlex.gt-xs="100%">
-      This website and its content is copyright of © Edu-affiliates.com 2017. All rights reserved
+    This website and its content is copyright of © Edu-affiliates.com 2017. All rights reserved
   </div>
 </footer>
