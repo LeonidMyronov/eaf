@@ -11,12 +11,14 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'tariffs', component: TariffsComponent},
   {path: 'contacts', component: ContactsComponent},
-  {path: 'main',  loadChildren: './secure-section/main.module#MainModule', canLoad: [AuthGuard]}
+  {path: 'main',  loadChildren: './secure-section/main.module#MainModule', canLoad: [AuthGuard]},
+  // {path: 'redirectToRoot', redirectTo: '/'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })], // <-- debugging purposes only],
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 
 export class AppRoutingModule {}

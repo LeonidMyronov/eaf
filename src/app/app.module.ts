@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import { CustomFlexLayoutBreakPointsModule } from './custom-flexlayout-breakpoints.module';
 import { CoreModule } from './core/core.module';
@@ -36,19 +34,17 @@ import { reducers } from './app.reducers';
   ],
   imports: [
     BrowserModule,
-    FlexLayoutModule,
     AppRoutingModule,
-    CustomFlexLayoutBreakPointsModule,
     CoreModule,
+    CustomFlexLayoutBreakPointsModule,
     AuthModule,
-    ReactiveFormsModule,
     StoreModule.forRoot(reducers),
     // StoreRouterConnectingModule,
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
     // StoreDevtoolsModule.instrument()
   ],
   providers: [
-    AuthService, AuthGuard
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })
