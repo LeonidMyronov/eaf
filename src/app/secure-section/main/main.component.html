@@ -1,3 +1,5 @@
 <p>
   main works!
 </p>
+<div *ngFor="let navItem of userMenu" [routerLink]="navItem.name">{{navItem.name}}</div>
+<router-outlet></router-outlet>
