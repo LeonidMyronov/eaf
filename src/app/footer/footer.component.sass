@@ -23,9 +23,13 @@ footer
         cursor: pointer
       &:not(:last-child)
         border-right: 1px solid $accentColor
-      &:hover, &.active
+      &:hover
+        a
+          color: $accentColor-lighter
+      &.active
         a
           color: $accentColor
+          
   .user-menu
     li
       border-right: none !important
