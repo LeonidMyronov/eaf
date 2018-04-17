@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'eaf-header',
@@ -21,6 +22,8 @@ export class HeaderComponent implements OnInit {
   public authMenu: any;
   public userLang = 'us';
   public isMobileMenuOpened = false;
+  public userState$: Observable<any>;
+  public isAuth = false;
 
   public langsList: any;
   constructor(
@@ -35,14 +38,14 @@ export class HeaderComponent implements OnInit {
     this.store.select(fromRoot.getIsAuth)
       .subscribe(
         isAuth => {
-          this.navMenu = this.appStorage.getNavMenu();
+          this.isAuth = isAuth;
           this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
         }
       );
-    this.store.select(fromRoot.getShortUserState)
-      .subscribe( response => console.log('userState => ', response));
+    this.userState$ = this.store.select(fromRoot.getShortUserState);
 
     this.langsList = this.appStorage.getLangsList();
+    this.navMenu = this.appStorage.getNavMenu();
   }
 
   onChangeLang(lang: any) {
