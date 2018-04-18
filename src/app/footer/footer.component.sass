@@ -9,9 +9,8 @@ footer
     width: 184px
     cursor: pointer
     margin-right: 35px
-    margin-bottom: 8px
 
-  .nav-menu 
+  .nav-menu, .user-menu
     li
       height: 30px
       a
@@ -24,11 +23,21 @@ footer
         cursor: pointer
       &:not(:last-child)
         border-right: 1px solid $accentColor
-      &:hover, &.active
+      &:hover
+        a
+          color: $accentColor-lighter
+      &.active
         a
           color: $accentColor
+          
+  .user-menu
+    li
+      border-right: none !important
+      a
+        padding: 0 15px
 
   .copyright
+    margin-top: 8px
     color: $mainColor-lighter
     font-size: 12px
     line-height: 26px

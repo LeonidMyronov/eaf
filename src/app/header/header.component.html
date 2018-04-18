@@ -1,33 +1,46 @@
-<header fxLayout="row wrap" fxLayoutAlign="start center">
+<header fxLayout="row wrap" fxLayoutAlign="start center" [ngClass]="{'main-section': isAuth===true}">
   <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
-      <ul class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center" [fxShow.lt-sm]="isMobileMenuOpened">
-        <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
-          <a>
-            {{ navItem.name }}
-          </a>
-        </li>
-      </ul>
+  <ul *ngIf="!isAuth" class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center"
+    [fxHide.xs]="!isMobileMenuOpened">
+    <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+      <a>
+        {{ navItem.name }}
+      </a>
+    </li>
+  </ul>
+  <div *ngIf="isAuth" class="user-nav-menu" fxLayout="row" fxLayoutAlign="start" fxFlex>
+    <div class="user-promo">
+      promo
+      <img class="promo-cards promo-card-1"src="/assets/images/main/user-menu/promo-card-1.svg" alt="">
+      <img class="promo-cards promo-card-2"src="/assets/images/main/user-menu/promo-card-2.svg" alt="">
+      <img class="promo-cards promo-card-3"src="/assets/images/main/user-menu/promo-card-3.svg" alt="">
+      <img class="promo-cards promo-card-4"src="/assets/images/main/user-menu/promo-card-4.svg" alt="">
+    </div>
+    <div class="user-balance"></div>
+    <div class="user-tariff"></div>
+  </div>
 
-      <div class="lang-menu">
-        <div class="active-lang" fxFlex fxLayout="row" fxLayoutAlign="start center">
-          <img class="lang-img" src="{{deployPath}}/assets/images/header/lang-{{userLang}}.svg" alt="">
-          <img class="dropdown-icon" src="{{deployPath}}/assets/images/header/dropdown-icon.svg" alt="">
-        </div>
-        
-        <ul class="langs-group">
-          <li class="langs-group__item" *ngFor="let lang of langsList" fxLayout="row" fxLayoutAlign="start center" (click)="onChangeLang(lang)">
-            <img class="lang-img" src="{{deployPath}}{{lang.img}}" alt="">
-          </li>
-        </ul>
-      </div>
-      <div class="humburger_button" fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'opened': isMobileMenuOpened}" (click)="isMobileMenuOpened = !isMobileMenuOpened">
-        <span class="hamburger_item"></span>
-        <span class="hamburger_item"></span>
-        <span class="hamburger_item"></span>
-      </div>
-      <div class="user-menu-group" fxFlexOrder.lt-sm="2" fxFlex.gt-xs="none" fxFlex.xs="100%" fxLayout.xs="row" fxLayoutAlign.xs="center">
-        <button type="button" *ngFor="let item of userMenu" class="user-menu-group__item {{item.item_class}}" (click)="onUserMenuClick(item.name)">{{item.name}}</button>
-      </div>
+  <div class="lang-menu">
+    <div class="active-lang" fxFlex fxLayout="row" fxLayoutAlign="start center">
+      <img class="lang-img" src="{{deployPath}}/assets/images/header/lang-{{userLang}}.svg" alt="">
+      <img class="dropdown-icon" src="{{deployPath}}/assets/images/header/dropdown-icon.svg" alt="">
+    </div>
+
+    <ul class="langs-group">
+      <li class="langs-group__item" *ngFor="let lang of langsList" fxLayout="row" fxLayoutAlign="start center" (click)="onChangeLang(lang)">
+        <img class="lang-img" src="{{deployPath}}{{lang.img}}" alt="">
+      </li>
+    </ul>
+  </div>
+  <div class="humburger_button" fxLayout="column" fxLayoutAlign="center center" [ngClass]="{'opened': isMobileMenuOpened}"
+    (click)="isMobileMenuOpened = !isMobileMenuOpened">
+    <span class="hamburger_item"></span>
+    <span class="hamburger_item"></span>
+    <span class="hamburger_item"></span>
+  </div>
+  <div class="user-menu-group" fxFlexOrder.lt-sm="2" fxFlex.gt-xs="none" fxFlex.xs="100%" fxLayout.xs="row" fxLayoutAlign.xs="center">
+    <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{item.name}}</button>
+  </div>
 
 
 </header>

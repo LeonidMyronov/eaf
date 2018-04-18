@@ -105,3 +105,40 @@ button
 .link-group
   a:not(:last-child)
     border-right: 1px solid $placeholderColor
+
+
+.dropdown-menu
+  position: relative
+  height: 40px
+  padding-left: 15px
+  padding-right: 43px
+  cursor: pointer
+  background-image: url('/assets/images/header/dropdown-icon.svg')
+  background-repeat: no-repeat
+  background-position-x: calc(100% - 15px)
+  background-position-y: center
+  &:hover
+    background-color: $accentColor-lighter
+
+  .dropdown-select
+    display: flex
+    flex-flow: row
+    justify-content: flex-start
+    align-items: center
+    height: 100%
+    
+  .dropdown-list
+    display: none
+    position: absolute
+    left: 0
+    top: 0
+    &__item
+      height: 40px
+      padding: 0 15px
+      box-sizing: border-box
+      background-color: $formColor
+      &:hover
+        background-color: $accentColor-lighter
+  &.opened
+    .dropdown-list
+      display: block

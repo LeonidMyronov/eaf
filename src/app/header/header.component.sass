@@ -1,18 +1,15 @@
 @import 'variables'
-  
+@import 'mixins'
 header
   padding: 30px 40px
-  // height: 100px
-
+  &.main-section
+    padding-top: 50px
   #header-logo
     height: 40px
     width: 258px
     cursor: pointer
 
-  // .nav-section  
   .nav-menu
-    // margin-right: auto
-    
     li
       height: 40px
       a
@@ -28,7 +25,73 @@ header
       &:hover, &.active
         a
           color: $accentColor
-      
+  .user-nav-menu
+    .user-promo
+      margin-left: 55px
+      margin-right: auto
+      width: 118px
+      height: 40px
+      line-height: 40px
+      text-transform: uppercase
+      text-align: center
+      @include medium-font()
+      letter-spacing: 0.1em
+      padding-left: 5px
+      font-size: 20px
+      color: $mainColor
+      background-color: $accentColor
+      cursor: pointer
+      position: relative
+      transition: 0.5s ease
+      .promo-cards
+        position: absolute
+        z-index: -1
+        transition: 0.5s ease        
+        &.promo-card-1
+          top: -15px
+          left: 12px
+          transform: rotate(-17deg)
+        &.promo-card-2
+          left: 32px
+          top: -17px
+          transform: rotate(-5deg)          
+          z-index: -2
+        &.promo-card-3
+          top: -15px
+          left: 53px
+          transform: rotate(6deg)
+        &.promo-card-4
+          left: 74px
+          top: -13px
+          transform: rotate(17deg)
+          z-index: -2
+      &:hover
+        color: $accentColor
+        background-color: $mainColor
+        .promo-cards
+          &.promo-card-1
+            top: -23px
+            // left: 10px
+          &.promo-card-2
+            top: -26px
+            // left: 31px
+          &.promo-card-3
+            top: -29px
+            // left: 54px
+          &.promo-card-4
+            top: -22px
+            // left: 76px
+    .user-balance
+      width: 118px
+      height: 40px
+      color: $lightColor
+      background-color: $mainColor
+      margin-right: 15px
+    .user-tariff
+      width: 361px
+      height: 40px
+      background-color: $formColor
+      margin-right: 15px
   .lang-menu
     position: relative
     width: 90px

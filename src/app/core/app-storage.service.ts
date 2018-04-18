@@ -10,7 +10,7 @@ export class AppStorageService {
     {
       name: 'contacts',
       url: '/contacts'
-    }
+    },
   ];
 
   private langsList = [
@@ -49,7 +49,7 @@ export class AppStorageService {
     }
   ];
 
-  private userMenu = [
+  private authMenu = [
     {
       name: 'registration',
       item_class: 'primary',
@@ -74,6 +74,57 @@ export class AppStorageService {
     }
   ];
 
+  private userMenu = [
+    {
+      name: 'promo',
+      iconSrc: '',
+    },
+    {
+      name: 'today',
+      iconSrc: '/assets/images/main/user-menu/icon-today.svg',
+      url: 'main/today'
+    },
+    {
+      name: 'statistic',
+      iconSrc: '/assets/images/main/user-menu/icon-statistic.svg',
+      url: 'main/statistic'
+    },
+    {
+      name: 'post back',
+      iconSrc: '/assets/images/main/user-menu/icon-postback.svg',
+      url: 'main/postback'
+    },
+    {
+      name: 'balance',
+      iconSrc: '/assets/images/main/user-menu/icon-balance.svg',
+      url: 'main/balance'
+    },
+    {
+      name: 'whiteLabel',
+      iconSrc: '/assets/images/main/user-menu/icon-whitelabel.svg',
+      url: 'main/whitelabel'
+    },
+    {
+      name: 'offer',
+      iconSrc: '/assets/images/main/user-menu/icon-offer.svg',
+      url: 'main/offer'
+    },
+    {
+      name: 'guide',
+      iconSrc: '/assets/images/main/user-menu/icon-guide.svg',
+      url: 'main/guide'
+    },
+    {
+      name: 'news',
+      iconSrc: '/assets/images/main/user-menu/icon-news.svg',
+      url: 'main/news'
+    },
+    {
+      name: 'support',
+      iconSrc: '/assets/images/main/user-menu/icon-support.svg',
+      url: 'main/support'
+    },
+  ];
   private homeSection1Cards = [
     {
       iconSrc: '/assets/images/home/home-1-icon-comission.svg',
@@ -162,10 +213,11 @@ export class AppStorageService {
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
-  getUserMenu() { return [...this.userMenu]; }
+  getAuthMenu() { return [...this.authMenu]; }
   getLangsList() { return [...this.langsList]; }
   getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }
   getWorkTypes() { return [...this.workTypes]; }
   getHomeSection5Cards() { return [...this.homeSection5Cards]; }
+  getUserMenu() {return [...this.userMenu]; }
 }
