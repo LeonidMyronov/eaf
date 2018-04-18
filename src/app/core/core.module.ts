@@ -8,7 +8,12 @@ import { MatSelectModule, MatFormFieldModule } from '@angular/material';
 import { AppStorageService } from './app-storage.service';
 import { HelperService } from './helper.service';
 
+import { DropdownDirective } from './directives/dropdown.directive';
+
 @NgModule({
+  declarations: [
+    DropdownDirective
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -21,7 +26,8 @@ import { HelperService } from './helper.service';
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
-    MatSelectModule, MatFormFieldModule
+    MatSelectModule, MatFormFieldModule,
+    DropdownDirective
   ],
   providers: [AppStorageService, HelperService]
 })
