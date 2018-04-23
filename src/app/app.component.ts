@@ -20,5 +20,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.isLoginFormOpened$ = this.store.select(fromRoot.getIsLoginFormOpened);
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
+    this.store.select(fromRoot.getIsAuth)
+    .subscribe(response => console.log(response));
   }
 }
