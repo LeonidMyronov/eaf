@@ -18,6 +18,7 @@ import { TariffsComponent } from './start-section/tariffs/tariffs.component';
 import { ContactsComponent } from './start-section/contacts/contacts.component';
 
 import { reducers } from './app.reducers';
+import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 // import { StoreRouterConnectingModule } from '@ngrx/router-store';
 // import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -31,7 +32,8 @@ import { reducers } from './app.reducers';
     HeaderComponent,
     FooterComponent,
     TariffsComponent,
-    ContactsComponent
+    ContactsComponent,
+    MobileMenuComponent
   ],
   imports: [
     BrowserModule,

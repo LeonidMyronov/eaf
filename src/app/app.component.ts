@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   title = 'app';
   isLoginFormOpened$: Observable<boolean>;
   isSignupFormOpened$: Observable<boolean>;
+  isMobileMenuOpened$: Observable<boolean>;
   constructor (
     private store: Store<fromRoot.State>
   ) { }
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.isLoginFormOpened$ = this.store.select(fromRoot.getIsLoginFormOpened);
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
+    this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
     this.store.select(fromRoot.getIsAuth)
     .subscribe(response => console.log(response));
   }
