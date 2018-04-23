@@ -44,7 +44,6 @@ export class HeaderComponent implements OnInit {
       .subscribe(
         isAuth => {
           this.tariffsList = this.appStorage.getTariffsList();
-          console.log(this.tariffsList);
           this.userTariff = this.tariffsList[0];
           this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
           this.userMenu = this.appStorage.getUserMenu();

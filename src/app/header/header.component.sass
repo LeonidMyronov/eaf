@@ -83,57 +83,6 @@ header
           border-right-color: transparent 
         
 
-.user-promo
-  margin-left: 55px
-  margin-right: auto
-  width: 118px
-  height: 40px
-  line-height: 40px
-  text-transform: uppercase
-  text-align: center
-  @include medium-font()
-  letter-spacing: 0.1em
-  padding-left: 5px
-  font-size: 20px
-  color: $mainColor
-  background-color: $accentColor
-  cursor: pointer
-  position: relative
-  transition: 0.55s ease
-  .promo-cards
-    position: absolute
-    z-index: -1
-    transition: 0.5s ease        
-    &.promo-card-1
-      top: -15px
-      left: 10.17%
-      transform: rotate(-17deg)
-    &.promo-card-2
-      top: -17px
-      left: 27.12%
-      transform: rotate(-5deg)          
-      z-index: -2
-    &.promo-card-3
-      top: -15px
-      left: 44.92%
-      transform: rotate(6deg)
-    &.promo-card-4
-      top: -13px
-      left: 62.71%
-      transform: rotate(17deg)
-      z-index: -2
-  &:hover
-    color: $accentColor
-    background-color: $mainColor
-    .promo-cards
-      &.promo-card-1
-        top: -23px
-      &.promo-card-2
-        top: -26px
-      &.promo-card-3
-        top: -29px
-      &.promo-card-4
-        top: -22px
 
 .user-balance
   position: relative
@@ -241,8 +190,8 @@ header
 
 @media (max-width: 1023px)
   header
-    padding-left: 40px
-    padding-right: 40px
+    padding-left: 48px
+    padding-right: 48px
     #header-logo
       margin-right: auto
     .nav-menu
