@@ -18,14 +18,19 @@ import { Observable } from 'rxjs/Observable';
 })
 export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
-  public navMenu: any;
-  public authMenu: any;
-  public userLang = 'us';
+  public isAuth = false;
   public isMobileMenuOpened = false;
   public userState$: Observable<any>;
-  public isAuth = false;
 
-  public langsList: any;
+  public navMenu: any[] = [];
+  public authMenu: any[] = [];
+  public tariffsList: any[] = [];
+  public userTariff: any;
+  public langsList: any[] = [];
+  public userLang = 'us';
+  public userMenu: any[];
+
+
   constructor(
     private appStorage: AppStorageService,
     private router: Router,
@@ -38,8 +43,12 @@ export class HeaderComponent implements OnInit {
     this.store.select(fromRoot.getIsAuth)
       .subscribe(
         isAuth => {
-          this.isAuth = isAuth;
+          this.tariffsList = this.appStorage.getTariffsList();
+          console.log(this.tariffsList);
+          this.userTariff = this.tariffsList[0];
           this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
+          this.userMenu = this.appStorage.getUserMenu();
+          this.isAuth = isAuth;
         }
       );
     this.userState$ = this.store.select(fromRoot.getShortUserState);
@@ -49,8 +58,13 @@ export class HeaderComponent implements OnInit {
   }
 
   onChangeLang(lang: any) {
-    // debugger;
+    console.log(`change lang to ${lang.abbr}`);
     this.userLang = lang.abbr;
+  }
+
+  onChangeTariff(tariff: any) {
+    console.log(`change tariff to ${tariff.siteName}`);
+    this.userTariff = tariff;
   }
 
   toggleMobileMenu() {

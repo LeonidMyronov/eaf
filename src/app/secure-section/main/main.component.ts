@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../../core/app-storage.service';
+
+import * as fromRoot from '../../app.reducers';
 
 @Component({
   selector: 'eaf-main',
@@ -9,14 +13,15 @@ import { AppStorageService } from '../../core/app-storage.service';
 })
 
 export class MainComponent implements OnInit {
-  userMenu: any[];
+  public isAuth$: Observable<boolean>;
+
   constructor(
     private appStorage: AppStorageService,
+    private store: Store<fromRoot.State>
   ) { }
 
   ngOnInit() {
-    this.userMenu = this.appStorage.getUserMenu();
-    console.log(this.userMenu);
+    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
   }
 
 }

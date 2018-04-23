@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'tariffs', component: TariffsComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'main',  loadChildren: './secure-section/main.module#MainModule', canLoad: [AuthGuard]},
-  // {path: 'redirectToRoot', redirectTo: '/'}
+  {path: '**', redirectTo: ''}
 ];
 
 @NgModule({
