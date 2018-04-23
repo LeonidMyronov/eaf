@@ -75,4 +75,13 @@
     <span class="hamburger_item"></span>
   </div>
 
+  <ul *ngIf="isAuth" class="user-menu" fxLayout="row wrap" fxLayoutAlign="center center" fxFlex="100%" fxFlexOrder=3 fxHide.lt-md>
+    <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+      <a *ngIf="navItem.name != 'promo'" fxLayout="row" fxFlexAlign="center">
+        <img fxHide.md [src]="navItem.iconSrc" alt="">
+        <span>{{ navItem.name }}</span>
+      </a>
+    </li>
+  </ul>
+
 </header>

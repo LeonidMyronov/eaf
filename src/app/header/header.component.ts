@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
   public userTariff: any;
   public langsList: any[] = [];
   public userLang = 'us';
+  public userMenu: any[];
+
 
   constructor(
     private appStorage: AppStorageService,
@@ -45,6 +47,7 @@ export class HeaderComponent implements OnInit {
           console.log(this.tariffsList);
           this.userTariff = this.tariffsList[0];
           this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
+          this.userMenu = this.appStorage.getUserMenu();
           this.isAuth = isAuth;
         }
       );
