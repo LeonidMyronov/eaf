@@ -1,0 +1,49 @@
+<section fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
+
+  <header fxLayout="row" fxLayoutAlign="space-between center">
+    <img id='header-logo' src="/assets/images/header/header-logo.svg" alt="" routerLink="/">
+
+    <div class="hamburger_button opened" fxLayout="column" fxLayoutAlign="center center" (click)="onCloseMobileMenu()">
+      <span class="hamburger_item"></span>
+      <span class="hamburger_item"></span>
+      <span class="hamburger_item"></span>
+    </div>
+  </header>
+
+  <main>
+    <div *ngIf="isAuth" fxHide.gt-xs class="user-welcome">
+      <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
+    </div>
+    <ul *ngIf="isAuth" class="user-menu">
+      <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
+        <a *ngIf="navItem.name != 'promo'">
+          <img fxHide.md [src]="navItem.iconSrc" alt="">
+          <span>{{ navItem.name }}</span>
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="!isAuth" class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center">
+      <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+        <a>
+          {{ navItem.name }}
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="user-promo">
+      promo
+      <img class="promo-cards promo-card-1" src="/assets/images/main/user-menu/promo-card-1.svg" alt="">
+      <img class="promo-cards promo-card-2" src="/assets/images/main/user-menu/promo-card-2.svg" alt="">
+      <img class="promo-cards promo-card-3" src="/assets/images/main/user-menu/promo-card-3.svg" alt="">
+      <img class="promo-cards promo-card-4" src="/assets/images/main/user-menu/promo-card-4.svg" alt="">
+    </div>
+
+    <div class="user-menu-group" fxFlex.xs="100%" fxLayout="row" fxLayoutAlign="center">
+      <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{item.name}}</button>
+    </div>
+  </footer>
+
+</section>
