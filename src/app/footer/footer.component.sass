@@ -3,7 +3,11 @@
 footer
   padding: 25px 0 11px 0
   // height: 100px
-
+  &.main-section
+    padding-top: 55px
+    padding-bottom: 15px
+    .copyright
+      margin-top: 14px
   #footer-logo
     height: 30px
     width: 184px
@@ -29,12 +33,19 @@ footer
       &.active
         a
           color: $accentColor
-          
+
   .user-menu
     li
       border-right: none !important
       a
         padding: 0 15px
+  .time-menu
+    width: 130px
+    margin-left: 35px
+    .upper-label
+      color: $lightColor
+    .timer-name
+      width: 50px
 
   .copyright
     margin-top: 8px
