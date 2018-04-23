@@ -1,13 +1,39 @@
-<footer class="bg-main-color" fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center"  fxFlexAlign="center">
-  <img id='footer-logo' src="{{deployPath}}/assets/images/footer/footer-logo.svg" alt="" routerLink="/">
-  <ul class="nav-menu" fxLayout="row">
-    <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
-      <a>
-        {{ navItem.name }}
-      </a>
-    </li>
-  </ul>
-  <div class="copyright" fxFlex.gt-xs="100%">
+<footer class="bg-main-color" fxLayout="row" fxLayoutAlign="center" [ngClass]="{'main-section': (isAuth$ | async)}">
+  <div class="container"  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxFlexAlign="center" fxLayoutAlign.lt-lg="space-between center">
+
+    <img id='footer-logo' src="{{deployPath}}/assets/images/footer/footer-logo.svg" alt="" routerLink="/">
+    <ul *ngIf="!(isAuth$ | async)" class="nav-menu" fxLayout="row">
+      <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+        <a>
+          {{ navItem.name }}
+        </a>
+      </li>
+    </ul>
+
+    <ul *ngIf="(isAuth$ | async)" class="user-menu" fxLayout="row wrap" fxFlexOrder.lt-lg="1" fxLayoutAlign.lt-lg="space-between start">
+      <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
+        <a >
+          {{ navItem.name }}
+        </a>
+      </li>
+    </ul>
+
+    <div *ngIf="(isAuth$ | async)" eafDropdown class="dropdown-menu time-menu">
+      <div class="upper-label">{{ 'Time' }}:</div>
+      <div class="dropdown-select">
+        <span class="timer-name">{{ currentTime.name }}: </span>
+        <span>{{ currentTimer$ | async }}</span>
+      </div>
+      <ul class="dropdown-list">
+        <li class="dropdown-list__item" *ngFor="let time of timeList" (click)="onChangeTime(time)">
+          <span class="timer-name">{{ time.name }}: </span>
+          <span>{{ (time.id === 1 ? this.serverTimer$ : this.homeTimer$) | async }}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="copyright" fxFlex.gt-xs="100%" fxFlexOrder="2">
       This website and its content is copyright of © Edu-affiliates.com 2017. All rights reserved
+    </div>
   </div>
 </footer>

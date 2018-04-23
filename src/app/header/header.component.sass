@@ -1,18 +1,24 @@
 @import 'variables'
-  
+@import 'mixins'
 header
+  position: relative
   padding: 30px 40px
-  // height: 100px
+  .user-welcome
+    position: absolute
+    right: 40px
+    top: 25px
+    font-size: 12px
+    line-height: 14px
+    color: $mainColor
 
+  &.main-section
+    padding-top: 50px
   #header-logo
     height: 40px
     width: 258px
     cursor: pointer
 
-  // .nav-section  
   .nav-menu
-    // margin-right: auto
-    
     li
       height: 40px
       a
@@ -28,51 +34,245 @@ header
       &:hover, &.active
         a
           color: $accentColor
-      
-  .lang-menu
-    position: relative
-    width: 90px
-    height: 40px
-    margin-right: 15px
-    cursor: pointer
-    .dropdown-icon
-      margin-left: 10px
-    .langs-group
-      display: none
-      position: absolute
-      left: 0
-      top: 100%
-      .langs-group__item
-        width: 90px
-        height: 40px
-        padding: 0 15px
-        box-sizing: border-box
-        background-color: $formColor
-        &:hover
-          background-color: $accentColor-lighter
-    &:hover
-      .langs-group    
-        display: block
-    .active-lang
-      width: 90px
-      height: 40px
-      padding: 0 15px
-      box-sizing: border-box
-      &:hover
-        background-color: $accentColor-lighter
 
-  .user-menu-group
+.user-details-menu
+
+.user-menu
+  margin-top: 30px
+  li
+    a
+      font-size: 14px
+      line-height: 40px
+      text-decoration: none
+      color: $mainColor
+      padding-left: 23px
+      padding-right: 23px
+      img
+        margin-right: 7px
+    &:hover
+      background-color: $accentColor-lighter      
+    &.active
+      border-radius: 2px
+      border-bottom-left-radius: 0
+      background-color: $accentColor
+      position: relative
+      &:after
+        content: ''
+        position: absolute
+        width: 0
+        height: 0
+        border-style: solid
+        border-color: $mainColor
+        border-top-width: 8px
+        border-bottom-width: 8px
+        border-left-width: 7px
+        border-right-width: 7px
+        border-bottom-color: transparent 
+        border-left-color: transparent 
+        left: 0
+        top: 100%
+    &:nth-child(n+6)
+      &.active
+        border-bottom-left-radius: 2px
+        border-bottom-right-radius: 0px
+        &:after
+          left: auto
+          right: 0
+          border-color: $mainColor        
+          border-bottom-color: transparent 
+          border-right-color: transparent 
+        
+
+.user-promo
+  margin-left: 55px
+  margin-right: auto
+  width: 118px
+  height: 40px
+  line-height: 40px
+  text-transform: uppercase
+  text-align: center
+  @include medium-font()
+  letter-spacing: 0.1em
+  padding-left: 5px
+  font-size: 20px
+  color: $mainColor
+  background-color: $accentColor
+  cursor: pointer
+  position: relative
+  transition: 0.55s ease
+  .promo-cards
+    position: absolute
+    z-index: -1
+    transition: 0.5s ease        
+    &.promo-card-1
+      top: -15px
+      left: 10.17%
+      transform: rotate(-17deg)
+    &.promo-card-2
+      top: -17px
+      left: 27.12%
+      transform: rotate(-5deg)          
+      z-index: -2
+    &.promo-card-3
+      top: -15px
+      left: 44.92%
+      transform: rotate(6deg)
+    &.promo-card-4
+      top: -13px
+      left: 62.71%
+      transform: rotate(17deg)
+      z-index: -2
+  &:hover
+    color: $accentColor
+    background-color: $mainColor
+    .promo-cards
+      &.promo-card-1
+        top: -23px
+      &.promo-card-2
+        top: -26px
+      &.promo-card-3
+        top: -29px
+      &.promo-card-4
+        top: -22px
+
+.user-balance
+  position: relative
+  width: 118px
+  height: 40px
+  line-height: 40px
+  font-size: 14px
+  text-align: center
+  padding: 0 5px
+  color: $lightColor
+  background-color: $mainColor
+  margin-right: 15px
+
+.user-menu-group
+  position: relative
+
+.user-tariff
+  position: relative
+  width: 361px
+  margin-right: 15px
+  &__icon
+    width: 27px
+    height: 100%
+    display: flex
+    justify-content: center
+    margin-right: 8px
+  &__sitename
+    margin-right: auto
+
+  &__shortsitename
+    width: 63px
+    overflow-x: hidden
+    position: relative
+    margin-right: 5px
+    &:after
+      content: ''
+      position: absolute
+      bottom: 0
+      right: 0
+      width: 20px
+      height: 100%
+      background: linear-gradient(to right,transparent, $formColor)
+  &__fo
+    margin-right: 10px
+  &:hover
+    .user-tariff__shortsitename
+      &:after
+        background: linear-gradient(to right,transparent, $accentColor-lighter)
+  .dropdown-list
+    height: 160px
+    overflow-y: scroll
+
+.lang-menu
+  width: 90px
+  margin-right: 15px
+  background-color: transparent
+
+.hamburger_button
+  cursor: pointer
+  width: 40px
+  height: 40px
+  background-color: $mainColor
+  display: none !important
+  .hamburger_item
+    display: block
+    background-color: $accentColor
+    width: 20px
+    height: 3px
+    margin-bottom: 3px
+    transition: all 0.5s ease
+  &.opened
+    .hamburger_item:first-child
+      transform: translateY(6px) rotate(135deg)
+    .hamburger_item
+      transform: rotate(-225deg)
+    .hamburger_item:last-child
+      transform: translateY(-6px) rotate(45deg)
+
+
+  // scrollbar for Tariffs dropdown
+  // I tried to make custom scrollbar but get nothing well
+  // ::-webkit-scrollbar
+  //     -webkit-appearance: none
+  //     width: 6px
+
+  // ::-webkit-scrollbar-thumb
+  //     border-radius: 4px
+  //     background-color: rgba(#c5cacb,.5)
+  //     -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5)
+
+@media (max-width: 1399px)
+  .user-tariff
+    width: 190px
+
+@media (max-width: 1220px)
+  header
+    padding-left: 20px
+    padding-right: 20px
+  .user-promo
+    margin-left: 15px
+  header.main-section
+    .user-menu-group button:last-child
+      display: none
+
 
 @media (max-width: 1023px)
   header
+    padding-left: 40px
+    padding-right: 40px
     #header-logo
       margin-right: auto
     .nav-menu
       margin-top: 30px
+    .user-details-menu
+      padding-top: 50px
+      order: 1
+      .user-promo
+        margin-left: 0
+      .user-tariff
+        margin-right: 0
+
+
+  .user-tariff
+    width: 361px
+  header.main-section
+    .hamburger_button
+      display: flex !important
 
 @media (max-width: 767px)
   header
     padding: 16px 16px 30px
+    &.main-section
+      padding-top: 16px
+      padding-bottom: 11px
+      .user-menu-group
+        order: 0
+        width: auto
+        display: none !important
+
     #header-logo
       height: 30px
       width: auto
@@ -93,24 +293,64 @@ header
       .dropdown-icon
         width: 10px
         height: 7px
-    .user-menu-group
-      margin-top: 30px
-    .humburger_button
-      cursor: pointer
-      width: 40px
-      height: 40px
-      background-color: $mainColor
-      .hamburger_item
-        display: block
-        background-color: $accentColor
-        width: 20px
-        height: 3px
-        margin-bottom: 3px
-        transition: all 0.5s ease
-      &.opened
-        .hamburger_item:first-child
-          transform: translateY(6px) rotate(135deg)
-        .hamburger_item
-          transform: rotate(-225deg)
-        .hamburger_item:last-child
-          transform: translateY(-6px) rotate(45deg)
+
+  .user-details-menu
+    padding-top: 30px
+
+  .user-menu-group
+    order: 2
+    margin-top: 30px
+    width: 100%
+
+  .user-balance
+    width: 89px
+    height: 30px
+    line-height: 30px
+    font-size: 10px
+      
+  .user-promo
+    width: 86px
+    height: 30px
+    line-height: 30px
+    font-size: 16px
+    padding-left: 3px
+    letter-spacing: 0.08em
+    .promo-cards
+      width: 24px
+      height: 24px       
+      &.promo-card-1
+        top: -10px
+      &.promo-card-2
+        top: -12px
+      &.promo-card-3
+        top: -10px
+      &.promo-card-4
+        top: -8px
+    &:hover
+      .promo-cards
+        &.promo-card-1
+          top: -18px
+        &.promo-card-2
+          top: -20px
+        &.promo-card-3
+          top: -22px
+        &.promo-card-4
+          top: -17px
+
+
+  .user-tariff
+    width: 142px
+    padding-left: 5px
+    padding-right: 5px
+    .user-tariff__icon
+      width: 21px
+      height: 15px
+      margin-right: 5px
+
+  .hamburger_button
+    display: flex !important
+
+@media (max-width: 380px)
+  .user-balance
+    margin-right: auto
+    

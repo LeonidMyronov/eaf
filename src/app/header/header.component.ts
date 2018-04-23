@@ -9,6 +9,7 @@ import { AuthService } from '../auth/auth.service';
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'eaf-header',
@@ -17,12 +18,19 @@ import * as UIAction from '../ui/ui.actions';
 })
 export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
-  public navMenu: any;
-  public userMenu: any;
-  public userLang = 'us';
+  public isAuth = false;
   public isMobileMenuOpened = false;
+  public userState$: Observable<any>;
 
-  public langsList: any;
+  public navMenu: any[] = [];
+  public authMenu: any[] = [];
+  public tariffsList: any[] = [];
+  public userTariff: any;
+  public langsList: any[] = [];
+  public userLang = 'us';
+  public userMenu: any[];
+
+
   constructor(
     private appStorage: AppStorageService,
     private router: Router,
@@ -35,26 +43,35 @@ export class HeaderComponent implements OnInit {
     this.store.select(fromRoot.getIsAuth)
       .subscribe(
         isAuth => {
-          this.navMenu = this.appStorage.getNavMenu();
-          this.userMenu = this.appStorage.getUserMenu().filter(item => item.auth === isAuth);
+          this.tariffsList = this.appStorage.getTariffsList();
+          console.log(this.tariffsList);
+          this.userTariff = this.tariffsList[0];
+          this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
+          this.userMenu = this.appStorage.getUserMenu();
+          this.isAuth = isAuth;
         }
       );
-    this.store.select(fromRoot.getShortUserState)
-      .subscribe( response => console.log('userState => ', response));
+    this.userState$ = this.store.select(fromRoot.getShortUserState);
 
     this.langsList = this.appStorage.getLangsList();
+    this.navMenu = this.appStorage.getNavMenu();
   }
 
   onChangeLang(lang: any) {
-    // debugger;
+    console.log(`change lang to ${lang.abbr}`);
     this.userLang = lang.abbr;
+  }
+
+  onChangeTariff(tariff: any) {
+    console.log(`change tariff to ${tariff.siteName}`);
+    this.userTariff = tariff;
   }
 
   toggleMobileMenu() {
 
   }
 
-  onUserMenuClick(name: string) {
+  onAuthMenuClick(name: string) {
     // this.router.navigate([`${url}`]);
     switch (name) {
       case 'login':

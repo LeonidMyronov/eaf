@@ -3,15 +3,20 @@
 footer
   padding: 25px 0 11px 0
   // height: 100px
+  &.main-section
+    padding-top: 55px
+    padding-bottom: 15px
+    .container
 
+    .copyright
+      margin-top: 14px
   #footer-logo
     height: 30px
     width: 184px
     cursor: pointer
     margin-right: 35px
-    margin-bottom: 8px
 
-  .nav-menu 
+  .nav-menu, .user-menu
     li
       height: 30px
       a
@@ -24,19 +29,81 @@ footer
         cursor: pointer
       &:not(:last-child)
         border-right: 1px solid $accentColor
-      &:hover, &.active
+      &:hover
+        a
+          color: $accentColor-lighter
+      &.active
         a
           color: $accentColor
 
+  .user-menu
+    li
+      border-right: none !important
+      a
+        padding: 0 15px
+  .time-menu
+    width: 130px
+    margin-left: 35px
+    .upper-label
+      color: $lightColor
+    .timer-name
+      width: 50px
+
   .copyright
+    margin-top: 8px
     color: $mainColor-lighter
     font-size: 12px
     line-height: 26px
     text-align: center
 
+@media (max-width: 1399px)
+  footer
+    &.main-section
+      padding-top: 20px
+    .user-menu
+      width: 100%
+      margin-top: 20px
+      li
+        a
+          padding: 0
+  .time-menu
+    .upper-label
+      left: -50px
+      top: 12px
+
+@media (max-width: 1023px)
+  footer
+    &.main-section
+    .user-menu
+      margin-top: 15px
+      display: grid !important
+      grid-template-columns: repeat(5, auto)
+
+  .time-menu
+    .upper-label
+      left: -50px
+      top: 12px  
+
 @media (max-width: 767px)
   footer
     padding: 30px 0
+    &.main-section
+      padding-top: 30px
+      .container
+        flex-flow: row wrap !important
+        #footer-logo
+          margin-bottom: 0
+        .user-menu
+          margin-top: 15px
+          grid-template-columns: repeat(4, auto)
+          li
+            height: 35px
+            a
+              line-height: 35px
+        .copyright
+          margin-left: auto
+          margin-right: auto
+      
     #footer-logo
       margin-right: 0
       margin-bottom: 30px
@@ -46,4 +113,10 @@ footer
       font-size: 10px
       max-width: 206px
       line-height: 20px
-      
+
+    .time-menu
+      width: 100px
+      margin-left: 0
+      .upper-label
+        left: 0
+        top: -20px 
