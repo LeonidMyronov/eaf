@@ -78,6 +78,7 @@ export class AppStorageService {
     {
       name: 'promo',
       iconSrc: '',
+      url: 'main/promo'
     },
     {
       name: 'today',
@@ -210,6 +211,53 @@ export class AppStorageService {
     },
   ];
 
+  private timeList = [
+    {
+      id: 1,
+      name: 'Server'
+    },
+    {
+      id: 2,
+      name: 'Home'
+    }
+  ];
+
+  private tariffsList = [
+    {
+      id: 1,
+      siteName: 'All sites',
+      iconSrc: '/assets/images/header/sites/site-all.svg',
+    },
+    {
+      id: 2,
+      siteName: '99papers.com',
+      iconSrc: '/assets/images/header/sites/site-99papers.svg',
+      fisrtOrderPercent: 50,
+      rebillsPercent: 15
+    },
+    {
+      id: 3,
+      siteName: 'EssayBox.org',
+      iconSrc: '/assets/images/header/sites/site-essaybox.svg',
+      fisrtOrderPercent: 30,
+      rebillsPercent: 25
+    },
+    {
+      id: 4,
+      siteName: 'EssayFactory.uk',
+      iconSrc: '/assets/images/header/sites/site-essayfactory.svg',
+      fisrtOrderPercent: 45,
+      rebillsPercent: 15
+    },
+    {
+      id: 5,
+      siteName: 'BookwarmLab.com',
+      iconSrc: '/assets/images/header/sites/site-bookwarmlab.svg',
+      fisrtOrderPercent: 40,
+      rebillsPercent: 10
+    },
+  ];
+
   constructor() {}
 
   getNavMenu() { return [...this.navMenu]; }
@@ -220,4 +268,6 @@ export class AppStorageService {
   getWorkTypes() { return [...this.workTypes]; }
   getHomeSection5Cards() { return [...this.homeSection5Cards]; }
   getUserMenu() {return [...this.userMenu]; }
+  getTimeList() {return [...this.timeList]; }
+  getTariffsList() {return this.tariffsList.slice(1); }
 }

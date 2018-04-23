@@ -9,10 +9,14 @@ import { AppStorageService } from './app-storage.service';
 import { HelperService } from './helper.service';
 
 import { DropdownDirective } from './directives/dropdown.directive';
+import { HomeTimeFormatPipe } from './pipes/home-time.pipe';
+import { ServerTimeFormatPipe } from './pipes/server-time.pipe';
 
 @NgModule({
   declarations: [
-    DropdownDirective
+    DropdownDirective,
+    HomeTimeFormatPipe,
+    ServerTimeFormatPipe
   ],
   imports: [
     CommonModule,
@@ -27,7 +31,9 @@ import { DropdownDirective } from './directives/dropdown.directive';
     FlexLayoutModule,
     RouterModule,
     MatSelectModule, MatFormFieldModule,
-    DropdownDirective
+    DropdownDirective,
+    HomeTimeFormatPipe,
+    ServerTimeFormatPipe
   ],
   providers: [AppStorageService, HelperService]
 })
