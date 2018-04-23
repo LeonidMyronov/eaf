@@ -19,7 +19,7 @@ import { Observable } from 'rxjs/Observable';
 export class HeaderComponent implements OnInit {
   public deployPath = environment.deployPath;
   public isAuth = false;
-  public isMobileMenuOpened = false;
+  public isMobileMenuOpened$: Observable<boolean>;
   public userState$: Observable<any>;
 
   public navMenu: any[] = [];
@@ -52,6 +52,7 @@ export class HeaderComponent implements OnInit {
         }
       );
     this.userState$ = this.store.select(fromRoot.getShortUserState);
+    this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
 
     this.langsList = this.appStorage.getLangsList();
     this.navMenu = this.appStorage.getNavMenu();
@@ -67,8 +68,9 @@ export class HeaderComponent implements OnInit {
     this.userTariff = tariff;
   }
 
-  toggleMobileMenu() {
-
+  onOpenMobileMenu() {
+    this.store.dispatch(new UIAction.IsMobileMenuOpened(true));
+    this.helper.preventBodyToScroll(true);
   }
 
   onAuthMenuClick(name: string) {
