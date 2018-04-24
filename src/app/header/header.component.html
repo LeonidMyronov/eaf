@@ -3,7 +3,7 @@
     <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
   </div>
   <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
-  <ul *ngIf="!isAuth" class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center">
+  <ul *ngIf="!isAuth" class="nav-menu" fxHide.xs fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center">
     <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
       <a>
         {{ navItem.name }}

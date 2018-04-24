@@ -6,7 +6,8 @@ section
     width: 100%
     margin-bottom: 70px
   main
-    margin-bottom: 125px
+    .authed
+      margin-bottom: 125px
   footer
     width: 100%
     max-width: 555px
@@ -64,6 +65,25 @@ section
     &:hover
       background-color: $accentColor-lighter
 
+.nav-menu
+  margin-bottom: 40px
+  li
+    height: 40px
+    a
+      color: inherit
+      display: inline-block
+      text-transform: capitalize
+      line-height: 40px
+      padding: 0 35px
+      text-decoration: none
+      cursor: pointer
+    &:not(:last-child)
+      border-right: 1px solid $accentColor
+    &:hover, &.active
+      a
+          color: $accentColor
+
+
 @media (max-width: 767px)
   section
     padding-top: 17px
@@ -73,7 +93,10 @@ section
         width: auto
         height: 30px
     main
-      margin-bottom: 45px
+      .authed
+        margin-bottom: 45px
+      .not-authed
+        margin-bottom: 25px
     footer
       max-width: 324px
       .user-promo

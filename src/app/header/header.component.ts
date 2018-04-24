@@ -83,7 +83,10 @@ export class HeaderComponent implements OnInit {
         this.store.dispatch(new UIAction.IsSignupFormOpened(true));
         this.helper.preventBodyToScroll(true);
         break;
-        case 'logout':
+      case 'profile':
+        // TODO
+        break;
+      case 'logout':
         this.authService.logout();
         break;
       default:
