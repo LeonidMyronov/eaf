@@ -20,9 +20,9 @@ export class AppStorageService {
       img: '/assets/images/header/lang-ru.svg'
     },
     {
-      name: 'usa',
-      abbr: 'us',
-      img: '/assets/images/header/lang-us.svg'
+      name: 'english',
+      abbr: 'en',
+      img: '/assets/images/header/lang-en.svg'
     },
   ];
 
@@ -43,9 +43,9 @@ export class AppStorageService {
       img: '/assets/images/header/lang-au.svg'
     },
     {
-      name: 'english',
-      abbr: 'en',
-      img: '/assets/images/header/lang-en.svg'
+      name: 'england',
+      abbr: 'uk',
+      img: '/assets/images/header/lang-uk.svg'
     }
   ];
 

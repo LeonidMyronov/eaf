@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { MatSelectModule, MatFormFieldModule } from '@angular/material';
+import { TranslateModule } from '@ngx-translate/core';
 
 import { AppStorageService } from './app-storage.service';
 import { HelperService } from './helper.service';
@@ -23,7 +24,8 @@ import { ServerTimeFormatPipe } from './pipes/server-time.pipe';
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
-    MatSelectModule, MatFormFieldModule
+    MatSelectModule, MatFormFieldModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { ServerTimeFormatPipe } from './pipes/server-time.pipe';
     MatSelectModule, MatFormFieldModule,
     DropdownDirective,
     HomeTimeFormatPipe,
-    ServerTimeFormatPipe
+    ServerTimeFormatPipe,
+    TranslateModule
   ],
   providers: [AppStorageService, HelperService]
 })
