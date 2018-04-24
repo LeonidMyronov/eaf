@@ -33,13 +33,13 @@ export class MobileMenuComponent implements OnInit {
       .subscribe(
         isAuth => {
           if (isAuth) {
-            this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
             this.userMenu = this.appStorage.getUserMenu().slice(1);
             this.userState$ = this.store.select(fromRoot.getShortUserState);
             this.isAuth = isAuth;
           } else {
             this.navMenu = this.appStorage.getNavMenu();
           }
+          this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth && item.name !== 'login');
         }
       );
 
@@ -51,16 +51,19 @@ export class MobileMenuComponent implements OnInit {
 
   onAuthMenuClick(name: string) {
     // this.router.navigate([`${url}`]);
-    this.helper.preventBodyToScroll(true);
     this.onCloseMobileMenu();
     switch (name) {
       case 'profile':
         // TODO
         break;
+      case 'login':
+        // TODO
+        break;
       case 'registration':
         this.store.dispatch(new UIAction.IsSignupFormOpened(true));
+        this.helper.preventBodyToScroll(true);
         break;
-        case 'logout':
+      case 'logout':
         this.authService.logout();
         break;
       default:
