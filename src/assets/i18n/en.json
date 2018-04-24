@@ -1,5 +1,5 @@
 {
-  "registration": "registration",
+  "registration": "Registration",
   "login": "login",
   "profile": "profile",
   "logout": "logout",
@@ -23,5 +23,10 @@
   "First order": "First order",
   "Rebills": "Rebills",
   "FO": "FO",
-  "R": "R"
+  "R": "R",
+  "sign in": "sign in",
+  "password": "Password",
+  "repeat password": "Repeat password",
+  "full name": "Full name",
+  "forgot password": "Forgot password"
 }

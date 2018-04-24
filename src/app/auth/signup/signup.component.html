@@ -5,7 +5,7 @@
       <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
     </div>
 
-    <div class="title">Регистрация</div>
+    <div class="title">{{ 'registration' | translate }}</div>
 
     <div class="form-field">
       <input type="email" placeholder="E-mail:" formControlName="email">
@@ -25,7 +25,7 @@
 
     <ng-container formGroupName="passwords">
       <div class="form-field">
-        <input type="password" placeholder="Password:" formControlName="password">
+        <input type="password" placeholder="{{ 'password' | translate }}:" formControlName="password">
         <div class="form-field__actions">
 
           <span class="form-required">*</span>
@@ -37,7 +37,7 @@
       </div>
 
       <div class="form-field">
-        <input type="password" placeholder="Password (again):" formControlName="repeatPassword">
+        <input type="password" placeholder="{{ 'repeat password' | translate }}:" formControlName="repeatPassword">
         <div class="form-field__actions">
 
           <span class="form-required">*</span>
@@ -57,7 +57,7 @@
     </ng-container>
 
     <div class="form-field">
-      <input type="text" placeholder="Full name:" formControlName="name">
+      <input type="text" placeholder="{{ 'full name' | translate }}:" formControlName="name">
     </div>
 
     <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
@@ -83,7 +83,7 @@
          formControlName="recaptcha">
         </re-captcha>
       </div>
-      <button type="submit" class="primary btn-lg" [disabled]="signupForm.invalid">Registration</button>
+      <button type="submit" class="primary btn-lg" [disabled]="signupForm.invalid">{{ 'registration' | translate }}</button>
     </div>
   </form>
 </article>

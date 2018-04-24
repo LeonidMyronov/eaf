@@ -1,5 +1,5 @@
 {
-  "registration": "регистрация",
+  "registration": "Регистрация",
   "login": "вход",
   "profile": "профиль",
   "logout": "выход",
@@ -23,6 +23,11 @@
   "First order": "Первый заказ",
   "Rebills": "Ребилы",
   "FO": "ПЗ",
-  "R": "Р"
+  "R": "Р",
+  "sign in": "вход",
+  "password": "Пароль",
+  "repeat password": "Пароль (повторно)",
+  "full name": "Полное имя",
+  "forgot password": "Забыли пароль"
 
 }
