@@ -19,7 +19,7 @@
         <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
           <a *ngIf="navItem.name != 'promo'">
             <img fxHide.md [src]="navItem.iconSrc" alt="">
-            <span>{{ navItem.name }}</span>
+            <span>{{ navItem.name | translate }}</span>
           </a>
         </li>
       </ul>
@@ -29,7 +29,7 @@
       <ul class="nav-menu" fxLayout="row">
         <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
           <a>
-            {{ navItem.name }}
+            {{ navItem.name | translate }}
           </a>
         </li>
       </ul>
@@ -48,7 +48,7 @@
     </div>
 
     <div class="user-menu-group" fxLayout="row" fxLayoutAlign="center">
-      <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{item.name}}</button>
+      <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}</button>
     </div>
   </footer>
 
