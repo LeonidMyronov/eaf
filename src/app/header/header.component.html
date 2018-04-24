@@ -1,12 +1,12 @@
 <header fxLayout="row wrap" fxLayoutAlign="start center" [ngClass]="{'main-section': isAuth===true}">
   <div *ngIf="isAuth" fxHide.xs class="user-welcome">
-    <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
+    <span class="accent-color">{{'welcome' | translate}}, </span> {{ (userState$ | async).email }}
   </div>
   <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
   <ul *ngIf="!isAuth" class="nav-menu" fxHide.xs fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center">
     <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
       <a>
-        {{ navItem.name }}
+        {{ navItem.name | translate}}
       </a>
     </li>
   </ul>
@@ -20,23 +20,23 @@
     </div>
 
     <div class="user-balance">
-      <div class="upper-label">{{ 'Balance' }}:</div>
+      <div class="upper-label">{{ 'balance' | translate }}:</div>
       {{ (userState$ | async).balance }} USD
     </div>
 
     <div eafDropdown class="dropdown-menu user-tariff">
-      <div class="upper-label">{{ 'Tariff' }}:</div>
+      <div class="upper-label">{{ 'tariff' | translate }}:</div>
       <div class="dropdown-select">
         <span class="user-tariff__icon">
           <img [src]="userTariff.iconSrc" alt="">
         </span>
         <span class="user-tariff__shortsitename" fxHide.md fxHide.xs>{{ userTariff.siteName }}</span>
         <span class="user-tariff__fo">
-          <span fxHide.md fxHide.xs>First order</span>
-          <span fxHide.lg fxHide.sm>FO</span>: {{ userTariff.fisrtOrderPercent }}%</span>
+          <span fxHide.md fxHide.xs>{{'First order' | translate }}</span>
+          <span fxHide.lg fxHide.sm>{{ 'FO' | translate }}</span>: {{ userTariff.fisrtOrderPercent }}%</span>
         <span class="user-tariff__r">
-          <span fxHide.md fxHide.xs>Rebills</span>
-          <span fxHide.lg fxHide.sm>R</span>: {{ userTariff.rebillsPercent }}%</span>
+          <span fxHide.md fxHide.xs>{{ 'Rebills' | translate }}</span>
+          <span fxHide.lg fxHide.sm>{{ 'R' | translate }}</span>: {{ userTariff.rebillsPercent }}%</span>
       </div>
       <ul class="dropdown-list">
         <li class="dropdown-list__item" *ngFor="let tariff of tariffsList" (click)="onChangeTariff(tariff)">
@@ -44,8 +44,8 @@
             <img [src]="tariff?.iconSrc" alt="">
           </span>
           <span class="user-tariff__sitename" fxHide.md fxHide.xs>{{ tariff.siteName }}</span>
-          <span class="user-tariff__fo"> FO: {{ tariff?.fisrtOrderPercent }}%</span>
-          <span class="user-tariff__r"> R: {{ tariff?.rebillsPercent }}%</span>
+          <span class="user-tariff__fo"> {{ 'FO' | translate }}: {{ tariff?.fisrtOrderPercent }}%</span>
+          <span class="user-tariff__r"> {{ 'R' | translate }}: {{ tariff?.rebillsPercent }}%</span>
         </li>
       </ul>
     </div>
@@ -64,7 +64,7 @@
   </div>
 
   <div class="user-menu-group" fxLayout.xs="row" fxLayoutAlign.xs="center">
-    <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{item.name}}</button>
+    <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}</button>
   </div>
 
   <div class="hamburger_button" fxLayout="column" fxLayoutAlign="center center" (click)="onOpenMobileMenu()"
@@ -78,7 +78,7 @@
     <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
       <a *ngIf="navItem.name != 'promo'" fxLayout="row" fxFlexAlign="center">
         <img fxHide.md [src]="navItem.iconSrc" alt="">
-        <span>{{ navItem.name }}</span>
+        <span>{{ navItem.name | translate }}</span>
       </a>
     </li>
   </ul>
