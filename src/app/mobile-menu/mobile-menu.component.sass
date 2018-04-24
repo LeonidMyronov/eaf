@@ -1,0 +1,110 @@
+@import variables
+
+section
+  padding-top: 48px
+  header
+    width: 100%
+    margin-bottom: 70px
+  main
+    .authed
+      margin-bottom: 125px
+  footer
+    width: 100%
+    max-width: 555px
+    .user-promo
+      margin-right: auto
+      margin-left: 0
+
+.hamburger_button
+  cursor: pointer
+  width: 40px
+  height: 40px
+  background-color: $mainColor
+  .hamburger_item
+    display: block
+    background-color: $accentColor
+    width: 20px
+    height: 3px
+    margin-bottom: 3px
+    transition: all 0.5s ease
+  &.opened
+    .hamburger_item:first-child
+      transform: translateY(6px) rotate(135deg)
+    .hamburger_item
+      transform: rotate(-225deg)
+    .hamburger_item:last-child
+      transform: translateY(-6px) rotate(45deg)
+
+.user-welcome
+  text-align: center
+  span
+    display: block
+    width: 100%
+
+.user-menu
+  display: grid
+  grid-template-columns: repeat(3, 152px)
+  grid-auto-rows: 152px
+  grid-gap: 50px
+  a
+    padding: 0
+    height: 100%
+    display: grid
+    justify-items: center
+    align-items: center
+    grid-gap: 10px
+    color: $mainColor
+    font-size: 19px
+    text-decoration: none
+    text-transform: capitalize
+    border-radius: 3px
+    img
+      align-self: end
+    span
+      align-self: start
+    &:hover
+      background-color: $accentColor-lighter
+
+.nav-menu
+  margin-bottom: 40px
+  li
+    height: 40px
+    a
+      color: inherit
+      display: inline-block
+      text-transform: capitalize
+      line-height: 40px
+      padding: 0 35px
+      text-decoration: none
+      cursor: pointer
+    &:not(:last-child)
+      border-right: 1px solid $accentColor
+    &:hover, &.active
+      a
+          color: $accentColor
+
+
+@media (max-width: 767px)
+  section
+    padding-top: 17px
+    header
+      margin-bottom: 17px
+      img
+        width: auto
+        height: 30px
+    main
+      .authed
+        margin-bottom: 45px
+      .not-authed
+        margin-bottom: 25px
+    footer
+      max-width: 324px
+      .user-promo
+        margin-left: auto
+        margin-bottom: 20px
+  .user-menu
+    grid-template-columns: repeat(3, 108px)
+    grid-auto-rows: 108px
+    grid-gap: 0
+    a
+      font-size: 14px

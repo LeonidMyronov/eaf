@@ -3,8 +3,7 @@
     <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
   </div>
   <img id='header-logo' src="{{deployPath}}/assets/images/header/header-logo.svg" alt="" routerLink="/">
-  <ul *ngIf="!isAuth" class="nav-menu" fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center"
-    [fxHide.xs]="!isMobileMenuOpened">
+  <ul *ngIf="!isAuth" class="nav-menu" fxHide.xs fxLayout="row" fxFlexOrder.lt-md="1" fxFlex.lt-md="100%" fxLayoutAlign.lt-md="center">
     <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active">
       <a>
         {{ navItem.name }}
@@ -68,8 +67,8 @@
     <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{item.name}}</button>
   </div>
 
-  <div class="hamburger_button" fxLayout="column" fxLayoutAlign="center center" (click)="isMobileMenuOpened = !isMobileMenuOpened"
-    [ngClass]="{'opened': isMobileMenuOpened===true}">
+  <div class="hamburger_button" fxLayout="column" fxLayoutAlign="center center" (click)="onOpenMobileMenu()"
+    [ngClass]="{'opened': isMobileMenuOpened$ | async}">
     <span class="hamburger_item"></span>
     <span class="hamburger_item"></span>
     <span class="hamburger_item"></span>
