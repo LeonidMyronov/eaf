@@ -214,11 +214,11 @@ export class AppStorageService {
   private timeList = [
     {
       id: 1,
-      name: 'Server'
+      name: 'server'
     },
     {
       id: 2,
-      name: 'Home'
+      name: 'home'
     }
   ];
 
