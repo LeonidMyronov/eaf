@@ -1,4 +1,28 @@
 {
-    "Title": "Это тест",
-    "Intro": "Привет, я Лео! :)"
+  "registration": "регистрация",
+  "login": "вход",
+  "profile": "профиль",
+  "logout": "выход",
+  "tariffs": "тарифы",
+  "tariff": "тариф",
+  "contacts": "контакты",
+  "promo": "промо",
+  "today": "сегодня",
+  "statistic": "статистика",
+  "post back": "post back",
+  "balance": "баланс",
+  "whiteLabel": "whiteLabel",
+  "offer": "оффер",
+  "guide": "руководство",
+  "news": "новости",
+  "support": "поддержка",
+  "server": "сервер",
+  "home": "дом",
+  "welcome": "Добро пожаловать",
+  "time": "время",
+  "First order": "Первый заказ",
+  "Rebills": "Ребилы",
+  "FO": "ПЗ",
+  "R": "Р"
+
 }
