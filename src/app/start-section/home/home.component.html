@@ -1,103 +1,117 @@
 <section class="home-1">
-  <h1 [innerHTML]="'home-page.section-1.title-1' | translate"></h1>
-  <h1 [innerHTML]="'home-page.section-1.title-2' | translate" class="accent-color"></h1>
-  <div class="banner"></div>
-  <h3 [innerHTML]="'home-page.section-1.h3' | translate"></h3>
-  <img class="scroll-icon"src="/assets/images/home/icon-mouse.svg" fxHide.xs alt="">
+  <div class="container">
 
-  <div class="cards-group" fxLayout="row" fxLayout.lt-md="row wrap" fxLayoutAlign="center">
-    <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 0 auto" fxShrink.lt-md="1">
-      <img [src]=item.iconSrc alt="{{item.description}}">
-      <div class="content light-color">
-        <span *ngIf="item.badge" class="badge">{{ item.badge | translate }}</span>
-        <div class="title">{{ item.title | translate }}</div>
+    <h1 [innerHTML]="'home-page.section-1.title-1' | translate"></h1>
+    <h1 [innerHTML]="'home-page.section-1.title-2' | translate" class="accent-color"></h1>
+    <div class="banner"></div>
+    <h3 [innerHTML]="'home-page.section-1.h3' | translate"></h3>
+    <img class="scroll-icon" src="/assets/images/home/icon-mouse.svg" fxHide.xs alt="">
+
+    <div class="cards-group" fxLayout="row" fxLayout.lt-md="row wrap" fxLayoutAlign="center">
+      <div class="card card-{{item.description}}" *ngFor="let item of homeSection1Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}"
+        fxFlex="0 0 auto" fxShrink.lt-md="1">
+        <img [src]=item.iconSrc alt="{{item.description}}">
+        <div class="content light-color">
+          <span *ngIf="item.badge" class="badge">{{ item.badge | translate }}</span>
+          <div class="title">{{ item.title | translate }}</div>
+        </div>
+        <div class="descr accent-color">{{ item.description | translate }}</div>
       </div>
-      <div class="descr accent-color">{{ item.description | translate }}</div>
     </div>
   </div>
 </section>
 
 <section class="home-2 bg-list-lighter-color">
-  <div class="intro">
-    <div class="logo-inline">
-      <img src="/assets/images/home/site-name-logo.svg" alt="">
+  <div class="container">
+
+    <div class="intro">
+      <div class="logo-inline">
+        <img src="/assets/images/home/site-name-logo.svg" alt="">
+      </div>
+      <h3>{{ 'home-page.section-2.h3' | translate }}</h3>
     </div>
-    <h3>{{ 'home-page.section-2.h3' | translate }}</h3>
-  </div>
-  <div class="content" fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
-    <div class="content-left" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px" fxLayoutAlign.xs="space-around">
-      <div class="country-item bg-light-color" *ngFor="let country of countryList">
-        <img [src]="country.img" alt="">
+    <div class="content" fxLayout="row" fxLayoutAlign="space-between" fxLayout.xs="column">
+      <div class="content-left" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="30px" fxLayoutAlign.xs="space-around">
+        <div class="country-item bg-light-color" *ngFor="let country of countryList">
+          <img [src]="country.img" alt="">
+        </div>
+      </div>
+      <img fxHide.gt-xs src="/assets/images/home/home-2-world-map.svg" alt="">
+      <div class="content-right">
+        {{ 'home-page.section-2.content-1' | translate }}
+        <br>
+        <br> {{ 'home-page.section-2.content-2' | translate }}
+        <br>
+        <br> {{ 'home-page.section-2.content-3' | translate }}
+        <br>
+        <br>
       </div>
     </div>
-    <img fxHide.gt-xs src="/assets/images/home/home-2-world-map.svg" alt="">
-    <div class="content-right">
-        {{ 'home-page.section-2.content-1' | translate }}<br><br>
-        {{ 'home-page.section-2.content-2' | translate }}<br><br>
-        {{ 'home-page.section-2.content-3' | translate }}<br><br>
-    </div>
-  </div>
 
+  </div>
 </section>
 
 <section class="home-3">
-  <div class="content">
-    <h1 [innerHTML]="'home-page.section-3.content-1.title' | translate"></h1>
-    <div class="intro-group" fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="50px">
-      <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
-        <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
-        <p>{{ 'home-page.section-3.content-1.intro-1' | translate }}</p>
+  <div class="container">
+    <div class="content">
+      <h1 [innerHTML]="'home-page.section-3.content-1.title' | translate"></h1>
+      <div class="intro-group" fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="50px">
+        <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
+          <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
+          <p>{{ 'home-page.section-3.content-1.intro-1' | translate }}</p>
+        </div>
+        <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
+          <img src="/assets/images/home/home-3-img-keys.svg" alt="">
+          <p>{{ 'home-page.section-3.content-1.intro-2' | translate }}</p>
+        </div>
       </div>
-      <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
-        <img src="/assets/images/home/home-3-img-keys.svg" alt="">
-        <p>{{ 'home-page.section-3.content-1.intro-2' | translate }}</p>
-      </div>
-    </div>
-    <p>{{ 'home-page.section-3.content-1.p-1' | translate }}<br>
-      {{ 'home-page.section-3.content-1.p-2' | translate }}<br>
-      {{ 'home-page.section-3.content-1.p-3' | translate }}
-    </p>
+      <p>{{ 'home-page.section-3.content-1.p-1' | translate }}
+        <br> {{ 'home-page.section-3.content-1.p-2' | translate }}
+        <br> {{ 'home-page.section-3.content-1.p-3' | translate }}
+      </p>
 
-    <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
-      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
-        <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
-        <div class="text">300</div>
-        <div class="info">{{ 'clients' | translate }}</div>
-      </div>
-      <img class="multiply-sign" src="/assets/images/home/home-3-icon-multiply.svg" alt="">
-      <img class="brace-sign" src="/assets/images/home/home-3-icon-open_brace.svg" alt="">
-      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
-        <img src="/assets/images/home/home-3-icon-check.svg" alt="">
-        <div class="text">130</div>
-        <div class="info">{{ 'check' | translate }} ($)</div>
-      </div>
-      <img class="multiply-sign" src="/assets/images/home/home-3-icon-multiply.svg" alt="">
-      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
-        <img src="/assets/images/home/home-3-icon-percent.svg" alt="">
-        <div class="text">50%</div>
-        <div class="info">{{ 'percent' | translate }}</div>
-      </div>      
-      <img class="brace-sign" src="/assets/images/home/home-3-icon-close_brace.svg" alt="">
-      <img class="equal-sign" src="/assets/images/home/home-3-icon-equal.svg" alt="">
-      <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
-        <div class="text">$ 19500</div>
-        <div class="info">{{ 'per month' | translate }}</div>
-      </div>
-      
-    </div>
+      <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center"
+        fxLayoutGap.lg="30px">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
+          <div class="text">300</div>
+          <div class="info">{{ 'clients' | translate }}</div>
+        </div>
+        <img class="multiply-sign" src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+        <img class="brace-sign" src="/assets/images/home/home-3-icon-open_brace.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-check.svg" alt="">
+          <div class="text">130</div>
+          <div class="info">{{ 'check' | translate }} ($)</div>
+        </div>
+        <img class="multiply-sign" src="/assets/images/home/home-3-icon-multiply.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/home/home-3-icon-percent.svg" alt="">
+          <div class="text">50%</div>
+          <div class="info">{{ 'percent' | translate }}</div>
+        </div>
+        <img class="brace-sign" src="/assets/images/home/home-3-icon-close_brace.svg" alt="">
+        <img class="equal-sign" src="/assets/images/home/home-3-icon-equal.svg" alt="">
+        <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
+          <div class="text">$ 19500</div>
+          <div class="info">{{ 'per month' | translate }}</div>
+        </div>
 
-  </div>
-  <div class="content">
-    <h1 [innerHTML]="'home-page.section-3.content-2.title' | translate"></h1>
-    <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
-      <div class="intro" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
-        <img src="/assets/images/home/home-3-img-rebills.svg" alt="">
-        <p>{{ 'home-page.section-3.content-2.p-1' | translate }} <br>
-          {{ 'home-page.section-3.content-2.p-2' | translate }}</p>
       </div>
-    </div>
 
-    <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center" fxLayoutGap.lg="30px">
+    </div>
+    <div class="content">
+      <h1 [innerHTML]="'home-page.section-3.content-2.title' | translate"></h1>
+      <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
+        <div class="intro" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
+          <img src="/assets/images/home/home-3-img-rebills.svg" alt="">
+          <p>{{ 'home-page.section-3.content-2.p-1' | translate }}
+            <br> {{ 'home-page.section-3.content-2.p-2' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="formula" fxLayout="row" fxLayoutAlign.xs="space-around center" fxLayoutAlign="space-between center" fxLayoutAlign.lg="start center"
+        fxLayoutGap.lg="30px">
         <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
           <img src="/assets/images/home/home-3-icon-clients.svg" alt="">
           <div class="text">300</div>
@@ -115,79 +129,87 @@
           <img src="/assets/images/home/home-3-icon-percent.svg" alt="">
           <div class="text">20%</div>
           <div class="info">{{ 'percent' | translate }}</div>
-        </div>      
+        </div>
         <img class="brace-sign" src="/assets/images/home/home-3-icon-close_brace.svg" alt="">
         <img class="multiply-sign" src="/assets/images/home/home-3-icon-multiply.svg" alt="">
         <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
           <img src="/assets/images/home/home-3-icon-rebills.svg" alt="">
           <div class="text">5%</div>
           <div class="info">{{ 'percent' | translate }}</div>
-        </div> 
+        </div>
         <img class="equal-sign" src="/assets/images/home/home-3-icon-equal.svg" alt="">
         <div class="formula__item" fxLayout="column" fxLayoutAlign="start center">
           <div class="text">$ 39000</div>
           <div class="info">{{ 'for 6 months' | translate }}</div>
-        </div> 
+        </div>
       </div>
     </div>
     <div class="action">
       <h2 class="accent-color">{{ 'not bad?' | translate }}</h2>
       <button type="button" class="primary btn-xxl" (click)="onRegister()">{{ 'sign up' | translate }}</button>
     </div>
+  </div>
 </section>
 
 <section class="home-4 bg-list-lighter-color">
-  <div class="title" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
-    <h1>
-      {{ 'home-page.section-4.title' | translate }}:
-    </h1>
-    <img src="/assets/images/home/home-4-img-works.svg" alt="">
-  </div>
+  <div class="container">
 
-  <div class="intro-group" fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px" fxLayoutGap.sm="40px" fxLayoutGap.xs="10px">
-    <div class="intro" fxFlex.xs="auto" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
-      <img src="/assets/images/home/home-4-icon-doc.svg" alt="">
-      <p>{{ doc }}</p>
+    <div class="title" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayout="row" fxLayoutAlign="start" fxLayoutGap="40px">
+      <h1>
+        {{ 'home-page.section-4.title' | translate }}:
+      </h1>
+      <img src="/assets/images/home/home-4-img-works.svg" alt="">
     </div>
+
+    <div class="intro-group" fxLayout.xs="column" fxLayout="row wrap" fxLayoutAlign="start" fxLayoutGap="80px" fxLayoutGap.sm="40px"
+      fxLayoutGap.xs="10px">
+      <div class="intro" fxFlex.xs="auto" fxFlex="0 1 200px" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" *ngFor="let doc of workTypes">
+        <img src="/assets/images/home/home-4-icon-doc.svg" alt="">
+        <p>{{ doc }}</p>
+      </div>
+    </div>
+    <h2>And more...</h2>
+    
   </div>
-  <h2>And more...</h2>
 </section>
 
 <section class="home-5">
-    <h1 [innerHTML]="'home-page.section-5.title' | translate"></h1>
+  <h1 [innerHTML]="'home-page.section-5.title' | translate"></h1>
 
-    <div class="cards-group" fxLayout="row wrap" fxLayoutAlign="center center">
-      <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
-        <div class="descr">
-          {{  'home-page.section-5.cards.card-'+item.id | translate }}
-          <span class="light-color">
-            {{ 'home-page.section-5.cards.badge-'+item.id | translate }}
-          </span>
-        </div>
+  <div class="cards-group" fxLayout="row wrap" fxLayoutAlign="center center">
+    <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
+      <div class="descr">
+        {{ 'home-page.section-5.cards.card-'+item.id | translate }}
+        <span class="light-color">
+          {{ 'home-page.section-5.cards.badge-'+item.id | translate }}
+        </span>
       </div>
     </div>
+  </div>
 
-    <div class="intro">
-      <h3 [innerHTML]="'home-page.section-5.h3-1' | translate"></h3>
-      <div class="logo-inline">
-        <img src="/assets/images/home/site-name-logo.svg" alt="">
-      </div>
-      <h3 [innerHTML]="'home-page.section-5.h3-2' | translate"></h3>
+  <div class="intro">
+    <h3 [innerHTML]="'home-page.section-5.h3-1' | translate"></h3>
+    <div class="logo-inline">
+      <img src="/assets/images/home/site-name-logo.svg" alt="">
     </div>
+    <h3 [innerHTML]="'home-page.section-5.h3-2' | translate"></h3>
+  </div>
 
-    <p class="descr">{{ 'home-page.section-5.p-1' | translate }}<br><br>{{ 'home-page.section-5.p-2' | translate }}
-    </p>
+  <p class="descr">{{ 'home-page.section-5.p-1' | translate }}
+    <br>
+    <br>{{ 'home-page.section-5.p-2' | translate }}
+  </p>
 
-    <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
-      <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-        <h3>{{ 'all you have to do' | translate }}</h3>
-        <button type="button" class="primary btn-xl" (click)="onRegister()">{{ 'sign up' | translate }}</button>
-      </div>
-      <img src="/assets/images/home/home-5-banner.svg" alt="">
-      <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-        <h3>{{ 'we will care' | translate }}</h3>
-        <button type="button" class="primary btn-xl" routerLink="/contacts">{{ 'have a question?' | translate }}</button>
-      </div>
+  <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
+    <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <h3>{{ 'all you have to do' | translate }}</h3>
+      <button type="button" class="primary btn-xl" (click)="onRegister()">{{ 'sign up' | translate }}</button>
     </div>
+    <img src="/assets/images/home/home-5-banner.svg" alt="">
+    <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+      <h3>{{ 'we will care' | translate }}</h3>
+      <button type="button" class="primary btn-xl" routerLink="/contacts">{{ 'have a question?' | translate }}</button>
+    </div>
+  </div>
 
 </section>
