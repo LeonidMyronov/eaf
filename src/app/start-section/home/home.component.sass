@@ -127,12 +127,15 @@ section
         max-width: 420px
         text-align: left
     .intro-group
+      display: grid !important
+      grid-template-columns: repeat(4, 1fr)
+      grid-gap: 50px
+      margin-bottom: 50px
       .intro
-        margin-bottom: 50px
     h2
       text-align: right
       color: $accentColor
-      margin-right: 140px
+      margin-right: 110px
   &.home-5
     padding-top: 100px
     padding-bottom: 100px
@@ -187,6 +190,9 @@ section
       // padding: 0 160px
       .card
         width: 240px
+    &.home-4
+      h2
+        margin-right: 0
     &.home-5
       padding-left: 160px
       padding-right: 160px
@@ -214,6 +220,13 @@ section
     &.home-4
       padding-top: 70px
       padding-bottom: 70px
+      .intro-group
+        grid-template-columns: repeat(3, 1fr)
+        grid-gap: 40px 10px
+        margin-bottom: 0
+      h2
+        margin-right: 30px
+        margin-top: -45px
     &.home-5
       padding: 50px 20px
       .cards-group
@@ -300,8 +313,11 @@ section
         h1
           text-align: center
       .intro-group
-        .intro
-          margin-bottom: 10px
+        grid-template-columns: 1fr
+        grid-row-gap: 10px
+      h2
+        margin-top: 15px
+        margin-right: 0
 
     &.home-5
       padding: 30px 17px
