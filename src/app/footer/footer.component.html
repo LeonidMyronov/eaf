@@ -1,5 +1,5 @@
 <footer class="bg-main-color" fxLayout="row" fxLayoutAlign="center" [ngClass]="{'main-section': (isAuth$ | async)}">
-  <div class="container"  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxFlexAlign="center" fxLayoutAlign.lt-lg="space-between center">
+  <div class="container"  fxLayout="row wrap" fxLayout.xs="column" fxLayoutAlign="center center" fxFlexAlign="center">
 
     <img id='footer-logo' src="{{deployPath}}/assets/images/footer/footer-logo.svg" alt="" routerLink="/">
     <ul *ngIf="!(isAuth$ | async)" class="nav-menu" fxLayout="row">
