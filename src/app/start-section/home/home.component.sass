@@ -20,7 +20,6 @@ section
       margin: 50px auto
       display: block
     .card
-      // width: 240px
       margin: 10px
       padding: 38px
       background-repeat: no-repeat
@@ -79,7 +78,6 @@ section
       .content-right
         width: 450px
   &.home-3
-    // padding: 0 400px
     .content
       padding: 100px 0
       &:first-child
@@ -143,6 +141,9 @@ section
       margin-bottom: 60px
     .cards-group
       margin-bottom: 50px
+      display: grid !important
+      grid-gap: 20px
+      grid-template-columns: repeat(3, 1fr)
     .card
       width: 440px
       height: 226px
@@ -150,8 +151,8 @@ section
       background-position: center
       justify-content: space-between
       // margin: 0 10px 20px
-      margin-left: 20px
-      margin-bottom: 20px
+      // margin-left: 20px
+      // margin-bottom: 20px
       .descr
         max-width: 188px
         text-align: center
@@ -171,31 +172,30 @@ section
       h3  
         display: inline
     .descr
-      width: 720px
+      max-width: 720px
       margin: 0 auto 60px
       text-align: center
     .action
       h3
         max-width: 260px
 
-@media (min-width: 1400px)
-  section
-    &.home-5
-      padding-left: 220px
-      padding-right: 220px
+// @media (min-width: 1400px)
+//   section
+//     &.home-5
+//       padding-left: 220px
+//       padding-right: 220px
 
 @media (max-width: 1399px)
   section
     &.home-1
-      // padding: 0 160px
       .card
         width: 240px
     &.home-4
       h2
         margin-right: 0
     &.home-5
-      padding-left: 160px
-      padding-right: 160px
+      .container
+        width: 1020px
       .card
         width: 326px
         height: 226px
@@ -228,9 +228,14 @@ section
         margin-right: 30px
         margin-top: -45px
     &.home-5
-      padding: 50px 20px
+      padding: 50px 0
+      .container
+        width: 671px
       .cards-group
+        grid-template-columns: repeat(2, 1fr)
         margin-bottom: 30px
+        .card:last-child
+          transform: translateX(50%)
 
 @media (max-width: 830px)
   section
@@ -254,7 +259,6 @@ section
           font-size: 18px
     &.home-2
       height: auto
-      // background-position: center
       background-image: none
       .intro
         width: 100%
@@ -320,11 +324,16 @@ section
         margin-right: 0
 
     &.home-5
-      padding: 30px 17px
+      padding: 30px 0
+      .container
+        width: 326px
       h1
         margin-bottom: 40px
       .cards-group
+        grid-template-columns: 1fr
         margin-bottom: 20px
+        .card:last-child
+          transform: none
       .intro
         margin-bottom: 30px
         .logo-inline

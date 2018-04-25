@@ -173,42 +173,45 @@
 </section>
 
 <section class="home-5">
-  <h1 [innerHTML]="'home-page.section-5.title' | translate"></h1>
+  <div class="container">
 
-  <div class="cards-group" fxLayout="row wrap" fxLayoutAlign="center center">
-    <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')'}" fxFlex="0 1 auto">
-      <div class="descr">
-        {{ 'home-page.section-5.cards.card-'+item.id | translate }}
-        <span class="light-color">
-          {{ 'home-page.section-5.cards.badge-'+item.id | translate }}
-        </span>
+    <h1 [innerHTML]="'home-page.section-5.title' | translate"></h1>
+
+    <div class="cards-group">
+      <div class="card" *ngFor="let item of homeSection5Cards" [ngStyle]="{backgroundImage: 'url(' + item.imgSrc + ')', 'background-position-y': '43px'}" fxFlex="0 1 auto">
+        <div class="descr">
+          {{ 'home-page.section-5.cards.card-'+item.id | translate }}
+          <span class="light-color">
+            {{ 'home-page.section-5.cards.badge-'+item.id | translate }}
+          </span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="intro">
-    <h3 [innerHTML]="'home-page.section-5.h3-1' | translate"></h3>
-    <div class="logo-inline">
-      <img src="/assets/images/home/site-name-logo.svg" alt="">
+    <div class="intro">
+      <h3 [innerHTML]="'home-page.section-5.h3-1' | translate"></h3>
+      <div class="logo-inline">
+        <img src="/assets/images/home/site-name-logo.svg" alt="">
+      </div>
+      <h3 [innerHTML]="'home-page.section-5.h3-2' | translate"></h3>
     </div>
-    <h3 [innerHTML]="'home-page.section-5.h3-2' | translate"></h3>
-  </div>
 
-  <p class="descr">{{ 'home-page.section-5.p-1' | translate }}
-    <br>
-    <br>{{ 'home-page.section-5.p-2' | translate }}
-  </p>
+    <p class="descr">{{ 'home-page.section-5.p-1' | translate }}
+      <br>
+      <br>{{ 'home-page.section-5.p-2' | translate }}
+    </p>
 
-  <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
-    <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <h3>{{ 'all you have to do' | translate }}</h3>
-      <button type="button" class="primary btn-xl" (click)="onRegister()">{{ 'sign up' | translate }}</button>
+    <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
+      <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <h3>{{ 'all you have to do' | translate }}</h3>
+        <button type="button" class="primary btn-xl" (click)="onRegister()">{{ 'sign up' | translate }}</button>
+      </div>
+      <img src="/assets/images/home/home-5-banner.svg" alt="">
+      <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
+        <h3>{{ 'we will care' | translate }}</h3>
+        <button type="button" class="primary btn-xl" routerLink="/contacts">{{ 'have a question?' | translate }}</button>
+      </div>
     </div>
-    <img src="/assets/images/home/home-5-banner.svg" alt="">
-    <div class="right-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">
-      <h3>{{ 'we will care' | translate }}</h3>
-      <button type="button" class="primary btn-xl" routerLink="/contacts">{{ 'have a question?' | translate }}</button>
-    </div>
-  </div>
 
+  </div>
 </section>
