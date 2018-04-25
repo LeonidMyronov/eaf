@@ -131,28 +131,28 @@ export class AppStorageService {
       iconSrc: '/assets/images/home/home-1-icon-comission.svg',
       imgSrc: '/assets/images/home/home-1-img-comission.svg',
       description: 'comission',
-      badge: 'от',
+      badge: 'from',
       title: '50%'
     },
     {
       iconSrc: '/assets/images/home/home-1-icon-rebills.svg',
       imgSrc: '/assets/images/home/home-1-img-rebills.svg',
       description: 'rebills',
-      badge: 'от',
+      badge: 'from',
       title: '20%'
     },
     {
       iconSrc: '/assets/images/home/home-1-icon-conversion.svg',
       imgSrc: '/assets/images/home/home-1-img-conversion.svg',
       description: 'conversion',
-      badge: 'от',
+      badge: 'from',
       title: '9%'
     },
     {
       iconSrc: '/assets/images/home/home-1-icon-payments.svg',
       imgSrc: '/assets/images/home/home-1-img-payments.svg',
       description: 'payments',
-      title: 'по запросу'
+      title: 'on request'
     }
   ];
 
@@ -171,43 +171,52 @@ export class AppStorageService {
     {
       imgSrc: '/assets/images/home/home-5-img-1.svg',
       description: 'Лучшие работы от лучших авторов',
+      id: 1,
     },
     {
       imgSrc: '/assets/images/home/home-5-img-2.svg',
       description: 'Средняя цена заказа - ',
       badge: '$131',
+      id: 2
     },
     {
       imgSrc: '/assets/images/home/home-5-img-3.svg',
       description: 'Лучший пассивный доход: ',
       badge: '5 ребилов с клиента',
+      id: 3
     },
     {
       imgSrc: '/assets/images/home/home-5-img-4.svg',
       description: 'Креативные баннеры и платники, ',
       badge: 'которые конвертят',
+      id: 4
     },
     {
       imgSrc: '/assets/images/home/home-5-img-5.svg',
       description: 'Лучший конверт в нише: ',
       badge: 'до 9%!',
+      id: 5
     },
     {
       imgSrc: '/assets/images/home/home-5-img-6.svg',
       description: 'Своевременные выплаты',
+      id: 6
     },
     {
       imgSrc: '/assets/images/home/home-5-img-7.svg',
       description: 'Выплаты через ',
       badge: 'Webmoney, PayPal, Epese, Wire Transfer',
+      id: 7
     },
     {
       imgSrc: '/assets/images/home/home-5-img-8.svg',
       description: 'Статистика в реальном времени',
+      id: 8
     },
     {
       imgSrc: '/assets/images/home/home-5-img-9.svg',
       description: 'Отличный саппорт',
+      id: 9
     },
   ];
 
