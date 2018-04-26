@@ -6,9 +6,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomFlexLayoutBreakPointsModule } from './custom-flexlayout-breakpoints.module';
 import { CoreModule } from './core/core.module';
 import { AuthModule } from './auth/auth.module';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+
 
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { RunService } from './core/run.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './start-section/home/home.component';
@@ -43,13 +48,26 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     CustomFlexLayoutBreakPointsModule,
     AuthModule,
     StoreModule.forRoot(reducers),
+    HttpClientModule,
+    TranslateModule.forRoot({
+        loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
     // StoreRouterConnectingModule,
     // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
     // StoreDevtoolsModule.instrument()
   ],
   providers: [
-    AuthService,
+    AuthService, RunService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

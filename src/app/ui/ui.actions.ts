@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 export const IS_LOGIN_FORM_OPENED = '[UI] IS_LOGIN_FORM_OPENED';
 export const IS_SIGNUP_FORM_OPENED = '[UI] IS_SIGNUP_FORM_OPENED';
 export const IS_MOBILE_MENU_OPENED = '[UI] IS_MOBILE_MENU_OPENED';
+export const SET_LANG = '[UI] SET_LANG';
 
 export class IsLoginFormOpened implements Action {
   readonly type = IS_LOGIN_FORM_OPENED;
@@ -11,7 +12,7 @@ export class IsLoginFormOpened implements Action {
 
 export class IsSignupFormOpened implements Action {
   readonly type = IS_SIGNUP_FORM_OPENED;
-  constructor (public payload: boolean) { }
+  constructor(public payload: boolean) { }
 }
 
 export class IsMobileMenuOpened implements Action {
@@ -19,4 +20,14 @@ export class IsMobileMenuOpened implements Action {
   constructor(public payload: boolean) { }
 }
 
-export type UIActions = IsLoginFormOpened | IsSignupFormOpened | IsMobileMenuOpened;
+export class SetLang implements Action {
+  readonly type = SET_LANG;
+  constructor(public payload: string) { }
+}
+
+export type UIActions =
+  IsLoginFormOpened |
+  IsSignupFormOpened |
+  IsMobileMenuOpened |
+  SetLang
+  ;

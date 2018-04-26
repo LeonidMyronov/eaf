@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit {
   public tariffsList: any[] = [];
   public userTariff: any;
   public langsList: any[] = [];
-  public userLang = 'us';
+  public userLang;
   public userMenu: any[];
 
 
@@ -53,13 +53,16 @@ export class HeaderComponent implements OnInit {
     this.userState$ = this.store.select(fromRoot.getShortUserState);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
 
-    this.langsList = this.appStorage.getLangsList();
     this.navMenu = this.appStorage.getNavMenu();
+    this.langsList = this.appStorage.getLangsList();
+    this.store.select(fromRoot.getCurrentLanguage)
+    .subscribe( lang => this.userLang = lang);
   }
 
   onChangeLang(lang: any) {
     console.log(`change lang to ${lang.abbr}`);
-    this.userLang = lang.abbr;
+    this.store.dispatch(new UIAction.SetLang(lang.abbr));
+    // this.userLang = lang.abbr;
   }
 
   onChangeTariff(tariff: any) {
