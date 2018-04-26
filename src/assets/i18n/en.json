@@ -1,0 +1,108 @@
+{
+  "registration": "Registration",
+  "login": "login",
+  "profile": "profile",
+  "logout": "logout",
+  "tariffs": "tariffs",
+  "tariff": "tariff",
+  "contacts": "contacts",
+  "promo": "promo",
+  "today": "today",
+  "statistic": "statistic",
+  "post back": "post back",
+  "balance": "balance",
+  "whiteLabel": "whiteLabel",
+  "offer": "offer",
+  "guide": "guide",
+  "news": "news",
+  "support": "support",
+  "server": "server",
+  "home": "home",
+  "welcome": "Welcome",
+  "time": "time",
+  "first order": "First order",
+  "rebills": "Rebills",
+  "FO": "FO",
+  "R": "R",
+  "sign in": "sign in",
+  "sign up": "sign up",
+  "password": "Password",
+  "repeat password": "Repeat password",
+  "full name": "Full name",
+  "forgot password": "Forgot password",
+  "comission": "comission",
+  "conversion": "conversion",
+  "payments": "payments",
+  "on request": "on request",
+  "from": "from",
+  "clients": "clients",
+  "percent": "percent",
+  "check": "check",
+  "per month": "per month",
+  "for 6 months": "for 6 months",
+  "not bad?": "Not bad, isn't it?",
+  "all you have to do": "All you have to do is pour the traffic!",
+  "we will care": "And we will take care of the rest.",
+  "have a question?": "Have a question?",
+
+
+  "home-page": {
+    "section-1": {
+      "title-1": "MONETIZE<br>WESTERN STUDENT TRAFFIC",
+      "title-2": "Expensively and qualitatively!",
+      "h3": "The most profitable affiliate for a foreign<br>student traffic"
+    },
+    "section-2": {
+      "h3": "peredovaya partnerskaya programma v zarubezhnoy obrazovatel'noy nishe s opytom raboty boleye semi let.",
+      "content-1": "My predostavlyayem uslugi napisaniya razlichnykh pis'mennykh rabot dlya studentov iz SSHA, Kanady, Avstralii, Velikobritanii.",
+      "content-2": "U nas yest' komanda iz 200+ kvalifitsirovannykh avtorov akademicheskikh rabot, kotoryye kachestvenno napishut lyuboy referat, esse, kursovuyu, i dazhe dissertatsiyu.",
+      "content-3": "Takim obrazom nashi partnery poluchayut v srednem 7 zakazov s kazhdogo kliyenta , vysokiye otchisleniya, i samyy bol'shoy sredniy chek - $130."
+    },
+    "section-3": {
+      "content-1": {
+        "title": "what do our partners <span class='selection bg-accent-darker-color'>earn</span>!",
+        "intro-1": "Skazhem vy reshili s nami porabotat', podgotovilis', i slivayete poryadka 300 unikov v den' na nash platnik.",
+        "intro-2": "Klyuchi – khoroshiye prodayushchiye, to yest' tselevyye. Pri takom rasklade konvert u nas gde-to 3.5-4%.",
+        "p-1": "Prikinemsya pessimistami i voz'mem 3.5% za oriyentir.",
+        "p-2": "Znachit 300 unikov eto v srednem 10 novykh kliyentov v den', ili 300 novykh kliyentov v mesyats.",
+        "p-3": "Prikinem skol'ko mozhno zarabotat' za 1 mesyats (30 dney)."
+      },
+      "content-2": {
+        "title": "And do not forget about the rebills - your <span class='selection bg-accent-darker-color'> passive income! </span>",
+        "p-1": "V srednem my poluchayem 5-7 rebilov s kazhdogo kliyenta.",
+        "p-2": "Voz'mem minimum 5 rebilov."
+      }
+    },
+    "section-4": {
+      "title": "so, what kind of work we write"
+    },
+    "section-5": {
+      "title": "what do <span class='selection bg-accent-darker-color'> we offer </span> to our partners",
+      "cards": {
+        "card-1": "the best works from the best authors",
+        "badge-1": "",
+        "card-2": "Average order price -",
+        "badge-2": "$131",
+        "card-3": "The best passive income: ",
+        "badge-3": "5 rebills from the client",
+        "card-4": "Creative banners and payment systems, ",
+        "badge-4": "which convert",
+        "card-5": "The best envelope in the niche: ",
+        "badge-5": "up to 9%!",
+        "card-6": "Timely payments",
+        "badge-6": "",
+        "card-7": "Payments throughout ",
+        "badge-7": "Webmoney, PayPal, Epese, Wire Transfer",
+        "card-8": "Realtime statistic",
+        "badge-8": "",
+        "card-9": "Excellent support",
+        "badge-9": ""
+      },
+      "h3-1": "Here, in ",
+      "h3-2": "we work <br> with the best partners for productive cooperation.",
+      "p-1": "We developed our own tracking system for detailed reports and statistics in real time, so you do not have to worry about the neck, or about other tricks that we do not do :)",
+      "p-2": "Being honest with you, we are waiting for the same attitude."
+    }
+
+  }
+}

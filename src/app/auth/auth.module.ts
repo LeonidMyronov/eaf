@@ -1,8 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RECAPTCHA_LANGUAGE } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
@@ -11,6 +7,7 @@ import { AuthService } from './auth.service';
 
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,12 +15,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
   ],
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FlexLayoutModule,
-    RouterModule,
+    CoreModule,
     // https://github.com/DethAriel/ng-recaptcha
-    // RecaptchaModule,
     RecaptchaModule.forRoot(),
     RecaptchaFormsModule,
   ],
