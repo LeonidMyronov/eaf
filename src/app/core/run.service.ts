@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 
+import { AuthService } from '../auth/auth.service';
+
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
 
@@ -9,9 +11,11 @@ export class RunService {
   private lang = 'ru';
 
   constructor(
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private authService: AuthService
   ) {
       this.setLang();
+      this.authService.login({email: 'leo@leo.com', password: ''});
   }
 
   setLang() {

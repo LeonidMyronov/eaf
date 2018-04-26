@@ -19,15 +19,7 @@ export class AuthService {
   ) {}
 
   login(loginData: LoginData) {
-    const id = Math.round(Math.random() * 10000);
-    const user: User = {
-      email: loginData.email,
-      id: id,
-      name: 'user_' + id,
-      icqAccount: id,
-      skypeAccount: 'skype' + id,
-      balance: 0
-    };
+    const user: User = this.getFakeUserData(loginData);
     this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
@@ -41,15 +33,8 @@ export class AuthService {
   }
 
   signup(loginData: SignupData) {
-    const id = Math.round(Math.random() * 10000);
-    const user: User = {
-      email: loginData.email,
-      id: id,
-      name: 'user_' + id,
-      icqAccount: id,
-      skypeAccount: 'skype' + id,
-      balance: 0
-    };
+    const user: User = this.getFakeUserData(loginData);
+
     this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
@@ -66,5 +51,91 @@ export class AuthService {
     this.store.dispatch(new AuthAction.IsUnauth());
     this.store.dispatch(new UserAction.ClearProfile());
     this.router.navigate(['/']);
+  }
+
+  getFakeUserData(loginData) {
+    const id = Math.round(Math.random() * 10000);
+    return {
+      email: loginData.email,
+      id: id,
+      name: 'user_' + id,
+      icqAccount: id,
+      skypeAccount: 'skype' + id,
+      balance: 100,
+      totalIncomeAmount: 23500,
+      rebillsAmount: 18050,
+      sellsAmount: 4989,
+      uniqueVisitorsAmount: 324,
+      sources: [
+        'edu-affiliates.com',
+        'fonts.google.com',
+        'depositphotos.com',
+        'сheapсustompapers.com',
+        'plasticjam.github.com',
+        'plasticjam.atlassian.net',
+      ],
+      sitesTraffic: [
+        {
+          name: '99papers',
+          amount: 768
+        },
+        {
+          name: 'bookwormlab',
+          amount: 543
+        },
+        {
+          name: 'essaybox',
+          amount: 323
+        },
+        {
+          name: 'essaywriter',
+          amount: 188
+        }
+      ],
+      // https://www.artlebedev.ru/country-list/
+      geoTargets: [
+        {
+          name: 'United Kingdom',
+          amount: 323,
+          abbr: 'gb'
+        },
+        {
+          name: 'Spain',
+          amount: 256,
+          abbr: 'es'
+        },
+        {
+          name: 'Germany',
+          amount: 209,
+          abbr: 'de'
+        },
+        {
+          name: 'Australia',
+          amount: 187
+        }
+      ],
+      deviceTypes: [
+        {
+          name: 'desktop',
+          amount: 32300
+        },
+        {
+          name: 'tablet',
+          amount: 22301
+        }
+        ,        {
+          name: 'phone',
+          amount: 12300
+        }
+      ],
+      news: [
+        {
+          date: new Date(),
+          title: 'Новые условия по рефералке',
+          content: `Добрый день! Сезон идет во всю, поэтому напоминанию о нашей реферальной программе,
+           т.к. это источник постоянного пассивного дохода!`
+        }
+      ],
+    };
   }
 }
