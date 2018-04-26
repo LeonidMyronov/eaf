@@ -45,24 +45,36 @@
 // Triangle
 
 .triangle-base
-  &:before
-    position: absolute
-    width: 0
-    height: 0
-    content: ""
+  width: 0
+  height: 0
+  display: inline-block  
 
 @mixin triangle-top ($width, $color)
   @extend .triangle-base
-  &:before
-    border-width: $width
-    border-style: solid
-    border-color: $color
-    border-top-color: trasparent
-    border-left-color: trasparent
-    border-right-color: trasparent
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-top-color: transparent
+  border-left-color: transparent
+  border-right-color: transparent
+
+@mixin triangle-right ($width, $color)
+  @extend .triangle-base
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-top-color: transparent
+  border-bottom-color: transparent
+  border-right-color: transparent
 
 @mixin square($width, $color)
   width: $width
   height: $width
   background-color: $color
 
+
+// @mixin arrow-next($width, $color)
+//   width: 8px
+//   height: 8px
+  
+  
