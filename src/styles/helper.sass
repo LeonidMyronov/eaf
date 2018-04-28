@@ -227,7 +227,11 @@ button
         top: -22px
 
 
-@media (max-width: 767px)
+@include desktop-screen()
+
+@include tablet-screen()  
+
+@include mobile-screen()
   .dropdown-menu
     height: 30px
     font-size: 10px

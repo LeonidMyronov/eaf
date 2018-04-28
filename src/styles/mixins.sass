@@ -22,16 +22,21 @@
 
 // MEDIA QUERY
 
-@mixin sm-media()
-  @media(max-width: 60rem)
+@mixin hd-screen()
+  @media (min-width: 1400px)
+      @content
+
+@mixin desktop-screen()
+  @media (max-width: 1399px)
+      @content
+
+@mixin tablet-screen()
+  @media(max-width: 1023px)
     @content
 
-
-
-@mixin md-media()
-  @media(max-width: 100rem)
+@mixin mobile-screen()
+  @media(max-width: 767px)
     @content
-
 
 
 // LAYOUT
@@ -64,6 +69,15 @@
   border-style: solid
   border-color: $color
   border-top-color: transparent
+  border-bottom-color: transparent
+  border-right-color: transparent
+
+@mixin triangle-bottom ($width, $color)
+  @extend .triangle-base
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-left-color: transparent
   border-bottom-color: transparent
   border-right-color: transparent
 
