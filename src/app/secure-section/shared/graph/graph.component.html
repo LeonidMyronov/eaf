@@ -1,0 +1,45 @@
+<article class="eaf-graph">
+  <div class="wrapper" #graph>
+
+    <div class="graph-container">
+      <svg id="graph-container"></svg>
+      <div class="points-group">
+        <div
+        class="point" 
+        *ngFor="let point of data; let i = index" 
+        [ngStyle]="{'left': (i / (data.length - 1) * 100) + '%', 'top': 50 - (point.value * 50 / maxYscaleValue) + '%'}"
+        >
+        <div class="point-details accent-color" fxLayout="column" fxLayoutAlign="center center" fxFlex="168px">
+          <span class="pointer"></span>
+          <div class="point__time"> <img src="/assets/images/main/graph/time-icon.svg" alt=""> {{ point.time }}</div>
+          <div class="point__value light-color"> $ {{ point.value | number:'0.2-3'}}</div>
+          
+        </div>
+        <div class="point-marker"></div>
+      </div>
+    </div>
+    <div class="y-agenda">
+      <span class="y-agenda__pos4">{{ maxYscaleValue | number:'0.2-3' }}</span>
+      <span class="y-agenda__pos3">{{ maxYscaleValue * 0.75 | number:'0.2-3' }}</span>
+      <span class="y-agenda__pos2">{{ maxYscaleValue * 0.5 | number:'0.2-3' }}</span>
+      <span class="y-agenda__pos1">{{ maxYscaleValue * 0.25 | number:'0.2-3' }}</span>
+      <span class="y-agenda__zero accent-color">{{ 0 | number:'0.2-2' }}</span>
+      <span class="y-agenda__neg1">{{ -maxYscaleValue * 0.25 | number:'0.2-3' }}</span>
+      <span class="y-agenda__neg2">{{ -maxYscaleValue * 0.5 | number:'0.2-3' }}</span>
+      <span class="y-agenda__neg3">{{ -maxYscaleValue * 0.75 | number:'0.2-3' }}</span>
+      <span class="y-agenda__neg4">{{ -maxYscaleValue | number:'0.2-3' }}</span>
+    </div>
+    <div class="x-agenda">
+      <span 
+      *ngFor="let x of data; let i = index" 
+      [ngStyle]="{'left': (i / (data.length - 1) * 100) + '%', 'position':'absolute'}"
+      >
+      
+      <span *ngIf="i % xAgendaGap === 0">{{x.time}}</span>
+    </span>
+  </div>
+</div>
+
+
+</div>
+</article>

@@ -14,6 +14,16 @@ const initialState: State = {
     icqAccount: null,
     skypeAccount: null,
     balance: null,
+    totalIncomeAmount: null,
+    rebillsAmount: null,
+    sellsAmount: null,
+    uniqueVisitorsAmount: null,
+    sources: [],
+    sitesTraffic: [],
+    geoTargets: [],
+    deviceTypes: [],
+    news: [],
+    lastDayIncomes: [],
   },
 };
 
@@ -34,6 +44,16 @@ export function userReducer(state: State = initialState, action: UserActions) {
           icqAccount: null,
           skypeAccount: null,
           balance: null,
+          totalIncomeAmount: null,
+          rebillsAmount: null,
+          sellsAmount: null,
+          uniqueVisitorsAmount: null,
+          sources: [],
+          sitesTraffic: [],
+          geoTargets: [],
+          deviceTypes: [],
+          news: [],
+          lastDayIncomes: [],
         }
       };
     default:

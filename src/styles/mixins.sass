@@ -22,16 +22,21 @@
 
 // MEDIA QUERY
 
-@mixin sm-media()
-  @media(max-width: 60rem)
+@mixin hd-screen()
+  @media (min-width: 1400px)
+      @content
+
+@mixin desktop-screen()
+  @media (max-width: 1399px)
+      @content
+
+@mixin tablet-screen()
+  @media(max-width: 1023px)
     @content
 
-
-
-@mixin md-media()
-  @media(max-width: 100rem)
+@mixin mobile-screen()
+  @media(max-width: 767px)
     @content
-
 
 
 // LAYOUT
@@ -45,24 +50,45 @@
 // Triangle
 
 .triangle-base
-  &:before
-    position: absolute
-    width: 0
-    height: 0
-    content: ""
+  width: 0
+  height: 0
+  display: inline-block  
 
 @mixin triangle-top ($width, $color)
   @extend .triangle-base
-  &:before
-    border-width: $width
-    border-style: solid
-    border-color: $color
-    border-top-color: trasparent
-    border-left-color: trasparent
-    border-right-color: trasparent
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-top-color: transparent
+  border-left-color: transparent
+  border-right-color: transparent
+
+@mixin triangle-right ($width, $color)
+  @extend .triangle-base
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-top-color: transparent
+  border-bottom-color: transparent
+  border-right-color: transparent
+
+@mixin triangle-bottom ($width, $color)
+  @extend .triangle-base
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-left-color: transparent
+  border-bottom-color: transparent
+  border-right-color: transparent
 
 @mixin square($width, $color)
   width: $width
   height: $width
   background-color: $color
 
+
+// @mixin arrow-next($width, $color)
+//   width: 8px
+//   height: 8px
+  
+  
