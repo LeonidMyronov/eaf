@@ -23,6 +23,7 @@ const initialState: State = {
     geoTargets: [],
     deviceTypes: [],
     news: [],
+    lastDayIncomes: [],
   },
 };
 
@@ -52,6 +53,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
           geoTargets: [],
           deviceTypes: [],
           news: [],
+          lastDayIncomes: [],
         }
       };
     default:
