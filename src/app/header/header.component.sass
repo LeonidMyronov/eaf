@@ -164,7 +164,7 @@ header
 
 
   // scrollbar for Tariffs dropdown
-  // I tried to make custom scrollbar but get nothing well
+  // I tried to make custom scrollbar but get nothing works well
   // ::-webkit-scrollbar
   //     -webkit-appearance: none
   //     width: 6px
@@ -188,6 +188,12 @@ header
     .user-menu-group button:last-child
       display: none
 
+@media (max-width: 1100px) and (min-width: 1024px)
+  .user-menu
+    li
+      a
+        padding-left: 15px
+        padding-right: 15px
 
 @media (max-width: 1023px)
   header
