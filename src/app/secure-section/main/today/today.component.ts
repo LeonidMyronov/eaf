@@ -10,7 +10,7 @@ import { User } from '../../user/user.model';
   styleUrls: ['./today.component.sass']
 })
 export class TodayComponent implements OnInit, AfterViewInit {
-  @ViewChild('graphField') graphField;
+  // @ViewChild('graphField') graphField;
   public userState$: Observable<{user: User}>;
   public graphCoord: {};
   public points = '50,180 100,20 150,180 20,80 180,80 50,180 100,20';
@@ -26,12 +26,12 @@ export class TodayComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.graphField);
-    this.graphCoord  = {
-      w: this.graphField.nativeElement.clientWidth,
-      h: this.graphField.nativeElement.clientHeight,
-    };
-    setTimeout(_ => {this.points = '50,180 100,20 150,180 20,80 180,80'; }, 3000);
+    // console.log(this.graphField);
+    // this.graphCoord  = {
+    //   w: this.graphField.nativeElement.clientWidth,
+    //   h: this.graphField.nativeElement.clientHeight,
+    // };
+    // setTimeout(_ => {this.points = '50,180 100,20 150,180 20,80 180,80'; }, 3000);
   }
 
 }
