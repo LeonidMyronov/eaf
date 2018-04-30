@@ -1,0 +1,27 @@
+@import mixins
+  
+.table
+  &__row
+    display: grid
+    grid-column-gap: 3px
+    grid-template-columns: 90px auto 118px 118px
+    .table__cell
+      &:nth-child(2), &:nth-child(1)
+        text-align-last: left
+        overflow: hidden
+      .full-date
+        margin-right: 15px
+
+.table.full
+  .table__row
+    grid-template-columns: 218px auto 118px 118px
+      
+
+@include desktop-screen()
+  .table.full
+    .table__row
+      grid-template-columns: 90px auto 118px 118px
+
+@include mobile-screen()
+  .table
+    width: 610px
