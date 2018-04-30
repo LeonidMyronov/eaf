@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
@@ -9,11 +9,8 @@ import { User } from '../../user/user.model';
   templateUrl: './today.component.html',
   styleUrls: ['./today.component.sass']
 })
-export class TodayComponent implements OnInit, AfterViewInit {
-  @ViewChild('graphField') graphField;
+export class TodayComponent implements OnInit {
   public userState$: Observable<{user: User}>;
-  public graphCoord: {};
-  public points = '50,180 100,20 150,180 20,80 180,80 50,180 100,20';
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -25,13 +22,6 @@ export class TodayComponent implements OnInit, AfterViewInit {
       .subscribe(resp => console.log(resp));
   }
 
-  ngAfterViewInit() {
-    console.log(this.graphField);
-    this.graphCoord  = {
-      w: this.graphField.nativeElement.clientWidth,
-      h: this.graphField.nativeElement.clientHeight,
-    };
-    setTimeout(_ => {this.points = '50,180 100,20 150,180 20,80 180,80'; }, 3000);
-  }
+
 
 }

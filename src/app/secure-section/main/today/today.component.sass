@@ -146,6 +146,13 @@
   width: 670px
   height: 472px
   padding: 30px
+  &__head
+    margin-bottom: 20px
+  &__body
+    overflow-y: scroll
+    height: 360px
+  
+
 
 // RESPONSIVE SECTION
 @include desktop-screen()
@@ -158,11 +165,11 @@
     grid-column: 1
     grid-row: 1
   .graph
-    width: 100%
+    width: 1020px
     grid-column: 1
     grid-row: 2
   .conversion-list
-    width: 100%
+    width: 1020px
     grid-column: 1
     grid-row: 3
 
@@ -187,6 +194,10 @@
     padding: 15px 0
     position: relative
     margin-left: -20px
+    &__head
+      margin-left: 20px      
+      &__name, &__period
+        font-size: 18px
     &:before
       content: ''
       position: absolute
@@ -195,7 +206,7 @@
       width: 20px
       height: 100%
       z-index: 5
-      background: linear-gradient(to left,transparent, $lightColor)
+      background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
     &:after
       content: ''
       position: absolute
@@ -204,11 +215,31 @@
       width: 20px
       height: 100%
       z-index: 5
-      background: linear-gradient(to right,transparent, $lightColor)
-    &__head
-      margin-left: 20px
+      background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
   .conversion-list
     width: 360px
     padding: 15px 0
     position: relative
     margin-left: -20px
+    &__head
+      margin-left: 20px
+      &__name, &__period
+        font-size: 18px
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      top: 0
+      width: 20px
+      height: 100%
+      z-index: 5
+      background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
+    &:after
+      content: ''
+      position: absolute
+      bottom: 0
+      right: 0
+      width: 20px
+      height: 100%
+      z-index: 5
+      background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
