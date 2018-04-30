@@ -1,0 +1,17 @@
+<div class="table {{width}}">
+  <div class="table__head table__row">
+    <div *ngFor="let el of conversionTable.head" class="table__cell">{{el}}</div>
+  </div>
+  <div class="table__body">
+    <div *ngFor="let el of data" class="table__row">
+      <div class="table__cell" #time>
+        <span *ngIf="time?.clientWidth > 90" class="full-date">{{ el.date | date:'dd MMM y'}}</span>
+        <span class="time-with-clock">{{ el.date | date:'HH:mm'}}</span>
+        
+      </div>
+      <div class="table__cell">{{ el.site }}</div>
+      <div class="table__cell">{{ el.orderId }}</div>
+      <div class="table__cell">{{ el.amount }}</div>
+    </div>
+  </div>
+</div>

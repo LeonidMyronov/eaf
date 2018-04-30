@@ -173,6 +173,32 @@ button
   justify-content: center
   z-index: 100
 
+.time-with-clock
+  display: inline-block
+  min-width: 15px
+  padding-left: 20px
+  background: url(/assets/images/main/graph/time-icon.svg) no-repeat left center
+
+.table
+  &__head
+    .table__cell
+      background-color: $formColor
+      font-size: 12px
+  &__body
+    .table__row
+      &:hover
+        background-color: $accentColor-lighter
+      .table__cell
+        font-size: 14px
+
+  .table__cell
+    padding-left: 12px
+    padding-right: 12px
+    height: 40px
+    line-height: 40px
+    text-align: center
+
+
 
 .user-promo
   margin-left: 55px

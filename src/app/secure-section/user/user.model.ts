@@ -15,6 +15,7 @@ export interface User {
   deviceTypes: DeviceType[];
   news: any[];
   lastDayIncomes: Income[];
+  lastDayConversions: Conversion[];
 }
 
 export interface SiteTraffic {
@@ -33,6 +34,13 @@ export interface DeviceType {
 }
 
 export interface Income {
-  time: string;
+  time: Date;
   value: number;
+}
+
+export interface Conversion {
+  date: Date;
+  site: string;
+  orderId: number;
+  amount: number;
 }

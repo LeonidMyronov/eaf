@@ -11,7 +11,7 @@
         >
         <div class="point-details accent-color" fxLayout="column" fxLayoutAlign="center center" fxFlex="168px">
           <span class="pointer"></span>
-          <div class="point__time"> <img src="/assets/images/main/graph/time-icon.svg" alt=""> {{ point.time }}</div>
+          <div class="point__time"><span class="time-with-clock">{{ point.time | date:'HH:mm' }}</span></div>
           <div class="point__value light-color"> $ {{ point.value | number:'0.2-3'}}</div>
           
         </div>
@@ -35,7 +35,10 @@
       [ngStyle]="{'left': (i / (data.length - 1) * 100) + '%', 'position':'absolute'}"
       >
       
-      <span *ngIf="i % xAgendaGap === 0">{{x.time}}</span>
+      <span *ngIf="i % xAgendaGap === 0">
+        <span *ngIf="rangeType === 'hours'">{{x.time | date: 'HH:mm'}}</span>
+        <span *ngIf="rangeType === 'dates'">{{x.time | date: 'dd MMM y'}}</span>
+      </span>
     </span>
   </div>
 </div>

@@ -137,30 +137,92 @@ export class AuthService {
         }
       ],
       lastDayIncomes: [
-        {time: '00:00', value: 0},
-        {time: '01:00', value: 0},
-        {time: '02:00', value: 1},
-        {time: '03:00', value: 2},
-        {time: '04:00', value: 3},
-        {time: '05:00', value: 2},
-        {time: '06:00', value: 1},
-        {time: '07:00', value: 0},
-        {time: '08:00', value: -1},
-        {time: '09:00', value: -2},
-        {time: '10:00', value: -3},
-        {time: '11:00', value: -4},
-        {time: '12:00', value: -5},
-        {time: '13:00', value: -4},
-        {time: '14:00', value: -3},
-        {time: '15:00', value: -2},
-        {time: '16:00', value: -1},
-        {time: '17:00', value: 0},
-        {time: '18:00', value: 1},
-        {time: '19:00', value: 2},
-        {time: '20:00', value: 3},
-        {time: '21:00', value: 4},
-        {time: '22:00', value: 5},
-        {time: '23:00', value: 10},
+        {time: new Date(2018, 4, 30, 0), value: 0},
+        {time: new Date(2018, 4, 30, 1), value: 0},
+        {time: new Date(2018, 4, 30, 2), value: 1},
+        {time: new Date(2018, 4, 30, 3), value: 2},
+        {time: new Date(2018, 4, 30, 4), value: 3},
+        {time: new Date(2018, 4, 30, 5), value: 2},
+        {time: new Date(2018, 4, 30, 6), value: 1},
+        {time: new Date(2018, 4, 30, 7), value: 0},
+        {time: new Date(2018, 4, 30, 8), value: -1},
+        {time: new Date(2018, 4, 30, 9), value: -2},
+        {time: new Date(2018, 4, 30, 10), value: -3},
+        {time: new Date(2018, 4, 30, 11), value: -4},
+        {time: new Date(2018, 4, 30, 12), value: -5},
+        {time: new Date(2018, 4, 30, 13), value: -4},
+        {time: new Date(2018, 4, 30, 14), value: -3},
+        {time: new Date(2018, 4, 30, 15), value: -2},
+        {time: new Date(2018, 4, 30, 16), value: -1},
+        {time: new Date(2018, 4, 30, 17), value: 0},
+        {time: new Date(2018, 4, 30, 18), value: 1},
+        {time: new Date(2018, 4, 30, 19), value: 2},
+        {time: new Date(2018, 4, 30, 20), value: 3},
+        {time: new Date(2018, 4, 30, 21), value: 4},
+        {time: new Date(2018, 4, 30, 22), value: 5},
+        {time: new Date(2018, 4, 30, 23), value: 10},
+      ],
+      lastDayConversions: [
+        {
+          date: new Date(),
+          site: '99papers.com',
+          orderId: 123456,
+          amount: 80
+        },
+        {
+          date: new Date(),
+          site: 'essaybox.org',
+          orderId: 654321,
+          amount: 55
+        },
+        {
+          date: new Date(),
+          site: '99papers.com',
+          orderId: 123456,
+          amount: 80
+        },
+        {
+          date: new Date(),
+          site: 'essaybox.org',
+          orderId: 654321,
+          amount: 55
+        },
+        {
+          date: new Date(),
+          site: '99papers.com',
+          orderId: 123456,
+          amount: 80
+        },
+        {
+          date: new Date(),
+          site: 'essaybox.org',
+          orderId: 654321,
+          amount: 55
+        },
+        {
+          date: new Date(),
+          site: '99papers.com',
+          orderId: 123456,
+          amount: 80
+        },
+        {
+          date: new Date(),
+          site: 'essaybox.org',
+          orderId: 654321,
+          amount: 55
+        },
+        {
+          date: new Date(),
+          site: '99papers.com',
+          orderId: 123456,
+          amount: 80
+        },
+        {
+          date: new Date(),
+          site: 'essaybox.org',
+          orderId: 654321,
+          amount: 55
+        }
       ]
     };
   }
