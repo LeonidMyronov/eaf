@@ -14,6 +14,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   public xAgendaArr: any[] = [];
   public xAgendaGap: number; // calc N-th item to display on X-axis if based on array length
   public maxDataArrValue = 0; // cals max value in array
+  public rangeType: 'dates' | 'hours'; // to dispaly horsFormat or DateFormat at X-axis
   public maxYscaleValue = 0; // calc max value on Y-axis
   private MAX_X_AGENDA_POINTS = 8; // max item.name to display on X-axis agenda
   private graphWidth; // SVG width
@@ -55,7 +56,7 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
 
   graphInit() {
     this.xAgendaGap = Math.round(this.data.length / this.MAX_X_AGENDA_POINTS);
-
+    this.rangeType = this.data[this.data.length - 1].time.getDate() - this.data[0].time.getDate() === 0 ? 'hours' : 'dates';
     // console.log(`xAgendaGap => ${this.xAgendaGap}, maxDataArrValue => ${this.maxDataArrValue}, maxYscaleValue => ${this.maxYscaleValue}`);
 
     this.svg = document.getElementById('graph-container');
