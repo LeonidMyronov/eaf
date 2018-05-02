@@ -10,14 +10,14 @@ import { User } from '../../user/user.model';
   styleUrls: ['./statistic.component.sass']
 })
 export class StatisticComponent implements OnInit {
-  public userState$: Observable<{user: User}>;
+  // public userState$: Observable<{user: User}>;
 
   constructor(
     private store: Store<fromRoot.State>,
   ) { }
 
   ngOnInit() {
-    this.userState$ = this.store.select(fromRoot.getUserState);
+    // this.userState$ = this.store.select(fromRoot.getUserState);
   }
 
 }

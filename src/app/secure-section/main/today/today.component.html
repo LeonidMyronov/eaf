@@ -6,7 +6,7 @@
           Доход
         </div>
         <div class="content single-content">
-          <h1 class="value light-color">{{(userState$ | async).user.totalIncomeAmount | number: '0.2-2'}}
+          <h1 class="value light-color">{{(todayState$ | async).totalIncomeAmount | number: '0.2-2'}}
             <span class="currency"> USD</span>
           </h1>
         </div>
@@ -23,7 +23,7 @@
           <div class="title">
             Продажи
           </div>
-          <h3 class="value light-color">{{(userState$ | async).user.sellsAmount | number: '0.2-2'}}
+          <h3 class="value light-color">{{(todayState$ | async).sellsAmount | number: '0.2-2'}}
             <span class="currency"> USD</span>
           </h3>
         </div>
@@ -31,7 +31,7 @@
           <div class="title">
             Ребилы
           </div>
-          <h3 class="value light-color">{{(userState$ | async).user.rebillsAmount | number: '0.2-2'}}
+          <h3 class="value light-color">{{(todayState$ | async).rebillsAmount | number: '0.2-2'}}
             <span class="currency"> USD</span>
           </h3>
         </div>
@@ -48,7 +48,7 @@
           Уникальные посетители
         </div>
         <div class="content single-content">
-          <h1 class="value light-color">{{(userState$ | async).user.uniqueVisitorsAmount}}
+          <h1 class="value light-color">{{(todayState$ | async).uniqueVisitorsAmount}}
             <span> уники</span>
           </h1>
         </div>
@@ -65,7 +65,7 @@
           ТОП 5 Источников
         </div>
         <div class="content single-content">
-          <span class="source small-text light-color" *ngFor="let source of (userState$ | async).user.sources.slice(0,5)">{{source}}</span>
+          <span class="source small-text light-color" *ngFor="let source of (todayState$ | async).sources.slice(0,5)">{{source}}</span>
         </div>
         <div class="footer">
           <div class="action">
@@ -80,7 +80,7 @@
           Трафик сайтов
         </div>
         <div class="content list-content">
-          <div class="list-content__item" *ngFor="let site of (userState$ | async).user.sitesTraffic.slice(0,3)">
+          <div class="list-content__item" *ngFor="let site of (todayState$ | async).sitesTraffic.slice(0,3)">
             <img class="list-content__item__image" src="/assets/images/main/sites-traffic/{{site.name}}.svg">
             <div class="list-content__item__name">{{site.name}}</div>
             <div class="list-content__item__amount light-color">{{site.amount}}</div>
@@ -99,7 +99,7 @@
           Гео - цели
         </div>
         <div class="content list-content">
-          <div class="list-content__item" *ngFor="let target of (userState$ | async).user.geoTargets.slice(0,3)">
+          <div class="list-content__item" *ngFor="let target of (todayState$ | async).geoTargets.slice(0,3)">
             <img class="list-content__item__image" src="/assets/images/main/geo-targets/{{target.abbr}}.svg">
             <div class="list-content__item__name">{{target.name}}</div>
             <div class="list-content__item__amount light-color">{{target.amount}}</div>
@@ -118,7 +118,7 @@
           Устройства
         </div>
         <div class="content list-content">
-          <div class="list-content__item" *ngFor="let device of (userState$ | async).user.deviceTypes.slice(0,3)">
+          <div class="list-content__item" *ngFor="let device of (todayState$ | async).deviceTypes.slice(0,3)">
             <img class="list-content__item__image" src="/assets/images/main/devices/{{device.name}}.svg">
             <div class="list-content__item__name">{{device.name}}</div>
             <div class="list-content__item__amount light-color">{{device.amount}}</div>
@@ -136,7 +136,7 @@
         <div class="title">
           Новости
         </div>
-        <div class="content light-color" *ngFor="let news of (userState$ | async).user.news.slice(0,1)">
+        <div class="content light-color" *ngFor="let news of (todayState$ | async).news.slice(0,1)">
           <div class="news-date">{{news.date | date:'medium'}}</div>
           <div class="news-title">{{news.title}}</div>
           <div class="news-content">{{news.content}}</div>
@@ -156,7 +156,7 @@
         <div class="graph__head__period">За последние 24 часа</div>
       </div>
       <div class="graph__body">
-          <eaf-graph [data]="(userState$ | async).user.lastDayIncomes"></eaf-graph>
+          <eaf-graph [data]="(todayState$ | async).lastDayIncomes"></eaf-graph>
       </div>
     </section>
     <section class="conversion-list">
@@ -165,7 +165,7 @@
         <div class="conversion-list__head__period">За последние 24 часа</div>
       </div>
       <div class="conversion-list__body">
-        <eaf-conversion [data]="(userState$ | async).user.lastDayConversions"></eaf-conversion>
+        <eaf-conversion [data]="(todayState$ | async).lastDayConversions"></eaf-conversion>
       </div>
     </section>
   </div>
