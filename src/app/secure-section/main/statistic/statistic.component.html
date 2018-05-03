@@ -1,12 +1,13 @@
 <article class="today-page">
   <div class="container">
+    <eaf-term-picker-panel [dropdownList]="sitesList"></eaf-term-picker-panel>
     <section class="conversion-list">
       <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="conversion-list__head__name">Последние конверсии</div>
         <div class="conversion-list__head__period">За последние 24 часа</div>
       </div>
       <div class="conversion-list__body">
-        <eaf-conversion [data]="(userState$ | async).user.lastDayConversions" width="full"></eaf-conversion>
+        <eaf-conversion [data]="(consolidatedState$ | async).lastDayConversions" widthClass="full"></eaf-conversion>
       </div>
     </section>
   </div>

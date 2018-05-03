@@ -1,0 +1,71 @@
+@import variables
+@import helper
+
+.eaf-term-picker-panel
+  height: 60px
+  width: 100%
+  padding: 10px
+
+.dropdown-menu
+  width: 296px
+  font-size: 14px
+  background-color: $mainColor
+  background-image: url('/assets/images/header/dropdown-icon-active.svg')
+  border: 0.5px solid $lightColor
+  margin-right: auto
+  .dropdown-item-icon
+    width: 27px
+  .dropdown-select
+    color: $lightColor
+  &:hover
+    background-color: $accentColor !important
+    background-image: url('/assets/images/header/dropdown-icon.svg')
+    border-color: $accentColor
+    .dropdown-select
+      color: $mainColor
+
+.terms-group
+  margin-right: 20px
+.term-item
+  border: 0.5px solid $lightColor
+  width: 150px
+  &:first-child
+    border-top-left-radius: 2px
+    border-bottom-left-radius: 2px
+  &:last-child
+    border-top-right-radius: 2px
+    border-bottom-right-radius: 2px      
+  &:not(:last-child)
+    border-right: 0.5px solid $lightColor
+    margin-right: -1px
+
+.term-range
+  width: 253px
+  height: 40px
+  line-height: 40px
+  border: 0.5px solid $lightColor
+  border-right: none
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  background-color: $lightColor
+  overflow: hidden
+
+
+.action-item
+  width: 120px
+  border: 0.5px solid $lightColor  
+  border-top-right-radius: 2px
+  border-bottom-right-radius: 2px  
+
+.panel-item
+  color: $lightColor
+  height: 40px
+  line-height: 40px
+  font-size: 14px
+  cursor: pointer
+  text-align: center
+  &.active, &:hover
+    background-color: $accentColor
+    color: $mainColor
+    border-color: $accentColor
+    z-index: 1

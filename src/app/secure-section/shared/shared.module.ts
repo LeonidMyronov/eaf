@@ -4,12 +4,14 @@ import { CoreModule } from '../../core/core.module';
 import { GraphComponent } from './graph/graph.component';
 import { ShortTimePipe } from './pipes/short-time.pipe';
 import { ConversionComponent } from './conversion/conversion.component';
+import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.component';
 
 @NgModule({
   declarations: [
     GraphComponent,
     ShortTimePipe,
-    ConversionComponent
+    ConversionComponent,
+    TermPickerPanelComponent
   ],
   imports: [
     CoreModule
@@ -17,7 +19,8 @@ import { ConversionComponent } from './conversion/conversion.component';
   exports: [
     GraphComponent,
     ShortTimePipe,
-    ConversionComponent
+    ConversionComponent,
+    TermPickerPanelComponent
   ]
 })
 
