@@ -66,7 +66,7 @@ export class HeaderComponent implements OnInit {
   }
 
   onChangeTariff(tariff: any) {
-    console.log(`change tariff to ${tariff.siteName}`);
+    console.log(`change tariff to ${tariff.name}`);
     this.userTariff = tariff;
   }
 
