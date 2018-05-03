@@ -6,6 +6,7 @@ export interface SiteTraffic {
 export interface GeoTarget {
   name: string;
   amount: number;
+  abbr: string;
 }
 
 export interface DeviceType {
