@@ -203,6 +203,39 @@ a
         position: absolute
 
 
+.term-selector
+  cursor: pointer
+  width: 124px
+  height: 39px
+  position: relative
+  .term-selector-wrapper
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    z-index: 10
+    background: url('/assets/images/header/dropdown-icon.svg') no-repeat calc(100% - 12px) center
+    &:hover
+      background-color: transparentize($accentColor, 0.85)
+
+  input
+    width: calc(100% - 30px)
+    height: 100%
+    margin: 0
+    padding-left: 15px
+    box-shadow: none
+    padding-right: 0
+    cursor: pointer
+
+.mat-datepicker-content .mat-calendar
+  background-color: $formColor
+.mat-calendar-body-selected
+  background-color: $accentColor
+  color: $mainColor
+
+.cdk-keyboard-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected), .cdk-program-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected), :not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected)
+  background-color: $accentColor-lighter
 
 @media (max-width: 1399px)
   section
