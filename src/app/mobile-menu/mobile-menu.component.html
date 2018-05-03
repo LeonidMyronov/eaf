@@ -1,55 +1,58 @@
-<section fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
+<!-- <div class="container"> -->
 
-  <header fxLayout="row" fxLayoutAlign="space-between center">
-    <img id='header-logo' src="/assets/images/header/header-logo.svg" alt="" routerLink="/">
-
-    <div class="hamburger_button opened" fxLayout="column" fxLayoutAlign="center center" (click)="onCloseMobileMenu()">
-      <span class="hamburger_item"></span>
-      <span class="hamburger_item"></span>
-      <span class="hamburger_item"></span>
-    </div>
-  </header>
-
-  <main>
-    <div *ngIf="isAuth" class="authed">
-      <div fxHide.gt-xs class="user-welcome">
-        <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
+  <section fxFlex="100%" fxLayout="column" fxLayoutAlign="start center">
+    
+    <header fxLayout="row" fxLayoutAlign="space-between center">
+      <img id='header-logo' src="/assets/images/header/header-logo.svg" alt="" routerLink="/" (click)="onCloseMobileMenu()">
+      
+      <div class="hamburger_button opened" fxLayout="column" fxLayoutAlign="center center" (click)="onCloseMobileMenu()">
+        <span class="hamburger_item"></span>
+        <span class="hamburger_item"></span>
+        <span class="hamburger_item"></span>
       </div>
-      <ul class="user-menu">
-        <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
-          <a *ngIf="navItem.name != 'promo'">
-            <img fxHide.md [src]="navItem.iconSrc" alt="">
-            <span>{{ navItem.name | translate }}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div *ngIf="!isAuth" class="not-authed" fxLayout="column" fxLayoutAlign="start center">
-      <ul class="nav-menu" fxLayout="row">
-        <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
-          <a>
-            {{ navItem.name | translate }}
-          </a>
-        </li>
-      </ul>
-      <img src="/assets/images/home/home-5-banner.svg" alt="">
-    </div>
-
-  </main>
-
-  <footer fxLayout="row wrap" fxLayoutAlign="center center">
-    <div *ngIf="isAuth" class="user-promo">
-      promo
-      <img class="promo-cards promo-card-1" src="/assets/images/main/user-menu/promo-card-1.svg" alt="">
-      <img class="promo-cards promo-card-2" src="/assets/images/main/user-menu/promo-card-2.svg" alt="">
-      <img class="promo-cards promo-card-3" src="/assets/images/main/user-menu/promo-card-3.svg" alt="">
-      <img class="promo-cards promo-card-4" src="/assets/images/main/user-menu/promo-card-4.svg" alt="">
-    </div>
-
-    <div class="user-menu-group" fxLayout="row" fxLayoutAlign="center">
-      <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}</button>
-    </div>
-  </footer>
-
-</section>
+    </header>
+    
+    <main>
+      <div *ngIf="isAuth" class="authed">
+        <div fxHide.gt-xs class="user-welcome">
+          <span class="accent-color">{{'Welcome'}}, </span> {{ (userState$ | async).email }}
+        </div>
+        <ul class="user-menu">
+          <li class="nav-menu__item" *ngFor="let navItem of userMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
+            <a *ngIf="navItem.name != 'promo'">
+              <img fxHide.md [src]="navItem.iconSrc" alt="">
+              <span>{{ navItem.name | translate }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div *ngIf="!isAuth" class="not-authed" fxLayout="column" fxLayoutAlign="start center">
+        <ul class="nav-menu" fxLayout="row">
+          <li class="nav-menu__item" *ngFor="let navItem of navMenu" routerLink="{{ navItem.url }}" routerLinkActive="active" (click)="onCloseMobileMenu()">
+            <a>
+              {{ navItem.name | translate }}
+            </a>
+          </li>
+        </ul>
+        <img src="/assets/images/home/home-5-banner.svg" alt="">
+      </div>
+      
+    </main>
+    
+    <footer fxLayout="row wrap" fxLayoutAlign="center center">
+      <div *ngIf="isAuth" class="user-promo">
+        promo
+        <img class="promo-cards promo-card-1" src="/assets/images/main/user-menu/promo-card-1.svg" alt="">
+        <img class="promo-cards promo-card-2" src="/assets/images/main/user-menu/promo-card-2.svg" alt="">
+        <img class="promo-cards promo-card-3" src="/assets/images/main/user-menu/promo-card-3.svg" alt="">
+        <img class="promo-cards promo-card-4" src="/assets/images/main/user-menu/promo-card-4.svg" alt="">
+      </div>
+      
+      <div class="user-menu-group" fxLayout="row" fxLayoutAlign="center">
+        <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}</button>
+      </div>
+    </footer>
+    
+  </section>
+<!-- </div> -->

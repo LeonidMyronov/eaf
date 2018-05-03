@@ -47,6 +47,7 @@ export class MobileMenuComponent implements OnInit {
 
   onCloseMobileMenu() {
     this.store.dispatch(new UIAction.IsMobileMenuOpened(false));
+    this.helper.preventBodyToScroll(false);
   }
 
   onAuthMenuClick(name: string) {
