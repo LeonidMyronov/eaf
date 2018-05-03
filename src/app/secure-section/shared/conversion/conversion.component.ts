@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 
 import { Conversion } from '../../store/main.model';
 
@@ -7,30 +7,25 @@ import { Conversion } from '../../store/main.model';
   templateUrl: './conversion.component.html',
   styleUrls: ['./conversion.component.sass']
 })
-export class ConversionComponent implements OnInit {
+export class ConversionComponent implements OnInit, AfterViewChecked {
   @Input('data') data: Conversion[];
-  @Input('width') width;
+  @Input('widthClass') widthClass;
   @ViewChild('time') time;
   public conversionTable = {
     head : ['Время', 'Сайт', 'Номер заказа', 'Сумма']
   };
 
   constructor(
-    // private elRef: ElementRef,
-    // private render: Renderer2
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
-    // console.log(this.elRef);
-    // if (this.elRef.nativeElement.firstChild.clientWidth === 1300) {
-    //   this.render.
-    // }
   }
 
-  // ngAfterViewInit() {
-  //   //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-  //   //Add 'implements AfterViewInit' to the class.
-  //   // console.log(this.time);
-  // }
+  // prevent ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked on ng 4
+  // https://github.com/angular/angular/issues/17572
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
+  }
 
 }
