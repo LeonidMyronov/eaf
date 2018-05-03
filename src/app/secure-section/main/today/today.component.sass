@@ -156,9 +156,9 @@
 
 // RESPONSIVE SECTION
 @include desktop-screen()
-  .container
-    width: 1020px
-    margin-left: -50px
+  // .container
+  //   width: 1020px
+  //   margin-left: -50px
   .card-group
     // margin-left: -50px
     grid-template-columns: repeat(3, 1fr)
@@ -174,8 +174,8 @@
     grid-row: 3
 
 @include tablet-screen()
-  .container
-    width: 671px
+  // .container
+  //   width: 671px
     margin-left: 0
   .card-group
     // margin-left: 0
@@ -185,10 +185,11 @@
   .conversion-list
     width: 670px
 @include mobile-screen()
-  .container
-    width: 326px
+  // .container
+  //   width: 326px
   .card-group
     grid-template-columns: repeat(1, 1fr)
+    grid-gap: 10px
   .graph
     width: 360px
     padding: 15px 0
