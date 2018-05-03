@@ -1,5 +1,5 @@
-<article class="eaf-term-picker-panel bg-main-color" fxLayout="row" fxLayoutAlign="start">
-  <div eafDropdown class="dropdown-menu" (mouseenter)="hovered=true" (mouseleave)="hovered=false">
+<article class="eaf-term-picker-panel bg-main-color" fxLayout="row wrap" fxLayoutAlign="start">
+  <div eafDropdown class="dropdown-menu" (mouseenter)="hovered=true" (mouseleave)="hovered=false" fxFlex.sm="100%">
     <div class="dropdown-select panel-item">
       <span *ngIf="selectedDropdownItem.iconSrc" class="dropdown-item-icon">
         <img *ngIf="!hovered" [src]="selectedDropdownItem.iconLightSrc" alt="">
