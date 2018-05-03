@@ -22,19 +22,23 @@ export class MainService {
     sitesTraffic: [
       {
         name: '99papers',
-        amount: 768
+        amount: 768,
+        domain: ''
       },
       {
         name: 'bookwormlab',
-        amount: 543
+        amount: 543,
+        domain: ''
       },
       {
         name: 'essaybox',
-        amount: 323
+        amount: 323,
+        domain: ''
       },
       {
         name: 'essaywriter',
-        amount: 188
+        amount: 188,
+        domain: ''
       }
     ],
     // https://www.artlebedev.ru/country-list/
