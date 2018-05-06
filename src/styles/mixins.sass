@@ -1,4 +1,4 @@
-
+@import variables
 // FONTS
 @mixin font-family($font-family)
     font-family: $font-family, Helvetica, sans-serif
@@ -81,7 +81,7 @@
   border-bottom-color: transparent
   border-right-color: transparent
 
-@mixin square($width, $color)
+@mixin square ($width, $color)
   width: $width
   height: $width
   background-color: $color
@@ -91,4 +91,58 @@
 //   width: 8px
 //   height: 8px
   
+.fade-to
+  position: relative
+  &:before, &:after
+    content: ''
+    position: absolute
+    width: 20px
+    height: 100%
+    z-index: 5
   
+@mixin fade-to-left-inner
+  &:before
+    content: ''
+    position: absolute
+    left: 0
+    top: 0
+    width: 20px
+    height: 100%
+    z-index: 5
+    background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
+
+@mixin fade-to-right-inner
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    bottom: 0
+    right: 0
+    width: 20px
+    height: 100%
+    z-index: 5
+    background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
+
+@mixin fade-to-right-outer
+  position: relative
+  &:before
+    content: ''
+    position: absolute
+    right: -20px
+    top: 0
+    width: 20px
+    height: 100%
+    z-index: 5
+    background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
+
+@mixin fade-to-left-outer
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    left: -20px
+    top: 0
+    width: 20px
+    height: 100%
+    z-index: 5
+    background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)

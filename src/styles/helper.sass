@@ -175,6 +175,91 @@ button
     .dropdown-list
       display: block
 
+.select-menu
+  &:not(:last-child)
+    border-bottom: 1px solid $lightColor
+  & > input:checked
+    & ~ .select-menu__title
+      .caret
+        transform: rotate(180deg)
+    & ~ .select-menu__list
+      display: block
+  &__title
+    position: relative
+    display: inline-block
+    width: 100%
+    line-height: 40px
+    padding: 0 20px
+    font-size: 14px
+    cursor: pointer
+    .caret
+      position: absolute
+      top: 0
+      right: 0
+      width: 40px
+      height: 100%
+      content: ''
+      background: url('/assets/images/header/dropdown-icon.svg') no-repeat center
+
+    &:hover
+      background-color: $accentColor-lighter
+  &__list
+    display: none
+    margin-top: 10px
+    margin-bottom: 10px
+  &__item
+    font-size: 12px
+    padding-left: 20px
+    cursor: pointer
+
+    &:hover
+      background-color: $accentColor-lighter
+    label
+      display: inline-block
+      width: 100%
+      height: 20px
+      line-height: 20px
+      padding-left: 23px
+      position: relative
+      cursor: pointer
+
+    
+
+
+
+
+// checkbox
+input:checked + label
+  .check
+    background-color: $mainColor
+    &:before
+      content: ''
+      position: absolute
+      width: 6px
+      height: 2px
+      top: 4px
+      left: 2px
+      background-color: $lightColor
+    &:after
+      content: ''
+      position: absolute
+      width: 2px
+      height: 6px
+      top: 2px
+      left: 4px
+      background-color: $lightColor
+
+label
+  position: relative
+  .check
+    position: absolute
+    display: block
+    width: 10px
+    height: 10px
+    left: 0
+    top: 4px
+    border: 1px solid $mainColor
+
 .overlay
   position: absolute
   background: rgba(0,0,0, .5)
@@ -197,10 +282,11 @@ button
       font-size: 12px
   &__body
     .table__row
+      cursor: pointer
       &:hover
         background-color: $accentColor-lighter
       .table__cell
-        font-size: 14px
+        font-size: 12px
 
   .table__cell
     padding-left: 12px
