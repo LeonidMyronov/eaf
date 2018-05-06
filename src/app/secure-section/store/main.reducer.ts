@@ -1,8 +1,8 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromRoot from '../../app.reducers';
-import { SiteTraffic, GeoTarget, DeviceType, Income, Conversion } from './main.model';
-import { MainActions, FETCH_CONSOLIDATED_DATA } from './main.actions';
+import { SiteTraffic, DeviceType, Income, Conversion, Statistic, Country } from './main.model';
+import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC } from './main.actions';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -11,11 +11,13 @@ export interface MainState {
   uniqueVisitorsAmount: number;
   sources: string[];
   sitesTraffic: SiteTraffic[];
-  geoTargets: GeoTarget[];
+  geoTargets: Country[];
   deviceTypes: DeviceType[];
   news: any[];
   lastDayIncomes: Income[];
   lastDayConversions: Conversion[];
+  statistic: {
+    statistic: Statistic[]};
 }
 
 
@@ -35,28 +37,36 @@ export const initialState: MainState = {
   news: [],
   lastDayIncomes: [],
   lastDayConversions: [],
+  statistic: {
+    statistic: []
+  },
 };
 
 
 export function mainReducer(state: MainState = initialState, action: MainActions) {
   switch (action.type) {
     case FETCH_CONSOLIDATED_DATA:
-    return {
-      ...state,
-      totalIncomeAmount: action.payload.totalIncomeAmount,
-      rebillsAmount: action.payload.rebillsAmount,
-      sellsAmount: action.payload.sellsAmount,
-      uniqueVisitorsAmount: action.payload.uniqueVisitorsAmount,
-      sources: action.payload.sources,
-      sitesTraffic: action.payload.sitesTraffic,
-      geoTargets: action.payload.geoTargets,
-      deviceTypes: action.payload.deviceTypes,
-      news: action.payload.news,
-      lastDayIncomes: action.payload.lastDayIncomes,
-      lastDayConversions: action.payload.lastDayConversions,
-    };
+      return {
+        ...state,
+        totalIncomeAmount: action.payload.totalIncomeAmount,
+        rebillsAmount: action.payload.rebillsAmount,
+        sellsAmount: action.payload.sellsAmount,
+        uniqueVisitorsAmount: action.payload.uniqueVisitorsAmount,
+        sources: action.payload.sources,
+        sitesTraffic: action.payload.sitesTraffic,
+        geoTargets: action.payload.geoTargets,
+        deviceTypes: action.payload.deviceTypes,
+        news: action.payload.news,
+        lastDayIncomes: action.payload.lastDayIncomes,
+        lastDayConversions: action.payload.lastDayConversions,
+      };
+    case FETCH_STATISTIC:
+      return {
+        ...state,
+        statistic: action.payload
+      };
     default:
-    return state;
+      return state;
   }
 }
 
@@ -77,4 +87,6 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
     lastDayConversions: state.lastDayConversions,
   };
 });
+
+export const getStatistic = createSelector(getMainState, (state: MainState) => state.statistic);
 

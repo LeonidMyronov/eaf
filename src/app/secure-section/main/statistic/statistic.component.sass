@@ -1,9 +1,175 @@
+@import variables
 @import mixins
 
+// ::-webkit-scrollbar
+//   -webkit-appearance: scrollbargripper-horizontal
+//   // width: 7px
+//   height: 7px
+
+// ::-webkit-scrollbar-thumb 
+//   border-radius: 4px
+//   background-color: rgba(0, 0, 0, .2)
+//   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .3)
+
 .statistic-group
-  margin-top: 20px
+  margin-top: 10px
+  input[type="checkbox"], input[type="radio"]
+    display: none
+.statistic-table-group
+  padding-left: 10px
+  padding-right: 10px
+  &__head
+    margin-bottom: 10px
+    font-size: 14px
+    height: 40px
+    &__left
+      padding: 0 20px
+      height: 100%
+      border-radius: 2px
+      img
+        margin-right: 10px
+    &__right
+      position: relative
+      height: 100%
+      & > input
+        &:checked
+          & ~ label
+            background-color: $formColor
+          & ~ .table-filter
+            display: block
+
+      & > label
+        padding: 0 20px
+        height: 100%
+        cursor: pointer
+        &:hover
+          background-color: $accentColor-lighter !important
+      img
+        margin-left: 25px
+        cursor: pointer
+    .table-filter
+      display: none
+      position: absolute
+      left: 0
+      top: 40px
+      width: 218px
+      padding: 10px 0 25px
+      background-color: $formColor
+      z-index: 10
+      &__item
+        font-size: 12px
+        cursor: pointer
+        padding-left: 25px
+        padding-right: 25px
+        &:hover
+          background-color: $accentColor-lighter
+
+        label
+          display: inline-block
+          width: 100%
+          height: 20px
+          line-height: 20px
+          padding-left: 20px
+          position: relative
+          cursor: pointer
+ 
 
 
-@include tablet-screen()
+.statistic-filters
+  width: 240px
+  height: 407px
+  margin-right: 20px
+  & > input:checked + label
+    background-color: $accentColor
+    color: $mainColor
+    &[for="all-filters"]
+      background-image: url(/assets/images/main/filter-icon.svg)
+  #all-filters:checked ~ .statistic-filters__body .all-filters-content
+    display: block
+  #selected-filters:checked ~ .statistic-filters__body .selected-filters-content
+    display: block
+  & > label
+    display: inline-block
+    width: 120px
+    height: 40px
+    font-size: 12px
+    line-height: 40px
+    text-align: center
+    background-color: $mainColor
+    color: $lightColor
+    cursor: pointer
+    
+    &[for="all-filters"]
+      background-image: url(/assets/images/main/filter-icon-active.svg)
+      background-repeat: no-repeat
+      background-position: 40px center
+      span
+        margin-left: 20px
+    &[for="selected-filters"]
+
+  &__body
+    width: 100%
+    max-height: 367px
+    height: 367px
+    background-color: $formColor
+    overflow-y: scroll
+    .all-filters-content
+      display: none
+      width: 100%
+      height: 100%
+    .selected-filters-content
+      display: none
+      width: 100%
+      height: 100%
+
+.flex-table
+  align-self: flex-start
+  max-height: 388px
+  overflow-y: scroll
+  &__left
+    @include fade-to-right-outer    
+    .table__cell
+      width: 120px !important
+      background-color: $formColor
+      text-decoration: underline
+      color: $primaryColor
+      cursor: pointer
+    .table__head
+      .table__cell
+        text-decoration: none
+        color: $mainColor
+        cursor: default
+
+  &__body
+    max-width: 868px
+    // overflow: -moz-scrollbars-horizontal
+    overflow-x: scroll
+    .table__row
+      cursor: default
+      &:hover
+        background-color: transparent  
+
+  &__right
+    @include fade-to-left-outer
+    .table__cell
+      background-color: $accentColor
+  .table__cell
+    font-size: 12px
+    min-width: 85px
+    width: 85px
+    line-height: 12px
+    display: flex
+    align-items: center
+    justify-content: center
+
+
+
+@media(max-width: 767px)
   .statistic-group
     margin-top: 10px
+    &__head
+      &__left
+        background-color: $formColor
+        cursor: pointer
+
+  

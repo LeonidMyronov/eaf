@@ -3,12 +3,6 @@ export interface SiteTraffic {
   amount: number;
 }
 
-export interface GeoTarget {
-  name: string;
-  amount: number;
-  abbr: string;
-}
-
 export interface DeviceType {
   name: string;
   amount: number;
@@ -23,5 +17,50 @@ export interface Conversion {
   date: Date;
   site: string;
   orderId: number;
+  amount: number;
+}
+
+export interface Statistic {
+  date: Date;
+  uniques: number;
+  hits: number;
+  inquiries: number;
+  fakes: number;
+  sales: number;
+  salesIncome: number;
+  rebills: number;
+  rebillsIncome: number;
+  incomeOn1k: number;
+  salesOn1k: number;
+  chargeback: number;
+  refferers: number;
+  refferersIncome: number;
+  totalIncome: number;
+}
+
+export interface PixelTracking {
+  date: Date;
+  startedFillOrderForm: number;
+  startedFillInquiryForm: number;
+  orderCreated: number;
+  inquiryCreated: number;
+  orderPaid: number;
+  userRegistered: number;
+  onlineChat: number;
+}
+
+export interface Country {
+  name: string;
+  abbr: string;
+  amount: number;
+}
+
+export interface OS {
+  name: string;
+  amount: number;
+}
+
+export interface Browser {
+  name: string;
   amount: number;
 }

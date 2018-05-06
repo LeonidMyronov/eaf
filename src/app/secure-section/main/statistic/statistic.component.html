@@ -1,7 +1,91 @@
 <article class="statistic-page">
   <div class="container">
+
     <eaf-term-picker-panel [dropdownList]="sitesList"></eaf-term-picker-panel>
+
     <article class="statistic-group">
+      <div class="statistic-table-group" fxLayout="row wrap">
+
+        <div class="statistic-table-group__head" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="statistic-table-group__head__left" fxLayoutAlign="center center">
+            <img fxHide.gt-sm src="/assets/images/main/filter-icon.svg" alt="">
+            <span>Фильтры</span>
+          </div>
+          <div class="statistic-table-group__head__right" fxLayoutAlign="center center">
+            <input type="checkbox" id="customize-table">
+            <label for="customize-table" fxLayoutAlign="center center">
+              <span>Настройка таблицы</span>
+              <img src="/assets/images/main/customize-icon.svg" alt="">
+            </label>
+            <div class="table-filter">
+              <div class="table-filter__item" *ngFor="let field of statisticTableHeads">
+                <input type="checkbox" id="{{field}}" checked (click)="onChangeTableFilter($event, field)">
+                <label for="{{field}}">
+                  <span class="check"></span>
+                  <span>{{ field | translate}}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <section class="statistic-filters">
+          <input type="radio" id="all-filters" checked name="filter-switcher"><label for="all-filters">
+            <span>{{'все' | uppercase}}</span>
+          </label><input type="radio" id="selected-filters" name="filter-switcher"><label for="selected-filters">
+            <span>{{'выбранные' | uppercase}}</span>
+          </label>
+          <div class="statistic-filters__body">
+            <form class="all-filters-content" [formGroup]="allFiltersForm">
+              <div class="select-menu" *ngFor="let menu of (statisticState$ | async).filters">
+                <input type="checkbox" id="menu-title-{{menu.name}}" (click)="true">
+                <label for="menu-title-{{menu.name}}" class="select-menu__title">
+                  <span class="caret"></span>
+                  <span>{{menu.name}}</span>
+                </label>
+                <div class="select-menu__list">
+                  <div class="select-menu__item" *ngFor="let el of menu.filterList">
+                    <input type="checkbox" id="{{menu.name}}-{{el.name}}" [checked]="el.enabled" formControlName="{{el.name}}">
+                    <label for="{{menu.name}}-{{el.name}}">
+                      <span class="check"></span>
+                      <span>{{el.name}}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="selected-filters-content">selected-filters-content</div>
+          </div>
+        </section>
+        
+        <section class="table flex-table" fxLayout="row" fxLayoutGap="2px">
+          <div class="flex-table__left">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'date' | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+              <div class="table__cell">{{el.date | date:'dd MMM y'}}</div>
+            </div>
+          </div>
+          <div class="flex-table__body table__body">
+            <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+              <div *ngFor="let el of getStatisticTableHeads()" class="table__cell">{{el | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()">{{el[prop]}}</div>
+            </div>
+          </div>
+          <div class="flex-table__right">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'totalIncome' | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+              <div class="table__cell">{{el.totalIncome}}</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
       <section class="conversion-list">
         <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
           <div class="conversion-list__head__name">Последние конверсии</div>
