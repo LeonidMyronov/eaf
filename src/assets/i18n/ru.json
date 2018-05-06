@@ -44,7 +44,20 @@
   "all you have to do": "Все что вам остается – лить трафик!",
   "we will care": "А мы позаботимся об остальном.",
   "have a question?": "Задать вопрос",
-
+  "date": "Дата",
+  "uniques": "Уники",
+  "hits": "Хиты",
+  "fakes": "Фейки",
+  "inquiries": "Инкваери",
+  "sales": "Продажи",
+  "salesIncome": "Прибыль (продажи)",
+  "rebillsIncome": "Прибыль (ребилы)",
+  "incomeOn1k": "$ на 1k",
+  "salesOn1k": "Продажи на 1k",
+  "refferers": "Рефералы",
+  "refferersIncome": "Прибыль с рефералов",
+  "totalIncome": "Общая прибыль",
+  "chargeback": "Chargeback",
 
   "home-page": {
     "section-1": {

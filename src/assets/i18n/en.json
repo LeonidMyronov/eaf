@@ -44,6 +44,20 @@
   "all you have to do": "All you have to do is pour the traffic!",
   "we will care": "And we will take care of the rest.",
   "have a question?": "Have a question?",
+  "date": "Date",
+  "uniques": "Uniques",
+  "hits": "Hits",
+  "fakes": "Fakes",
+  "inquiries": "Inquiries",
+  "sales": "Sales",
+  "salesIncome": "Sales income",
+  "rebillsIncome": "Rebills income",
+  "incomeOn1k": "$ on 1k",
+  "salesOn1k": "Sales on 1k",
+  "refferers": "Refferers",
+  "refferersIncome": "Refferers income",
+  "totalIncome": "Total income",
+  "chargeback": "Chargeback",
 
 
   "home-page": {
