@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -7,24 +7,28 @@ import 'rxjs/add/operator/take';
 import { AppStorageService } from '../../../core/app-storage.service';
 import { MainService } from '../../services/main.service';
 
+import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
+import * as UserAction from '../../user/store/user.actions';
 import * as MainAction from '../../store/main.actions';
 import { Statistic, StatisticFilter, StatisticPanelFilter } from '../../store/main.model';
+import { StatisticPanelFilterList } from '../../user/user.model';
 
 @Component({
   selector: 'eaf-statistic',
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.sass']
 })
-export class StatisticComponent implements OnInit {
+export class StatisticComponent implements OnInit, OnDestroy {
   public consolidatedState$: Observable<any>;
   public statisticState$: Observable<any>;
+  public userStatisticPanelFilters: StatisticPanelFilterList;
   public allFiltersForm: FormGroup;
   public saveFiltersListForm: FormGroup;
   public allFilters: StatisticPanelFilter[];
   public selectedAllFilters: StatisticPanelFilter[];
   public filtersActions = {
-    save: true,
+    save: false,
     update: false,
     rename: false
   };
@@ -55,38 +59,38 @@ export class StatisticComponent implements OnInit {
     this.initForms();
     this.sitesList = this.appStorage.getAllSites();
     this.consolidatedState$ = this.store.select(fromMain.getConsolidatedData);
+
     this.store.select(fromMain.getStatistic).subscribe(
       (r: any) => {
         if (!r) {
           this.mainService.fetchStatisticByPeriod();
           return;
         }
+        console.log('statistic State => ', r);
         this.allFilters = r.filters;
         // this.selectedAllFilters = [...this.fillSelectedAllFilters([...this.allFilters])];
         // console.log('selectedAllFiltersForm => ', this.selectedAllFilters);
         console.log('allFilters => ', this.allFilters);
-        r.filters.forEach((menu: any) => {
-          if (Array.isArray(menu.filterList)) {
-            const groupControl = new FormGroup({});
-            menu['filterList'].forEach(arrEl => {
-              const control = new FormControl(arrEl.enabled);
-              groupControl.addControl(arrEl.name, control);
-            });
-            this.allFiltersForm.addControl(menu.name, groupControl);
-          }
-        });
+        this.fillAllFiltersForm();
+        this.selectedAllFilters = this.fillSelectedAllFiltersForm(this.allFiltersForm.value);
+        console.log('selectedAllFilters => ', this.selectedAllFilters);
         // console.log(this.allFiltersForm);
       }
     );
     this.statisticState$ = this.store.select(fromMain.getStatistic);
+
     this.allFiltersForm.valueChanges.subscribe(
       formState => {
         this.selectedAllFilters = this.fillSelectedAllFiltersForm(formState);
-        // this.store.dispatch(new MainAction.UpdateStatisticFilters({...this.selectedAllFilters[0]}));
-        console.log('formState => ', formState);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
       });
     // setTimeout( _ => this.updateAllFiltersForm(), 3000);
+
+    this.store.select(fromRoot.getUserStatisticFilters)
+      .subscribe( (response: StatisticPanelFilterList) => {
+        this.userStatisticPanelFilters = response;
+        console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
+      });
   }
 
   initForms() {
@@ -96,7 +100,19 @@ export class StatisticComponent implements OnInit {
 
   initAllFiltersForm() {
     this.allFiltersForm = new FormGroup({
-      // filterSwitcher: new FormControl('all-filters')
+    });
+  }
+
+  fillAllFiltersForm() {
+    this.allFilters.forEach((menu: any) => {
+      if (Array.isArray(menu.filterList)) {
+        const groupControl = new FormGroup({});
+        menu['filterList'].forEach(arrEl => {
+          const control = new FormControl(arrEl.enabled);
+          groupControl.addControl(arrEl.name, control);
+        });
+        this.allFiltersForm.addControl(menu.name, groupControl);
+      }
     });
   }
 
@@ -107,8 +123,11 @@ export class StatisticComponent implements OnInit {
   }
 
   onSaveFiltersListSubmit() {
-    console.log(this.saveFiltersListForm);
-    
+    const userStatisticPanelFilter: StatisticPanelFilterList = {
+      name: this.saveFiltersListForm.value.name,
+      statisticFilters: this.selectedAllFilters
+    };
+    this.store.dispatch(new UserAction.AddFiltersList(userStatisticPanelFilter));
   }
 
   updateAllFiltersForm() {
@@ -177,5 +196,9 @@ export class StatisticComponent implements OnInit {
     return this.statisticTableHeads.filter(el => {
       return !this.filteredStatisticTableHeads.some(fel => fel === el);
     });
+  }
+
+  ngOnDestroy() {
+    this.store.dispatch(new MainAction.SaveStatisticFilters(this.selectedAllFilters));
   }
 }
