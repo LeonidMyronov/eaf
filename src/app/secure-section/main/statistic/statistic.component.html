@@ -55,7 +55,8 @@
                       <ng-container [ngSwitch]="filterSwitcher.checked">
                         <div class="select-menu__item">
                           <input type="checkbox" id="all-{{menu.name}}-{{el.name}}" [checked]="el.enabled" [formControlName]="el.name">
-                        <label for="all-{{menu.name}}-{{el.name}}" *ngIf="filterSwitcher.checked || (!filterSwitcher.checked && allFiltersForm.get(menu.name).get(el.name).value)">
+                          <label for="all-{{menu.name}}-{{el.name}}"
+                            *ngIf="filterSwitcher.checked || (!filterSwitcher.checked && allFiltersForm.get(menu.name).get(el.name).value)">
                           <span class="check"></span>
                           <span>{{el.name}}</span>
                         </label>
@@ -67,13 +68,10 @@
               </ng-container>
             </div>
             <div class="selected-filters-content"  *ngIf="!filterSwitcher.checked">
-              <!-- <div class="group-title" *ngIf="!getSelectedFormFields()">{{ 'Нет выбранных фильтров' }}</div> -->
-              
               <div class="filters-actions save-filters-list"  *ngIf="getSelectedFormFields() && !filtersActions.save"
                 fxLayout="row" fxLayoutAlign="start center" (click)="filtersActions.save = true">
                 <img src="/assets/images/main/filters-action-icon.svg" alt="">
                 <span class="filters-actions__title">{{'Сохранить список фильтров в моем профиле'}}</span>
-
               </div>
 
               <div class="filters-actions" *ngIf="getSelectedFormFields() && filtersActions.save">
@@ -92,10 +90,13 @@
                 <span class="filters-actions__title">{{'Сбросить все фильтры'}}</span>
               </div>
 
-              <div class="filters-actions" *ngIf="userStatisticPanelFilters">
-                <span>{{'Мои списки фильтров:'}}</span>
-                <div (click)="updateAllFilters(userStatisticPanelFilters.statisticFilters)">{{userStatisticPanelFilters.name}}</div>
-                <span *ngFor="let el of userStatisticPanelFilters.statisticFilters">{{el.name}}</span>
+              <div class="filters-actions user-filters-list" *ngIf="userStatisticPanelFilters">
+                <div class="user-filters-list__title">{{'Мои списки фильтров:'}}</div>
+                <div class="user-filter" fxLayout="row" fxLayoutAlign="start center"
+                  (click)="updateAllFilters(userStatisticPanelFilters.statisticFilters)">
+                  <span class="user-list__apply"></span>
+                  <span class="user-list__name">{{userStatisticPanelFilters.name}}</span>
+                </div>
               </div>
 
             </div>
