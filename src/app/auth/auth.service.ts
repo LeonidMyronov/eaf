@@ -61,7 +61,14 @@ export class AuthService {
       name: 'user_' + id,
       icqAccount: id,
       skypeAccount: 'skype' + id,
-      balance: 100
+      balance: 100,
+      statisticFiltersList: {
+        name: 'test',
+        statisticFilters: [
+          {name: 'os', filterList: [{name: 'windows', enabled: true}]},
+          {name: 'browsers', filterList: [{name: 'Chrome', enabled: true}]}
+        ]
+      }
     };
   }
 }
