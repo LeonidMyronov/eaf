@@ -21,7 +21,6 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(this.dropdownList);
     this.selectedDropdownItem = this.dropdownList[0];
     this.termGroup = [
       { name: 'Этот месяц', id: 1 },
