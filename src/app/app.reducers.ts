@@ -28,3 +28,4 @@ export const getCurrentLanguage = createSelector(getUIState, fromUI.getCurrentLa
 
 export const getUserState = createFeatureSelector<fromUser.State>('user');
 export const getShortUserState = createSelector(getUserState, fromUser.getShortUserState);
+export const getStatisticFilters = createSelector(getUserState, fromUser.getStatisticFilters);

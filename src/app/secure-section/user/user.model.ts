@@ -1,3 +1,5 @@
+import { StatisticPanelFilter } from '../store/main.model';
+
 export interface User {
   email: string;
   id: number;
@@ -5,4 +7,11 @@ export interface User {
   icqAccount: number;
   skypeAccount: string;
   balance: number;
+  statisticFiltersList: StatisticPanelFilterList;
+}
+
+
+export interface StatisticPanelFilterList {
+  name: string;
+  statisticFilters: StatisticPanelFilter[];
 }
