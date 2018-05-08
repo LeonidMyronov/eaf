@@ -43,6 +43,7 @@ ul
 button
   background-color: $lightColor
   border: none
+  border-radius: 2px
   box-sizing: border-box
   min-width: 118px
   height: 40px
@@ -83,7 +84,16 @@ button
   &.accent
     color: $mainColor
     background-color: $accentColor
-
+    &.disabled, &[disabled]
+      cursor: not-allowed    
+      color: $inactiveColor
+      background-color: $formColor
+      
+  &.btn-sm
+    width: 100px
+    min-width: 100px
+    height: 30px
+    line-height: 30px
   &.btn-md
     width: 150px
   &.btn-lg
