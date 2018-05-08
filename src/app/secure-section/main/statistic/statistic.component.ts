@@ -72,7 +72,7 @@ export class StatisticComponent implements OnInit, OnDestroy {
         // console.log('selectedAllFiltersForm => ', this.selectedAllFilters);
         console.log('allFilters => ', this.allFilters);
         this.fillAllFiltersForm();
-        this.selectedAllFilters = this.fillSelectedAllFiltersForm(this.allFiltersForm.value);
+        this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
         // console.log(this.allFiltersForm);
       }
@@ -81,7 +81,7 @@ export class StatisticComponent implements OnInit, OnDestroy {
 
     this.allFiltersForm.valueChanges.subscribe(
       formState => {
-        this.selectedAllFilters = this.fillSelectedAllFiltersForm(formState);
+        this.selectedAllFilters = this.fillSelectedAllFilters(formState);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
       });
     // setTimeout( _ => this.updateAllFiltersForm(), 3000);
@@ -130,22 +130,27 @@ export class StatisticComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UserAction.AddFiltersList(userStatisticPanelFilter));
   }
 
-  updateAllFiltersForm() {
-    this.allFiltersForm.patchValue({'DSC001': true, '1001': true});
+  updateAllFilters(arr: StatisticPanelFilter[]) {
+    this.onResetSelectedFilter();
+    arr.forEach(f => {
+      f.filterList.forEach(fList => {
+        this.allFiltersForm.get(f.name).get(fList.name).patchValue(fList.enabled);
+      });
+    });
   }
 
-  fillSelectedAllFilters(allFilters: StatisticPanelFilter[]): StatisticPanelFilter[] {
-    const tempallFilters = [...allFilters];
-    tempallFilters.forEach(
-      (fObj: StatisticPanelFilter) => {
-        fObj.filterList = [...fObj.filterList];
-        fObj.filterList = fObj.filterList.filter((fEl: StatisticFilter) => fEl.enabled === true);
-      }
-    );
-    return tempallFilters.filter((fObj: StatisticPanelFilter) => fObj.filterList.length);
-  }
+  // fillSelectedAllFilters(allFilters: StatisticPanelFilter[]): StatisticPanelFilter[] {
+  //   const tempallFilters = [...allFilters];
+  //   tempallFilters.forEach(
+  //     (fObj: StatisticPanelFilter) => {
+  //       fObj.filterList = [...fObj.filterList];
+  //       fObj.filterList = fObj.filterList.filter((fEl: StatisticFilter) => fEl.enabled === true);
+  //     }
+  //   );
+  //   return tempallFilters.filter((fObj: StatisticPanelFilter) => fObj.filterList.length);
+  // }
 
-  fillSelectedAllFiltersForm(formState) {
+  fillSelectedAllFilters(formState) {
     let tempArr = [];
     createStructure();
     removeEmptyArrObects();
@@ -184,6 +189,15 @@ export class StatisticComponent implements OnInit, OnDestroy {
     return this.selectedAllFilters.some(el => el.name === menuName);
   }
 
+  onResetSelectedFilter() {
+    this.selectedAllFilters.forEach(f => {
+      f.filterList.forEach(fList => {
+        this.allFiltersForm.get(f.name).get(fList.name).patchValue(false);
+      });
+    });
+  }
+
+  // ---- statistic table start -----
   onChangeTableFilter($e, field) {
     if ($e.target.checked) {
       this.filteredStatisticTableHeads = this.filteredStatisticTableHeads.filter(el => el !== field);
@@ -197,6 +211,7 @@ export class StatisticComponent implements OnInit, OnDestroy {
       return !this.filteredStatisticTableHeads.some(fel => fel === el);
     });
   }
+  // ---- statistic table end -----
 
   ngOnDestroy() {
     this.store.dispatch(new MainAction.SaveStatisticFilters(this.selectedAllFilters));

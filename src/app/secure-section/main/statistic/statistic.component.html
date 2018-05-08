@@ -86,13 +86,16 @@
                 </form>  
               </div>
               
-              <div class="filters-actions reset-filters-list" *ngIf="getSelectedFormFields()" fxLayout="row" fxLayoutAlign="start center">
+              <div class="filters-actions reset-filters-list" *ngIf="getSelectedFormFields()"
+                fxLayout="row" fxLayoutAlign="start center" (click)="onResetSelectedFilter()">
                 <img src="/assets/images/main/filters-reset-icon.svg" alt="">
                 <span class="filters-actions__title">{{'Сбросить все фильтры'}}</span>
               </div>
 
               <div class="filters-actions" *ngIf="userStatisticPanelFilters">
                 <span>{{'Мои списки фильтров:'}}</span>
+                <div (click)="updateAllFilters(userStatisticPanelFilters.statisticFilters)">{{userStatisticPanelFilters.name}}</div>
+                <span *ngFor="let el of userStatisticPanelFilters.statisticFilters">{{el.name}}</span>
               </div>
 
             </div>
