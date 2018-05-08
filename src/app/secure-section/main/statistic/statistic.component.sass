@@ -98,6 +98,8 @@
     background-color: $mainColor
     color: $lightColor
     cursor: pointer
+    .selected-filters-value
+      margin-left: 5px
     
     &[for="all-filters"]
       background-image: url(/assets/images/main/filter-icon-active.svg)
@@ -114,13 +116,55 @@
     background-color: $formColor
     overflow-y: scroll
     .all-filters-content
-      display: none
+      // display: none
       width: 100%
-      height: 100%
+      // height: 100%
+      .group-title
+        height: 40px
+        line-height: 40px
+        font-size: 12px
+        padding-left: 20px
+      .select-menu.selected-filters
+        border-bottom: none
+        margin-bottom: 10px
+        .select-menu__title
+          height: 30px
+          line-height: 30px
+          cursor: default
+          &:hover
+            background-color: transparent
+        .select-menu__list
+          margin: 0
     .selected-filters-content
-      display: none
       width: 100%
-      height: 100%
+      font-size: 12px
+      // height: 100%
+      .filters-actions
+        width: 100%
+        height: auto
+        padding: 20px
+        border-top: 1px solid $lightColor
+        img
+          margin-right: 20px
+        &.reset-filters-list, &.save-filters-list
+          height: 62px
+          cursor: pointer        
+          &:hover
+            background-color: $accentColor-lighter
+
+    .save-filters-form
+      font: 12px
+      .form-field
+        margin-bottom: 5px
+        input
+          height: 30px
+          font-size: 12px
+      button
+        align-self: flex-end
+        font-size: 12px      
+        padding: 0
+
+
 
 .flex-table
   align-self: flex-start

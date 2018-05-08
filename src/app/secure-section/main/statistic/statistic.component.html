@@ -30,32 +30,70 @@
         </div>
         
         <section class="statistic-filters">
-          <input type="radio" id="all-filters" checked name="filter-switcher"><label for="all-filters">
+          <input type="radio" id="all-filters" checked name="filter-switcher" value="all-filters" #filterSwitcher><label for="all-filters">
             <span>{{'все' | uppercase}}</span>
-          </label><input type="radio" id="selected-filters" name="filter-switcher"><label for="selected-filters">
-            <span>{{'выбранные' | uppercase}}</span>
+          </label><input type="radio" id="selected-filters" name="filter-switcher" value="selected-filters"><label for="selected-filters">
+            <span>{{'выбранные' | uppercase}}<span class="selected-filters-value" *ngIf="getSelectedFormFields()">({{getSelectedFormFields()}})</span></span>
           </label>
-          <div class="statistic-filters__body">
-            <form class="all-filters-content" [formGroup]="allFiltersForm">
-              <div class="select-menu" *ngFor="let menu of (statisticState$ | async).filters">
-                <input type="checkbox" id="menu-title-{{menu.name}}" (click)="true">
-                <label for="menu-title-{{menu.name}}" class="select-menu__title">
-                  <span class="caret"></span>
-                  <span>{{menu.name}}</span>
-                </label>
-                <div class="select-menu__list">
-                  <div class="select-menu__item" *ngFor="let el of menu.filterList">
-                    <input type="checkbox" id="{{menu.name}}-{{el.name}}" [checked]="el.enabled" formControlName="{{el.name}}">
-                    <label for="{{menu.name}}-{{el.name}}">
-                      <span class="check"></span>
-                      <span>{{el.name}}</span>
-                    </label>
+          <form class="statistic-filters__body" [formGroup]="allFiltersForm">
+            <div class="all-filters-content">
+              <div class="group-title" *ngIf="!filterSwitcher.checked && getSelectedFormFields()">{{ 'Вы выбрали:' }}</div>
+              <div class="group-title" *ngIf="!filterSwitcher.checked && !getSelectedFormFields()">{{ 'Нет выбранных фильтров' }}</div>
+              <ng-container *ngFor="let menu of allFilters">
+                <div class="select-menu" [formGroupName]="menu.name" [ngClass]="{'selected-filters': !filterSwitcher.checked}">
+                  <input type="checkbox" id="all-menu-title-{{menu.name}}">
+                  <label for="all-menu-title-{{menu.name}}" class="select-menu__title" *ngIf="filterSwitcher.checked">
+                    <span class="caret"></span>
+                    <span>{{ 'statisticFilterPanel.'+menu.name | translate }}</span>
+                  </label>
+                  <label class="select-menu__title"
+                    *ngIf="!filterSwitcher.checked && getSelectedFormFieldsInMenu(menu.name)">
+                    <span>{{ 'statisticFilterPanel.'+menu.name | translate }}</span>
+                  </label>
+                  <div class="select-menu__list">
+                    <ng-container *ngFor="let el of menu.filterList">
+                      <ng-container [ngSwitch]="filterSwitcher.checked">
+                        <div class="select-menu__item">
+                          <input type="checkbox" id="all-{{menu.name}}-{{el.name}}" [checked]="el.enabled" [formControlName]="el.name">
+                        <label for="all-{{menu.name}}-{{el.name}}" *ngIf="filterSwitcher.checked || (!filterSwitcher.checked && allFiltersForm.get(menu.name).get(el.name).value)">
+                          <span class="check"></span>
+                          <span>{{el.name}}</span>
+                        </label>
+                      </div>
+                    </ng-container>
+                  </ng-container>
                   </div>
                 </div>
+              </ng-container>
+            </div>
+            <div class="selected-filters-content"  *ngIf="!filterSwitcher.checked">
+              <!-- <div class="group-title" *ngIf="!getSelectedFormFields()">{{ 'Нет выбранных фильтров' }}</div> -->
+              
+              <div class="filters-actions save-filters-list"  *ngIf="getSelectedFormFields() && !filtersActions.save"
+                fxLayout="row" fxLayoutAlign="start center" (click)="filtersActions.save = true">
+                <img src="/assets/images/main/filters-action-icon.svg" alt="">
+                <span class="filters-actions__title">{{'Сохранить список фильтров в моем профиле'}}</span>
+
               </div>
-            </form>
-            <div class="selected-filters-content">selected-filters-content</div>
-          </div>
+
+              <div class="filters-actions" *ngIf="getSelectedFormFields() && filtersActions.save">
+                <form [formGroup]="saveFiltersListForm" (ngSubmit)="onSaveFiltersListSubmit()"
+                  class="save-filters-form" fxLayout="column" fxLayoutAlign="flex-start stretch">
+                  <div class="form-field">
+                    <input type="text" placeholder="{{ 'Введите название' }}" formControlName="name">
+                  </div>
+                  <button type="submit" class="accent btn-sm" [disabled]="saveFiltersListForm.invalid">{{ 'Сохранить' }}</button>
+                </form>  
+              </div>
+              
+              <div class="filters-actions reset-filters-list" *ngIf="getSelectedFormFields()" fxLayout="row" fxLayoutAlign="start center">
+                <img src="/assets/images/main/filters-reset-icon.svg" alt="">
+                <span class="filters-actions__title">{{'Сбросить все фильтры'}}</span>
+              </div>
+
+
+            </div>
+          </form>
         </section>
         
         <section class="table flex-table" fxLayout="row" fxLayoutGap="2px">
