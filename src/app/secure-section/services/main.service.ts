@@ -396,29 +396,29 @@ export class MainService {
     ],
     filters: [
       {name: 'dsc',
-       filterList: [{name: 'DSC001', enabled: true}, {name: 'DSC002', enabled: true}, {name: 'DSC003', enabled: true}]
+       filterList: [{name: 'DSC001', enabled: false}, {name: 'DSC002', enabled: false}, {name: 'DSC003', enabled: false}]
       },
       {name: 'subid',
-      filterList: [{name: '1001', enabled: true}, {name: '1002', enabled: true}, {name: '1003', enabled: true}]
+      filterList: [{name: '1001', enabled: false}, {name: '1002', enabled: false}, {name: '1003', enabled: false}]
       },
       {name: 'deviceTypes',
-      filterList: [{name: 'desktop', enabled: true}, {name: 'tablet', enabled: true}, {name: 'mobile', enabled: true}, {name: 'other', enabled: false}]
+      filterList: [{name: 'desktop', enabled: false}, {name: 'tablet', enabled: false}, {name: 'mobile', enabled: false}, {name: 'other', enabled: false}]
       },
       {name: 'os',
-      filterList: [{name: 'windows', enabled: true}, {name: 'osx', enabled: true}, {name: 'linux', enabled: true}, {name: 'android', enabled: true}, {name: 'iOS', enabled: true}]
+      filterList: [{name: 'windows', enabled: false}, {name: 'osx', enabled: false}, {name: 'linux', enabled: false}, {name: 'android', enabled: false}, {name: 'iOS', enabled: false}]
       },
-      {name: 'browsers', filterList: [{name: 'Chrome', enabled: true}, {name: 'FireFox', enabled: true}, {name: 'Safari', enabled: true}, {name: 'Edge', enabled: true}, {name: 'IE',  enabled: true}]
+      {name: 'browsers', filterList: [{name: 'Chrome', enabled: false}, {name: 'FireFox', enabled: false}, {name: 'Safari', enabled: false}, {name: 'Edge', enabled: false}, {name: 'IE',  enabled: false}]
       },
       {name: 'countries',
       filterList: [
         {name: 'United Kingdom', amount: 323,
-          enabled: true, abbr: 'gb'},
+          enabled: false, abbr: 'gb'},
         {name: 'Spain', amount: 256,
-        enabled: true, abbr: 'es'},
+        enabled: false, abbr: 'es'},
         {name: 'Germany', amount: 209,
-        enabled: true, abbr: 'de'},
+        enabled: false, abbr: 'de'},
         {name: 'Australia', amount: 187,
-        enabled: true, abbr: 'au' }
+        enabled: false, abbr: 'au' }
       ]}
     ]
   };
@@ -432,6 +432,7 @@ export class MainService {
   }
 
   fetchStatisticByPeriod() {
+    console.log('fetchStatisticByPeriod from Service');
     this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
   }
 

@@ -64,3 +64,13 @@ export interface Browser {
   name: string;
   amount: number;
 }
+
+export interface StatisticFilter {
+  name: string;
+  enabled: boolean;
+}
+
+export interface StatisticPanelFilter {
+  name: string;
+  filterList: StatisticFilter[];
+}

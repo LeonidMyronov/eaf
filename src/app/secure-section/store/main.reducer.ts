@@ -1,8 +1,19 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromRoot from '../../app.reducers';
-import { SiteTraffic, DeviceType, Income, Conversion, Statistic, Country } from './main.model';
-import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC } from './main.actions';
+import {
+  SiteTraffic,
+  DeviceType,
+  Income,
+  Conversion,
+  Statistic,
+  Country,
+  PixelTracking,
+  OS,
+  Browser,
+  StatisticPanelFilter
+} from './main.model';
+import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS } from './main.actions';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -17,7 +28,16 @@ export interface MainState {
   lastDayIncomes: Income[];
   lastDayConversions: Conversion[];
   statistic: {
-    statistic: Statistic[]};
+    statistic: Statistic[],
+    conversions: Conversion[],
+    incomes: Income[],
+    pixelTracking: PixelTracking[],
+    countries: Country[],
+    deviceTypes: DeviceType[],
+    os: OS[],
+    browsers: Browser[],
+    filters: StatisticPanelFilter[],
+  };
 }
 
 
@@ -37,9 +57,18 @@ export const initialState: MainState = {
   news: [],
   lastDayIncomes: [],
   lastDayConversions: [],
-  statistic: {
-    statistic: []
-  },
+  // statistic: {
+  //   statistic: [],
+  //   conversions: [],
+  //   incomes: [],
+  //   pixelTracking: [],
+  //   countries: [],
+  //   deviceTypes: [],
+  //   os: [],
+  //   browsers: [],
+  //   filters: [],
+  // },
+  statistic: null
 };
 
 
@@ -64,6 +93,27 @@ export function mainReducer(state: MainState = initialState, action: MainActions
       return {
         ...state,
         statistic: action.payload
+      };
+    case UPDATE_STATISTIC_FILTERS:
+      return {
+        ...state,
+        statistic: {
+          ...state.statistic,
+          filters: state.statistic.filters.map(f => {
+            if (f.name !== action.payload.name) {
+              return f;
+            }
+            f.filterList.forEach( fList => {
+              if (fList.name === action.payload.filterList[0].name) {
+                fList.enabled = action.payload.filterList[0].enabled;
+              }
+            });
+            return {
+              name: f.name,
+              filterList: f.filterList
+            };
+          })
+        }
       };
     default:
       return state;
