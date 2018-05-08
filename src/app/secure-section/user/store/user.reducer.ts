@@ -42,12 +42,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
     return {
       ...state,
       user: {
-        email: null,
-        id: null,
-        name: null,
-        icqAccount: null,
-        skypeAccount: null,
-        balance: null,
+        ...state.user,
         statisticFiltersList: action.payload
       }
     };
@@ -65,5 +60,5 @@ export const getShortUserState = (state: State) => {
   };
 };
 
-export const getStatisticFilters = (state: State) => state.user.statisticFiltersList;
+export const getUserStatisticFilters = (state: State) => state.user.statisticFiltersList;
 
