@@ -117,6 +117,13 @@
       "p-1": "We developed our own tracking system for detailed reports and statistics in real time, so you do not have to worry about the neck, or about other tricks that we do not do :)",
       "p-2": "Being honest with you, we are waiting for the same attitude."
     }
-
+  },
+  "statisticFilterPanel": {
+    "dsc": "DSC",
+    "subid": "SubID",
+    "deviceTypes": "Device type",
+    "os": "Operating system",
+    "browsers": "Browser",
+    "countries": "Country"
   }
 }
