@@ -13,7 +13,7 @@ import {
   Browser,
   StatisticPanelFilter
 } from './main.model';
-import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS } from './main.actions';
+import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS, SAVE_STATISTIC_FILTERS } from './main.actions';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -112,6 +112,34 @@ export function mainReducer(state: MainState = initialState, action: MainActions
               name: f.name,
               filterList: f.filterList
             };
+          })
+        }
+      };
+    case SAVE_STATISTIC_FILTERS:
+      return {
+        ...state,
+        statistic: {
+          ...state.statistic,
+          filters: state.statistic.filters.map(f => {
+            const income_f = action.payload.find(el => f.name === el.name);
+            if (income_f) {
+              return {
+                name: f.name,
+                filterList: f.filterList.map(fList => {
+                  const income_fList = income_f.filterList.find(i_el => fList.name === i_el.name);
+                  if (income_fList) {
+                    return {
+                      name: fList.name,
+                      enabled: income_fList.enabled
+                    };
+                  } else {
+                    return fList;
+                  }
+                })
+              };
+            } else {
+              return f;
+            }
           })
         }
       };
