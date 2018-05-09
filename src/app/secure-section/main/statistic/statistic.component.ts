@@ -46,6 +46,8 @@ export class StatisticComponent implements OnInit, OnDestroy {
     'chargeback',
     'refferers',
     'refferersIncome'];
+  public activeMediaQuery: string;
+  public isStatisticFiltersVisible: boolean;
   private filteredStatisticTableHeads = [];
   private sitesList: any[];
   constructor(
@@ -60,6 +62,11 @@ export class StatisticComponent implements OnInit, OnDestroy {
     this.sitesList = this.appStorage.getAllSites();
     this.consolidatedState$ = this.store.select(fromMain.getConsolidatedData);
 
+    this.store.select(fromRoot.getActiveMediaQuery).subscribe((activeMedia: string) => {
+      this.activeMediaQuery = activeMedia;
+      this.isStatisticFiltersVisible = (this.activeMediaQuery === 'sm' || this.activeMediaQuery === 'xs') ? false : true;
+    });
+
     this.store.select(fromMain.getStatistic).subscribe(
       (r: any) => {
         if (!r) {
@@ -68,13 +75,10 @@ export class StatisticComponent implements OnInit, OnDestroy {
         }
         console.log('statistic State => ', r);
         this.allFilters = r.filters;
-        // this.selectedAllFilters = [...this.fillSelectedAllFilters([...this.allFilters])];
-        // console.log('selectedAllFiltersForm => ', this.selectedAllFilters);
         console.log('allFilters => ', this.allFilters);
         this.fillAllFiltersForm();
         this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
-        // console.log(this.allFiltersForm);
       }
     );
     this.statisticState$ = this.store.select(fromMain.getStatistic);
@@ -84,7 +88,6 @@ export class StatisticComponent implements OnInit, OnDestroy {
         this.selectedAllFilters = this.fillSelectedAllFilters(formState);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
       });
-    // setTimeout( _ => this.updateAllFiltersForm(), 3000);
 
     this.store.select(fromRoot.getUserStatisticFilters)
       .subscribe( (response: StatisticPanelFilterList) => {
@@ -195,6 +198,10 @@ export class StatisticComponent implements OnInit, OnDestroy {
         this.allFiltersForm.get(f.name).get(fList.name).patchValue(false);
       });
     });
+  }
+
+  onChangeStatisticFiltersVisibility() {
+    this.isStatisticFiltersVisible = !this.isStatisticFiltersVisible;
   }
 
   // ---- statistic table start -----

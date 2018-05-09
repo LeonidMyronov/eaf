@@ -7,7 +7,7 @@
       <div class="statistic-table-group" fxLayout="row wrap">
 
         <div class="statistic-table-group__head" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
-          <div class="statistic-table-group__head__left" fxLayoutAlign="center center">
+          <div class="statistic-table-group__head__left" fxLayoutAlign="center center" (click)="onChangeStatisticFiltersVisibility()">
             <img fxHide.gt-sm src="/assets/images/main/filter-icon.svg" alt="">
             <span>Фильтры</span>
           </div>
@@ -29,7 +29,7 @@
           </div>
         </div>
         
-        <section class="statistic-filters">
+        <section class="statistic-filters" *ngIf="isStatisticFiltersVisible">
           <input type="radio" id="all-filters" checked name="filter-switcher" value="all-filters" #filterSwitcher><label for="all-filters">
             <span>{{'все' | uppercase}}</span>
           </label><input type="radio" id="selected-filters" name="filter-switcher" value="selected-filters"><label for="selected-filters">

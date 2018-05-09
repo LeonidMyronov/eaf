@@ -51,7 +51,7 @@
       display: none
       position: absolute
       left: 0
-      top: 40px
+      top: 42px
       width: 218px
       padding: 10px 0 25px
       background-color: $formColor
@@ -61,8 +61,7 @@
         cursor: pointer
         padding-left: 25px
         padding-right: 25px
-        &:hover
-          background-color: $accentColor-lighter
+        @include hover($accentColor-lighter)
 
         label
           display: inline-block
@@ -155,9 +154,8 @@
           margin-right: 20px
         &.reset-filters-list, &.save-filters-list
           height: 62px
-          cursor: pointer        
-          &:hover
-            background-color: $accentColor-lighter
+          @include hover($accentColor-lighter)
+
         &.user-filters-list
           padding-left: 0
           padding-right: 0
@@ -249,14 +247,38 @@
     align-items: center
     justify-content: center
 
+@media(max-width: 1399px)
+  .flex-table
+    &__body
+      max-width: 530px
 
+@media(max-width: 1023px)
+  .statistic-table-group
+    position: relative
+    padding-left: 0
+    padding-right: 0
+    &__head
+      &__left
+        margin-right: 5px
+        background-color: $formColor
+        @include hover($accentColor-lighter)
+        
+  .statistic-filters
+    position: absolute
+    top: 42px
+    margin-right: 0
+    z-index: 10
+  .flex-table
+    &__body
+      max-width: 460px
+  
 
 @media(max-width: 767px)
   .statistic-group
     margin-top: 10px
-    &__head
-      &__left
-        background-color: $formColor
-        cursor: pointer
-
+  .statistic-table-group__head__right > label
+    padding: 0 10px
+  .statistic-table-group__head
+    .table-filter
+      left: -20px
   
