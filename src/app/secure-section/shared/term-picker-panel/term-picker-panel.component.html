@@ -8,7 +8,7 @@
       {{ selectedDropdownItem.name }}
     </div>
     <ul class="dropdown-list">
-      <li class="dropdown-list__item" *ngFor="let item of dropdownList" (click)="onChange(item)">
+      <li class="dropdown-list__item" *ngFor="let item of dropdownList" (click)="onChangeDropdownItem(item)">
         <span *ngIf="item.iconSrc" class="dropdown-item-icon">
           <img [src]="item?.iconSrc" alt="">
         </span>
@@ -19,7 +19,7 @@
 
   <div class="terms-group" fxLayout="row" fxLayoutAlign="start">
     <div *ngFor="let term of termGroup" class="term-item panel-item" [ngClass]="{active: term.id === selectedTermGroupItem.id}"
-      (click)="selectedTermGroupItem = term">
+      (click)="onChangeTermGroupItem(term)">
       {{ term.name | translate }}
     </div>
   </div>
