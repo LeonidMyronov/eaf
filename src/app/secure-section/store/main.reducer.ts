@@ -13,7 +13,14 @@ import {
   Browser,
   StatisticPanelFilter
 } from './main.model';
-import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS, SAVE_STATISTIC_FILTERS, STATISTIC_QUERY_PARAMS } from './main.actions';
+import {
+  MainActions,
+  FETCH_CONSOLIDATED_DATA,
+  FETCH_STATISTIC,
+  UPDATE_STATISTIC_FILTERS,
+  SAVE_STATISTIC_FILTERS,
+  STATISTIC_QUERY_PARAMS
+} from './main.actions';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -109,7 +116,7 @@ export function mainReducer(state: MainState = initialState, action: MainActions
             if (f.name !== action.payload.name) {
               return f;
             }
-            f.filterList.forEach( fList => {
+            f.filterList.forEach(fList => {
               if (fList.name === action.payload.filterList[0].name) {
                 fList.enabled = action.payload.filterList[0].enabled;
               }

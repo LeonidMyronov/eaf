@@ -1,7 +1,7 @@
 <article class="statistic-page">
   <div class="container">
 
-    <eaf-term-picker-panel [dropdownList]="sitesList"></eaf-term-picker-panel>
+    <eaf-term-picker-panel [dropdownList]="sitesList" (change)="onChangeStatisticQueryParams($event)"></eaf-term-picker-panel>
 
     <article class="statistic-group">
       <div class="statistic-table-group" fxLayout="row wrap">
@@ -237,17 +237,17 @@
     <section class="graph" fxLayout="column">
       <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="graph__head__name">График прибыли</div>
-        <div class="graph__head__period"></div>
+        <div class="graph__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="graph__body">
-          <eaf-graph [data]="(todayState$ | async).lastDayIncomes"></eaf-graph>
+          <eaf-graph [data]="(statisticState$ | async).incomes"></eaf-graph>
       </div>
     </section>
 
     <section class="conversion-list">
       <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="conversion-list__head__name">Kонверсии</div>
-        <!-- <div class="conversion-list__head__period">За последние 24 часа</div> -->
+        <div class="conversion-list__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="conversion-list__body">
         <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>

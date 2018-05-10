@@ -22,6 +22,7 @@ import { StatisticPanelFilterList } from '../../user/user.model';
 export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public consolidatedState$: Observable<any>;
   public statisticState$: Observable<any>;
+  public statisticQueryParamsState$: Observable<any>;
   public userStatisticPanelFilters: StatisticPanelFilterList;
   public allFiltersForm: FormGroup;
   public saveFiltersListForm: FormGroup;
@@ -97,6 +98,8 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.userStatisticPanelFilters = response;
         console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
       });
+
+    this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
   }
 
   ngAfterViewChecked() {
@@ -209,6 +212,11 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   onChangeStatisticFiltersVisibility() {
     this.isStatisticFiltersVisible = !this.isStatisticFiltersVisible;
+  }
+
+  onChangeStatisticQueryParams(queryParams) {
+    console.log(queryParams);
+    this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
   // ---- statistic table start -----

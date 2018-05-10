@@ -28,6 +28,8 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
       this.onChangeTermGroupItem(this.termGroup[2]);
       this.startDate.valueChanges.subscribe(c => this.selectedTermGroupItem.id = null);
       this.endDate.valueChanges.subscribe(c => this.selectedTermGroupItem.id = null);
+      // emit initial data
+      this.onSubmit();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -75,6 +77,5 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
         site: this.selectedDropdownItem
       }
     );
-    console.log('from TermPickerPanelComponent =>', this.startDate.value, this.endDate.value, this.selectedDropdownItem, this.selectedTermGroupItem);
   }
 }
