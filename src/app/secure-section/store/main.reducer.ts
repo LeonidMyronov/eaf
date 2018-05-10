@@ -13,7 +13,7 @@ import {
   Browser,
   StatisticPanelFilter
 } from './main.model';
-import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS, SAVE_STATISTIC_FILTERS } from './main.actions';
+import { MainActions, FETCH_CONSOLIDATED_DATA, FETCH_STATISTIC, UPDATE_STATISTIC_FILTERS, SAVE_STATISTIC_FILTERS, STATISTIC_QUERY_PARAMS } from './main.actions';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -37,6 +37,11 @@ export interface MainState {
     os: OS[],
     browsers: Browser[],
     filters: StatisticPanelFilter[],
+  };
+  statisticQueryParams: {
+    fromDate: Date;
+    toDate: Date;
+    site: SiteTraffic;
   };
 }
 
@@ -68,7 +73,8 @@ export const initialState: MainState = {
   //   browsers: [],
   //   filters: [],
   // },
-  statistic: null
+  statistic: null,
+  statisticQueryParams: null,
 };
 
 
@@ -143,6 +149,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
           })
         }
       };
+    case STATISTIC_QUERY_PARAMS:
+      return {
+        ...state,
+        statisticQueryParams: action.payload
+      };
     default:
       return state;
   }
@@ -167,4 +178,5 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
 });
 
 export const getStatistic = createSelector(getMainState, (state: MainState) => state.statistic);
+export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
 
