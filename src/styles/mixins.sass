@@ -90,7 +90,7 @@
   cursor: pointer
   &:hover
     background-color: $color
-    
+
 // @mixin arrow-next($width, $color)
 //   width: 8px
 //   height: 8px
@@ -150,3 +150,15 @@
     height: 100%
     z-index: 5
     background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
+
+@mixin fade-to-top-inner($color)
+  position: relative
+  &:after
+    content: ''
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: 20px
+    z-index: 5
+    background: linear-gradient(to top, $color, rgba(255,255,255,0))
