@@ -13,6 +13,7 @@
 
 .statistic-group
   margin-top: 10px
+  margin-bottom: 40px
   input[type="checkbox"], input[type="radio"]
     display: none
 .statistic-table-group
@@ -247,10 +248,115 @@
     align-items: center
     justify-content: center
 
+.card-group
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 20px
+  .card
+    min-height: 472px
+    flex-flow: column nowrap
+    justify-content: flex-start
+    align-items: flex-start
+    background-repeat: no-repeat
+    background-position: center 75px
+    @include fade-to-top-inner($mainColor)
+    &:after
+      height: 40px
+      bottom: 20px
+    .title
+      margin-bottom: 43px
+    .graph-section
+      width: 100%
+      height: 100px
+      border-bottom: 1px solid $lightColor
+      margin-bottom: 22px
+      &__item
+        width: 40px
+        align-self: flex-end
+        border: 1px solid $lightColor
+        color: $lightColor
+        border-bottom: none
+        position: relative
+        &__value
+          position: absolute
+          color: inherit
+          font-size: 12px
+          top: -23px
+          left: 50%
+          transform: translateX(-50%)
+        &:first-child
+          color: $accentColor
+          background-color: $accentColor
+          border-color: $accentColor
+          .graph-section__item__value
+        &:nth-child(2)
+          color: $accentColor
+          border-color: $accentColor-midlight
+          background-color: $accentColor-midlight
+          .graph-section__item__value
+        &:nth-child(3)
+          background-color: $lightColor
+          .graph-section__item__value
+      
+    .descr-list
+      width: 100%
+      max-height: 222px
+      overflow-y: scroll
+      &__item
+        font-size: 14px
+        line-height: 26px
+        color: $lightColor
+        margin-right: 15px     
+        &__name
+          font-size: inherit
+          line-height: inherit
+          color: inherit
+          .badge
+            display: inline-block
+            width: 15px
+            height: 15px
+            border: 1px solid $lightColor
+            border-radius: 50%
+            margin-right: 10px
+        &__value
+          font-size: inherit
+          line-height: inherit
+          color: inherit
+        &:first-child
+          color: $accentColor
+          .descr-list__item__name
+            .badge
+              border-color: $accentColor
+              background-color: $accentColor
+        &:nth-child(2)
+          color: $accentColor-midlight
+          .descr-list__item__name
+            .badge
+              border-color: $accentColor-midlight
+              background-color: $accentColor-midlight  
+        &:nth-child(3)
+          .descr-list__item__name
+            .badge
+              background-color: $lightColor 
+    &-country
+      background-image: url(/assets/images/main/stat-cards/bg-card-co.svg)
+    &-browser
+      background-image: url(/assets/images/main/stat-cards/bg-card-br.svg)
+    &-os
+      background-image: url(/assets/images/main/stat-cards/bg-card-os.svg)
+    &-device-type
+      background-image: url(/assets/images/main/stat-cards/bg-card-dt.svg)
+
+.conversion-list
+  &__head
+    margin-bottom: 20px
+
 @media(max-width: 1399px)
   .flex-table
     &__body
       max-width: 530px
+  .card-group
+    grid-template-columns: repeat(3, 1fr)
 
 @media(max-width: 1023px)
   .statistic-table-group
@@ -262,7 +368,7 @@
         margin-right: 5px
         background-color: $formColor
         @include hover($accentColor-lighter)
-        
+  
   .statistic-filters
     position: absolute
     top: 42px
@@ -271,7 +377,9 @@
   .flex-table
     &__body
       max-width: 460px
-  
+
+  .card-group
+    grid-template-columns: repeat(2, 1fr) 
 
 @media(max-width: 767px)
   .statistic-group
@@ -290,3 +398,6 @@
     &__body
       max-width: 217px
       flex-shrink: 0
+
+  .card-group
+    grid-template-columns: 1fr

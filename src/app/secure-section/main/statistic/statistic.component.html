@@ -109,7 +109,7 @@
         <section class="table flex-table" fxLayout="row" fxLayoutGap="2px">
           <div class="flex-table__left">
             <div class="table__head table__row">
-              <div class="table__cell">{{'date' | translate}}</div>
+              <div class="table__cell">{{'date' | translate }}</div>
             </div>
             <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
               <div class="table__cell">{{el.date | date:'dd MMM y'}}</div>
@@ -134,16 +134,125 @@
         </section>
       </div>
 
-      <section class="conversion-list">
-        <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-          <div class="conversion-list__head__name">Последние конверсии</div>
-          <div class="conversion-list__head__period">За последние 24 часа</div>
-        </div>
-        <div class="conversion-list__body">
-          <eaf-conversion [data]="(consolidatedState$ | async).lastDayConversions" widthClass="full"></eaf-conversion>
-        </div>
-      </section>
-
     </article>
+
+    <section class="card-group">
+      <div class="card card-device-type">
+        <div class="title">
+          {{ 'device type' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElDt
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).deviceTypes) * 100)"
+            *ngFor="let el of (statisticState$ | async).deviceTypes.slice(0, 4)"
+            [ngStyle]="{'height': graphElDt.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElDt.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).deviceTypes"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+             
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-os">
+        <div class="title">
+          {{ 'os' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElOs
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).os) * 100)"
+            *ngFor="let el of (statisticState$ | async).os.slice(0, 4)"
+            [ngStyle]="{'height': graphElOs.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElOs.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).os"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-browser">
+        <div class="title">
+          {{ 'browser' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElBr
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).browsers) * 100)"
+            *ngFor="let el of (statisticState$ | async).browsers.slice(0, 4)"
+            [ngStyle]="{'height': graphElBr.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElBr.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).browsers"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-country">
+        <div class="title">
+          {{ 'country' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElCo
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).countries) * 100)"
+            *ngFor="let el of (statisticState$ | async).countries.slice(0, 4)"
+            [ngStyle]="{'height': graphElCo.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElCo.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).countries"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>      
+    </section>
+
+    <section class="graph" fxLayout="column">
+      <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="graph__head__name">График прибыли</div>
+        <div class="graph__head__period"></div>
+      </div>
+      <div class="graph__body">
+          <eaf-graph [data]="(todayState$ | async).lastDayIncomes"></eaf-graph>
+      </div>
+    </section>
+
+    <section class="conversion-list">
+      <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="conversion-list__head__name">Kонверсии</div>
+        <!-- <div class="conversion-list__head__period">За последние 24 часа</div> -->
+      </div>
+      <div class="conversion-list__body">
+        <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>
+      </div>
+    </section>
+
   </div>
 </article>

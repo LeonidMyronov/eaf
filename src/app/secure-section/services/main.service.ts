@@ -317,12 +317,12 @@ export class MainService {
     countries: [
       {
         name: 'United Kingdom',
-        amount: 323,
+        amount: 4323,
         abbr: 'gb'
       },
       {
         name: 'Spain',
-        amount: 256,
+        amount: 556,
         abbr: 'es'
       },
       {
@@ -334,7 +334,37 @@ export class MainService {
         name: 'Australia',
         amount: 187,
         abbr: 'au'
-      }
+      },
+      {
+        name: 'United States',
+        amount: 180,
+        abbr: 'us'
+      },
+      {
+        name: 'Ireland',
+        amount: 107,
+        abbr: 'au'
+      },
+      {
+        name: 'Scotland',
+        amount: 100,
+        abbr: 'sc'
+      },
+      {
+        name: 'France',
+        amount: 90,
+        abbr: 'fr'
+      },
+      {
+        name: 'Italy',
+        amount: 89,
+        abbr: 'it'
+      },
+      {
+        name: 'Czech',
+        amount: 87,
+        abbr: 'cz'
+      },
     ],
     deviceTypes: [
       {
@@ -343,11 +373,11 @@ export class MainService {
       },
       {
         name: 'tablet',
-        amount: 22301
+        amount: 9230
       }
       ,        {
         name: 'phone',
-        amount: 12300
+        amount: 1230
       }
     ],
     os: [

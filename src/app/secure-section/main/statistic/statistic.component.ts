@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,7 @@ import { StatisticPanelFilterList } from '../../user/user.model';
   templateUrl: './statistic.component.html',
   styleUrls: ['./statistic.component.sass']
 })
-export class StatisticComponent implements OnInit, OnDestroy {
+export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public consolidatedState$: Observable<any>;
   public statisticState$: Observable<any>;
   public userStatisticPanelFilters: StatisticPanelFilterList;
@@ -54,7 +54,9 @@ export class StatisticComponent implements OnInit, OnDestroy {
     private store: Store<fromMain.MainState>,
     private appStorage: AppStorageService,
     private mainService: MainService,
+    private changeDetector: ChangeDetectorRef
   ) { }
+
 
   ngOnInit() {
     // this.selectedAllFiltersForm = [];
@@ -74,6 +76,7 @@ export class StatisticComponent implements OnInit, OnDestroy {
           return;
         }
         console.log('statistic State => ', r);
+        // this.getItemsForCards(r);
         this.allFilters = r.filters;
         console.log('allFilters => ', this.allFilters);
         this.fillAllFiltersForm();
@@ -94,6 +97,10 @@ export class StatisticComponent implements OnInit, OnDestroy {
         this.userStatisticPanelFilters = response;
         console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
       });
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
   }
 
   initForms() {
@@ -219,6 +226,29 @@ export class StatisticComponent implements OnInit, OnDestroy {
     });
   }
   // ---- statistic table end -----
+
+
+  // ----- cards section start --------
+
+  calcCardsGraphElHeight(arr: any): number {
+    return arr.reduce((sum, curr) => sum + curr.amount, 0);
+  }
+  // getItemsForCards(statObj: {}): any[] {
+  //   // debugger;
+  //   if (!statObj) {return; }
+  //   const cardsArr = ['countries', 'deviceTypes', 'os', 'browsers'];
+  //   let resArr = [];
+  //   // for (const prop in Object.keys(statObj)) {
+  //   //   if (prop )
+  //   // }
+  //   resArr = cardsArr.map(el => {
+  //     return statObj[el];
+  //   });
+  //   console.log(resArr);
+  //   return resArr;
+  // }
+
+  // ----- cards section end --------
 
   ngOnDestroy() {
     this.store.dispatch(new MainAction.SaveStatisticFilters(this.selectedAllFilters));
