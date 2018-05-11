@@ -11,7 +11,7 @@ import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
 import * as UserAction from '../../user/store/user.actions';
 import * as MainAction from '../../store/main.actions';
-import { Statistic, StatisticFilter, StatisticPanelFilter } from '../../store/main.model';
+import { Statistic, StatisticFilter, StatisticPanelFilter, PixelTracking } from '../../store/main.model';
 import { StatisticPanelFilterList } from '../../user/user.model';
 
 @Component({
@@ -33,20 +33,11 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     update: false,
     rename: false
   };
-  public statisticTableHeads = [
-    'uniques',
-    'hits',
-    'inquiries',
-    'fakes',
-    'sales',
-    'salesIncome',
-    'rebills',
-    'rebillsIncome',
-    'incomeOn1k',
-    'salesOn1k',
-    'chargeback',
-    'refferers',
-    'refferersIncome'];
+  public ptData = {
+    ptTableHeads: [],
+    ptPropCount: {}
+  };
+  public statisticTableHeads: string[];
   public activeMediaQuery: string;
   public isStatisticFiltersVisible: boolean;
   private filteredStatisticTableHeads = [];
@@ -77,7 +68,8 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
           return;
         }
         console.log('statistic State => ', r);
-        // this.getItemsForCards(r);
+        this.createStatisticTableHeads(r.statistic[0]);
+        this.createPTData(r.pixelTracking);
         this.allFilters = r.filters;
         console.log('allFilters => ', this.allFilters);
         this.fillAllFiltersForm();
@@ -215,11 +207,14 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   onChangeStatisticQueryParams(queryParams) {
-    console.log(queryParams);
     this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
   // ---- statistic table start -----
+  createStatisticTableHeads(el: Statistic) {
+    this.statisticTableHeads = Object.keys(el).slice(1);
+  }
+
   onChangeTableFilter($e, field) {
     if ($e.target.checked) {
       this.filteredStatisticTableHeads = this.filteredStatisticTableHeads.filter(el => el !== field);
@@ -241,22 +236,32 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   calcCardsGraphElHeight(arr: any): number {
     return arr.reduce((sum, curr) => sum + curr.amount, 0);
   }
-  // getItemsForCards(statObj: {}): any[] {
-  //   // debugger;
-  //   if (!statObj) {return; }
-  //   const cardsArr = ['countries', 'deviceTypes', 'os', 'browsers'];
-  //   let resArr = [];
-  //   // for (const prop in Object.keys(statObj)) {
-  //   //   if (prop )
-  //   // }
-  //   resArr = cardsArr.map(el => {
-  //     return statObj[el];
-  //   });
-  //   console.log(resArr);
-  //   return resArr;
-  // }
 
   // ----- cards section end --------
+
+
+  // ----- cards section end --------
+  createPTData(arr: PixelTracking[]) {
+    this.createPTTableHeads(arr[0]);
+    this.calcPTPropCount(arr);
+  }
+  calcPTPropCount(arr) {
+    this.ptData.ptTableHeads.slice(1).forEach(el => this.ptData.ptPropCount[el] = 0);
+    arr.forEach(el => {
+      Object.keys(this.ptData.ptPropCount).forEach(prop => this.ptData.ptPropCount[prop] += el[prop]);
+    });
+    console.log(this.ptData.ptPropCount);
+  }
+
+  createPTTableHeads(el: PixelTracking) {
+    this.ptData.ptTableHeads = Object.keys({...el});
+  }
+  getPTTableHeads() {
+    return this.ptData.ptTableHeads.slice();
+  }
+  // ----- cards section end --------
+
+
 
   ngOnDestroy() {
     this.store.dispatch(new MainAction.SaveStatisticFilters(this.selectedAllFilters));

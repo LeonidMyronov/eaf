@@ -287,24 +287,45 @@ label
   background: url(/assets/images/main/graph/time-icon.svg) no-repeat left center
 
 .table
-  &__head
+  .table__head, .table__foot
     .table__cell
       background-color: $formColor
-      font-size: 12px
-  &__body
+      cursor: default
+  .table__body
     .table__row
       cursor: pointer
       &:hover
         background-color: $accentColor-lighter
+        // .table__cell
+        //   background-color: $accentColor-lighter
       .table__cell
         font-size: 12px
 
   .table__cell
     padding-left: 12px
     padding-right: 12px
+    font-size: 12px    
     height: 40px
     line-height: 40px
     text-align: center
+
+.table-group
+  margin-bottom: 40px
+  padding-left: 30px
+  padding-right: 30px
+  &__head
+    margin-bottom: 20px
+
+.collapse-table
+  .table__body
+    overflow-x: scroll
+
+  .table__cell
+    display: flex
+    line-height: 12px
+    justify-content: center
+    align-items: center
+    flex-shrink: 0
 
 
 
@@ -361,11 +382,15 @@ label
         top: -22px
 
 
-@include desktop-screen()
-
-@include tablet-screen()  
-
-@include mobile-screen()
+@media(max-width: 1399px)
+  // 
+@media(max-width: 1023px) 
+  .collapse-table
+    .table__body
+      .table__row
+        &:hover
+          background-color: transparent
+@media(max-width: 767px)
   .card
     .title
       font-size: 18px
@@ -380,3 +405,17 @@ label
       &__item
         height: 30px
         line-height: 30px
+
+  .table-group
+    width: 360px
+    padding: 0
+    margin-left: -20px
+    margin-bottom: 30px
+    &__head
+      margin-left: 20px
+      &__name, &__period
+        font-size: 18px
+    &__body
+      overflow-x: scroll
+    @include fade-to-left-inner
+    @include fade-to-right-inner

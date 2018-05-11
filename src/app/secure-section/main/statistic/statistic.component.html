@@ -106,7 +106,7 @@
           </form>
         </section>
         
-        <section class="table flex-table" fxLayout="row" fxLayoutGap="2px">
+        <section class="table flex-table statistic-table" fxLayout="row" fxLayoutGap="2px">
           <div class="flex-table__left">
             <div class="table__head table__row">
               <div class="table__cell">{{'date' | translate }}</div>
@@ -244,15 +244,74 @@
       </div>
     </section>
 
-    <section class="conversion-list">
-      <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="conversion-list__head__name">Kонверсии</div>
-        <div class="conversion-list__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
+    <section class="conversion-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="table-group__head__name">Kонверсии</div>
+        <div class="table-group__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
       </div>
-      <div class="conversion-list__body">
+      <div class="table-group__body">
         <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>
       </div>
     </section>
+
+    <section class="pt-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="table-group__head__name">Pixel Tracking</div>
+        <div class="table-group__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
+      </div>
+
+      <section class="table-group__body">
+        <div class="collapse-table table" fxLayout="row">
+          <div class="table__left" fxLayout="column">
+            <div class="table__row table__head">
+              <div class="table__cell">{{ getPTTableHeads()[0] | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking; let i = index">
+              <div class="table__cell">{{el.date | date:'dd MMM y' }}</div>
+            </div>
+            <div class="table__row table__head">
+              <div class="table__cell">{{ 'Total' }}</div>
+            </div>
+          </div>
+
+          <div class="table__body">
+            <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{propName}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let prop of getPTTableHeads().slice(1); let j = index">
+                  {{el[prop] }}
+              </div>
+            </div>
+            <div class="table__row table__foot" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{ptData.ptPropCount[propName]}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="collapse-table table">
+          <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__cell" [ngClass]="{headcol: i==0}" *ngFor="let el of getPTTableHeads(); let i = index" >{{el }}</div>
+          </div>
+
+          <div class="table__body">
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell"  [ngClass]="{headcol: j==0}" *ngFor="let prop of getPTTableHeads(); let j = index">
+                <ng-container *ngIf="j == 0; else displayValue">
+                  {{el[prop] | date:'dd MMM y'}}
+                </ng-container>
+                <ng-template #displayValue>
+                  {{el[prop] }}
+                </ng-template>
+                
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </section>
+
+    </section>
+    
 
   </div>
 </article>

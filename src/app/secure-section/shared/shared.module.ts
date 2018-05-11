@@ -5,13 +5,15 @@ import { GraphComponent } from './graph/graph.component';
 import { ShortTimePipe } from './pipes/short-time.pipe';
 import { ConversionComponent } from './conversion/conversion.component';
 import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.component';
+import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking-list.component';
 
 @NgModule({
   declarations: [
     GraphComponent,
     ShortTimePipe,
     ConversionComponent,
-    TermPickerPanelComponent
+    TermPickerPanelComponent,
+    PixelTrackingListComponent
   ],
   imports: [
     CoreModule
@@ -20,7 +22,8 @@ import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.
     GraphComponent,
     ShortTimePipe,
     ConversionComponent,
-    TermPickerPanelComponent
+    TermPickerPanelComponent,
+    PixelTrackingListComponent,
   ]
 })
 
