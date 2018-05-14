@@ -290,7 +290,7 @@ export class MainService {
       {time: new Date(2018, 4, 30, 13), value: -4},
       {time: new Date(2018, 4, 30, 14), value: -3},
       {time: new Date(2018, 4, 30, 15), value: -2},
-      {time: new Date(2018, 4, 30, 16), value: -1},
+      {time: new Date(2018, 4, 31, 16), value: -1},
     ],
     pixelTracking: [
       {
