@@ -234,36 +234,41 @@ export class AppStorageService {
   private tariffsList = [
     {
       id: 1,
-      siteName: 'All sites',
+      name: 'All sites',
       iconSrc: '/assets/images/header/sites/site-all.svg',
+      iconLightSrc: '/assets/images/header/sites/site-all-light.svg',
     },
     {
       id: 2,
-      siteName: '99papers.com',
+      name: '99papers.com',
       iconSrc: '/assets/images/header/sites/site-99papers.svg',
       fisrtOrderPercent: 50,
-      rebillsPercent: 15
+      rebillsPercent: 15,
+      iconLightSrc: '/assets/images/header/sites/site-99papers-light.svg',
     },
     {
       id: 3,
-      siteName: 'EssayBox.org',
+      name: 'EssayBox.org',
       iconSrc: '/assets/images/header/sites/site-essaybox.svg',
       fisrtOrderPercent: 30,
-      rebillsPercent: 25
+      rebillsPercent: 25,
+      iconLightSrc: '/assets/images/header/sites/site-essaybox-light.svg',
     },
     {
       id: 4,
-      siteName: 'EssayFactory.uk',
+      name: 'EssayFactory.uk',
       iconSrc: '/assets/images/header/sites/site-essayfactory.svg',
       fisrtOrderPercent: 45,
-      rebillsPercent: 15
+      rebillsPercent: 15,
+      iconLightSrc: '/assets/images/header/sites/site-essayfactory-light.svg',
     },
     {
       id: 5,
-      siteName: 'BookwarmLab.com',
+      name: 'BookwarmLab.com',
       iconSrc: '/assets/images/header/sites/site-bookwarmlab.svg',
       fisrtOrderPercent: 40,
-      rebillsPercent: 10
+      rebillsPercent: 10,
+      iconLightSrc: '/assets/images/header/sites/site-bookwarmlab-light.svg',
     },
   ];
 
@@ -279,4 +284,5 @@ export class AppStorageService {
   getUserMenu() {return [...this.userMenu]; }
   getTimeList() {return [...this.timeList]; }
   getTariffsList() {return this.tariffsList.slice(1); }
+  getAllSites() {return this.tariffsList.slice(); }
 }

@@ -15,7 +15,7 @@ html, body
   -webkit-font-smoothing: antialiased
   overflow-x: hidden
 
-div, p, form, section, article, input, textarea
+div, p, form, section, article, input, textarea, label
   box-sizing: border-box
 
 eaf-root
@@ -176,6 +176,7 @@ a
   input
     width: 100%
     height: 40px
+    border-radius: 2px
   textarea
     width: 100%
     height: 104px
@@ -183,6 +184,29 @@ a
       border: 1px solid red
   &__actions
     position: relative
+    .form-clear
+      position: absolute
+      width: 10px
+      height: 10px
+      top: -20px
+      right: 10px
+      cursor: pointer
+      &:before
+        position: absolute
+        content: ''
+        width: 1px
+        height: 100%
+        border-right: 1px solid $mainColor
+        left: 4px
+        transform: rotate(45deg)
+      &:after
+        position: absolute
+        content: ''
+        width: 100%
+        height: 1px
+        border-top: 1px solid $mainColor
+        top: 5px
+        transform: rotate(45deg)
     .form-required
       position: absolute
       color: red
@@ -203,22 +227,56 @@ a
         position: absolute
 
 
+.term-selector
+  cursor: pointer
+  width: 124px
+  height: 39px
+  position: relative
+  .term-selector-wrapper
+    position: absolute
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background: url('/assets/images/header/dropdown-icon.svg') no-repeat calc(100% - 12px) center
+    &:hover
+      background-color: transparentize($accentColor, 0.85)
 
-@media (max-width: 1399px)
+  input
+    width: calc(100% - 30px)
+    height: 100%
+    margin: 0
+    padding-left: 15px
+    padding-right: 0
+    text-align: center
+    box-shadow: none
+    cursor: pointer
+
+.mat-datepicker-content .mat-calendar
+  background-color: $formColor
+.mat-calendar-body-selected
+  background-color: $accentColor
+  color: $mainColor
+
+.cdk-keyboard-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected), .cdk-program-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected), :not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected)
+  background-color: $accentColor-lighter
+
+@include desktop-screen()
   section
     // padding-left: 210px
     // padding-right: 210px
   .container
-    width: 920px
+    // width: 920px
+    width: 1020px
 
-@media (max-width: 1023px)
+@include tablet-screen()
   section
     // padding-left: 50px
     // padding-right: 50px
   .container
     width: 671px
 
-@media (max-width: 767px)
+@include mobile-screen()
   html, body
     font-size: 14px
   h1, h2
@@ -241,5 +299,11 @@ a
       .form-logo
         left: 30px
 
-
+  .term-selector
+    .term-selector-wrapper
+      background: url('/assets/images/header/dropdown-icon.svg') no-repeat calc(100% - 8px) center
+    input
+      width: calc(100% - 26px)
+      padding-left: 10px
+      font-size: 12px
   

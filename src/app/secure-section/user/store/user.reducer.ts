@@ -1,5 +1,5 @@
 import { User } from '../user.model';
-import { UserActions, FILL_PROFILE, CLEAR_PROFILE } from './user.actions';
+import { UserActions, FILL_PROFILE, CLEAR_PROFILE, ADD_FILTERS_LIST } from './user.actions';
 
 
 export interface State {
@@ -14,17 +14,7 @@ const initialState: State = {
     icqAccount: null,
     skypeAccount: null,
     balance: null,
-    totalIncomeAmount: null,
-    rebillsAmount: null,
-    sellsAmount: null,
-    uniqueVisitorsAmount: null,
-    sources: [],
-    sitesTraffic: [],
-    geoTargets: [],
-    deviceTypes: [],
-    news: [],
-    lastDayIncomes: [],
-    lastDayConversions: [],
+    statisticFiltersList: null,
   },
 };
 
@@ -45,19 +35,17 @@ export function userReducer(state: State = initialState, action: UserActions) {
           icqAccount: null,
           skypeAccount: null,
           balance: null,
-          totalIncomeAmount: null,
-          rebillsAmount: null,
-          sellsAmount: null,
-          uniqueVisitorsAmount: null,
-          sources: [],
-          sitesTraffic: [],
-          geoTargets: [],
-          deviceTypes: [],
-          news: [],
-          lastDayIncomes: [],
-          lastDayConversions: []
+          statisticFiltersList: null
         }
       };
+    case ADD_FILTERS_LIST:
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        statisticFiltersList: action.payload
+      }
+    };
     default:
       return state;
   }
@@ -71,4 +59,6 @@ export const getShortUserState = (state: State) => {
     balance: state.user.balance
   };
 };
+
+export const getUserStatisticFilters = (state: State) => state.user.statisticFiltersList;
 

@@ -1,4 +1,5 @@
 @import 'variables'
+@import mixins
   
 ul
   list-style: none
@@ -42,6 +43,7 @@ ul
 button
   background-color: $lightColor
   border: none
+  border-radius: 2px
   box-sizing: border-box
   min-width: 118px
   height: 40px
@@ -82,7 +84,16 @@ button
   &.accent
     color: $mainColor
     background-color: $accentColor
+    &.disabled, &[disabled]
+      cursor: not-allowed    
+      color: $inactiveColor
+      background-color: $formColor
 
+  &.btn-sm
+    width: 100px
+    min-width: 100px
+    height: 30px
+    line-height: 30px
   &.btn-md
     width: 150px
   &.btn-lg
@@ -100,6 +111,7 @@ button
 .card
   width: 326px
   min-height: 226px
+  padding: 30px
   color: $accentColor
   background-color: $mainColor
   display: flex
@@ -134,6 +146,14 @@ button
   background-repeat: no-repeat
   background-position-x: calc(100% - 15px)
   background-position-y: center
+  border-radius: 2px
+  .dropdown-item-icon
+    width: auto
+    height: 100%
+    display: flex
+    justify-content: center
+    margin-right: 8px
+
   &:hover
     background-color: $accentColor-lighter !important
 
@@ -147,6 +167,8 @@ button
   .dropdown-list
     width: 100%
     display: none
+    border-radius: 2px
+    overflow: hidden
     position: absolute
     left: 0
     top: 0
@@ -164,6 +186,91 @@ button
     .dropdown-list
       display: block
 
+.select-menu
+  &:not(:last-child)
+    border-bottom: 1px solid $lightColor
+  & > input:checked
+    & ~ .select-menu__title
+      .caret
+        transform: rotate(180deg)
+    & ~ .select-menu__list
+      display: block
+  &__title
+    position: relative
+    display: inline-block
+    width: 100%
+    line-height: 40px
+    padding: 0 20px
+    font-size: 14px
+    cursor: pointer
+    .caret
+      position: absolute
+      top: 0
+      right: 0
+      width: 40px
+      height: 100%
+      content: ''
+      background: url('/assets/images/header/dropdown-icon.svg') no-repeat center
+
+    &:hover
+      background-color: $accentColor-lighter
+  &__list
+    display: none
+    margin-top: 10px
+    margin-bottom: 10px
+  &__item
+    font-size: 12px
+    padding-left: 20px
+    cursor: pointer
+
+    &:hover
+      background-color: $accentColor-lighter
+    label
+      display: inline-block
+      width: 100%
+      height: 20px
+      line-height: 20px
+      padding-left: 23px
+      position: relative
+      cursor: pointer
+
+    
+
+
+
+
+// checkbox
+input:checked + label
+  .check
+    background-color: $mainColor
+    &:before
+      content: ''
+      position: absolute
+      width: 6px
+      height: 2px
+      top: 4px
+      left: 2px
+      background-color: $lightColor
+    &:after
+      content: ''
+      position: absolute
+      width: 2px
+      height: 6px
+      top: 2px
+      left: 4px
+      background-color: $lightColor
+
+label
+  position: relative
+  .check
+    position: absolute
+    display: block
+    width: 10px
+    height: 10px
+    left: 0
+    top: 4px
+    border: 1px solid $mainColor
+
 .overlay
   position: absolute
   background: rgba(0,0,0, .5)
@@ -180,23 +287,45 @@ button
   background: url(/assets/images/main/graph/time-icon.svg) no-repeat left center
 
 .table
-  &__head
+  .table__head, .table__foot
     .table__cell
       background-color: $formColor
-      font-size: 12px
-  &__body
+      cursor: default
+  .table__body
     .table__row
+      cursor: pointer
       &:hover
         background-color: $accentColor-lighter
+        // .table__cell
+        //   background-color: $accentColor-lighter
       .table__cell
-        font-size: 14px
+        font-size: 12px
 
   .table__cell
     padding-left: 12px
     padding-right: 12px
+    font-size: 12px    
     height: 40px
     line-height: 40px
     text-align: center
+
+.table-group
+  margin-bottom: 40px
+  padding-left: 30px
+  padding-right: 30px
+  &__head
+    margin-bottom: 20px
+
+.collapse-table
+  .table__body
+    overflow-x: scroll
+
+  .table__cell
+    display: flex
+    line-height: 12px
+    justify-content: center
+    align-items: center
+    flex-shrink: 0
 
 
 
@@ -253,11 +382,18 @@ button
         top: -22px
 
 
-@include desktop-screen()
-
-@include tablet-screen()  
-
-@include mobile-screen()
+@media(max-width: 1399px)
+  // 
+@media(max-width: 1023px) 
+  .collapse-table
+    .table__body
+      .table__row
+        &:hover
+          background-color: transparent
+@media(max-width: 767px)
+  .card
+    .title
+      font-size: 18px
   .dropdown-menu
     height: 30px
     font-size: 10px
@@ -269,3 +405,17 @@ button
       &__item
         height: 30px
         line-height: 30px
+
+  .table-group
+    width: 360px
+    padding: 0
+    margin-left: -20px
+    margin-bottom: 30px
+    &__head
+      margin-left: 20px
+      &__name, &__period
+        font-size: 18px
+    &__body
+      overflow-x: scroll
+    @include fade-to-left-inner
+    @include fade-to-right-inner

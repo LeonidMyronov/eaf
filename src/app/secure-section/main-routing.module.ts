@@ -6,11 +6,13 @@ import { TodayComponent } from './main/today/today.component';
 import { StatisticComponent } from './main/statistic/statistic.component';
 
 const routes: Routes = [
-  {path: '', component: MainComponent, children: [
-    {path: 'today', component: TodayComponent},
-    {path: 'statistic', component: StatisticComponent},
-    {path: '**', redirectTo: 'today'},
-  ]},
+  {
+    path: '', component: MainComponent, children: [
+      { path: 'today', component: TodayComponent },
+      { path: 'statistic', component: StatisticComponent },
+      { path: '**', redirectTo: 'statistic' },
+    ]
+  },
 ];
 
 @NgModule({

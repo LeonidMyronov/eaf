@@ -1,0 +1,461 @@
+@import variables
+@import mixins
+
+// ::-webkit-scrollbar
+//   -webkit-appearance: scrollbargripper-horizontal
+//   // width: 7px
+//   height: 7px
+
+// ::-webkit-scrollbar-thumb 
+//   border-radius: 4px
+//   background-color: rgba(0, 0, 0, .2)
+//   -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .3)
+
+.statistic-group
+  margin-top: 10px
+  margin-bottom: 40px
+  input[type="checkbox"], input[type="radio"]
+    display: none
+.statistic-table-group
+  padding-left: 10px
+  padding-right: 10px
+  &__head
+    margin-bottom: 10px
+    font-size: 14px
+    height: 40px
+    &__left
+      padding: 0 20px
+      height: 100%
+      border-radius: 2px
+      img
+        margin-right: 10px
+    &__right
+      position: relative
+      height: 100%
+      & > input
+        &:checked
+          & ~ label
+            background-color: $formColor
+          & ~ .table-filter
+            display: block
+
+      & > label
+        padding: 0 20px
+        height: 100%
+        cursor: pointer
+        &:hover
+          background-color: $accentColor-lighter !important
+      img
+        margin-left: 25px
+        cursor: pointer
+    .table-filter
+      display: none
+      position: absolute
+      left: 0
+      top: 42px
+      width: 218px
+      padding: 10px 0 25px
+      background-color: $formColor
+      z-index: 10
+      &__item
+        font-size: 12px
+        cursor: pointer
+        padding-left: 25px
+        padding-right: 25px
+        @include hover($accentColor-lighter)
+
+        label
+          display: inline-block
+          width: 100%
+          height: 20px
+          line-height: 20px
+          padding-left: 20px
+          position: relative
+          cursor: pointer
+ 
+
+
+.statistic-filters
+  width: 240px
+  height: 407px
+  margin-right: 20px
+  & > input:checked + label
+    background-color: $accentColor
+    color: $mainColor
+    &[for="all-filters"]
+      background-image: url(/assets/images/main/filter-icon.svg)
+  #all-filters:checked ~ .statistic-filters__body .all-filters-content
+    display: block
+  #selected-filters:checked ~ .statistic-filters__body .selected-filters-content
+    display: block
+  & > label
+    display: inline-block
+    width: 120px
+    height: 40px
+    font-size: 12px
+    line-height: 40px
+    text-align: center
+    background-color: $mainColor
+    color: $lightColor
+    cursor: pointer
+    .selected-filters-value
+      margin-left: 5px
+    
+    &[for="all-filters"]
+      background-image: url(/assets/images/main/filter-icon-active.svg)
+      background-repeat: no-repeat
+      background-position: 40px center
+      span
+        margin-left: 20px
+    &[for="selected-filters"]
+
+  &__body
+    width: 100%
+    max-height: 367px
+    height: 367px
+    background-color: $formColor
+    overflow-y: scroll
+    .all-filters-content
+      // display: none
+      width: 100%
+      // height: 100%
+      .group-title
+        height: 40px
+        line-height: 40px
+        font-size: 12px
+        padding-left: 20px
+      .select-menu.selected-filters
+        border-bottom: none
+        margin-bottom: 10px
+        .select-menu__title
+          height: 30px
+          line-height: 30px
+          cursor: default
+          &:hover
+            background-color: transparent
+        .select-menu__list
+          display: block
+          margin: 0
+          .select-menu__item
+            input:checked + label
+              .check
+                &:before, &:after
+                  transform: rotate(45deg)
+
+    .selected-filters-content
+      width: 100%
+      font-size: 12px
+      // height: 100%
+      .filters-actions
+        width: 100%
+        height: auto
+        padding: 20px
+        border-top: 1px solid $lightColor
+        img
+          margin-right: 20px
+        &.reset-filters-list, &.save-filters-list
+          height: 62px
+          @include hover($accentColor-lighter)
+
+        &.user-filters-list
+          padding-left: 0
+          padding-right: 0
+          .user-filters-list__title
+            padding-left: 20px
+            margin-bottom: 10px
+          .user-filter
+            width: 100%
+            height: 20px
+            line-height: 20px
+            padding-left: 20px
+            cursor: pointer
+            &:hover
+              background-color: $accentColor-lighter
+              .user-list__apply
+                border-color: $accentColor 
+                background-color: $accentColor
+                &:before
+                  position: absolute
+                  width: 5px
+                  height: 2px
+                  content: ''
+                  left: 1px
+                  top: 0
+                  border: 2px solid $mainColor
+                  border-top-color: transparent
+                  border-right-color: transparent
+                  transform: rotate(-55deg)
+            .user-list__apply
+              position: relative
+              margin-right: 10px
+              width: 10px
+              height: 10px
+              border: 1px solid $mainColor
+
+    .save-filters-form
+      font: 12px
+      .form-field
+        margin-bottom: 5px
+        input
+          height: 30px
+          font-size: 12px
+      button
+        align-self: flex-end
+        font-size: 12px      
+        padding: 0
+
+
+
+
+
+.flex-table
+  align-self: flex-start
+  max-height: 388px
+  overflow-y: scroll
+  &__left
+    @include fade-to-right-outer    
+    .table__cell
+      width: 120px !important
+      background-color: $formColor
+      text-decoration: underline
+      color: $primaryColor
+      cursor: pointer
+    .table__head
+      .table__cell
+        text-decoration: none
+        color: $mainColor
+        cursor: default
+
+  &__body
+    max-width: 868px
+    // overflow: -moz-scrollbars-horizontal
+    overflow-x: scroll
+    .table__row
+      cursor: default
+      &:hover
+        background-color: transparent  
+
+  &__right
+    @include fade-to-left-outer
+    .table__cell
+      background-color: $accentColor
+  .table__cell
+    font-size: 12px
+    min-width: 85px
+    width: 85px
+    line-height: 12px
+    display: flex
+    align-items: center
+    justify-content: center
+
+.card-group
+  display: grid
+  grid-template-columns: repeat(4, 1fr)
+  grid-gap: 20px
+  margin-bottom: 60px
+  .card
+    min-height: 472px
+    flex-flow: column nowrap
+    justify-content: flex-start
+    align-items: flex-start
+    background-repeat: no-repeat
+    background-position: center 75px
+    @include fade-to-top-inner($mainColor)
+    &:after
+      height: 40px
+      bottom: 20px
+    .title
+      margin-bottom: 43px
+    .graph-section
+      width: 100%
+      height: 100px
+      border-bottom: 1px solid $lightColor
+      margin-bottom: 22px
+      &__item
+        width: 40px
+        align-self: flex-end
+        border: 1px solid $lightColor
+        color: $lightColor
+        border-bottom: none
+        position: relative
+        &__value
+          position: absolute
+          color: inherit
+          font-size: 12px
+          top: -23px
+          left: 50%
+          transform: translateX(-50%)
+        &:first-child
+          color: $accentColor
+          background-color: $accentColor
+          border-color: $accentColor
+          .graph-section__item__value
+        &:nth-child(2)
+          color: $accentColor
+          border-color: $accentColor-midlight
+          background-color: $accentColor-midlight
+          .graph-section__item__value
+        &:nth-child(3)
+          background-color: $lightColor
+          .graph-section__item__value
+      
+    .descr-list
+      width: 100%
+      max-height: 222px
+      overflow-y: scroll
+      &__item
+        font-size: 14px
+        line-height: 26px
+        color: $lightColor
+        margin-right: 15px     
+        &__name
+          font-size: inherit
+          line-height: inherit
+          color: inherit
+          .badge
+            display: inline-block
+            width: 15px
+            height: 15px
+            border: 1px solid $lightColor
+            border-radius: 50%
+            margin-right: 10px
+        &__value
+          font-size: inherit
+          line-height: inherit
+          color: inherit
+        &:first-child
+          color: $accentColor
+          .descr-list__item__name
+            .badge
+              border-color: $accentColor
+              background-color: $accentColor
+        &:nth-child(2)
+          color: $accentColor-midlight
+          .descr-list__item__name
+            .badge
+              border-color: $accentColor-midlight
+              background-color: $accentColor-midlight  
+        &:nth-child(3)
+          .descr-list__item__name
+            .badge
+              background-color: $lightColor 
+    &-country
+      background-image: url(/assets/images/main/stat-cards/bg-card-co.svg)
+    &-browser
+      background-image: url(/assets/images/main/stat-cards/bg-card-br.svg)
+    &-os
+      background-image: url(/assets/images/main/stat-cards/bg-card-os.svg)
+    &-device-type
+      background-image: url(/assets/images/main/stat-cards/bg-card-dt.svg)
+.graph
+  margin-bottom: 40px
+  padding-left: 30px
+  padding-right: 30px
+.table-group
+  margin-bottom: 40px
+  padding-left: 30px
+  padding-right: 30px
+  &__head
+    margin-bottom: 20px
+
+.pt-list
+  .table__left
+    margin-right: 2px
+  .table__body
+    .table__row:not(.table__head)
+      .table__cell
+        color: $primaryColor
+        text-decoration: underline
+
+  .table__cell
+    width: 160px
+
+
+
+
+@media(max-width: 1399px)
+  .flex-table
+    &__body
+      max-width: 530px
+  .card-group
+    grid-template-columns: repeat(3, 1fr)
+    margin-bottom: 40px
+  .graph
+    width: 672px
+    height: 442px
+    margin-top: -482px
+    margin-left: 346px
+  .pt-list
+    .table__cell
+      width: 118px
+
+@media(max-width: 1023px)
+  .statistic-table-group
+    position: relative
+    padding-left: 0
+    padding-right: 0
+    &__head
+      &__left
+        margin-right: 5px
+        background-color: $formColor
+        @include hover($accentColor-lighter)
+  
+  .statistic-filters
+    position: absolute
+    top: 42px
+    margin-right: 0
+    z-index: 10
+  .flex-table
+    &__body
+      max-width: 460px
+
+  .card-group
+    grid-template-columns: repeat(2, 1fr)
+    margin-bottom: 50px
+  .graph
+    height: auto
+    margin: 0
+    margin-bottom: 50px
+
+  .pt-list
+    .table-group__body
+      @include fade-to-right-inner
+    .table__left
+      @include fade-to-right-outer
+
+    
+@media(max-width: 767px)
+
+  .statistic-group
+    margin-top: 10px
+    margin-bottom: 30px
+  .statistic-table-group__head__right > label
+    padding: 0 10px
+  .statistic-table-group__head
+    .table-filter
+      width: 198px
+      padding-bottom: 15px
+      &__item
+        padding-left: 15px
+        padding-right: 15px
+  .flex-table
+    margin-right: -15px
+    &__body
+      max-width: 217px
+      flex-shrink: 0
+
+  .card-group
+    grid-template-columns: 1fr
+    grid-gap: 10px
+    margin-bottom: 30px
+  .graph
+    width: 360px
+    padding: 0
+    margin-left: -20px
+    margin-bottom: 30px
+    &__head
+      margin-left: 20px      
+      &__name, &__period
+        font-size: 18px
+    @include fade-to-left-inner
+    @include fade-to-right-inner

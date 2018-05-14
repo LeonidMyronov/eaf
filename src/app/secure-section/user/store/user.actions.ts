@@ -1,8 +1,9 @@
 import { Action } from '@ngrx/store';
-import { User } from '../user.model';
+import { User, StatisticPanelFilterList } from '../user.model';
 
 export const FILL_PROFILE = '[USER] FILL_PROFILE';
 export const CLEAR_PROFILE = '[USER] CLEAR_PROFILE';
+export const ADD_FILTERS_LIST = '[USER] ADD_FILTERS_LIST';
 
 export class FillProfile implements Action {
   readonly type = FILL_PROFILE;
@@ -13,4 +14,9 @@ export class ClearProfile implements Action {
   readonly type = CLEAR_PROFILE;
 }
 
-export type UserActions = FillProfile | ClearProfile;
+export class AddFiltersList implements Action {
+  readonly type = ADD_FILTERS_LIST;
+  constructor(public payload: StatisticPanelFilterList) {}
+}
+
+export type UserActions = FillProfile | ClearProfile | AddFiltersList;

@@ -1,3 +1,317 @@
-<p>
-  statistic works!
-</p>
+<article class="statistic-page">
+  <div class="container">
+
+    <eaf-term-picker-panel [dropdownList]="sitesList" (change)="onChangeStatisticQueryParams($event)"></eaf-term-picker-panel>
+
+    <article class="statistic-group">
+      <div class="statistic-table-group" fxLayout="row wrap">
+
+        <div class="statistic-table-group__head" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="statistic-table-group__head__left" fxLayoutAlign="center center" (click)="onChangeStatisticFiltersVisibility()">
+            <img fxHide.gt-sm src="/assets/images/main/filter-icon.svg" alt="">
+            <span>Фильтры</span>
+          </div>
+          <div class="statistic-table-group__head__right" fxLayoutAlign="center center">
+            <input type="checkbox" id="customize-table">
+            <label for="customize-table" fxLayoutAlign="center center">
+              <span>Настройка таблицы</span>
+              <img src="/assets/images/main/customize-icon.svg" alt="">
+            </label>
+            <div class="table-filter">
+              <div class="table-filter__item" *ngFor="let field of statisticTableHeads">
+                <input type="checkbox" id="{{field}}" checked (click)="onChangeTableFilter($event, field)">
+                <label for="{{field}}">
+                  <span class="check"></span>
+                  <span>{{ field | translate}}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <section class="statistic-filters" *ngIf="isStatisticFiltersVisible">
+          <input type="radio" id="all-filters" checked name="filter-switcher" value="all-filters" #filterSwitcher><label for="all-filters">
+            <span>{{'все' | uppercase}}</span>
+          </label><input type="radio" id="selected-filters" name="filter-switcher" value="selected-filters"><label for="selected-filters">
+            <span>{{'выбранные' | uppercase}}<span class="selected-filters-value" *ngIf="getSelectedFormFields()">({{getSelectedFormFields()}})</span></span>
+          </label>
+          <form class="statistic-filters__body" [formGroup]="allFiltersForm">
+            <div class="all-filters-content">
+              <div class="group-title" *ngIf="!filterSwitcher.checked && getSelectedFormFields()">{{ 'Вы выбрали:' }}</div>
+              <div class="group-title" *ngIf="!filterSwitcher.checked && !getSelectedFormFields()">{{ 'Нет выбранных фильтров' }}</div>
+              <ng-container *ngFor="let menu of allFilters">
+                <div class="select-menu" [formGroupName]="menu.name" [ngClass]="{'selected-filters': !filterSwitcher.checked}">
+                  <input type="checkbox" id="all-menu-title-{{menu.name}}">
+                  <label for="all-menu-title-{{menu.name}}" class="select-menu__title" *ngIf="filterSwitcher.checked">
+                    <span class="caret"></span>
+                    <span>{{ 'statisticFilterPanel.'+menu.name | translate }}</span>
+                  </label>
+                  <label class="select-menu__title"
+                    *ngIf="!filterSwitcher.checked && getSelectedFormFieldsInMenu(menu.name)">
+                    <span>{{ 'statisticFilterPanel.'+menu.name | translate }}</span>
+                  </label>
+                  <div class="select-menu__list">
+                    <ng-container *ngFor="let el of menu.filterList">
+                      <ng-container [ngSwitch]="filterSwitcher.checked">
+                        <div class="select-menu__item">
+                          <input type="checkbox" id="all-{{menu.name}}-{{el.name}}" [checked]="el.enabled" [formControlName]="el.name">
+                          <label for="all-{{menu.name}}-{{el.name}}"
+                            *ngIf="filterSwitcher.checked || (!filterSwitcher.checked && allFiltersForm.get(menu.name).get(el.name).value)">
+                          <span class="check"></span>
+                          <span>{{el.name}}</span>
+                        </label>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <div class="selected-filters-content"  *ngIf="!filterSwitcher.checked">
+              <div class="filters-actions save-filters-list"  *ngIf="getSelectedFormFields() && !filtersActions.save"
+                fxLayout="row" fxLayoutAlign="start center" (click)="filtersActions.save = true">
+                <img src="/assets/images/main/filters-action-icon.svg" alt="">
+                <span class="filters-actions__title">{{'Сохранить список фильтров в моем профиле'}}</span>
+              </div>
+
+              <div class="filters-actions" *ngIf="getSelectedFormFields() && filtersActions.save">
+                <form [formGroup]="saveFiltersListForm" (ngSubmit)="onSaveFiltersListSubmit()"
+                  class="save-filters-form" fxLayout="column" fxLayoutAlign="flex-start stretch">
+                  <div class="form-field">
+                    <input type="text" placeholder="{{ 'Введите название' }}" formControlName="name">
+                    <div class="form-field__actions">
+                      <span class="form-clear" (click)="saveFiltersListForm.reset()"></span>
+                    </div>
+                  </div>
+                  <button type="submit" class="accent btn-sm" [disabled]="saveFiltersListForm.invalid">{{ 'Сохранить' }}</button>
+                </form>  
+              </div>
+              
+              <div class="filters-actions reset-filters-list" *ngIf="getSelectedFormFields()"
+                fxLayout="row" fxLayoutAlign="start center" (click)="onResetSelectedFilter()">
+                <img src="/assets/images/main/filters-reset-icon.svg" alt="">
+                <span class="filters-actions__title">{{'Сбросить все фильтры'}}</span>
+              </div>
+
+              <div class="filters-actions user-filters-list" *ngIf="userStatisticPanelFilters">
+                <div class="user-filters-list__title">{{'Мои списки фильтров:'}}</div>
+                <div class="user-filter" fxLayout="row" fxLayoutAlign="start center"
+                  (click)="updateAllFilters(userStatisticPanelFilters.statisticFilters)">
+                  <span class="user-list__apply"></span>
+                  <span class="user-list__name">{{userStatisticPanelFilters.name}}</span>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </section>
+        
+        <section class="table flex-table statistic-table" fxLayout="row" fxLayoutGap="2px">
+          <div class="flex-table__left">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'date' | translate }}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+              <div class="table__cell">{{el.date | date:'dd MMM y'}}</div>
+            </div>
+          </div>
+          <div class="flex-table__body table__body">
+            <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+              <div *ngFor="let el of getStatisticTableHeads()" class="table__cell">{{el | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()">{{el[prop]}}</div>
+            </div>
+          </div>
+          <div class="flex-table__right">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'totalIncome' | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+              <div class="table__cell">{{el.totalIncome}}</div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </article>
+
+    <section class="card-group">
+      <div class="card card-device-type">
+        <div class="title">
+          {{ 'device type' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElDt
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).deviceTypes) * 100)"
+            *ngFor="let el of (statisticState$ | async).deviceTypes.slice(0, 4)"
+            [ngStyle]="{'height': graphElDt.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElDt.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).deviceTypes"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+             
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-os">
+        <div class="title">
+          {{ 'os' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElOs
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).os) * 100)"
+            *ngFor="let el of (statisticState$ | async).os.slice(0, 4)"
+            [ngStyle]="{'height': graphElOs.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElOs.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).os"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-browser">
+        <div class="title">
+          {{ 'browser' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElBr
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).browsers) * 100)"
+            *ngFor="let el of (statisticState$ | async).browsers.slice(0, 4)"
+            [ngStyle]="{'height': graphElBr.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElBr.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).browsers"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-country">
+        <div class="title">
+          {{ 'country' | translate }}
+        </div>
+        <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
+          <div class="graph-section__item"
+            #graphElCo
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).countries) * 100)"
+            *ngFor="let el of (statisticState$ | async).countries.slice(0, 4)"
+            [ngStyle]="{'height': graphElCo.dataset.calcvalue  +'%'}">
+            <span class="graph-section__item__value">{{graphElCo.dataset.calcvalue | number:'0.0-0'}}%</span>
+          </div>
+        </div>
+        <div class="descr-list">
+          <div class="descr-list__item"
+            *ngFor="let el of (statisticState$ | async).countries"
+            fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
+            <div class="descr-list__item__value">{{el.amount}}</div>
+              
+          </div>
+        </div>
+      </div>      
+    </section>
+
+    <section class="graph" fxLayout="column">
+      <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="graph__head__name">График прибыли</div>
+        <div class="graph__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
+      </div>
+      <div class="graph__body">
+          <eaf-graph [data]="(statisticState$ | async).incomes"></eaf-graph>
+      </div>
+    </section>
+
+    <section class="conversion-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="table-group__head__name">Kонверсии</div>
+        <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
+      </div>
+      <div class="table-group__body">
+        <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>
+      </div>
+    </section>
+
+    <section class="pt-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="table-group__head__name">Pixel Tracking</div>
+        <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
+      </div>
+
+      <section class="table-group__body">
+        <div class="collapse-table table" fxLayout="row">
+          <div class="table__left" fxLayout="column">
+            <div class="table__row table__head">
+              <div class="table__cell">{{ getPTTableHeads()[0] | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking; let i = index">
+              <div class="table__cell">{{el.date | date:'dd MMM y' }}</div>
+            </div>
+            <div class="table__row table__head">
+              <div class="table__cell">{{ 'Total' }}</div>
+            </div>
+          </div>
+
+          <div class="table__body">
+            <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{propName}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let prop of getPTTableHeads().slice(1); let j = index">
+                  {{el[prop] }}
+              </div>
+            </div>
+            <div class="table__row table__foot" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{ptData.ptPropCount[propName]}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="collapse-table table">
+          <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__cell" [ngClass]="{headcol: i==0}" *ngFor="let el of getPTTableHeads(); let i = index" >{{el }}</div>
+          </div>
+
+          <div class="table__body">
+            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell"  [ngClass]="{headcol: j==0}" *ngFor="let prop of getPTTableHeads(); let j = index">
+                <ng-container *ngIf="j == 0; else displayValue">
+                  {{el[prop] | date:'dd MMM y'}}
+                </ng-container>
+                <ng-template #displayValue>
+                  {{el[prop] }}
+                </ng-template>
+                
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+      </section>
+
+    </section>
+    
+
+  </div>
+</article>

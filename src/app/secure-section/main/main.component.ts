@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../../core/app-storage.service';
+import { MainService } from '../services/main.service';
 
 import * as fromRoot from '../../app.reducers';
 
@@ -17,11 +18,13 @@ export class MainComponent implements OnInit {
 
   constructor(
     private appStorage: AppStorageService,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private mainService: MainService
   ) { }
 
   ngOnInit() {
-    this.isAuth$ = this.store.select(fromRoot.getIsAuth);
+    this.mainService.fetchConsolidatedData();
+    // this.isAuth$ = this.store.select(fromRoot.getIsAuth);
   }
 
 }
