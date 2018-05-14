@@ -29,4 +29,5 @@ export const getActiveMediaQuery = createSelector(getUIState, fromUI.getActiveMe
 
 export const getUserState = createFeatureSelector<fromUser.State>('user');
 export const getShortUserState = createSelector(getUserState, fromUser.getShortUserState);
+export const getUserBalanceState = createSelector(getUserState, fromUser.getUserBalanceState);
 export const getUserStatisticFilters = createSelector(getUserState, fromUser.getUserStatisticFilters);
