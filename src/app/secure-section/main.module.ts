@@ -11,12 +11,14 @@ import { TodayComponent } from './main/today/today.component';
 import { StatisticComponent } from './main/statistic/statistic.component';
 
 import { mainReducer } from './store/main.reducer';
+import { BalanceComponent } from './main/balance/balance.component';
 
 @NgModule({
   declarations: [
     MainComponent,
     TodayComponent,
     StatisticComponent,
+    BalanceComponent,
   ],
   imports: [
     CoreModule,
