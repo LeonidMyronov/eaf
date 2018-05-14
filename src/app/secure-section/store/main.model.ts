@@ -74,3 +74,8 @@ export interface StatisticPanelFilter {
   name: string;
   filterList: StatisticFilter[];
 }
+
+export interface PaymentMethod {
+  id: number;
+  name: string;
+}

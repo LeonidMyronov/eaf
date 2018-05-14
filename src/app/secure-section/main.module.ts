@@ -5,6 +5,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { SharedModule } from './shared/shared.module';
 
 import { MainService } from './services/main.service';
+import { MainStorageService } from './services/main-storage.service';
 
 import { MainComponent } from './main/main.component';
 import { TodayComponent } from './main/today/today.component';
@@ -27,7 +28,7 @@ import { BalanceComponent } from './main/balance/balance.component';
     StoreModule.forFeature('main', mainReducer)
   ],
   exports: [],
-  providers: [MainService]
+  providers: [MainService, MainStorageService]
 })
 
 export class MainModule {
