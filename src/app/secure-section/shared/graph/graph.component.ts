@@ -1,14 +1,18 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, HostListener, OnChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, AfterViewChecked, ViewChild, HostListener, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
+
+import { HelperService } from '../../../core/helper.service';
+
+import { Income } from '../../store/main.model';
 
 @Component({
   selector: 'eaf-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.sass']
 })
-export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
-  @Input() data: any[];
+export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
+  @Input() data: Income[];
   @ViewChild('graph') graph;
   windowResizeWidth$: Subscription;
   public xAgendaArr: any[] = [];
@@ -22,7 +26,10 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
   private svgns = 'http://www.w3.org/2000/svg';
   private svg;
 
-  constructor() { }
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    public helperService: HelperService
+  ) { }
 
   @HostListener('window:resize', []) onWindowResize() {
     this.calcSvgWidth();
@@ -46,12 +53,14 @@ export class GraphComponent implements OnInit, AfterViewInit, OnChanges {
       this.data = this.data.slice();
       this.maxDataArrValue = this.getMaxDataArrValue();
       this.maxYscaleValue = this.getMaxYscaleValue();
-      setTimeout(_ => this.graphInit(), 0); // setTimeout needed to avoid ExpressionChangedAfterItHasBeenCheckedError
+      this.graphInit();
+      // setTimeout(_ => this.graphInit(), 0); // setTimeout needed to avoid ExpressionChangedAfterItHasBeenCheckedError
     }
 
   }
 
-  ngAfterViewInit() {
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
   }
 
   graphInit() {
