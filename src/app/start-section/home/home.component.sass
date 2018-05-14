@@ -45,7 +45,10 @@ section
             max-width: 140px
   &.home-2
     padding-top: 90px 
-    padding-bottom: 90px 
+    padding-bottom: 90px
+    .container
+      padding-left: 50px
+      padding-right: 50px
     height: 700px
     box-sizing: border-box    
     background-image: url('/assets/images/home/home-2-world-map.svg')
@@ -78,6 +81,9 @@ section
       .content-right
         width: 450px
   &.home-3
+    .container
+      padding-left: 50px
+      padding-right: 50px
     .content
       padding: 100px 0
       &:first-child
@@ -119,6 +125,9 @@ section
   &.home-4
     padding-top: 100px
     padding-bottom: 100px
+    .container
+      padding-left: 50px
+      padding-right: 50px    
     .title
       margin-bottom: 30px
       h1
@@ -136,7 +145,7 @@ section
       margin-right: 110px
   &.home-5
     padding-top: 100px
-    padding-bottom: 100px
+    padding-bottom: 100px   
     h1
       margin-bottom: 60px
     .cards-group
@@ -150,13 +159,11 @@ section
       background-repeat: no-repeat
       background-position: center
       justify-content: space-between
-      // margin: 0 10px 20px
-      // margin-left: 20px
-      // margin-bottom: 20px
+
       .descr
         max-width: 188px
         text-align: center
-        margin-top: 120px
+        margin-top: 90px
     .intro
       margin-bottom: 40px
       text-align: center
@@ -179,11 +186,6 @@ section
       h3
         max-width: 260px
 
-// @media (min-width: 1400px)
-//   section
-//     &.home-5
-//       padding-left: 220px
-//       padding-right: 220px
 
 @media (max-width: 1399px)
   section
@@ -194,8 +196,8 @@ section
       h2
         margin-right: 0
     &.home-5
-      .container
-        width: 1020px
+      // .container
+      //   width: 1020px
       .card
         width: 326px
         height: 226px
@@ -206,12 +208,21 @@ section
       padding: 50px 0
       .banner
         background-size: auto
+      .cards-group
+        display: grid !important
+        grid-template-columns: repeat(2, auto)
+        grid-gap: 20px
       .card
         width: 326px
+        margin: 0
     &.home-2
       padding-top: 50px
       padding-bottom: 50px
+      .container
+        padding: 0
     &.home-3
+      .container
+        padding: 0      
       .content
         padding-top: 50px
         padding-bottom: 50px
@@ -220,6 +231,8 @@ section
     &.home-4
       padding-top: 70px
       padding-bottom: 70px
+      .container
+        padding: 0      
       .intro-group
         grid-template-columns: repeat(3, 1fr)
         grid-gap: 40px 10px
@@ -229,8 +242,8 @@ section
         margin-top: -45px
     &.home-5
       padding: 50px 0
-      .container
-        width: 671px
+      // .container
+      //   width: 671px
       .cards-group
         grid-template-columns: repeat(2, 1fr)
         margin-bottom: 30px
@@ -254,6 +267,9 @@ section
         margin-bottom: 40px
       h3
         margin-bottom: 30px
+      .cards-group
+        grid-template-columns: 1fr
+        grid-gap: 10px
       .card
         .descr
           font-size: 18px
@@ -325,12 +341,13 @@ section
 
     &.home-5
       padding: 30px 0
-      .container
-        width: 326px
+      // .container
+      //   width: 326px
       h1
         margin-bottom: 40px
       .cards-group
         grid-template-columns: 1fr
+        grid-gap: 10px
         margin-bottom: 20px
         .card:last-child
           transform: none

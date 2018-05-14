@@ -1,5 +1,6 @@
 @import variables
 @import mixins
+
 .today-page
   padding-bottom: 40px
 .container
@@ -156,9 +157,9 @@
 
 // RESPONSIVE SECTION
 @include desktop-screen()
-  .container
-    width: 1020px
-    margin-left: -50px
+  // .container
+  //   width: 1020px
+  //   margin-left: -50px
   .card-group
     // margin-left: -50px
     grid-template-columns: repeat(3, 1fr)
@@ -174,8 +175,8 @@
     grid-row: 3
 
 @include tablet-screen()
-  .container
-    width: 671px
+  // .container
+  //   width: 671px
     margin-left: 0
   .card-group
     // margin-left: 0
@@ -184,62 +185,31 @@
     width: 670px
   .conversion-list
     width: 670px
-@include mobile-screen()
-  .container
-    width: 326px
+
+// @include mobile-screen()
+@media(max-width: 767px)
+  // .container
+  //   width: 326px
   .card-group
     grid-template-columns: repeat(1, 1fr)
+    grid-gap: 10px
   .graph
     width: 360px
     padding: 15px 0
-    position: relative
     margin-left: -20px
     &__head
       margin-left: 20px      
       &__name, &__period
         font-size: 18px
-    &:before
-      content: ''
-      position: absolute
-      left: 0
-      top: 0
-      width: 20px
-      height: 100%
-      z-index: 5
-      background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
-    &:after
-      content: ''
-      position: absolute
-      bottom: 0
-      right: 0
-      width: 20px
-      height: 100%
-      z-index: 5
-      background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
+    @include fade-to-left-inner
+    @include fade-to-right-inner
   .conversion-list
     width: 360px
     padding: 15px 0
-    position: relative
     margin-left: -20px
     &__head
       margin-left: 20px
       &__name, &__period
         font-size: 18px
-    &:before
-      content: ''
-      position: absolute
-      left: 0
-      top: 0
-      width: 20px
-      height: 100%
-      z-index: 5
-      background: linear-gradient(to left,rgba(255,255,255,0), $lightColor)
-    &:after
-      content: ''
-      position: absolute
-      bottom: 0
-      right: 0
-      width: 20px
-      height: 100%
-      z-index: 5
-      background: linear-gradient(to right,rgba(255,255,255,0), $lightColor)
+    @include fade-to-left-inner
+    @include fade-to-right-inner

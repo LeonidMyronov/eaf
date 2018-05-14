@@ -11,7 +11,10 @@
         >
         <div class="point-details accent-color" fxLayout="column" fxLayoutAlign="center center" fxFlex="168px">
           <span class="pointer"></span>
-          <div class="point__time"><span class="time-with-clock">{{ point.time | date:'HH:mm' }}</span></div>
+          <div class="point__time">
+            <span *ngIf="rangeType == 'hours'" class="time-with-clock">{{ point.time | date:'HH:mm' }}</span>
+            <span *ngIf="rangeType == 'dates'" class="time-with-clock">{{ point.time | date:'dd MMM y' }}</span>
+          </div>
           <div class="point__value light-color"> $ {{ point.value | number:'0.2-3'}}</div>
           
         </div>
@@ -37,7 +40,7 @@
       
       <span *ngIf="i % xAgendaGap === 0">
         <span *ngIf="rangeType === 'hours'">{{x.time | date: 'HH:mm'}}</span>
-        <span *ngIf="rangeType === 'dates'">{{x.time | date: 'dd MMM y'}}</span>
+        <span *ngIf="rangeType === 'dates'">{{x.time | date: 'dd MMM'}}</span>
       </span>
     </span>
   </div>

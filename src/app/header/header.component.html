@@ -30,7 +30,7 @@
         <span class="user-tariff__icon">
           <img [src]="userTariff.iconSrc" alt="">
         </span>
-        <span class="user-tariff__shortsitename" fxHide.md fxHide.xs>{{ userTariff.siteName }}</span>
+        <span class="user-tariff__shortsitename" fxHide.md fxHide.xs>{{ userTariff.name }}</span>
         <span class="user-tariff__fo">
           <span fxHide.md fxHide.xs>{{'first order' | translate }}</span>
           <span fxHide.lg fxHide.sm>{{ 'FO' | translate }}</span>: {{ userTariff.fisrtOrderPercent }}%</span>
@@ -43,7 +43,7 @@
           <span class="user-tariff__icon">
             <img [src]="tariff?.iconSrc" alt="">
           </span>
-          <span class="user-tariff__sitename" fxHide.md fxHide.xs>{{ tariff.siteName }}</span>
+          <span class="user-tariff__sitename" fxHide.md fxHide.xs>{{ tariff.name }}</span>
           <span class="user-tariff__fo"> {{ 'FO' | translate }}: {{ tariff?.fisrtOrderPercent }}%</span>
           <span class="user-tariff__r"> {{ 'R' | translate }}: {{ tariff?.rebillsPercent }}%</span>
         </li>

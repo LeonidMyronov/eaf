@@ -1,0 +1,13 @@
+<div class="table">
+    <div class="table__head table__row">
+      <div *ngFor="let el of ptTable.head" class="table__cell">{{el}}</div>
+    </div>
+    <div class="table__body">
+      <div *ngFor="let el of data" class="table__row">
+        <div class="table__cell">{{ el.date | date:'dd MMM y'}}</div>
+        <div class="table__cell">{{ el.site }}</div>
+        <div class="table__cell">{{ el.orderId }}</div>
+        <div class="table__cell">{{ el.amount }}</div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,102 @@
+@import variables
+@import helper
+@import mixins
+
+.eaf-term-picker-panel
+  width: 100%
+  padding: 10px
+
+.dropdown-menu
+  width: 296px
+  font-size: 14px
+  background-color: $mainColor
+  background-image: url('/assets/images/header/dropdown-icon-active.svg')
+  border: 0.5px solid $lightColor
+  margin-right: auto
+  .dropdown-item-icon
+    width: 27px
+  .dropdown-select
+    color: $lightColor
+  &:hover
+    background-color: $accentColor !important
+    background-image: url('/assets/images/header/dropdown-icon.svg')
+    border-color: $accentColor
+    .dropdown-select
+      color: $mainColor
+
+.terms-group
+  margin-right: 20px
+.term-item
+  display: flex
+  justify-content: center
+  align-items: center
+  line-height: 14px !important
+  border: 0.5px solid $lightColor
+  width: 150px
+  &:first-child
+    border-top-left-radius: 2px
+    border-bottom-left-radius: 2px
+  &:last-child
+    border-top-right-radius: 2px
+    border-bottom-right-radius: 2px      
+  &:not(:last-child)
+    border-right: 0.5px solid $lightColor
+    margin-right: -1px
+
+.term-range
+  width: 253px
+  height: 40px
+  line-height: 40px
+  border: 0.5px solid $lightColor
+  border-right: none
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  background-color: $lightColor
+  overflow: hidden
+
+
+.action-item
+  width: 120px
+  border: 0.5px solid $lightColor  
+  border-top-right-radius: 2px
+  border-bottom-right-radius: 2px  
+
+.panel-item
+  color: $lightColor
+  height: 40px
+  line-height: 40px
+  font-size: 14px
+  cursor: pointer
+  text-align: center
+  &.active, &:hover
+    background-color: $accentColor
+    color: $mainColor
+    border-color: $accentColor
+    z-index: 1
+
+// Adaptive section
+
+@include desktop-screen()
+  .term-item
+    width: 97px
+
+@include tablet-screen()
+  .dropdown-menu
+    width: 100%
+    margin-bottom: 10px
+  .terms-group
+    margin-right: 10px
+  .term-item
+    width: 89px
+
+@include mobile-screen()
+  .dropdown-menu
+    height: 40px
+  .terms-group
+    margin-bottom: 10px
+  .term-item
+    width: 102px
+  .action-item
+    width: 98px
+  .term-range
+    width: 208px

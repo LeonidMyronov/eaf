@@ -1,0 +1,43 @@
+<article class="eaf-term-picker-panel bg-main-color" fxLayout="row wrap" fxLayoutAlign="start">
+  <div eafDropdown class="dropdown-menu" (mouseenter)="hovered=true" (mouseleave)="hovered=false">
+    <div class="dropdown-select panel-item">
+      <span *ngIf="selectedDropdownItem.iconSrc" class="dropdown-item-icon">
+        <img *ngIf="!hovered" [src]="selectedDropdownItem.iconLightSrc" alt="">
+        <img *ngIf="hovered" [src]="selectedDropdownItem.iconSrc" alt="">
+      </span>
+      {{ selectedDropdownItem.name }}
+    </div>
+    <ul class="dropdown-list">
+      <li class="dropdown-list__item" *ngFor="let item of dropdownList" (click)="onChangeDropdownItem(item)">
+        <span *ngIf="item.iconSrc" class="dropdown-item-icon">
+          <img [src]="item?.iconSrc" alt="">
+        </span>
+        {{ item.name }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="terms-group" fxLayout="row" fxLayoutAlign="start">
+    <div *ngFor="let term of termGroup" class="term-item panel-item" [ngClass]="{active: term.id === selectedTermGroupItem.id}"
+      (click)="onChangeTermGroupItem(term)">
+      {{ term.name | translate }}
+    </div>
+  </div>
+
+  <div class="term-range" fxLayout="row">
+    <div class="term-selector" (click)="picker1.open()">
+      <div class="term-selector-wrapper"></div>
+      <input matInput [matDatepicker]="picker1" [formControl]="startDate">
+      <mat-datepicker #picker1></mat-datepicker>
+    </div>
+    -
+      <div class="term-selector" (click)="picker2.open()">
+        <div class="term-selector-wrapper"></div>
+        <input matInput [matDatepicker]="picker2" [formControl]="endDate">
+        <mat-datepicker #picker2></mat-datepicker>
+      </div>
+    </div>
+    <div class="action-item panel-item" (click)="onSubmit()">
+      {{'показать' | uppercase}}
+    </div>
+</article>
