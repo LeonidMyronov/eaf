@@ -237,7 +237,7 @@
     <section class="graph" fxLayout="column">
       <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="graph__head__name">График прибыли</div>
-        <div class="graph__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
+        <div class="graph__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="graph__body">
           <eaf-graph [data]="(statisticState$ | async).incomes"></eaf-graph>
@@ -247,7 +247,7 @@
     <section class="conversion-list table-group">
       <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="table-group__head__name">Kонверсии</div>
-        <div class="table-group__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
+        <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="table-group__body">
         <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>
@@ -257,7 +257,7 @@
     <section class="pt-list table-group">
       <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
         <div class="table-group__head__name">Pixel Tracking</div>
-        <div class="table-group__head__period">{{(statisticQueryParamsState$ | async).fromDate | date:'dd MMM y'}} - {{(statisticQueryParamsState$ | async).toDate | date:'dd MMM y'}}</div>
+        <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
 
       <section class="table-group__body">

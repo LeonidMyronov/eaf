@@ -14,6 +14,11 @@ import * as MainAction from '../../store/main.actions';
 import { Statistic, StatisticFilter, StatisticPanelFilter, PixelTracking } from '../../store/main.model';
 import { StatisticPanelFilterList } from '../../user/user.model';
 
+export interface QueryParams {
+  fromDate: Date;
+  toDate: Date;
+  site: {};
+}
 @Component({
   selector: 'eaf-statistic',
   templateUrl: './statistic.component.html',
@@ -37,6 +42,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     ptTableHeads: [],
     ptPropCount: {}
   };
+  public queryParams: QueryParams;
   public statisticTableHeads: string[];
   public activeMediaQuery: string;
   public isStatisticFiltersVisible: boolean;
@@ -52,6 +58,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnInit() {
     // this.selectedAllFiltersForm = [];
+    this.queryParams = this.initQueryParams();
     this.initForms();
     this.sitesList = this.appStorage.getAllSites();
     this.consolidatedState$ = this.store.select(fromMain.getConsolidatedData);
@@ -86,16 +93,28 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
       });
 
     this.store.select(fromRoot.getUserStatisticFilters)
-      .subscribe( (response: StatisticPanelFilterList) => {
+      .subscribe((response: StatisticPanelFilterList) => {
         this.userStatisticPanelFilters = response;
         console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
       });
 
-    this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
+    // this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
   }
 
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
+  }
+
+  initQueryParams(): QueryParams {
+    const currDate = new Date();
+    return {
+      fromDate: new Date(currDate.setDate(currDate.getDate() - 7)),
+      toDate: new Date(),
+      site: {
+        id: 1,
+        name: 'All sites'
+      }
+    };
   }
 
   initForms() {
@@ -162,10 +181,10 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     function createStructure() {
       for (const menuProp of Object.keys(formState)) {
-        const obj = {name: menuProp, filterList: []};
+        const obj = { name: menuProp, filterList: [] };
         for (const el in formState[menuProp]) {
           if (formState[menuProp][el]) {
-            obj.filterList.push({name: el, enabled: true});
+            obj.filterList.push({ name: el, enabled: true });
           }
         }
         tempArr.push(obj);
@@ -207,7 +226,8 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   onChangeStatisticQueryParams(queryParams) {
-    this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
+    this.queryParams = queryParams;
+    // this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
   // ---- statistic table start -----
@@ -254,7 +274,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   createPTTableHeads(el: PixelTracking) {
-    this.ptData.ptTableHeads = Object.keys({...el});
+    this.ptData.ptTableHeads = Object.keys({ ...el });
   }
   getPTTableHeads() {
     return this.ptData.ptTableHeads.slice();
