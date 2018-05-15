@@ -69,6 +69,41 @@
     </section>
     <eaf-term-picker-panel [dropdownList]="paymentMethods" (change)="onChangeTrnsactionQueryParams($event)"></eaf-term-picker-panel>
 
-    <section class="balance-table"></section>
+    <section class="transactions-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+          <div class="table-group__head__name">Transactions</div>
+          <div class="table-group__head__period">{{transactionQueryParams?.fromDate | date:'dd MMM y'}} - {{transactionQueryParams?.toDate | date:'dd MMM y'}}</div>
+        </div>
+  
+        <section class="table-group__body">
+          <div class="collapse-table table" fxLayout="row">
+            <div class="table__left" fxLayout="column" #trtl>
+              <div class="table__row table__head">
+                <div class="table__cell">{{ getTrTableHeads()[0] | translate}}</div>
+              </div>
+              <div class="table__row" *ngFor="let el of transactionsState; let i = index" >
+                <div class="table__cell">{{el.id }}</div>
+              </div>
+              {{el}}
+            </div>
+  
+            <div class="table__body" #trtb>
+              <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" [ngClass]="{'wide-cell': propName == 'details' || propName == 'comments'}" *ngFor="let propName of getTrTableHeads().slice(1)">{{propName}}</div>
+              </div>
+              <div class="table__row" *ngFor="let el of transactionsState; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" [ngClass]="{'wide-cell': prop == 'details' || prop == 'comments'}" *ngFor="let prop of getTrTableHeads().slice(1); let j = index">
+                  <ng-container *ngIf="prop == 'date'; else displayValue">
+                      {{el[prop] | date:'dd MMM y'}}
+                    </ng-container>
+                    <ng-template #displayValue>
+                      {{el[prop] }}
+                    </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
   </div>
 </article>
