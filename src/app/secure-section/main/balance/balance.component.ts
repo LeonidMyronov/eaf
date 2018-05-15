@@ -8,6 +8,12 @@ import { MainStorageService } from '../../services/main-storage.service';
 import * as fromRoot from '../../../app.reducers';
 import { PaymentMethod } from '../../store/main.model';
 
+export interface TransactionQueryParams {
+  fromDate: Date;
+  toDate: Date;
+  paymentMethod: {};
+}
+
 @Component({
   selector: 'eaf-balance',
   templateUrl: './balance.component.html',
@@ -18,6 +24,7 @@ export class BalanceComponent implements OnInit {
   balanceForm: FormGroup;
   paymentMethod: PaymentMethod;
   paymentMethods: PaymentMethod[];
+  transactionQueryParams: TransactionQueryParams;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -27,6 +34,7 @@ export class BalanceComponent implements OnInit {
   ngOnInit() {
     this.paymentMethods = this.mainStorage.getPaymentMethods();
     this.initForm();
+    this.transactionQueryParams = this.initTransactionQueryParams();
     this.onChangePaymentMethod(this.paymentMethods[0]);
     this.userBalanceState$ = this.store.select(fromRoot.getUserBalanceState);
   }
@@ -40,12 +48,31 @@ export class BalanceComponent implements OnInit {
     });
   }
 
+  initTransactionQueryParams(): TransactionQueryParams {
+    const currDate = new Date();
+    return {
+      fromDate: new Date(currDate.setDate(currDate.getDate() - 7)),
+      toDate: new Date(),
+      paymentMethod: {
+        id: 1,
+        name: 'Pay Pal'
+      }
+    };
+  }
+
   onChangePaymentMethod(payment: PaymentMethod) {
     this.paymentMethod = payment;
     this.balanceForm.patchValue({payment: payment});
   }
 
-  onSubmit() {
+  onSubmitBalanceForm() {
     console.log(this.balanceForm.value);
+  }
+
+  onChangeTrnsactionQueryParams(queryParams) {
+    this.transactionQueryParams.fromDate = queryParams.fromDate;
+    this.transactionQueryParams.toDate = queryParams.toDate;
+    this.transactionQueryParams.paymentMethod = queryParams.dropdownItem;
+    // console.log(queryParams, this.transactionQueryParams);
   }
 }

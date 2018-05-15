@@ -18,7 +18,7 @@
         <p>Все платежи обрабатываются в течении 2-х рабочих дней после запроса.</p>
         <p>Автоматические выводы отправляются 5го числа каждого месяца если баланс аккаунта больше 50$.</p>
       </div>
-      <form class="form grid-3" [formGroup]="balanceForm" (ngSubmit)="onSubmit()">
+      <form class="form grid-3" [formGroup]="balanceForm" (ngSubmit)="onSubmitBalanceForm()">
         <div class="title">Withdraw</div>
 
         <div class="form-field-group">
@@ -67,6 +67,8 @@
 
       </form>
     </section>
+    <eaf-term-picker-panel [dropdownList]="paymentMethods" (change)="onChangeTrnsactionQueryParams($event)"></eaf-term-picker-panel>
+
     <section class="balance-table"></section>
   </div>
 </article>
