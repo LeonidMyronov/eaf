@@ -453,6 +453,39 @@ export class MainService {
     ]
   };
 
+  private transactionsByPeriod = [
+    {
+      id: 1,
+      date: new Date(),
+      amount: 200,
+      type: '????????',
+      method: 'Pay Pal',
+      status: 'paid',
+      details: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.',
+      comments: 'В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. '
+    },
+    {
+      id: 2,
+      date: new Date(),
+      amount: 100,
+      type: '????????',
+      method: 'Pay Pal',
+      status: 'paid',
+      details: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.',
+      comments: 'В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. '
+    },
+    {
+      id: 3,
+      date: new Date(),
+      amount: 300,
+      type: '????????',
+      method: 'Pay Pal',
+      status: 'paid',
+      details: 'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов.',
+      comments: 'В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. '
+    }
+  ];
+
   constructor(
     private store: Store<fromMain.MainState>
   ) {}
@@ -464,6 +497,11 @@ export class MainService {
   fetchStatisticByPeriod() {
     console.log('fetchStatisticByPeriod from Service');
     this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
+  }
+
+  fetchTransactionsByPeriod(query) {
+    console.log('fetchTransactionsByPeriod from Service');
+    this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
   }
 
 }
