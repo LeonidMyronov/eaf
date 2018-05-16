@@ -62,6 +62,7 @@ export class AuthService {
       icqAccount: id,
       skypeAccount: 'skype' + id,
       balance: 100,
+      nextWithdrawDate: 24,
       statisticFiltersList: {
         name: 'test',
         statisticFilters: [

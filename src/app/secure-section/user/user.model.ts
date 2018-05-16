@@ -7,6 +7,7 @@ export interface User {
   icqAccount: number;
   skypeAccount: string;
   balance: number;
+  nextWithdrawDate: number;
   statisticFiltersList: StatisticPanelFilterList;
 }
 

@@ -11,7 +11,8 @@ import {
   PixelTracking,
   OS,
   Browser,
-  StatisticPanelFilter
+  StatisticPanelFilter,
+  Transaction
 } from './main.model';
 import {
   MainActions,
@@ -19,7 +20,8 @@ import {
   FETCH_STATISTIC,
   UPDATE_STATISTIC_FILTERS,
   SAVE_STATISTIC_FILTERS,
-  STATISTIC_QUERY_PARAMS
+  STATISTIC_QUERY_PARAMS,
+  FETCH_TRANSACTIONS
 } from './main.actions';
 
 export interface MainState {
@@ -50,6 +52,7 @@ export interface MainState {
     toDate: Date;
     site: SiteTraffic;
   };
+  transactions: Transaction[];
 }
 
 
@@ -82,6 +85,7 @@ export const initialState: MainState = {
   // },
   statistic: null,
   statisticQueryParams: null,
+  transactions: [],
 };
 
 
@@ -161,6 +165,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         ...state,
         statisticQueryParams: action.payload
       };
+    case FETCH_TRANSACTIONS:
+    return {
+      ...state,
+      transactions: action.payload
+    };
     default:
       return state;
   }
@@ -186,4 +195,5 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
 
 export const getStatistic = createSelector(getMainState, (state: MainState) => state.statistic);
 export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
+export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
 
