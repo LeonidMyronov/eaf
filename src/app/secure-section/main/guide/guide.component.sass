@@ -1,0 +1,221 @@
+@import variables
+@import mixins
+
+.section-descr
+  text-align: center
+  margin-top: 20px
+  margin-bottom: 30px
+
+.cards-group
+  display: grid
+  grid-gap: 20px
+  grid-auto-columns: 326px
+  grid-auto-rows: 226px
+  margin-bottom: 60px
+  .card
+    flex-direction: column
+    justify-content: flex-start
+    &__title
+      margin-top: 10px
+      margin-bottom: 40px
+      font-size: 24px
+      text-transform: uppercase
+    &__content-group
+      width: 100%
+      margin-bottom: auto
+    &__content
+      img
+        margin-bottom: 15px
+      .value
+        margin-bottom: 15px
+        font-size: 36px
+        color: $accentColor
+        text-align: center
+      .descr
+        max-width: 120px
+        text-align: center
+    &.card-descr-content
+      justify-content: start
+      p
+        margin-bottom: 30px
+        &.smaller-text
+          font-size: 14px
+
+  .grid-1
+    grid-column: 1
+    grid-row: 1/3
+  .grid-2
+    grid-column: 2/4
+    grid-row: 1/3
+    width: 672px
+    p
+      text-align: center
+  .grid-3
+    grid-column: 4
+    grid-row: 1/3
+  .grid-4
+    grid-row: 3
+    grid-column: 1/5
+    display: grid
+    grid-gap: 20px
+    grid-auto-columns: 441px
+    grid-auto-rows: 226px
+    .card
+      width: 100%
+      justify-content: center
+      background-repeat: no-repeat
+      background-position: center
+      &__content
+        .descr
+          min-width: 175px
+  .grid-4-1
+    grid-column: 1
+    grid-row: 1
+    background-image: url('/assets/images/main/guide/av-amount.svg')
+  .grid-4-2
+    grid-column: 2
+    grid-row: 1
+    background-image: url('/assets/images/main/guide/av-orders.svg')
+    .card
+      &__content
+        .descr
+          min-width: 270px
+  .grid-4-3
+    grid-column: 3
+    grid-row: 1  
+    background-image: url('/assets/images/main/guide/refaund-index.svg')
+
+.partners, .reffer
+  padding-left: 30px
+  padding-right: 30px
+  margin-bottom: 60px
+  h3
+    text-transform: uppercase
+    text-align-last: left
+    margin-bottom: 35px    
+
+.panels-group
+  // display: grid
+  // grid-gap: 84px
+  .panel
+    width: 380px
+    &__content
+      height: 145px
+      .link
+        color: $primaryColor
+        text-decoration: underline
+        cursor: pointer
+      &-descr
+        margin-top: 20px
+        font-size: 14px
+        text-align: left
+
+    &__link
+      padding-left: 10px
+      font-size: 12px
+      line-height: 30px
+      border-radius: 2px
+      &.link-hint
+        margin-top: 8px
+        line-height: 14px
+
+.partners
+  .panels-group
+    display: grid
+    grid-gap: 80px
+    grid-template-columns: repeat(3, 380px)
+    .grid-2
+      .panel__content-descr
+        margin-top: 0
+
+// ADAPTIVE STYLES
+@media(max-width: 1399px)
+  .cards-group
+    margin-bottom: 40px
+    .grid-3
+      grid-column: 1
+      grid-row: 3/5
+    .grid-4
+      grid-column: 2/4
+      grid-row: 3/5
+      grid-auto-columns: 326px
+    .grid-4-3
+      grid-column: 1
+      grid-row: 2
+  .partners
+    .panels-group
+      grid-gap: 66px
+      grid-template-columns: repeat(3, 276px)
+      .panel
+        width: 276px
+      .panel__content
+        height: 190px
+
+@media(max-width: 1023px)
+  .cards-group  
+    .grid-2
+      grid-column: 1/3
+      grid-row: 3/5
+    .grid-3
+      grid-column: 2
+      grid-row: 1/3
+    .grid-4
+      grid-column: 1/3
+      grid-row: 5
+      grid-auto-columns: 209px
+    .grid-4-3
+      grid-column: 3
+      grid-row: 1
+  .partners
+    padding: 0
+    .panels-group
+      grid-gap: 30px
+      grid-template-columns: repeat(1, 100%)
+      .panel
+        width: 100%
+      .panel__content
+        height: 100px
+      .panel-link
+        min-width: 277px
+
+@media(max-width: 767px)
+  .cards-group
+    grid-gap: 10px
+    grid-auto-rows: auto
+    .grid-1
+      height: 472px
+    .grid-2
+      grid-column: 1
+      grid-row: 3/7
+      width: 326px
+      padding-top: 50px
+      height: 870px
+      padding-bottom: 50px
+    .grid-3
+      grid-column: 1
+      grid-row: 7/9
+      height: 472px
+    .grid-4
+      grid-column: 1
+      grid-row: 9/12
+      grid-gap: 10px
+      grid-auto-columns: 326px
+    .grid-4-1
+      grid-column: 1
+      grid-row: 1
+    .grid-4-2
+      grid-column: 1
+      grid-row: 2
+    .grid-4-3
+      grid-column: 1
+      grid-row: 3
+
+  .partners
+    .panels-group
+      .panel__content
+        margin-bottom: 15px
+        height: auto
+        &-descr
+          margin-top: 15px
+      .panel-link
+        width: 100%   
