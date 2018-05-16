@@ -1,3 +1,106 @@
-<p>
-  guide works!
-</p>
+<article class="guide-page">
+  <div class="container">
+    <h1>Guide</h1>
+    <p class="section-descr">Мы платим процент от суммы заказа.
+      <br> В среднем у нас 7 заказов с каждого клиента.</p>
+    <div class="cards-group">
+      <div class="card grid-1">
+        <div class="card__title">Продажа</div>
+        <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+          <img src="/assets/images/tariffs/sales.svg" alt="">
+          <div class="value">50%</div>
+          <div class="descr">с первой продажи</div>
+        </div>
+      </div>
+
+      <div class="card grid-2">
+        <div class="card__title">Ребилы
+          <span class="light-color">*</span>
+        </div>
+        <div class="card__content-group" fxLayout.xs="column" fxLayoutGap.xs="70px" fxLayout="row" fxLayoutAlign.xs="start" fxLayoutAlign="space-around">
+
+          <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+            <img src="/assets/images/tariffs/rebills-15.svg">
+            <div class="value">15%</div>
+            <div class="descr">0-100 новых клиентов</div>
+          </div>
+          <div class="card__content light-color" fxLayout="column" fxLayoutAlign="start center">
+            <img src="/assets/images/tariffs/rebills-20.svg">
+            <div class="value">20%</div>
+            <div class="descr">101+ новых клиентов</div>
+          </div>
+
+        </div>
+        <p class="hint light-color">
+          <sup>*</sup>
+          <span class="accent-color">Ребилы</span> – это повторные заказы клиента, начиная со второго.</p>
+      </div>
+      <div class="card card-descr-content grid-3">
+        <p>Эти рейты хоть и достаточно высокие, но не максимальные.</p>
+        <p class="smaller-text light-color">Если вы за месяц (30 дней) привели более чем 100 новых клиентов, мы можем обсудить повышение отчислений до 60%. А
+          за 200 новых клиентов в месяц (30 дней) – до 70%.</p>
+        <p class="smaller-text light-color">
+          <span class="accent-color">Cookies</span> – хранятся 90 дней, так что у клиента будет достаточно времени чтобы сделать заказ.</p>
+      </div>
+
+      <div class="grid-4">
+        <div class="card grid-4-1">
+          <div class="card__content light-color">
+            <div class="value">$130</div>
+            <div class="descr">Средняя цена заказа</div>
+          </div>
+        </div>
+        <div class="card grid-4-2">
+          <div class="card__content light-color">
+            <div class="value">7</div>
+            <div class="descr">Среднее количество заказов от одного клиента.</div>
+          </div>
+        </div>
+        <div class="card grid-4-3">
+          <div class="card__content light-color">
+            <div class="value">0.8%</div>
+            <div class="descr">Показатель отказов (рефандов)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="partners">
+      <h3>Партнерская ссылка и Sub_ID</h3>
+      <div class="panels-group">
+        <div class="panel grid-1">
+          <div class="panel__content">
+            Свою реферальную ссылку вы можете найти в разделе
+            <span class="link" routerLink="/main/promo">Promo</span>.
+            <p class="panel__content-descr">Выглядит она следующим образом: </p>
+          </div>
+          <div class="panel__link bg-accent-color">https://essaywebsite.com/?ref_id=<span class="primary-color">XXX</span></div>
+          <div class="panel__link link-hint">(где XXX ваш ID в системе)</div>
+        </div>
+        <div class="panel grid-2">
+          <div class="panel__content">
+              Для каждого из наших сайтов ссылка будет разной, но принцип компоновки сохраняется.
+            <p class="panel__content-descr">Таким образом вы можете добавлять этот параметр к любой странице нашего сайта, просто добавив к ссылке: <span class="primary-color">?ref_id=XXX</span>. Например:</p>
+          </div>
+          <div class="panel__link bg-accent-color">https://essaywebsite.com/<span class="primary-color">?ref_id=XXX</span></div>
+        </div>
+        <div class="panel grid-3">
+          <div class="panel__content">
+            Sub_ID – отличный способ разделять источники вашего трафика.
+            <p class="panel__content-descr">К вашей реф-ссылке вы добавляете еще один параметр <span class="primary-color">&sub_id=YYY</span>. Выглядит это так: </p>
+          </div>
+          <div class="panel__link bg-accent-color">https://essaybox.org/?ref_id=XXX<span class="primary-color">&sub_id=YYY</span></div>
+          <div class="panel__link link-hint">(где <span class="primary-color">YYY</span> это ваш <span class="primary-color">sub_id</span> длиной не более 7 символов)</div>
+        </div>
+      </div>
+    </section>
+    <section class="reffer">
+      <h3>Реферальная программа</h3>
+      <div class="panels-group">
+        <div class="panel grid-1"></div>
+        <div class="card grid-2"></div>
+        <div class="card grid-3"></div>
+      </div>
+      <p></p>
+    </section>
+  </div>
+</article>
