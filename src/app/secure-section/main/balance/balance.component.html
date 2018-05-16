@@ -1,0 +1,109 @@
+<article class="balance-page">
+  <div class="container">
+    <section class="card-group">
+      <div class="card grid-1">
+        <div class="title">{{ 'Ваш текущий баланс' | translate }}</div>
+        <div class="descr">{{ (userBalanceState$ | async).balance | number:'0.2-2'}}<span class="smaller">USD</span>
+        </div>
+      </div>
+      <div class="card grid-2">
+        <div class="title">{{ 'До следующего вывода средств' | translate }}</div>
+        <div class="descr">{{ (userBalanceState$ | async).nextWithdrawDate }}<span class="smaller">day(s)</span>          
+        </div>
+      </div>
+      <div class="card grid-4">
+        <img src="/assets/images/main/balance/note.svg" alt="">
+        <h4>Важно!</h4>
+        <p>Ваш минимальный вывод - 50$</p>
+        <p>Все платежи обрабатываются в течении 2-х рабочих дней после запроса.</p>
+        <p>Автоматические выводы отправляются 5го числа каждого месяца если баланс аккаунта больше 50$.</p>
+      </div>
+      <form class="form grid-3" [formGroup]="balanceForm" (ngSubmit)="onSubmitBalanceForm()">
+        <div class="title">Withdraw</div>
+
+        <div class="form-field-group">
+          <div class="form-field">
+            <label for="name">Amount:</label>
+            <input id="amount" type="number" placeholder="Amount:" formControlName="amount">
+            <div class="form-field__actions">
+              <span class="form-required">*</span>
+              <div *ngIf="balanceForm.controls['amount'].errors?.required && balanceForm.controls['amount'].touched" class="form-error">
+                This field is required
+              </div>
+              <span class="currency-label">USD</span>
+            </div>
+          </div>
+          
+          <div class="form-field">
+            <label>Method:</label>   
+            <div eafDropdown class="dropdown-menu pm-menu">
+              <div class="dropdown-select">
+                <span>{{ paymentMethod.name }}</span>
+              </div>
+              <ul class="dropdown-list">
+                <li class="dropdown-list__item" *ngFor="let pm of paymentMethods" (click)="onChangePaymentMethod(pm)">{{pm.name}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+          
+        <div class="form-field">
+          <label for="message">Details:</label>
+          <textarea id="details" type="text" placeholder="Details:" formControlName="details"></textarea>
+        </div>
+
+        <div class="regular-wrapper">
+          <input type="checkbox" id="regular" formControlName="regular">
+          <label for="regular">
+            <span class="check"></span>
+            <span>Сделать вывод регулярным</span>
+          </label>
+        </div>
+        <div class="notice">
+            Все доступные средства будут отправлены на вывод в следующий раз.<br>
+            Убедитесь что детали платежа указаны корректо, в противном случае вывод будет отменен.
+        </div>
+        <button type="submit" class="primary btn-lg" [disabled]="balanceForm.invalid">Send</button>
+
+      </form>
+    </section>
+    <eaf-term-picker-panel [dropdownList]="paymentMethods" (change)="onChangeTrnsactionQueryParams($event)"></eaf-term-picker-panel>
+
+    <section class="transactions-list table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+          <div class="table-group__head__name">Transactions</div>
+          <div class="table-group__head__period">{{transactionQueryParams?.fromDate | date:'dd MMM y'}} - {{transactionQueryParams?.toDate | date:'dd MMM y'}}</div>
+        </div>
+  
+        <section class="table-group__body">
+          <div class="collapse-table table" fxLayout="row">
+            <div class="table__left" fxLayout="column" #trtl>
+              <div class="table__row table__head">
+                <div class="table__cell">{{ getTrTableHeads()[0] | translate}}</div>
+              </div>
+              <div class="table__row" *ngFor="let el of transactionsState; let i = index" >
+                <div class="table__cell">{{el.id }}</div>
+              </div>
+              {{el}}
+            </div>
+  
+            <div class="table__body" #trtb>
+              <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" [ngClass]="{'wide-cell': propName == 'details' || propName == 'comments'}" *ngFor="let propName of getTrTableHeads().slice(1)">{{propName}}</div>
+              </div>
+              <div class="table__row" *ngFor="let el of transactionsState; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" [ngClass]="{'wide-cell': prop == 'details' || prop == 'comments'}" *ngFor="let prop of getTrTableHeads().slice(1); let j = index">
+                  <ng-container *ngIf="prop == 'date'; else displayValue">
+                      {{el[prop] | date:'dd MMM y'}}
+                    </ng-container>
+                    <ng-template #displayValue>
+                      {{el[prop] }}
+                    </ng-template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    </section>
+  </div>
+</article>

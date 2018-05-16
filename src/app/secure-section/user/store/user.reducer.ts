@@ -14,6 +14,7 @@ const initialState: State = {
     icqAccount: null,
     skypeAccount: null,
     balance: null,
+    nextWithdrawDate: null,
     statisticFiltersList: null,
   },
 };
@@ -35,6 +36,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
           icqAccount: null,
           skypeAccount: null,
           balance: null,
+          nextWithdrawDate: null,
           statisticFiltersList: null
         }
       };
@@ -57,6 +59,13 @@ export const getShortUserState = (state: State) => {
     email: state.user.email,
     name: state.user.name,
     balance: state.user.balance
+  };
+};
+
+export const getUserBalanceState = (state: State) => {
+  return {
+    balance: state.user.balance,
+    nextWithdrawDate: state.user.nextWithdrawDate
   };
 };
 

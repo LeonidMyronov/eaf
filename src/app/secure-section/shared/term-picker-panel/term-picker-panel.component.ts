@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { SiteTraffic } from '../../store/main.model';
-
 @Component({
   selector: 'eaf-term-picker-panel',
   templateUrl: './term-picker-panel.component.html',
@@ -10,7 +8,7 @@ import { SiteTraffic } from '../../store/main.model';
 })
 export class TermPickerPanelComponent implements OnInit, OnChanges {
   @Input() dropdownList;
-  @Output() change = new EventEmitter<{fromDate: Date, toDate: Date, site: SiteTraffic}>();
+  @Output() change = new EventEmitter<{fromDate: Date, toDate: Date, dropdownItem: any}>();
   public selectedDropdownItem;
   public hovered = false;
   public termGroup: any[];
@@ -74,7 +72,7 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
       {
         fromDate: this.startDate.value,
         toDate: this.endDate.value,
-        site: this.selectedDropdownItem
+        dropdownItem: this.selectedDropdownItem
       }
     );
   }

@@ -226,7 +226,10 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   onChangeStatisticQueryParams(queryParams) {
-    this.queryParams = queryParams;
+    this.queryParams.fromDate = queryParams.fromDate;
+    this.queryParams.toDate = queryParams.toDate;
+    this.queryParams.site = queryParams.dropdownItem;
+    // console.log(queryParams, this.queryParams);
     // this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
