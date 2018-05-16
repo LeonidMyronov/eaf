@@ -20,6 +20,7 @@ export class FooterComponent implements OnInit {
   public userMenu: any;
   public timeList: any;
   public currentTime: number ;
+  public currentYear: number ;
   public isAuth$: Observable<boolean>;
   private timerGenerator$: Observable<Date>;
   private currentTimer$: Observable<string>;
@@ -37,6 +38,7 @@ export class FooterComponent implements OnInit {
     this.userMenu = this.appStorage.getUserMenu();
     this.timeList = this.appStorage.getTimeList();
     this.currentTime = this.timeList[0];
+    this.currentYear = new Date().getFullYear();
 
     this.timerGenerator$ = this.createTimer().map(_ => new Date());
     this.homeTimer$ = this.timerGenerator$.map(date => this.formatTime(date.getHours()) + ':' + this.formatTime(date.getMinutes()));
