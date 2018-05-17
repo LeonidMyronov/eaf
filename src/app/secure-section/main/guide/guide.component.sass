@@ -6,6 +6,11 @@
   margin-top: 20px
   margin-bottom: 30px
 
+.link
+  color: $primaryColor
+  text-decoration: underline
+  cursor: pointer
+
 .cards-group
   display: grid
   grid-gap: 20px
@@ -101,10 +106,6 @@
     width: 380px
     &__content
       height: 145px
-      .link
-        color: $primaryColor
-        text-decoration: underline
-        cursor: pointer
       &-descr
         margin-top: 20px
         font-size: 14px
@@ -127,6 +128,23 @@
     .grid-2
       .panel__content-descr
         margin-top: 0
+.reffer
+  .panels-group
+    display: grid
+    grid-gap: 50px
+    grid-template-columns: 380px 870px
+    .cards-group
+      grid-template-columns: repeat(2, auto)
+      margin-bottom: 0
+      .card
+        width: 425px
+        justify-content: center
+        background-image: url('/assets/images/main/guide/percent.svg') 
+        background-repeat: no-repeat
+        background-position: center
+        &__content
+          .descr
+            max-width: 250px
 
 // ADAPTIVE STYLES
 @media(max-width: 1399px)
@@ -150,6 +168,16 @@
         width: 276px
       .panel__content
         height: 190px
+  .reffer
+    .panels-group
+      grid-template-columns: 276px auto
+      .panel
+        width: 276px
+      .panel__content
+        height: 170px
+      .cards-group
+        .card
+          width: 306px
 
 @media(max-width: 1023px)
   .cards-group  
@@ -166,7 +194,7 @@
     .grid-4-3
       grid-column: 3
       grid-row: 1
-  .partners
+  .partners, .reffer
     padding: 0
     .panels-group
       grid-gap: 30px
@@ -177,6 +205,12 @@
         height: 100px
       .panel-link
         min-width: 277px
+  .reffer
+    .panels-group
+      .cards-group
+        .card
+          width: 326px
+
 
 @media(max-width: 767px)
   .cards-group
@@ -210,7 +244,9 @@
       grid-column: 1
       grid-row: 3
 
-  .partners
+  .partners, .reffer
+    h3
+      margin-bottom: 20px
     .panels-group
       .panel__content
         margin-bottom: 15px
@@ -218,4 +254,8 @@
         &-descr
           margin-top: 15px
       .panel-link
-        width: 100%   
+        width: 100%
+  .reffer
+    .panels-group
+      .cards-group
+        grid-template-columns: repeat(1, auto)
