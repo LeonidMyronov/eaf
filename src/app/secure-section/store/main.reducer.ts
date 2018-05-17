@@ -12,7 +12,8 @@ import {
   OS,
   Browser,
   StatisticPanelFilter,
-  Transaction
+  Transaction,
+  News
 } from './main.model';
 import {
   MainActions,
@@ -33,7 +34,7 @@ export interface MainState {
   sitesTraffic: SiteTraffic[];
   geoTargets: Country[];
   deviceTypes: DeviceType[];
-  news: any[];
+  news: News[];
   lastDayIncomes: Income[];
   lastDayConversions: Conversion[];
   statistic: {
