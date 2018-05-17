@@ -5,6 +5,7 @@ import { MainComponent } from './main/main.component';
 import { TodayComponent } from './main/today/today.component';
 import { StatisticComponent } from './main/statistic/statistic.component';
 import { BalanceComponent } from './main/balance/balance.component';
+import { GuideComponent } from './main/guide/guide.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
       { path: 'today', component: TodayComponent },
       { path: 'statistic', component: StatisticComponent },
       { path: 'balance', component: BalanceComponent },
-      { path: '**', redirectTo: 'balance' },
+      { path: 'guide', component: GuideComponent },
+      { path: '**', redirectTo: 'guide' },
     ]
   },
 ];

@@ -13,6 +13,7 @@ import { StatisticComponent } from './main/statistic/statistic.component';
 
 import { mainReducer } from './store/main.reducer';
 import { BalanceComponent } from './main/balance/balance.component';
+import { GuideComponent } from './main/guide/guide.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BalanceComponent } from './main/balance/balance.component';
     TodayComponent,
     StatisticComponent,
     BalanceComponent,
+    GuideComponent,
   ],
   imports: [
     CoreModule,
