@@ -34,7 +34,7 @@ export interface MainState {
   sitesTraffic: SiteTraffic[];
   geoTargets: Country[];
   deviceTypes: DeviceType[];
-  news: News[];
+  lastNews: News;
   lastDayIncomes: Income[];
   lastDayConversions: Conversion[];
   statistic: {
@@ -54,6 +54,7 @@ export interface MainState {
     site: SiteTraffic;
   };
   transactions: Transaction[];
+  news: News[];
 }
 
 
@@ -70,7 +71,7 @@ export const initialState: MainState = {
   sitesTraffic: [],
   geoTargets: [],
   deviceTypes: [],
-  news: [],
+  lastNews: null,
   lastDayIncomes: [],
   lastDayConversions: [],
   // statistic: {
@@ -87,6 +88,7 @@ export const initialState: MainState = {
   statistic: null,
   statisticQueryParams: null,
   transactions: [],
+  news: [],
 };
 
 
@@ -103,7 +105,7 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         sitesTraffic: action.payload.sitesTraffic,
         geoTargets: action.payload.geoTargets,
         deviceTypes: action.payload.deviceTypes,
-        news: action.payload.news,
+        lastNews: action.payload.lastNews,
         lastDayIncomes: action.payload.lastDayIncomes,
         lastDayConversions: action.payload.lastDayConversions,
       };
@@ -188,7 +190,7 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
     sitesTraffic: state.sitesTraffic,
     geoTargets: state.geoTargets,
     deviceTypes: state.deviceTypes,
-    news: state.news,
+    lastNews: state.lastNews,
     lastDayIncomes: state.lastDayIncomes,
     lastDayConversions: state.lastDayConversions,
   };

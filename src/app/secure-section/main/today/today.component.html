@@ -136,10 +136,10 @@
         <div class="title">
           Новости
         </div>
-        <div class="content light-color" *ngFor="let news of (todayState$ | async).news.slice(0,1)">
-          <div class="news-date">{{news.date | date:'medium'}}</div>
-          <div class="news-title">{{news.title}}</div>
-          <div class="news-content">{{news.excerpt}}</div>
+        <div class="content light-color">
+          <div class="news-date">{{ (todayState$ | async).lastNews.date | date:'medium'}}</div>
+          <div class="news-title">{{ (todayState$ | async).lastNews.title}}</div>
+          <div class="news-content">{{ (todayState$ | async).lastNews.excerpt}}</div>
         </div>
         <div class="footer">
           <div class="action">
