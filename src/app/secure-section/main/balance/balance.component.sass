@@ -79,6 +79,10 @@
     label
       padding-left: 30px
       cursor: pointer
+      &:hover
+        .check
+          border: 2px solid $accentColor
+          
       span
         font-size: 14px
       .check
@@ -86,14 +90,15 @@
         height: 20px
         top: -3px
         border-radius: 50%
+        border: 2px solid $lightColor
         background-color: $lightColor
-        border: none
+        box-sizing: border-box
         &:before
           position: absolute
           width: 10px
           height: 10px
-          top: 5px
-          left: 5px
+          top: 3px
+          left: 3px
           background-color: $noticeColor
           border-radius: 50%
         &:after
@@ -111,7 +116,7 @@
 .pm-menu
   background-color: $lightColor
   .dropdown-list__item
-    background-color: $lightColor
+    // background-color: $lightColor
 
 .transactions-list
   margin-top: 20px  

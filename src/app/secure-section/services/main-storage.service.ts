@@ -10,7 +10,15 @@ export class MainStorageService {
     },
     {
       id: 2,
+      name: 'Epase'
+    },
+    {
+      id: 3,
       name: 'WebMonye'
+    },
+    {
+      id: 4,
+      name: 'Cash'
     }
   ];
   constructor() {}
