@@ -1,0 +1,14 @@
+<section class="news">
+  <header fxLayout="row" fxLayoutAlign="space-between center" class="bg-main-color">
+    <h4 class="accent-color">{{ news.title }}</h4>
+    <div class="date-widget">
+      <div class="date-widget__head bg-light-color">{{ news.date | date:'MMM, y' }}</div>
+      <div class="date-widget__body light-color">{{ news.date | date:'d' }}</div>
+    </div>
+    <div class="details" fxHide.gt-xs>Подробнее
+      <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span></div>
+  </header>
+  <main [innerHTML]="news.content" class="bg-post-color">
+    
+  </main>
+</section>
