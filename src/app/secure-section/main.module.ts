@@ -14,6 +14,8 @@ import { StatisticComponent } from './main/statistic/statistic.component';
 import { mainReducer } from './store/main.reducer';
 import { BalanceComponent } from './main/balance/balance.component';
 import { GuideComponent } from './main/guide/guide.component';
+import { NewsComponent } from './main/news/news.component';
+import { NewsItemComponent } from './main/news/news-item/news-item.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { GuideComponent } from './main/guide/guide.component';
     StatisticComponent,
     BalanceComponent,
     GuideComponent,
+    NewsComponent,
+    NewsItemComponent,
   ],
   imports: [
     CoreModule,

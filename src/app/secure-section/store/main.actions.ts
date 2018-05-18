@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { StatisticPanelFilter, Transaction } from './main.model';
+import { StatisticPanelFilter, Transaction, News } from './main.model';
 
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
@@ -7,6 +7,7 @@ export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
 export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
+export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -39,12 +40,18 @@ export class FetchTransactions implements Action {
   constructor(public payload: Transaction[]) {}
 }
 
+export class FetchNews implements Action {
+  readonly type = FETCH_NEWS;
+  constructor(public payload: {more: boolean, lastFetched: number, news: News[]}) {}
+}
+
 export type MainActions =
   FetchConsolidatedData |
   FetchStatistic |
   UpdateStatisticFilters |
   SaveStatisticFilters |
   StatisticQueryParams |
-  FetchTransactions
+  FetchTransactions |
+  FetchNews
 ;
 

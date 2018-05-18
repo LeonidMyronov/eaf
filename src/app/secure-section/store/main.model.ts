@@ -90,3 +90,11 @@ export interface Transaction {
   details: string;
   comments: string;
 }
+
+export interface News {
+  id: number;
+  date: Date;
+  title: string;
+  excerpt: string;
+  content: string;
+}

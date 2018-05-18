@@ -1,0 +1,12 @@
+<section class="news">
+  <header fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start start" class="bg-main-color">
+    <h4 class="accent-color">{{ news.title }}</h4>
+    <div class="date-widget">
+      <div class="date-widget__head bg-light-color">{{ news.date | date:'MMM, y' }}</div>
+      <div class="date-widget__body light-color">{{ news.date | date:'d' }}</div>
+    </div>
+    <div class="details accent-color" fxHide.gt-xs (click)="displayContent = !displayContent">Подробнее
+      <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span></div>
+  </header>
+  <main [innerHTML]="news.content" class="bg-post-color" [ngStyle]="{display: displayContent ? 'block' : 'none' }"></main>
+</section>

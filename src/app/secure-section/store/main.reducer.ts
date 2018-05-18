@@ -12,7 +12,8 @@ import {
   OS,
   Browser,
   StatisticPanelFilter,
-  Transaction
+  Transaction,
+  News
 } from './main.model';
 import {
   MainActions,
@@ -21,7 +22,8 @@ import {
   UPDATE_STATISTIC_FILTERS,
   SAVE_STATISTIC_FILTERS,
   STATISTIC_QUERY_PARAMS,
-  FETCH_TRANSACTIONS
+  FETCH_TRANSACTIONS,
+  FETCH_NEWS
 } from './main.actions';
 
 export interface MainState {
@@ -33,7 +35,7 @@ export interface MainState {
   sitesTraffic: SiteTraffic[];
   geoTargets: Country[];
   deviceTypes: DeviceType[];
-  news: any[];
+  lastNews: News;
   lastDayIncomes: Income[];
   lastDayConversions: Conversion[];
   statistic: {
@@ -53,6 +55,11 @@ export interface MainState {
     site: SiteTraffic;
   };
   transactions: Transaction[];
+  news: {
+    more: boolean;
+    lastFetched: number;
+    news: News[];
+  };
 }
 
 
@@ -69,7 +76,7 @@ export const initialState: MainState = {
   sitesTraffic: [],
   geoTargets: [],
   deviceTypes: [],
-  news: [],
+  lastNews: null,
   lastDayIncomes: [],
   lastDayConversions: [],
   // statistic: {
@@ -86,6 +93,11 @@ export const initialState: MainState = {
   statistic: null,
   statisticQueryParams: null,
   transactions: [],
+  news: {
+    more: false,
+    lastFetched: null,
+    news: [],
+  },
 };
 
 
@@ -102,7 +114,7 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         sitesTraffic: action.payload.sitesTraffic,
         geoTargets: action.payload.geoTargets,
         deviceTypes: action.payload.deviceTypes,
-        news: action.payload.news,
+        lastNews: action.payload.lastNews,
         lastDayIncomes: action.payload.lastDayIncomes,
         lastDayConversions: action.payload.lastDayConversions,
       };
@@ -170,6 +182,15 @@ export function mainReducer(state: MainState = initialState, action: MainActions
       ...state,
       transactions: action.payload
     };
+    case FETCH_NEWS:
+    return {
+      ...state,
+      news: {
+        news: [...state.news.news, ...action.payload.news],
+        more: action.payload.more,
+        lastFetched: action.payload.lastFetched
+      }
+    };
     default:
       return state;
   }
@@ -187,7 +208,7 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
     sitesTraffic: state.sitesTraffic,
     geoTargets: state.geoTargets,
     deviceTypes: state.deviceTypes,
-    news: state.news,
+    lastNews: state.lastNews,
     lastDayIncomes: state.lastDayIncomes,
     lastDayConversions: state.lastDayConversions,
   };
@@ -196,4 +217,5 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
 export const getStatistic = createSelector(getMainState, (state: MainState) => state.statistic);
 export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
 export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
+export const getNews = createSelector(getMainState, (state: MainState) => state.news);
 
