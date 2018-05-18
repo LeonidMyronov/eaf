@@ -42,7 +42,7 @@ export class FetchTransactions implements Action {
 
 export class FetchNews implements Action {
   readonly type = FETCH_NEWS;
-  constructor(public payload: News[]) {}
+  constructor(public payload: {more: boolean, lastFetched: number, news: News[]}) {}
 }
 
 export type MainActions =

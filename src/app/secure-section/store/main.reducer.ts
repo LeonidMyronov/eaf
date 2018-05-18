@@ -55,7 +55,11 @@ export interface MainState {
     site: SiteTraffic;
   };
   transactions: Transaction[];
-  news: News[];
+  news: {
+    more: boolean;
+    lastFetched: number;
+    news: News[];
+  };
 }
 
 
@@ -89,7 +93,11 @@ export const initialState: MainState = {
   statistic: null,
   statisticQueryParams: null,
   transactions: [],
-  news: [],
+  news: {
+    more: false,
+    lastFetched: null,
+    news: [],
+  },
 };
 
 
@@ -177,7 +185,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
     case FETCH_NEWS:
     return {
       ...state,
-      news: [...state.news, ...action.payload]
+      news: {
+        news: [...state.news.news, ...action.payload.news],
+        more: action.payload.more,
+        lastFetched: action.payload.lastFetched
+      }
     };
     default:
       return state;
