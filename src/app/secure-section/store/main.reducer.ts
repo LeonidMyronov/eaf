@@ -205,4 +205,5 @@ export const getConsolidatedData = createSelector(getMainState, (state: MainStat
 export const getStatistic = createSelector(getMainState, (state: MainState) => state.statistic);
 export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
 export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
+export const getNews = createSelector(getMainState, (state: MainState) => state.news);
 
