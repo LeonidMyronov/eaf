@@ -488,6 +488,26 @@ export class MainService {
     }
   ];
 
+  private news = [
+    {
+      id: 1,
+      date: new Date(2018, 5, 10),
+      title: 'Новые условия по рефералке',
+      content: `<p>Добрый день!</p><br><p class="small-text" style="ma">Сезон идет во всю, 
+      поэтому напоминанию о нашей реферальной программе, т.к. это источник постоянного пассивного дохода!<p>`,
+      excerpt: `Добрый день! Сезон идет во всю, поэтому напоминанию о нашей реферальной программе,
+        т.к. это источник постоянного пассивного дохода!`
+    },
+    {
+      id: 2,
+      date: new Date(2018, 4, 20),
+      title: 'EDU-AFFILIATES.COM - С НАСТУПАЮЩИМ НОВЫМ ГОДОМ И РОЖДЕСТВОМ!',
+      content: `<p>Уважаемые партнеры!</p><br><p class="small-text" style="ma">Хотим напомнить Вам, что весенний сезон в самом разгаре.
+      <br><br> Несмотря на сумасшедшую загрузку, наша команда подготовила пару приятных новостей:<br><br><p>`,
+      excerpt: `Уважаемые партнеры! Хотим напомнить Вам, что весенний сезон в самом разгаре.`
+    }
+  ];
+
   constructor(
     private store: Store<fromMain.MainState>
   ) {}
@@ -506,4 +526,7 @@ export class MainService {
     this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
   }
 
+  fetchNews() {
+    this.store.dispatch(new MainActions.FetchNews(this.news));
+  }
 }
