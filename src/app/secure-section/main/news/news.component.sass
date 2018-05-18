@@ -1,0 +1,23 @@
+.container
+  .news-group
+    display: grid
+    grid-gap: 20px
+    grid-template-columns: repeat(2, auto)
+  
+eaf-news-item:not(:last-child)
+  // margin-bottom: 20px
+  display: block
+
+@media(max-width: 1399px)
+  .container
+    .news-group
+      width: 670px
+      margin: 0 auto
+      grid-template-columns: repeat(1, 670px)
+
+@media(max-width: 767px)
+  .container
+    .news-group
+      width: 360px
+      grid-template-columns: repeat(1, 360px)
+      grid-gap: 10px

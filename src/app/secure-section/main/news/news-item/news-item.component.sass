@@ -1,4 +1,5 @@
 @import variables
+@import mixins
 .news
   width: 670px
   header
@@ -19,5 +20,21 @@
         line-height: 48px
   main
     padding: 30px
+  .arrow-next
+    @include triangle-right(4px, $accentColor)
+
+@media(max-width: 767px)
+  .news
+    width: 360px
+    header
+      h4
+        font-size: 14px
+        line-height: 20px
+        width: auto
+        margin-bottom: 35px
+      .details
+        align-self: flex-end
+        cursor: pointer
+    main
 
     
