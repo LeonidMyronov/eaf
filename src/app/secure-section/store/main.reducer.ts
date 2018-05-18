@@ -22,7 +22,8 @@ import {
   UPDATE_STATISTIC_FILTERS,
   SAVE_STATISTIC_FILTERS,
   STATISTIC_QUERY_PARAMS,
-  FETCH_TRANSACTIONS
+  FETCH_TRANSACTIONS,
+  FETCH_NEWS
 } from './main.actions';
 
 export interface MainState {
@@ -172,6 +173,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
     return {
       ...state,
       transactions: action.payload
+    };
+    case FETCH_NEWS:
+    return {
+      ...state,
+      news: [...state.news, ...action.payload]
     };
     default:
       return state;
