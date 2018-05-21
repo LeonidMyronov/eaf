@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } fro
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/take';
 
 import { AppStorageService } from '../../../core/app-storage.service';
@@ -48,6 +49,8 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public isStatisticFiltersVisible: boolean;
   private filteredStatisticTableHeads = [];
   private sitesList: any[];
+  private subscriptions: Subscription[] = [];
+
   constructor(
     private store: Store<fromMain.MainState>,
     private appStorage: AppStorageService,
@@ -63,12 +66,12 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.sitesList = this.appStorage.getAllSites();
     this.consolidatedState$ = this.store.select(fromMain.getConsolidatedData);
 
-    this.store.select(fromRoot.getActiveMediaQuery).subscribe((activeMedia: string) => {
+    this.subscriptions.push(this.store.select(fromRoot.getActiveMediaQuery).subscribe((activeMedia: string) => {
       this.activeMediaQuery = activeMedia;
       this.isStatisticFiltersVisible = (this.activeMediaQuery === 'sm' || this.activeMediaQuery === 'xs') ? false : true;
-    });
+    }));
 
-    this.store.select(fromMain.getStatistic).subscribe(
+    this.subscriptions.push(this.store.select(fromMain.getStatistic).subscribe(
       (r: any) => {
         if (!r) {
           this.mainService.fetchStatisticByPeriod();
@@ -83,7 +86,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
         console.log('selectedAllFilters => ', this.selectedAllFilters);
       }
-    );
+    ));
     this.statisticState$ = this.store.select(fromMain.getStatistic);
 
     this.allFiltersForm.valueChanges.subscribe(
@@ -92,11 +95,11 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         console.log('selectedAllFilters => ', this.selectedAllFilters);
       });
 
-    this.store.select(fromRoot.getUserStatisticFilters)
+      this.subscriptions.push(this.store.select(fromRoot.getUserStatisticFilters)
       .subscribe((response: StatisticPanelFilterList) => {
         this.userStatisticPanelFilters = response;
         console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
-      });
+      }));
 
     // this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
   }
@@ -288,5 +291,6 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   ngOnDestroy() {
     this.store.dispatch(new MainAction.SaveStatisticFilters(this.selectedAllFilters));
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 }

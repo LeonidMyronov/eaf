@@ -1,4 +1,14 @@
-import { Component, OnInit, Input, AfterViewChecked, ViewChild, HostListener, OnChanges, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  AfterViewChecked,
+  ViewChild,
+  HostListener,
+  OnChanges,
+  ChangeDetectorRef
+} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -11,7 +21,7 @@ import { Income } from '../../store/main.model';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.sass']
 })
-export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
+export class GraphComponent implements OnInit, AfterViewChecked, OnChanges, OnDestroy {
   @Input() data: Income[];
   @ViewChild('graph') graph;
   windowResizeWidth$: Subscription;
@@ -25,6 +35,7 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
   private graphHeight = 256; // SVG height
   private svgns = 'http://www.w3.org/2000/svg';
   private svg;
+  private chartEl;
 
   constructor(
     private changeDetector: ChangeDetectorRef,
@@ -53,14 +64,16 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
       this.data = this.data.slice();
       this.maxDataArrValue = this.getMaxDataArrValue();
       this.maxYscaleValue = this.getMaxYscaleValue();
-      this.graphInit();
-      // setTimeout(_ => this.graphInit(), 0); // setTimeout needed to avoid ExpressionChangedAfterItHasBeenCheckedError
+      // this.graphInit();
+      setTimeout(_ => this.graphInit(), 0); // setTimeout needed to avoid ExpressionChangedAfterItHasBeenCheckedError
     }
 
   }
 
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
+        // draw chart
+        // this.drawChart();
   }
 
   graphInit() {
@@ -73,7 +86,7 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
     this.svg.setAttribute('height', this.graphHeight);
 
     // draw horizontal grid
-    for (let x = 0; x < 9; x ++) {
+    for (let x = 0; x < 9; x++) {
       const line = document.createElementNS(this.svgns, 'line');
       line.setAttribute('x1', '0');
       line.setAttribute('y1', x * 32 + '');
@@ -84,15 +97,15 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
       this.svg.appendChild(line);
     }
 
-    // draw chart
+    // // draw chart
     this.drawChart();
   }
 
 
   drawChart() {
-    const chartEl = document.getElementById('chart');
-    if (chartEl) {
-      this.svg.removeChild(chartEl);
+    this.chartEl = document.getElementById('chart');
+    if (this.chartEl) {
+      this.svg.removeChild(this.chartEl);
     }
 
     const chartColor = '#FCB528';
@@ -137,5 +150,9 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges {
       i += 1;
     }
     return Math.pow(10, i);
+  }
+
+  ngOnDestroy() {
+    this.chartEl = null;
   }
 }
