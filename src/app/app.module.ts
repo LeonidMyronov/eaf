@@ -20,7 +20,6 @@ import { HomeComponent } from './start-section/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TariffsComponent } from './start-section/tariffs/tariffs.component';
-import { ContactsComponent } from './start-section/contacts/contacts.component';
 
 import { reducers } from './app.reducers';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
@@ -37,7 +36,6 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     HeaderComponent,
     FooterComponent,
     TariffsComponent,
-    ContactsComponent,
     MobileMenuComponent
   ],
   imports: [
