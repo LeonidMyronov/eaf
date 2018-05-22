@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 import { AuthGuard } from './auth/auth.guard';
 
@@ -16,7 +16,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })], // <-- debugging purposes only],
+  imports: [RouterModule.forRoot(routes, {
+    enableTracing: false, // <-- debugging purposes only],
+    // preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule],
   providers: [AuthGuard]
 })
