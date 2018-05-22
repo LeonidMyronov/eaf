@@ -13,7 +13,8 @@ import {
   Browser,
   StatisticPanelFilter,
   Transaction,
-  News
+  News,
+  DiscountIntro
 } from './main.model';
 import {
   MainActions,
@@ -23,7 +24,8 @@ import {
   SAVE_STATISTIC_FILTERS,
   STATISTIC_QUERY_PARAMS,
   FETCH_TRANSACTIONS,
-  FETCH_NEWS
+  FETCH_NEWS,
+  FETCH_DISCOUNT_INTRO
 } from './main.actions';
 
 export interface MainState {
@@ -60,6 +62,7 @@ export interface MainState {
     lastFetched: number;
     news: News[];
   };
+  discountIntro: DiscountIntro;
 }
 
 
@@ -98,6 +101,10 @@ export const initialState: MainState = {
     lastFetched: null,
     news: [],
   },
+  discountIntro: {
+    visitorsLastMonth: null,
+    uniquesLastMonth: null
+  }
 };
 
 
@@ -191,6 +198,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         lastFetched: action.payload.lastFetched
       }
     };
+    case FETCH_DISCOUNT_INTRO:
+    return {
+      ...state,
+      discountIntro: action.payload
+    };
     default:
       return state;
   }
@@ -218,4 +230,5 @@ export const getStatistic = createSelector(getMainState, (state: MainState) => s
 export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
 export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
 export const getNews = createSelector(getMainState, (state: MainState) => state.news);
+export const getDiscountIntro = createSelector(getMainState, (state: MainState) => state.discountIntro);
 

@@ -98,3 +98,8 @@ export interface News {
   excerpt: string;
   content: string;
 }
+
+export interface DiscountIntro {
+  visitorsLastMonth: number;
+   uniquesLastMonth: number;
+}

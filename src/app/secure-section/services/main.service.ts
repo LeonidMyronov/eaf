@@ -511,6 +511,11 @@ export class MainService {
     ]
   };
 
+  private discountIntro = {
+    visitorsLastMonth: 3301,
+    uniquesLastMonth: 212
+  };
+
   constructor(
     private store: Store<fromMain.MainState>
   ) {}
@@ -531,5 +536,9 @@ export class MainService {
 
   fetchNews() {
     this.store.dispatch(new MainActions.FetchNews(this.news));
+  }
+
+  fetchDiscountIntro() {
+    this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
   }
 }
