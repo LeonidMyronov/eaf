@@ -12,12 +12,14 @@ import { HelperService } from './helper.service';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { HomeTimeFormatPipe } from './pipes/home-time.pipe';
 import { ServerTimeFormatPipe } from './pipes/server-time.pipe';
+import { ContactsComponent } from '../start-section/contacts/contacts.component';
 
 @NgModule({
   declarations: [
     DropdownDirective,
     HomeTimeFormatPipe,
-    ServerTimeFormatPipe
+    ServerTimeFormatPipe,
+    ContactsComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,8 @@ import { ServerTimeFormatPipe } from './pipes/server-time.pipe';
     DropdownDirective,
     HomeTimeFormatPipe,
     ServerTimeFormatPipe,
-    TranslateModule
+    TranslateModule,
+    ContactsComponent
   ],
   providers: [AppStorageService, HelperService]
 })

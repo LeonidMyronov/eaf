@@ -1,0 +1,116 @@
+<article class="discount-page">
+  <div class="container">
+    <section class="cards-group">
+
+      <div class="card grid-1">
+        <img src="/assets/images/main/discount/percent-icon.svg" alt="phone">
+        <h4>Подать заявку для доступа к генерации скидок</h4>
+        <p class="small-text light-color">Свяжитесь с нами любым удобным способом: email, Skype, ICQ.</p>
+      </div>
+
+      <div class="card grid-2">
+        <div class="title">
+          Трафик за последний месяц
+        </div>
+        <div class="content single-content">
+          <h1 class="value light-color">{{20}}
+            <span> посетителя</span>
+          </h1>
+        </div>
+        <div class="footer" routerLink="/main/statistic">
+          <div class="action">
+            Подробнее
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+      <div class="card grid-3">
+        <div class="title">
+          Уникальные посетители за последний месяц
+        </div>
+        <div class="content single-content">
+          <h1 class="value light-color">{{20}}
+            <span> уникума</span>
+          </h1>
+        </div>
+        <div class="footer" routerLink="/main/statistic">
+          <div class="action">
+            Подробнее
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+
+      <form class="form grid-4" [formGroup]="discountForm" (ngSubmit)="onSubmit()">
+        <div class="title">Подать заявку на скидки</div>
+
+        <div class="form-field">
+          <label for="name">Сайт:</label>
+          <div class="form-field__descr">
+              Пожалуйста, укажите хотя бы один сайт, на котором <br>вы будете размещать скидочные коды:
+          </div>
+          <div class="form-field-group" fxLayout="row" fxLayoutAlign="space-between center">
+
+            <div class="proto-wrapper" fxLayout="row" fxLayoutAlign="space-between center">
+              <div class="proto-switches">
+                <input type="radio" id="http-switch" formControlName="proto" value="http">
+                <label for="http-switch"></label>
+                <input type="radio" id="https-switch" formControlName="proto" value="https">
+                <label for="https-switch"></label>
+              </div>
+              <span class="proto-value">{{discountForm.get('proto').value}}://</span>
+            </div>
+            <div class="form-field site-input">
+              <input id="name" type="text" placeholder="Input site name:" formControlName="name">
+              <div class="form-field__actions">
+                <span class="form-required">*</span>
+                <div *ngIf="discountForm.controls['name'].errors?.required && discountForm.controls['name'].touched" class="form-error">
+                  This field is required
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="amount">Среднесуточное количество посетителей:</label>
+          <div class="form-field__descr">
+              Пожалуйста, укажите среднесуточное количество уникальных пользователей, которым вы планируете предлагать скидочные коды:
+          </div>
+
+          <div class="form-field-group" fxLayout="row" fxLayoutAlign="start center">
+            <div class="form-field visitors-amount">
+              <input id="amount" type="number" placeholder="Amount:" formControlName="amount">
+              <div class="form-field__actions">
+                <span class="form-required">*</span>
+                <div *ngIf="discountForm.controls['amount'].errors?.required && discountForm.controls['amount'].touched" class="form-error">
+                  This field is required
+                </div>
+              </div>
+            </div>
+            <span>посетителей</span>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="details">Комментарии:</label>
+          <div class="form-field__descr">Пожалуйста, укажите в комментариях как вы планируете использовать скидочные коды и почему:</div>
+          <textarea id="details" type="text" placeholder="Input your details:" formControlName="details"></textarea>
+          <div class="form-field__actions">
+            <span class="form-required textarea">*</span>
+            <div *ngIf="discountForm.controls['details'].errors?.required && discountForm.controls['details'].touched" class="form-error">
+              This field is required
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="primary btn-lg" [disabled]="discountForm.invalid">Send</button>
+
+      </form>
+    </section>
+  </div>
+</article>
