@@ -20,14 +20,13 @@ import { HomeComponent } from './start-section/home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { TariffsComponent } from './start-section/tariffs/tariffs.component';
-import { ContactsComponent } from './start-section/contacts/contacts.component';
 
 import { reducers } from './app.reducers';
 import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
-// import { StoreRouterConnectingModule } from '@ngrx/router-store';
-// import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-// import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -37,7 +36,6 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
     HeaderComponent,
     FooterComponent,
     TariffsComponent,
-    ContactsComponent,
     MobileMenuComponent
   ],
   imports: [
@@ -55,9 +53,9 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }
-    })
-    // StoreRouterConnectingModule,
-    // !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
+    }),
+    StoreRouterConnectingModule,
+    !environment.production ? StoreDevtoolsModule.instrument() : [], // this will launch store-devtools only for dev mode
     // StoreDevtoolsModule.instrument()
   ],
   providers: [
