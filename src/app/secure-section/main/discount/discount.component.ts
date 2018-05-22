@@ -6,7 +6,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { MainService } from '../../services/main.service';
 
 import * as fromMain from '../../store/main.reducer';
-import { DiscountIntro } from '../../store/main.model';
+import * as MainActions from '../../store/main.actions';
+import { Discounts } from '../../store/main.model';
 
 @Component({
   selector: 'eaf-discount',
@@ -15,7 +16,7 @@ import { DiscountIntro } from '../../store/main.model';
 })
 export class DiscountComponent implements OnInit, OnDestroy {
   discountForm: FormGroup;
-  discountIntroData: DiscountIntro;
+  discountsData: Discounts;
   private subs: Subscription;
 
   constructor(
@@ -23,12 +24,12 @@ export class DiscountComponent implements OnInit, OnDestroy {
     private mainService: MainService
   ) { }
   ngOnInit() {
-    this.subs = this.store.select(fromMain.getDiscountIntro)
-      .subscribe((response: DiscountIntro) => {
+    this.subs = this.store.select(fromMain.getDiscounts)
+      .subscribe((response: Discounts) => {
         if (!response.visitorsLastMonth) {
           this.mainService.fetchDiscountIntro();
         } else {
-          this.discountIntroData = response;
+          this.discountsData = response;
         }
       });
     this.initForm();
@@ -45,6 +46,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     console.log(this.discountForm.value);
+    this.store.dispatch(new MainActions.SubmitDiscountRequest());
   }
 
   ngOnDestroy() {
