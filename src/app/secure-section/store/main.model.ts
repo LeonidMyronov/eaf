@@ -99,7 +99,8 @@ export interface News {
   content: string;
 }
 
-export interface DiscountIntro {
+export interface Discounts {
   visitorsLastMonth: number;
-   uniquesLastMonth: number;
+  uniquesLastMonth: number;
+  isRequestSubmitted: boolean;
 }
