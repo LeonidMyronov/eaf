@@ -181,6 +181,8 @@ a
     width: 100%
     height: 40px
     border-radius: 2px
+    &.ng-touched.ng-invalid
+      border: 1px solid red
   textarea
     width: 100%
     height: 104px
@@ -223,8 +225,7 @@ a
       position: absolute
       color: red
       font-size: 12px
-      // margin-top: 4px
-      // margin-left: 10px
+      width: max-content
       top: 4px
       left: 10px
       &.form-field-required
