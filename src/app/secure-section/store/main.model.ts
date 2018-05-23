@@ -99,7 +99,22 @@ export interface News {
   content: string;
 }
 
-export interface DiscountIntro {
+export interface Discounts {
   visitorsLastMonth: number;
-   uniquesLastMonth: number;
+  uniquesLastMonth: number;
+  isRequestSubmitted: boolean;
+  availableCoupons: number;
+  sources: string[];
+  activeCoupons: Coupon[];
+  expiredCoupons: Coupon[];
+}
+
+export interface Coupon {
+  name: string;
+  group: string;
+  site: string;
+  creationDate: Date;
+  expirationDate: Date;
+  discountValue: number;
+  usageAmount: number;
 }

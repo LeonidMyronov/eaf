@@ -1,0 +1,85 @@
+<article class="discount-details-page">
+    <div class="container">
+      <section class="cards-group">
+  
+        <div class="card grid-1">
+          <img src="/assets/images/main/discount/percent-icon.svg" alt="phone">
+          <h4>Добавьте скидку на сайт</h4>
+          <p class="small-text light-color">Если у вас возникли какие то вопросы, свяжитесь с нами любым удобным способом:</p>
+          <p class="small-text"><span class="light-color">Skype:</span> edu-affiliates</p>
+          <p class="small-text"><span class="light-color">ICQ:</span>  678 477 641</p>
+          <p class="small-text"> <span class="light-color"> E-mail:</span><a href="mailto:support@edu-affiliates.com">support@edu-affiliates.com</a> 
+            </p>
+        </div>
+  
+        <div class="card grid-2">
+          <div class="title">
+            Трафик за последний месяц
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.visitorsLastMonth}}
+              <span> посетителя</span>
+            </h1>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card grid-3">
+          <div class="title">
+            Уникальные посетители за последний месяц
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.uniquesLastMonth}}
+              <span> уникума</span>
+            </h1>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card grid-4">
+          <div class="title">
+              Доступно купонов на скидку
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.availableCoupons}}
+              <span> купонов</span>
+            </h1>
+          </div>
+        </div>
+
+        <div class="card grid-5">
+          <div class="title">
+            ТОП 5 Источников
+          </div>
+          <div class="content single-content">
+            <span class="source small-text light-color" *ngFor="let source of discountsData.sources">{{source}}</span>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form grid-6">
+
+        </div>
+  
+        
+      </section>
+    </div>
+  </article>

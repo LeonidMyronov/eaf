@@ -10,12 +10,12 @@ import * as MainActions from '../../store/main.actions';
 import { Discounts } from '../../store/main.model';
 
 @Component({
-  selector: 'eaf-discount',
-  templateUrl: './discount.component.html',
-  styleUrls: ['./discount.component.sass']
+  selector: 'eaf-discount-details',
+  templateUrl: './discount-details.component.html',
+  styleUrls: ['./discount-details.component.sass']
 })
-export class DiscountComponent implements OnInit, OnDestroy {
-  discountForm: FormGroup;
+export class DiscountDetailsComponent implements OnInit, OnDestroy {
+  discountGeneratorForm: FormGroup;
   discountsData: Discounts;
   private subs: Subscription;
 
@@ -26,8 +26,8 @@ export class DiscountComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs = this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
-        if (!response.visitorsLastMonth) {
-          this.mainService.fetchDiscountIntro();
+        if (!response.availableCoupons) {
+          this.mainService.fetchDiscountDetails();
         } else {
           this.discountsData = response;
         }
@@ -36,7 +36,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
   }
 
   initForm() {
-    this.discountForm = new FormGroup({
+    this.discountGeneratorForm = new FormGroup({
       name: new FormControl('', Validators.required),
       proto: new FormControl('http'),
       amount: new FormControl('', Validators.required),
@@ -45,8 +45,8 @@ export class DiscountComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.discountForm.value);
-    this.store.dispatch(new MainActions.SubmitDiscountRequest());
+    console.log(this.discountGeneratorForm.value);
+    // this.store.dispatch(new MainActions.SubmitDiscountRequest());
   }
 
   ngOnDestroy() {

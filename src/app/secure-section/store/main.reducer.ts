@@ -14,7 +14,7 @@ import {
   StatisticPanelFilter,
   Transaction,
   News,
-  DiscountIntro
+  Discounts
 } from './main.model';
 import {
   MainActions,
@@ -25,7 +25,9 @@ import {
   STATISTIC_QUERY_PARAMS,
   FETCH_TRANSACTIONS,
   FETCH_NEWS,
-  FETCH_DISCOUNT_INTRO
+  FETCH_DISCOUNT_INTRO,
+  SUBMIT_DISCOUNT_REQUEST,
+  FETCH_DISCOUNT_DETAILS
 } from './main.actions';
 
 export interface MainState {
@@ -62,7 +64,7 @@ export interface MainState {
     lastFetched: number;
     news: News[];
   };
-  discountIntro: DiscountIntro;
+  discounts: Discounts;
 }
 
 
@@ -101,9 +103,14 @@ export const initialState: MainState = {
     lastFetched: null,
     news: [],
   },
-  discountIntro: {
+  discounts: {
     visitorsLastMonth: null,
-    uniquesLastMonth: null
+    uniquesLastMonth: null,
+    isRequestSubmitted: false,
+    availableCoupons: null,
+    sources: [],
+    activeCoupons: [],
+    expiredCoupons: []
   }
 };
 
@@ -201,7 +208,27 @@ export function mainReducer(state: MainState = initialState, action: MainActions
     case FETCH_DISCOUNT_INTRO:
     return {
       ...state,
-      discountIntro: action.payload
+      discounts: {
+        ...state.discounts,
+        uniquesLastMonth: action.payload.uniquesLastMonth,
+        visitorsLastMonth: action.payload.visitorsLastMonth
+      }
+    };
+    case FETCH_DISCOUNT_DETAILS:
+    return {
+      ...state,
+      discounts: {
+        ...state.discounts,
+        ...action.payload
+      }
+    };
+    case SUBMIT_DISCOUNT_REQUEST:
+    return {
+      ...state,
+      discounts: {
+        ...state.discounts,
+        isRequestSubmitted: true
+      }
     };
     default:
       return state;
@@ -230,5 +257,5 @@ export const getStatistic = createSelector(getMainState, (state: MainState) => s
 export const getStatisticQueryParams = createSelector(getMainState, (state: MainState) => state.statisticQueryParams);
 export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
 export const getNews = createSelector(getMainState, (state: MainState) => state.news);
-export const getDiscountIntro = createSelector(getMainState, (state: MainState) => state.discountIntro);
+export const getDiscounts = createSelector(getMainState, (state: MainState) => state.discounts);
 

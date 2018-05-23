@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { StatisticPanelFilter, Transaction, News, DiscountIntro } from './main.model';
+import { StatisticPanelFilter, Transaction, News, Coupon, Discounts } from './main.model';
 
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
@@ -9,6 +9,8 @@ export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';
+export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';
+export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -48,7 +50,16 @@ export class FetchNews implements Action {
 
 export class FetchDiscountIntro implements Action {
   readonly type = FETCH_DISCOUNT_INTRO;
-  constructor(public payload: DiscountIntro) {}
+  constructor(public payload: {visitorsLastMonth: number,  uniquesLastMonth: number}) {}
+}
+
+export class FetchDiscountDetails implements Action {
+  readonly type = FETCH_DISCOUNT_DETAILS;
+  constructor(public payload: Discounts) {}
+}
+
+export class SubmitDiscountRequest implements Action {
+  readonly type = SUBMIT_DISCOUNT_REQUEST;
 }
 
 export type MainActions =
@@ -59,6 +70,8 @@ export type MainActions =
   StatisticQueryParams |
   FetchTransactions |
   FetchNews |
-  FetchDiscountIntro
+  FetchDiscountIntro |
+  SubmitDiscountRequest |
+  FetchDiscountDetails
 ;
 
