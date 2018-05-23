@@ -75,11 +75,55 @@
           </div>
         </div>
 
-        <div class="form grid-6">
+        <div class="form grid-6" [formGroup]="discountGeneratorForm" (ngSubmit)="onSubmit()">
+          <div class="title">Генератор скидок</div>
+          <div class="small-text sub-title">
+              Доступон купонов: {{discountsData.availableCoupons - discountsData.usedCoupons}}/{{discountsData.availableCoupons}}
+          </div>
+
+          <div class="form-field">
+            <label for="name">Сайт:</label>
+            <div class="form-field__descr">Укажите сайт на какой вы хотите сгенерировать скидку:</div>
+            <div class="slider">
+              <div class="slider__controls">
+                <span class="control left-arrow" (click)="onSlideLeft()" [ngClass]="{disabled: sliderPos == 0}"></span>
+                <span class="control right-arrow" (click)="onSlideRight()" [ngClass]="{disabled: sliderPos == -1}"></span>
+              </div>
+              <div class="slider__area">
+                <div class="slider__area__slides" [ngStyle]="{transform: 'translate(' + (sliderPos * 143) + 'px)'}">
+                  <div class="slide"
+                    *ngFor="let site of sitesArr; let i = index"
+                    [ngClass]="{active: i === activeSlideIndex}"
+                    (click)="onClickSlide(i)">
+                    <img [src]="site.logo" alt="">
+                    <p>{{ site.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="name">Скидочный код:</label>
+            <div class="form-field__descr">5-20 символов:</div>
+          </div>
+
+          <div class="form-field">
+            <label for="name">Трэк группа:</label>
+            <div class="form-field__descr">Название DSC (расшифровка аббревиатуры):</div>
+          </div>
+
+          <div class="form-field">
+            <label for="name">Срок действия скидки:</label>
+            <div class="form-field__descr">(Месяцы):</div>
+          </div>
+          
+          <div class="form-field">
+            <label for="name">Размер скидок:</label>
+            <div class="form-field__descr">Выберете:</div>
+          </div>
 
         </div>
-  
-        
       </section>
     </div>
   </article>

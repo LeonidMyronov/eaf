@@ -116,6 +116,50 @@
 
 .form
   height: 788px
+  padding-top: 30px
+  padding-bottom: 80px
+  .title
+    display: inline-block
+  .sub-title
+    display: inline-block
+    float: right
+  .slider
+    &__controls
+      position: relative
+      .control
+        position: absolute
+        top: 50px
+        cursor: pointer
+        &.left-arrow
+          @include triangle-left(6.5px, $mainColor)
+          left: -20px
+          &:hover:not(.disabled)
+            border-right-color: $accentColor
+        &.right-arrow
+          @include triangle-right(6.5px, $mainColor)
+          right: -20px
+          &:hover:not(.disabled)
+            border-left-color: $accentColor
+        &.disabled
+          cursor: not-allowed
+          opacity: 0.5
+
+    &__area
+      overflow: hidden
+      &__slides
+        width: 800px
+    .slide
+      display: inline-block
+      margin-right: 10px
+      opacity: 0.2
+      cursor: pointer
+      p
+        font-size: 12px
+        text-align: center
+      &:last-child
+        margin-right: 0
+      &.active, &:hover
+        opacity: 1
 
 @media (max-width: 1399px)
   .cards-group

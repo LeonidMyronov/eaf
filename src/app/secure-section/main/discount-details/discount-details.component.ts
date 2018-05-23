@@ -4,6 +4,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { MainService } from '../../services/main.service';
+import { MainStorageService, DiscountSite } from '../../services/main-storage.service';
 
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
@@ -17,13 +18,19 @@ import { Discounts } from '../../store/main.model';
 export class DiscountDetailsComponent implements OnInit, OnDestroy {
   discountGeneratorForm: FormGroup;
   discountsData: Discounts;
+  sitesArr: DiscountSite[];
+  sliderPos = 0;
+  activeSlideIndex = 1;
   private subs: Subscription;
 
   constructor(
     private store: Store<fromMain.MainState>,
-    private mainService: MainService
+    private mainService: MainService,
+    private mainStorage: MainStorageService,
+
   ) { }
   ngOnInit() {
+    this.sitesArr = this.mainStorage.getSitesArr();
     this.subs = this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
@@ -38,10 +45,31 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   initForm() {
     this.discountGeneratorForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      proto: new FormControl('http'),
+      site: new FormControl(this.sitesArr[this.activeSlideIndex]),
       amount: new FormControl('', Validators.required),
       details: new FormControl('', Validators.required),
     });
+  }
+
+  onSlideLeft() {
+    if (this.sliderPos === 0) {
+      return;
+    } else {
+      this.sliderPos += 1;
+    }
+  }
+
+  onSlideRight() {
+    if (this.sitesArr.length - (3 - this.sliderPos) === 0) {
+      return;
+    } else {
+      this.sliderPos -= 1;
+    }
+  }
+
+  onClickSlide(i) {
+    this.activeSlideIndex = i;
+    this.discountGeneratorForm.patchValue({site: this.sitesArr[i]});
   }
 
   onSubmit() {
