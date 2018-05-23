@@ -104,6 +104,7 @@ export interface Discounts {
   uniquesLastMonth: number;
   isRequestSubmitted: boolean;
   availableCoupons: number;
+  usedCoupons: number;
   sources: string[];
   activeCoupons: Coupon[];
   expiredCoupons: Coupon[];

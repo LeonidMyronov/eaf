@@ -108,6 +108,7 @@ export const initialState: MainState = {
     uniquesLastMonth: null,
     isRequestSubmitted: false,
     availableCoupons: null,
+    usedCoupons: null,
     sources: [],
     activeCoupons: [],
     expiredCoupons: []

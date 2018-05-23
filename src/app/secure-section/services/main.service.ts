@@ -520,6 +520,7 @@ export class MainService {
     visitorsLastMonth: 3301,
     uniquesLastMonth: 212,
     availableCoupons: 24,
+    usedCoupons: 1,
     sources: ['edu-affiliates.com', 'fonts.google.com', 'depositphotos.com', 'сheapсustompapers.com', 'plasticjam.github.com'],
     activeCoupons: [
       {
