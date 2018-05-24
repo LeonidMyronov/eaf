@@ -21,6 +21,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   sitesArr: DiscountSite[];
   sliderPos = 0;
   activeSlideIndex = 1;
+  rangePoints = new Array(16);
   private subs: Subscription;
 
   constructor(
@@ -40,14 +41,20 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
         }
       });
     this.initForm();
+    this.discountGeneratorForm.get('discount').valueChanges.subscribe(v => {
+      console.log(v);
+      this.discountGeneratorForm.patchValue({'discountValue': v + '%'});
+    });
   }
 
   initForm() {
     this.discountGeneratorForm = new FormGroup({
-      name: new FormControl('', Validators.required),
       site: new FormControl(this.sitesArr[this.activeSlideIndex]),
-      amount: new FormControl('', Validators.required),
-      details: new FormControl('', Validators.required),
+      code: new FormControl('', Validators.required),
+      group: new FormControl('', Validators.required),
+      term: new FormControl(5),
+      discount: new FormControl(5),
+      discountValue: new FormControl('5%')
     });
   }
 
@@ -70,6 +77,28 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   onClickSlide(i) {
     this.activeSlideIndex = i;
     this.discountGeneratorForm.patchValue({site: this.sitesArr[i]});
+  }
+
+  // enter discount via input[type=text]
+  onEnterDiscountValue(e) {
+    let _discount;
+      try {
+        if (!e || !e.target || !e.target.value) {
+          throw new Error(`isn't HTML Input Object`);
+      }
+      _discount = parseInt(e.target.value, 10);
+      if (!Number.isInteger(_discount)) {
+        throw new Error('not number');
+      }
+      if (_discount < 5 || _discount > 20) {
+        throw new Error('exceed range');
+      }
+    } catch (e) {
+      console.log(`DiscountRangeException! ${e}`);
+      this.discountGeneratorForm.patchValue({'discountValue': this.discountGeneratorForm.get('discount').value + '%'});
+      return;
+    }
+    this.discountGeneratorForm.patchValue({'discount': _discount});
   }
 
   onSubmit() {

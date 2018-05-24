@@ -123,6 +123,16 @@
   .sub-title
     display: inline-block
     float: right
+  .code-section
+    button
+      font-size: 14px
+      margin-right: 0
+      flex-shrink: 0
+      &:hover
+        background-color: $mainColor
+        color: $accentColor
+
+    
   .slider
     &__controls
       position: relative
@@ -160,6 +170,103 @@
         margin-right: 0
       &.active, &:hover
         opacity: 1
+
+  .rangeContainer
+    width: 320px /* Width of the outside container */
+    margin-left: 10px
+
+    /* The slider itself */
+    #discountRange
+      padding: 0
+      margin: 0
+      box-shadow: none
+      border-radius: 0
+      -webkit-appearance: none  /* Override default CSS styles */
+      appearance: none
+      width: 100% /* Full-width */
+      height: 4px /* Specified height */
+      background: $lightColor /* Grey background */
+      outline: none /* Remove outline */
+      opacity: 1 /* Set transparency (for mouse-over effects on hover) */
+      z-index: 2
+      
+      // -webkit-transition: .2s /* 0.2 seconds transition on hover */
+      // transition: opacity .2s
+
+    /* Mouse-over effects */
+    #discountRange:hover
+      opacity: 1 /* Fully shown on mouse-over */
+
+    /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+    #discountRange::-webkit-slider-thumb 
+      -webkit-appearance: none /* Override default look */
+      appearance: none
+      width: 20px /* Set a specific slider handle width */
+      height: 20px /* Slider handle height */
+      background: $accentColor /* Green background */
+      cursor: pointer /* Cursor on hover */
+      border-radius: 50%
+      transform: translate(-50%)
+      z-index: 2
+      &:after
+        content: '1'
+        
+
+
+    #discountRange::-moz-range-thumb 
+      width: 20px /* Set a specific slider handle width */
+      height: 20px /* Slider handle height */
+      background: $accentColor /* Green background */
+      cursor: pointer /* Cursor on hover */
+      border-radius: 50%
+      transform: translate(-50%)
+      z-index: 2
+
+
+    // thumb hovering
+    #discountRange::-webkit-slider-thumb
+      &:hover
+        background-color: $mainColor      
+    #discountRange::-moz-range-thumb
+      &:hover
+        background-color: $mainColor    
+    .range-scale
+      position: relative
+      &:after
+        position: absolute
+        width: 20px
+        height: 20px
+        content: ''
+        background-color: $formColor
+        right: -1px
+      .colored-scale
+        position: absolute
+        height: 4px
+        background-color: $mainColor
+        left: 0
+        top: 12px
+      .point
+        position: absolute
+        top: 16px
+        width: 1px
+        height: 7px
+        background-color: $lightColor
+        content: ''
+        &.selected
+          background-color: $mainColor
+        &.big-point
+          height: 14px
+          span
+            font-size: 10px
+            width: max-content
+            display: block
+            position: absolute
+            top: 16px
+            transform: translate(-50%)
+  .valueContainer
+    width: 60px
+    input
+      text-align: center
 
 @media (max-width: 1399px)
   .cards-group
