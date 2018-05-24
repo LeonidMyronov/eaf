@@ -521,6 +521,8 @@ export class MainService {
     uniquesLastMonth: 212,
     availableCoupons: 24,
     usedCoupons: 1,
+    totalActiveCoupons: 15,
+    totalExpiredCoupons: 23,
     sources: ['edu-affiliates.com', 'fonts.google.com', 'depositphotos.com', 'сheapсustompapers.com', 'plasticjam.github.com'],
     activeCoupons: [
       {
@@ -548,12 +550,12 @@ export class MainService {
         creationDate: new Date(),
         expirationDate: new Date(),
         discountValue: 2,
-        usageAmount: 111
+        usageAmount: 111,
       }
     ],
     expiredCoupons: [
       {
-        name: 'AA11QQ21',
+        name: 'BB11QQ21',
         group: 'coupon',
         site: '97papers.cum',
         creationDate: new Date(),
@@ -562,7 +564,7 @@ export class MainService {
         usageAmount: 1
       },
       {
-        name: 'AA11QQ22',
+        name: 'BB11QQ22',
         group: 'coupon',
         site: '98papers.cum',
         creationDate: new Date(),
@@ -571,7 +573,7 @@ export class MainService {
         usageAmount: 11
       },
       {
-        name: 'AA11QQ23',
+        name: 'BB11QQ23',
         group: 'coupon',
         site: '99papers.cum',
         creationDate: new Date(),
