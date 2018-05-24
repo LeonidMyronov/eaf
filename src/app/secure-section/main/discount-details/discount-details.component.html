@@ -1,0 +1,173 @@
+<article class="discount-details-page">
+    <div class="container">
+      <section class="cards-group">
+  
+        <div class="card grid-1">
+          <img src="/assets/images/main/discount/percent-icon.svg" alt="phone">
+          <h4>Добавьте скидку на сайт</h4>
+          <p class="small-text light-color">Если у вас возникли какие то вопросы, свяжитесь с нами любым удобным способом:</p>
+          <p class="small-text"><span class="light-color">Skype:</span> edu-affiliates</p>
+          <p class="small-text"><span class="light-color">ICQ:</span>  678 477 641</p>
+          <p class="small-text"> <span class="light-color"> E-mail:</span><a href="mailto:support@edu-affiliates.com">support@edu-affiliates.com</a> 
+            </p>
+        </div>
+  
+        <div class="card grid-2">
+          <div class="title">
+            Трафик за последний месяц
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.visitorsLastMonth}}
+              <span> посетителя</span>
+            </h1>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card grid-3">
+          <div class="title">
+            Уникальные посетители за последний месяц
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.uniquesLastMonth}}
+              <span> уникума</span>
+            </h1>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+              <span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card grid-4">
+          <div class="title">
+              Доступно купонов на скидку
+          </div>
+          <div class="content single-content">
+            <h1 class="value light-color">{{discountsData.availableCoupons}}
+              <span> купонов</span>
+            </h1>
+          </div>
+        </div>
+
+        <div class="card grid-5">
+          <div class="title">
+            ТОП 5 Источников
+          </div>
+          <div class="content single-content">
+            <span class="source small-text light-color" *ngFor="let source of discountsData.sources">{{source}}</span>
+          </div>
+          <div class="footer" routerLink="/main/statistic">
+            <div class="action">
+              Подробнее
+              <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
+            </div>
+          </div>
+        </div>
+
+        <form class="form grid-6" [formGroup]="discountGeneratorForm" (ngSubmit)="onSubmit()">
+          <div class="title">Генератор скидок</div>
+          <div class="small-text sub-title">
+              Доступон купонов: {{discountsData.availableCoupons - discountsData.usedCoupons}}/{{discountsData.availableCoupons}}
+          </div>
+
+          <div class="form-field">
+            <label for="name">Сайт:</label>
+            <div class="form-field__descr">Укажите сайт на какой вы хотите сгенерировать скидку:</div>
+            <div class="slider">
+              <div class="slider__controls">
+                <span class="control left-arrow" (click)="onSlideLeft()" [ngClass]="{disabled: sliderPos == 0}"></span>
+                <span class="control right-arrow" (click)="onSlideRight()" [ngClass]="{disabled: sliderPos == -1}"></span>
+              </div>
+              <div class="slider__area">
+                <div class="slider__area__slides" [ngStyle]="{transform: 'translate(' + (sliderPos * 143) + 'px)'}">
+                  <div class="slide"
+                    *ngFor="let site of sitesArr; let i = index"
+                    [ngClass]="{active: i === activeSlideIndex}"
+                    (click)="onClickSlide(i)">
+                    <img [src]="site.logo" alt="">
+                    <p>{{ site.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field code-section">
+            <label for="code">Скидочный код:</label>
+            <div class="form-field__descr">5-20 символов:</div>
+            <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
+              <input id="code" type="text" placeholder="XXXXXXXXXXXXXXXXXXXX" formControlName="code">
+              <button type="button" class="accent btn-md">Generate</button>
+            </div>
+            <div class="form-field__actions">
+              <div *ngIf="discountGeneratorForm.controls['code'].errors?.required && discountGeneratorForm.controls['code'].touched" class="form-error">
+                This field is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="group">Трэк группа:</label>
+            <div class="form-field__descr">Название DSC (расшифровка аббревиатуры):</div>
+            <input id="group" type="text" placeholder="Введите трэк группы" formControlName="group">
+            <div class="form-field__actions">
+              <div *ngIf="discountGeneratorForm.controls['group'].errors?.required && discountGeneratorForm.controls['group'].touched" class="form-error">
+                This field is required
+              </div>
+            </div>
+          </div>
+
+          <div class="form-field discount-term">
+            <label for="name">Срок действия скидки:</label>
+            <div class="form-field__descr">(Месяцы):</div>
+            <div class="switches-group" fxLayout="row" fxLayoutAlign="start start">
+                <input type="radio" id="term1" formControlName="term" value="1">
+                <label for="term1">1 Месяц</label>
+                <input type="radio" id="term2" formControlName="term" value="2">
+                <label for="term2">2 Месяца</label>
+                <input type="radio" id="term3" formControlName="term" value="3">
+                <label for="term3">3 Месяца</label>
+              </div>
+          </div>
+          
+          <div class="form-field discount-range">
+            <label for="name">Размер скидок:</label>
+            <div class="form-field__descr">Выберете:</div>
+            <div class="form-field-group" fxLayout="row" fxLayoutAlign="space-between start">
+            
+              <div class="rangeContainer">
+                <div class="range-scale">
+                  <div class="colored-scale" [ngStyle]="{width: ((discountGeneratorForm.get('discountRange').value - 5) * 100 / 16) + '%'}"></div>
+                  <ng-container *ngFor="let item of rangePoints; let i = index">
+                    <div class="point" [ngClass]="{'big-point': (i % 5) == 0, selected: discountGeneratorForm.get('discountRange').value - 5 >= i && discountGeneratorForm.get('discountRange').value > 5 }" [ngStyle]="{left: (i * 100 / 16) + '%'}">
+                      <span *ngIf="(i % 5) == 0">{{ i + 5}} %</span>
+                    </div>
+                  </ng-container>
+                </div>
+                <input type="range" 
+                  min="5" max="20" 
+                  id="discountRange" 
+                  formControlName="discountRange">
+              </div>
+              <div class="valueContainer">
+                <input type="text" id=""  formControlName="discountValue" (keyup.enter)="onEnterDiscountValue($event)">
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="primary btn-lg" [disabled]="discountGeneratorForm.invalid">Create</button>
+
+        </form>
+      </section>
+    </div>
+  </article>

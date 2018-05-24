@@ -516,6 +516,72 @@ export class MainService {
     uniquesLastMonth: 212
   };
 
+  private discountDetails = {
+    visitorsLastMonth: 3301,
+    uniquesLastMonth: 212,
+    availableCoupons: 24,
+    usedCoupons: 1,
+    sources: ['edu-affiliates.com', 'fonts.google.com', 'depositphotos.com', 'сheapсustompapers.com', 'plasticjam.github.com'],
+    activeCoupons: [
+      {
+        name: 'AA11QQ21',
+        group: 'coupon',
+        site: '97papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 12,
+        usageAmount: 1
+      },
+      {
+        name: 'AA11QQ22',
+        group: 'coupon',
+        site: '98papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 7,
+        usageAmount: 11
+      },
+      {
+        name: 'AA11QQ23',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 2,
+        usageAmount: 111
+      }
+    ],
+    expiredCoupons: [
+      {
+        name: 'AA11QQ21',
+        group: 'coupon',
+        site: '97papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 12,
+        usageAmount: 1
+      },
+      {
+        name: 'AA11QQ22',
+        group: 'coupon',
+        site: '98papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 7,
+        usageAmount: 11
+      },
+      {
+        name: 'AA11QQ23',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 2,
+        usageAmount: 111
+      }
+    ],
+  };
+
   constructor(
     private store: Store<fromMain.MainState>
   ) {}
@@ -540,5 +606,9 @@ export class MainService {
 
   fetchDiscountIntro() {
     this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
+  }
+
+  fetchDiscountDetails() {
+    this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
   }
 }

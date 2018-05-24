@@ -9,6 +9,7 @@ import { GuideComponent } from './main/guide/guide.component';
 import { NewsComponent } from './main/news/news.component';
 import { ContactsComponent } from '../start-section/contacts/contacts.component';
 import { DiscountComponent } from './main/discount/discount.component';
+import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'news', component: NewsComponent },
       { path: 'support', component: ContactsComponent },
       { path: 'discount', component: DiscountComponent },
-      { path: '**', redirectTo: 'discount' },
+      { path: 'discount/details', component: DiscountDetailsComponent },
+      { path: '**', redirectTo: 'discount/details' },
     ]
   },
 ];

@@ -72,6 +72,15 @@
   border-bottom-color: transparent
   border-right-color: transparent
 
+@mixin triangle-left ($width, $color)
+  @extend .triangle-base
+  border-width: $width
+  border-style: solid
+  border-color: $color
+  border-top-color: transparent
+  border-bottom-color: transparent
+  border-left-color: transparent
+
 @mixin triangle-bottom ($width, $color)
   @extend .triangle-base
   border-width: $width

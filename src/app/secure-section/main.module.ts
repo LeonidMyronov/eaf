@@ -17,6 +17,7 @@ import { GuideComponent } from './main/guide/guide.component';
 import { NewsComponent } from './main/news/news.component';
 import { NewsItemComponent } from './main/news/news-item/news-item.component';
 import { DiscountComponent } from './main/discount/discount.component';
+import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DiscountComponent } from './main/discount/discount.component';
     NewsComponent,
     NewsItemComponent,
     DiscountComponent,
+    DiscountDetailsComponent,
   ],
   imports: [
     CoreModule,

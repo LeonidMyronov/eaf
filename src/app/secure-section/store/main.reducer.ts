@@ -26,7 +26,8 @@ import {
   FETCH_TRANSACTIONS,
   FETCH_NEWS,
   FETCH_DISCOUNT_INTRO,
-  SUBMIT_DISCOUNT_REQUEST
+  SUBMIT_DISCOUNT_REQUEST,
+  FETCH_DISCOUNT_DETAILS
 } from './main.actions';
 
 export interface MainState {
@@ -105,7 +106,12 @@ export const initialState: MainState = {
   discounts: {
     visitorsLastMonth: null,
     uniquesLastMonth: null,
-    isRequestSubmitted: false
+    isRequestSubmitted: false,
+    availableCoupons: null,
+    usedCoupons: null,
+    sources: [],
+    activeCoupons: [],
+    expiredCoupons: []
   }
 };
 
@@ -187,36 +193,44 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         statisticQueryParams: action.payload
       };
     case FETCH_TRANSACTIONS:
-    return {
-      ...state,
-      transactions: action.payload
-    };
+      return {
+        ...state,
+        transactions: action.payload
+      };
     case FETCH_NEWS:
-    return {
-      ...state,
-      news: {
-        news: [...state.news.news, ...action.payload.news],
-        more: action.payload.more,
-        lastFetched: action.payload.lastFetched
-      }
-    };
+      return {
+        ...state,
+        news: {
+          news: [...state.news.news, ...action.payload.news],
+          more: action.payload.more,
+          lastFetched: action.payload.lastFetched
+        }
+      };
     case FETCH_DISCOUNT_INTRO:
-    return {
-      ...state,
-      discounts: {
-        ...state.discounts,
-        uniquesLastMonth: action.payload.uniquesLastMonth,
-        visitorsLastMonth: action.payload.visitorsLastMonth
-      }
-    };
+      return {
+        ...state,
+        discounts: {
+          ...state.discounts,
+          uniquesLastMonth: action.payload.uniquesLastMonth,
+          visitorsLastMonth: action.payload.visitorsLastMonth
+        }
+      };
+    case FETCH_DISCOUNT_DETAILS:
+      return {
+        ...state,
+        discounts: {
+          ...state.discounts,
+          ...action.payload
+        }
+      };
     case SUBMIT_DISCOUNT_REQUEST:
-    return {
-      ...state,
-      discounts: {
-        ...state.discounts,
-        isRequestSubmitted: true
-      }
-    };
+      return {
+        ...state,
+        discounts: {
+          ...state.discounts,
+          isRequestSubmitted: true
+        }
+      };
     default:
       return state;
   }
