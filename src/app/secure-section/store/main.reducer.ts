@@ -111,7 +111,9 @@ export const initialState: MainState = {
     usedCoupons: null,
     sources: [],
     activeCoupons: [],
-    expiredCoupons: []
+    expiredCoupons: [],
+    totalActiveCoupons: null,
+    totalExpiredCoupons: null,
   }
 };
 

@@ -108,6 +108,8 @@ export interface Discounts {
   sources: string[];
   activeCoupons: Coupon[];
   expiredCoupons: Coupon[];
+  totalActiveCoupons: number;
+  totalExpiredCoupons: number;
 }
 
 export interface Coupon {
