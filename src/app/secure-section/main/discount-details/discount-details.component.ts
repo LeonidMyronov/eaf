@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,7 +8,7 @@ import { MainStorageService, DiscountSite } from '../../services/main-storage.se
 
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
-import { Discounts } from '../../store/main.model';
+import { Discounts, Coupon } from '../../store/main.model';
 
 @Component({
   selector: 'eaf-discount-details',
@@ -16,12 +16,15 @@ import { Discounts } from '../../store/main.model';
   styleUrls: ['./discount-details.component.sass']
 })
 export class DiscountDetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('actb') trtb: ElementRef;
+  @ViewChild('actl') trtl: ElementRef;
   discountGeneratorForm: FormGroup;
   discountsData: Discounts;
   sitesArr: DiscountSite[];
   sliderPos = 0;
   activeSlideIndex = 1;
   rangePoints = new Array(16);
+  couponsStatTableHeads: string[];
   private subs: Subscription;
 
   constructor(
@@ -38,6 +41,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
           this.mainService.fetchDiscountDetails();
         } else {
           this.discountsData = response;
+          this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
         }
       });
     this.initForm();
@@ -103,6 +107,13 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   onSubmit() {
     console.log(this.discountGeneratorForm.value);
     // this.store.dispatch(new MainActions.SubmitDiscountRequest());
+  }
+
+  createTableHeads(el: Coupon) {
+    return Object.keys(el).slice();
+  }
+  getCouponsStatTableHeads() {
+    return [...this.couponsStatTableHeads];
   }
 
   ngOnDestroy() {

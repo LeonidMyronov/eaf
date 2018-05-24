@@ -294,8 +294,25 @@
         &:last-of-type
           border-top-right-radius: 2px
           border-bottom-right-radius: 2px
+
   button[type="submit"]
     float: right
+
+.table-group
+  &__body
+    .table__footer
+      height: 40px
+      line-height: 40px
+      background-color: $formColor
+      .table__cell
+        text-align-last: left
+  .table__left
+    margin-right: 2px
+  .table__body
+    .table__row:hover
+      background-color: transparent
+  .table__cell
+    width: 184px
           
 
 @media (max-width: 1399px)
