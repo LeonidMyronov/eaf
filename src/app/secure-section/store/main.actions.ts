@@ -55,13 +55,17 @@ export class FetchDiscountIntro implements Action {
 
 export class FetchDiscountDetails implements Action {
   readonly type = FETCH_DISCOUNT_DETAILS;
-  constructor(public payload: {  visitorsLastMonth: number;
+  constructor(public payload: {
+    visitorsLastMonth: number;
     uniquesLastMonth: number;
     availableCoupons: number;
     usedCoupons: number;
     sources: string[];
     activeCoupons: Coupon[];
-    expiredCoupons: Coupon[]}) {}
+    expiredCoupons: Coupon[],
+    totalActiveCoupons: number;
+    totalExpiredCoupons: number;
+  }) {}
 }
 
 export class SubmitDiscountRequest implements Action {
