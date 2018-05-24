@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { MainService } from '../../services/main.service';
 import { MainStorageService, DiscountSite } from '../../services/main-storage.service';
 
+import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
 import { Discounts, Coupon } from '../../store/main.model';
@@ -22,10 +23,11 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   discountsData: Discounts;
   sitesArr: DiscountSite[];
   sliderPos = 0;
-  activeSlideIndex = 1;
+  maxSlidesPerPage: number;
+  activeSlideIndex = 0;
   rangePoints = new Array(16);
   couponsStatTableHeads: string[];
-  private subs: Subscription;
+  private subs: Subscription[] = [];
 
   constructor(
     private store: Store<fromMain.MainState>,
@@ -35,7 +37,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   ) { }
   ngOnInit() {
     this.sitesArr = this.mainStorage.getSitesArr();
-    this.subs = this.store.select(fromMain.getDiscounts)
+    this.subs.push(this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
           this.mainService.fetchDiscountDetails();
@@ -43,7 +45,13 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
           this.discountsData = response;
           this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
         }
-      });
+      }));
+
+    this.subs.push(this.store.select(fromRoot.getActiveMediaQuery)
+    .subscribe(
+      (activeMedia: string) => this.maxSlidesPerPage = activeMedia === 'xs' ? 1 : 3
+    ));
+
     this.initForm();
     this.discountGeneratorForm.get('discountRange').valueChanges.subscribe(v => {
       this.discountGeneratorForm.patchValue({'discountValue': v + '%'});
@@ -70,7 +78,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSlideRight() {
-    if (this.sitesArr.length - (3 - this.sliderPos) === 0) {
+    if (this.sitesArr.length - (this.maxSlidesPerPage - this.sliderPos) === 0) {
       return;
     } else {
       this.sliderPos -= 1;
@@ -117,6 +125,8 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.subs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 }

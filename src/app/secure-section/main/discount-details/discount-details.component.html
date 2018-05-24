@@ -87,7 +87,7 @@
             <div class="slider">
               <div class="slider__controls">
                 <span class="control left-arrow" (click)="onSlideLeft()" [ngClass]="{disabled: sliderPos == 0}"></span>
-                <span class="control right-arrow" (click)="onSlideRight()" [ngClass]="{disabled: sliderPos == -1}"></span>
+                <span class="control right-arrow" (click)="onSlideRight()" [ngClass]="{disabled: sitesArr.length - (maxSlidesPerPage - sliderPos) === 0}"></span>
               </div>
               <div class="slider__area">
                 <div class="slider__area__slides" [ngStyle]="{transform: 'translate(' + (sliderPos * 143) + 'px)'}">

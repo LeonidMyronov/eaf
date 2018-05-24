@@ -334,6 +334,11 @@
     .grid-6
       grid-row: 2/5
       grid-column: 2/4
+  .table-group
+    .table-group__body
+      @include fade-to-right-inner
+    .table__left
+      @include fade-to-right-outer
 
 @media (max-width: 1023px) and (min-width: 768px)
   .cards-group
@@ -384,5 +389,54 @@
       grid-row: 3/6
       grid-column: 1
   .form
+    width: 326px
     height: 800px
+    padding-bottom: 35px
+    .title
+      margin-bottom: 10px
+    .sub-title
+      float: none
+      margin-bottom: 20px
+    .form-field__descr
+      margin-bottom: 7px
+    .slider
+      margin-top: 20px
+    .slider__controls 
+      .control
+        &.left-arrow
+          left: 30px
+        &.right-arrow
+          right: 30px
+    .slider__area
+      width: 133px
+      margin-left: auto
+      margin-right: auto
+
+    .code-section
+      button
+        width: 133px
+    .rangeContainer
+      width: 166px
+      .range-scale
+        &:after
+          right: -10px
+        .colored-scale
+          top: 9px
+        .point
+          top: 13px
+      #discountRange::-webkit-slider-thumb 
+        width: 10px /* Set a specific slider handle width */
+        height: 10px /* Slider handle height */
+
+      #discountRange::-moz-range-thumb 
+        width: 10px /* Set a specific slider handle width */
+        height: 10px /* Slider handle height */
+
+  .table-group
+    width: 326px
+    margin-left: 0
+    &:before
+      display: none
+    .table__cell
+      width: 125px
     
