@@ -41,8 +41,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
         }
       });
     this.initForm();
-    this.discountGeneratorForm.get('discount').valueChanges.subscribe(v => {
-      console.log(v);
+    this.discountGeneratorForm.get('discountRange').valueChanges.subscribe(v => {
       this.discountGeneratorForm.patchValue({'discountValue': v + '%'});
     });
   }
@@ -52,8 +51,8 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
       site: new FormControl(this.sitesArr[this.activeSlideIndex]),
       code: new FormControl('', Validators.required),
       group: new FormControl('', Validators.required),
-      term: new FormControl(5),
-      discount: new FormControl(5),
+      term: new FormControl('1'),
+      discountRange: new FormControl(5),
       discountValue: new FormControl('5%')
     });
   }
@@ -95,10 +94,10 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
       }
     } catch (e) {
       console.log(`DiscountRangeException! ${e}`);
-      this.discountGeneratorForm.patchValue({'discountValue': this.discountGeneratorForm.get('discount').value + '%'});
+      this.discountGeneratorForm.patchValue({'discountValue': this.discountGeneratorForm.get('discountRange').value + '%'});
       return;
     }
-    this.discountGeneratorForm.patchValue({'discount': _discount});
+    this.discountGeneratorForm.patchValue({'discountRange': _discount});
   }
 
   onSubmit() {

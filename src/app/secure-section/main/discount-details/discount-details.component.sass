@@ -118,6 +118,11 @@
   height: 788px
   padding-top: 30px
   padding-bottom: 80px
+  .form-field
+    label
+      margin-bottom: 8px
+  .form-field__descr
+    margin-bottom: 5px
   .title
     display: inline-block
   .sub-title
@@ -267,6 +272,31 @@
     width: 60px
     input
       text-align: center
+
+  .discount-term
+    .switches-group
+      input
+        display: none
+        &:checked + label
+          background-color: $accentColor
+      label
+        margin-bottom: 0
+        width: 144px
+        height: 40px
+        line-height: 40px
+        background-color: $lightColor
+        text-align: center
+        cursor: pointer
+        &:first-of-type
+          border-top-left-radius: 2px
+          border-bottom-left-radius: 2px
+          
+        &:last-of-type
+          border-top-right-radius: 2px
+          border-bottom-right-radius: 2px
+  button[type="submit"]
+    float: right
+          
 
 @media (max-width: 1399px)
   .cards-group
