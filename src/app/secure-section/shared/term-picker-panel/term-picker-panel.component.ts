@@ -15,6 +15,7 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
   public selectedTermGroupItem: any;
   public startDate = new FormControl(new Date());
   public endDate = new FormControl(new Date());
+  maxDate = new Date();
   constructor() {
   }
 

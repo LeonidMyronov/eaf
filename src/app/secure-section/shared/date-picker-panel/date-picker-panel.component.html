@@ -1,0 +1,36 @@
+<article class="eaf-date-picker-panel bg-main-color" fxLayout="row wrap" fxLayoutAlign="start center">
+  <div class="title accent-color">{{ title | translate }}</div>
+  <!-- <div eafDropdown class="dropdown-menu" (mouseenter)="hovered=true" (mouseleave)="hovered=false">
+    <div class="dropdown-select panel-item">
+      <span *ngIf="selectedDropdownItem.iconSrc" class="dropdown-item-icon">
+        <img *ngIf="!hovered" [src]="selectedDropdownItem.iconLightSrc" alt="">
+        <img *ngIf="hovered" [src]="selectedDropdownItem.iconSrc" alt="">
+      </span>
+      {{ selectedDropdownItem.name }}
+    </div>
+    <ul class="dropdown-list">
+      <li class="dropdown-list__item" *ngFor="let item of dropdownList" (click)="onChangeDropdownItem(item)">
+        <span *ngIf="item.iconSrc" class="dropdown-item-icon">
+          <img [src]="item?.iconSrc" alt="">
+        </span>
+        {{ item.name }}
+      </li>
+    </ul>
+  </div> -->
+  <div class="term-group" fxLayout="row" fxLayoutAlign="start center">
+    <div class="sub-title accent-color">Выбрать другой день:</div>
+    <div class="term-selector" (click)="picker1.open()">
+      <div class="term-selector-wrapper"></div>
+      <input 
+      matInput 
+      [matDatepicker]="picker1" 
+      [max]="MAX_DATE"
+      [formControl]="date">
+      <mat-datepicker #picker1></mat-datepicker>
+    </div>
+  </div>
+    
+  <div class="action-item panel-item" (click)="onSubmit()">
+    {{'показать' | uppercase}}
+  </div>
+</article>
