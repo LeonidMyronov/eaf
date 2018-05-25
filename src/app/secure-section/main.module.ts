@@ -18,6 +18,7 @@ import { NewsComponent } from './main/news/news.component';
 import { NewsItemComponent } from './main/news/news-item/news-item.component';
 import { DiscountComponent } from './main/discount/discount.component';
 import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
+import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DiscountDetailsComponent } from './main/discount-details/discount-detai
     NewsItemComponent,
     DiscountComponent,
     DiscountDetailsComponent,
+    StatisticDateComponent,
   ],
   imports: [
     CoreModule,
