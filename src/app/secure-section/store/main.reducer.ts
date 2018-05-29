@@ -14,7 +14,8 @@ import {
   StatisticPanelFilter,
   Transaction,
   News,
-  Discounts
+  Discounts,
+  StatisticByDate
 } from './main.model';
 import {
   MainActions,
@@ -27,7 +28,8 @@ import {
   FETCH_NEWS,
   FETCH_DISCOUNT_INTRO,
   SUBMIT_DISCOUNT_REQUEST,
-  FETCH_DISCOUNT_DETAILS
+  FETCH_DISCOUNT_DETAILS,
+  FETCH_DAY_STAT
 } from './main.actions';
 
 export interface MainState {
@@ -65,6 +67,10 @@ export interface MainState {
     news: News[];
   };
   discounts: Discounts;
+  statisticByDate: {
+    date: Date;
+    data: StatisticByDate[]
+  };
 }
 
 
@@ -114,7 +120,11 @@ export const initialState: MainState = {
     expiredCoupons: [],
     totalActiveCoupons: null,
     totalExpiredCoupons: null,
-  }
+  },
+  statisticByDate: {
+    date: null,
+    data: []
+  },
 };
 
 
@@ -233,6 +243,11 @@ export function mainReducer(state: MainState = initialState, action: MainActions
           isRequestSubmitted: true
         }
       };
+    case FETCH_DAY_STAT:
+      return {
+        ...state,
+        statisticByDate: action.payload
+      };
     default:
       return state;
   }
@@ -261,4 +276,5 @@ export const getStatisticQueryParams = createSelector(getMainState, (state: Main
 export const getTransactions = createSelector(getMainState, (state: MainState) => state.transactions);
 export const getNews = createSelector(getMainState, (state: MainState) => state.news);
 export const getDiscounts = createSelector(getMainState, (state: MainState) => state.discounts);
+export const getStatisticByDate = createSelector(getMainState, (state: MainState) => state.statisticByDate);
 
