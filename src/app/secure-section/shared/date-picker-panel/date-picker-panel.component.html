@@ -1,4 +1,4 @@
-<article class="eaf-date-picker-panel bg-main-color" fxLayout="row wrap" fxLayoutAlign="start center">
+<article class="eaf-date-picker-panel bg-main-color" fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutAlign.xs="center center">
   <div class="title accent-color">{{ title | translate }}</div>
   <!-- <div eafDropdown class="dropdown-menu" (mouseenter)="hovered=true" (mouseleave)="hovered=false">
     <div class="dropdown-select panel-item">
@@ -17,8 +17,9 @@
       </li>
     </ul>
   </div> -->
+  <div class="sub-title accent-color" fxHide.xs>Выбрать другой день:</div>
+  <div class="sub-title light-color" fxHide.gt-xs>from {{ dateInput | date:'dd MMMM y'}}</div>
   <div class="term-group" fxLayout="row" fxLayoutAlign="start center">
-    <div class="sub-title accent-color">Выбрать другой день:</div>
     <div class="term-selector" (click)="picker1.open()">
       <div class="term-selector-wrapper"></div>
       <input 
