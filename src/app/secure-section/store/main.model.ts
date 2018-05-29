@@ -141,7 +141,7 @@ export interface StatisticByDate {
 export interface PixelTrackingEvent {
   date: Date;
   site: string;
-  responseStatus: string;
+  responseStatus: number;
   messageStatus: string;
   eventDetails: string;
 }

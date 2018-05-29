@@ -621,6 +621,32 @@ export class MainService {
     ],
   };
 
+  private pTEventsDetails = {
+    eventName: 'startedFillOrderForm',
+    data: [
+      {
+        date: new Date(2018, 4, 20, 13, 20),
+        site: '99papers.com',
+        responseStatus: 200,
+        messageStatus: 'success',
+        eventDetails: `tracking={tracking} site={site} event={event} rid={rid} - ref_Id вебмастера sid={sid} - sub_id click_id={click_id}
+        user_id={user_id} user_geo={user_geo} user_device={user_device} transaction_id={transaction_id} date_paid={date_paid}
+        order_status={order_status} order_title={order_title} order_service={order_service} order_discipline={order_discipline}
+        order_amount={order_amount} order_coeff={order_coeff} order_profit={order_profit} order_id={order_id}`
+      },
+      {
+        date: new Date(2018, 4, 20, 15, 40),
+        site: 'essaybox.com',
+        responseStatus: 200,
+        messageStatus: 'success',
+        eventDetails: `tracking={tracking} site={site} event={event} rid={rid} - ref_Id вебмастера sid={sid} - sub_id click_id={click_id}
+        user_id={user_id} user_geo={user_geo} user_device={user_device} transaction_id={transaction_id} date_paid={date_paid}
+        order_status={order_status} order_title={order_title} order_service={order_service} order_discipline={order_discipline}
+        order_amount={order_amount} order_coeff={order_coeff} order_profit={order_profit} order_id={order_id}`
+      },
+    ]
+  };
+
   constructor(
     private store: Store<fromMain.MainState>
   ) {}
@@ -654,5 +680,9 @@ export class MainService {
   fetchStatisticByDate(date) {
     // this.store.dispatch(new MainActions.FetchDayStat(this.statisticByDay));
     return this.statisticByDay;
+  }
+
+  fetchPTEventsDetails({date: date, eventName: string}) {
+    return this.pTEventsDetails;
   }
 }

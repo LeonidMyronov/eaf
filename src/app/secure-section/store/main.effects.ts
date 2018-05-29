@@ -7,7 +7,7 @@ import 'rxjs/add/operator/do';
 import { MainService } from '../services/main.service';
 
 import * as MainActions from './main.actions';
-import { StatisticByDate } from './main.model';
+import { StatisticByDate, PixelTrackingEvent } from './main.model';
 
 @Injectable()
 export class MainEffects {
@@ -17,12 +17,9 @@ export class MainEffects {
     private mainService: MainService
   ) {}
 
-  debugger;
-  @Effect()
-  dayStat = this.actions$
+  @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)
     .map((action: MainActions.BeforeFetchDayStat) => {
-      console.log(action);
       return action.payload;
     })
     .map((params: {date: Date}) => {
@@ -34,5 +31,22 @@ export class MainEffects {
         payload: data
       };
     });
+
+  @Effect() ptEventsDetails = this.actions$
+    .ofType(MainActions.BEFORE_FETCH_PT_EVENTS_DETAILS)
+    .map((action: MainActions.BeforeFetchPTEventsDetails) => {
+      console.log(action);
+      return action.payload;
+    })
+    .map((params: {date: Date, eventName: string}) => {
+      return this.mainService.fetchPTEventsDetails(params);
+    })
+    .map((data: {eventName: string, data: PixelTrackingEvent[]}) => {
+      return {
+        type: MainActions.FETCH_PT_EVENTS_DETAILS,
+        payload: data.data
+      };
+    });
+
 
 }
