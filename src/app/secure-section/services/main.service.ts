@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 
 import * as fromMain from '../store/main.reducer';
 import * as MainActions from '../store/main.actions';
-import { Statistic } from '../store/main.model';
+import { Statistic, StatisticByDate } from '../store/main.model';
 
 @Injectable()
 export class MainService {
@@ -454,6 +454,43 @@ export class MainService {
     ]
   };
 
+  private statisticByDay = {
+    date: new Date(),
+    totalIncome: 200.25,
+    data: [
+      {
+        creationDate: new Date(2018, 4, 11),
+        paymentDate: new Date(2018, 4, 12),
+        clientId: 101,
+        country: 'USA',
+        status: 'status',
+        orderId: 123456,
+        subId: 223344,
+        site: '97papers.com',
+        title: 'my title',
+        serviceType: 'Research paper',
+        orderAmount: 50.5,
+        ratio: 0.15,
+        orderIncome: 2.15,
+      },
+      {
+        creationDate: new Date(2018, 4, 13),
+        paymentDate: new Date(2018, 4, 14),
+        clientId: 111,
+        country: 'Canada',
+        status: 'status',
+        orderId: 123456,
+        subId: 223344,
+        site: '98papers.com',
+        title: 'my title 2',
+        serviceType: 'Research paper Alchemy',
+        orderAmount: 1050.5,
+        ratio: 0.15,
+        orderIncome: 112.15,
+      }
+    ]
+  };
+
   private transactionsByPeriod = [
     {
       id: 1,
@@ -612,5 +649,10 @@ export class MainService {
 
   fetchDiscountDetails() {
     this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
+  }
+
+  fetchStatisticByDate(date) {
+    // this.store.dispatch(new MainActions.FetchDayStat(this.statisticByDay));
+    return this.statisticByDay;
   }
 }

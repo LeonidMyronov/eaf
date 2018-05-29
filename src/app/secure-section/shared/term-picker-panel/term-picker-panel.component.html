@@ -27,13 +27,13 @@
   <div class="term-range" fxLayout="row">
     <div class="term-selector" (click)="picker1.open()">
       <div class="term-selector-wrapper"></div>
-      <input matInput [matDatepicker]="picker1" [formControl]="startDate">
+      <input matInput [matDatepicker]="picker1" [max]="maxDate" [formControl]="startDate">
       <mat-datepicker #picker1></mat-datepicker>
     </div>
     -
       <div class="term-selector" (click)="picker2.open()">
         <div class="term-selector-wrapper"></div>
-        <input matInput [matDatepicker]="picker2" [formControl]="endDate">
+        <input matInput [matDatepicker]="picker2" [max]="maxDate" [formControl]="endDate">
         <mat-datepicker #picker2></mat-datepicker>
       </div>
     </div>
