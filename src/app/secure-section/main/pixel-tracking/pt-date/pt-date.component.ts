@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import * as MainActions from '../../../store/main.actions';
 import * as fromMain from '../../../store/main.reducer';
@@ -10,10 +12,12 @@ import * as fromMain from '../../../store/main.reducer';
   templateUrl: './pt-date.component.html',
   styleUrls: ['./pt-date.component.sass']
 })
-export class PtDateComponent implements OnInit {
+export class PtDateComponent implements OnInit, OnDestroy {
   dateInput: Date;
   currentPTEvent: string;
   panelTitle = 'Pixel Tracking';
+  ptEventsNamesState: Observable<string[]>;
+  private subs: Subscription;
 
   constructor(
     private router: Router,
@@ -29,11 +33,20 @@ export class PtDateComponent implements OnInit {
       this.currentPTEvent = response.event;
       this.store.dispatch(new MainActions.BeforeFetchPTEventsDetails({date: this.dateInput, eventName: this.currentPTEvent}));
     });
+    this.subs = this.store.select(fromMain.getPTEventsDetails)
+    .subscribe(r => console.log(r));
+
+    this.ptEventsNamesState = this.store.select(fromMain.getPTEventsNames);
+
   }
 
   onChangePanelQuery(e: {date: Date, eventName: string}) {
     const routeSuffix = `${e.date.getFullYear()}-${e.date.getMonth() + 1}-${e.date.getDate()}`;
     this.router.navigate(['../', routeSuffix], {relativeTo: this.route});
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }
