@@ -29,7 +29,6 @@ export class StatisticDateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.route.params.subscribe(response => {
-      console.log(response);
       this.dateInput = new Date(response.date.replace(/-/g, ','));
       this.store.dispatch(new MainActions.BeforeFetchDayStat({date: this.dateInput}));
     });
@@ -38,8 +37,6 @@ export class StatisticDateComponent implements OnInit, OnDestroy {
       .subscribe((r: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
         this.createStatisticTableHeads(r.data[0]);
         this.statisticState = r;
-        console.log(r.data);
-
       });
   }
 

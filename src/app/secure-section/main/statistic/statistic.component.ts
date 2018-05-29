@@ -277,7 +277,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     arr.forEach(el => {
       Object.keys(this.ptData.ptPropCount).forEach(prop => this.ptData.ptPropCount[prop] += el[prop]);
     });
-    console.log(this.ptData.ptPropCount);
+    // console.log(this.ptData.ptPropCount);
   }
 
   createPTTableHeads(el: PixelTracking) {
