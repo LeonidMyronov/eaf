@@ -11,6 +11,7 @@ import { ContactsComponent } from '../start-section/contacts/contacts.component'
 import { DiscountComponent } from './main/discount/discount.component';
 import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
 import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
+import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'today', component: TodayComponent },
       { path: 'statistic', component: StatisticComponent },
       { path: 'statistic/:date', component: StatisticDateComponent },
+      { path: 'pt-statistic/:date', component: PtDateComponent },
       { path: 'balance', component: BalanceComponent },
       { path: 'guide', component: GuideComponent },
       { path: 'news', component: NewsComponent },
