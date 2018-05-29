@@ -1,0 +1,78 @@
+<article class="statistic-page">
+  <div class="container">
+
+    <eaf-date-picker-panel [dateInput]="dateInput" [title]="panelTitle" (change)="onChangeDate($event)"></eaf-date-picker-panel>
+    
+    <article class="statistic-group">
+      <div class="statistic-table-group" fxLayout="row wrap">
+        <div class="statistic-table-group__head" fxHide.xs fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
+          <div class="statistic-table-group__head__left" fxLayoutAlign="center center">
+            за {{ dateInput | date:'dd MMMM y'}}
+          </div>
+          <div class="statistic-table-group__head__right" fxLayoutAlign="center center">
+            <input type="checkbox" id="customize-table">
+            <label for="customize-table" fxLayoutAlign="center center">
+              <span>Настройка таблицы</span>
+              <img src="/assets/images/main/customize-icon.svg" alt="">
+            </label>
+            <div class="table-filter">
+              <div class="table-filter__item" *ngFor="let field of statisticTableHeads">
+                <input type="checkbox" id="{{field}}" checked (click)="onChangeTableFilter($event, field)">
+                <label for="{{field}}">
+                  <span class="check"></span>
+                  <span>{{ field | translate}}</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <section class="table flex-table statistic-table" fxLayout="row wrap" fxLayoutGap="2px">
+          <div class="flex-table__left">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'Added' | translate }}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of statisticState.data">
+              <div class="table__cell">{{el.creationDate | date:'dd.MM.y hh:mm'}} UTC</div>
+            </div>
+            <!-- <div class="table__head table__row">
+              <div class="table__cell foot-cell"><span>Total: {{statisticState.data.length}} orders</span></div>
+            </div> -->
+          </div>
+          <div class="flex-table__body table__body">
+            <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let el of getStatisticTableHeads()" [ngClass]="{'wide-cell': el == 'site' || el == 'title' || el == 'serviceType'}">
+                {{el | translate}}
+              </div>
+            </div>
+            <div class="table__row" *ngFor="let el of statisticState.data" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()" [ngClass]="{'wide-cell': prop == 'site' || prop == 'title' || prop == 'serviceType'}">
+                <ng-container *ngIf="prop == 'creationDate' || prop == 'paymentDate'; else displayValue">
+                    {{el[prop] | date:'dd.MM.y hh:mm'}} UTC
+                  </ng-container>
+                  <ng-template #displayValue>
+                    {{el[prop] }}
+                  </ng-template>
+              </div>
+            </div>
+          </div>
+          <div class="flex-table__right">
+            <div class="table__head table__row">
+              <div class="table__cell">{{'orderIncome' | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of statisticState.data">
+              <div class="table__cell">$ {{el.orderIncome}}</div>
+            </div>
+            <!-- <div class="table__head table__row">
+              <div class="table__cell foot-cell">{{statisticState.totalIncome}}</div>
+            </div> -->
+          </div>
+          <div class="table__footer" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between start">
+            <div class="table__cell head-cell">Total: {{statisticState.data.length}} orders</div>
+            <div class="table__cell right-cell">$ {{statisticState.totalIncome}}</div>
+          </div>
+        </section>
+      </div>
+    </article>
+  </div>
+</article>

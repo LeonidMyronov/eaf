@@ -121,3 +121,19 @@ export interface Coupon {
   discountValue: number;
   usageAmount: number;
 }
+
+export interface StatisticByDate {
+  creationDate: Date;
+  paymentDate: Date;
+  clientId: number;
+  country: string;
+  status: string;
+  orderId: number;
+  subId: number;
+  site: string;
+  title: string;
+  serviceType: string;
+  orderAmount: number;
+  ratio: number;
+  orderIncome: number;
+}

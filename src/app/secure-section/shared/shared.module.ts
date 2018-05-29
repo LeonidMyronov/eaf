@@ -6,6 +6,7 @@ import { ShortTimePipe } from './pipes/short-time.pipe';
 import { ConversionComponent } from './conversion/conversion.component';
 import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.component';
 import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking-list.component';
+import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking
     ShortTimePipe,
     ConversionComponent,
     TermPickerPanelComponent,
-    PixelTrackingListComponent
+    PixelTrackingListComponent,
+    DatePickerPanelComponent
   ],
   imports: [
     CoreModule
@@ -24,6 +26,7 @@ import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking
     ConversionComponent,
     TermPickerPanelComponent,
     PixelTrackingListComponent,
+    DatePickerPanelComponent,
   ]
 })
 

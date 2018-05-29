@@ -1,0 +1,100 @@
+@import variables
+@import helper
+@import mixins
+
+.eaf-date-picker-panel
+  width: 100%
+  padding: 10px
+  .title
+    font-size: 18px
+    margin-left: 10px
+    margin-right: auto
+// .dropdown-menu
+//   width: 296px
+//   font-size: 14px
+//   background-color: $mainColor
+//   background-image: url('/assets/images/header/dropdown-icon-active.svg')
+//   border: 0.5px solid $lightColor
+//   margin-right: auto
+//   .dropdown-item-icon
+//     width: 27px
+//   .dropdown-select
+//     color: $lightColor
+//   &:hover
+//     background-color: $accentColor !important
+//     background-image: url('/assets/images/header/dropdown-icon.svg')
+//     border-color: $accentColor
+//     .dropdown-select
+//       color: $mainColor
+
+.sub-title
+  font-size: 12px
+  margin-right: 20px
+.term-selector
+  width: 121px
+  height: 40px
+  line-height: 40px
+  border: 0.5px solid $lightColor
+  border-right: none
+  border-top-left-radius: 2px
+  border-bottom-left-radius: 2px
+  background-color: $lightColor
+  overflow: hidden
+
+
+.action-item
+  width: 120px
+  border: 0.5px solid $lightColor  
+  border-top-right-radius: 2px
+  border-bottom-right-radius: 2px  
+
+.panel-item
+  color: $lightColor
+  height: 40px
+  line-height: 40px
+  font-size: 14px
+  cursor: pointer
+  text-align: center
+  &.active, &:hover
+    background-color: $accentColor
+    color: $mainColor
+    border-color: $accentColor
+    z-index: 1
+
+// Adaptive section
+
+@include desktop-screen()
+  // .term-item
+  //   width: 97px
+
+@include tablet-screen()
+  // .dropdown-menu
+  //   width: 100%
+  //   margin-bottom: 10px
+  // .terms-group
+  //   margin-right: 10px
+  // .term-item
+  //   width: 89px
+
+@include mobile-screen()
+  .eaf-date-picker-panel
+    padding: 16px
+    .title
+      margin-left: 20px
+      margin-right: 10px
+      margin-bottom: 13px
+
+    .sub-title
+      margin-bottom: 13px
+      font-size: 18px
+
+  // .dropdown-menu
+  //   height: 40px
+  // .terms-group
+  //   margin-bottom: 10px
+  // .term-item
+  //   width: 102px
+  .action-item
+    width: 98px
+  // .term-wrapper
+  //   width: 121px
