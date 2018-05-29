@@ -269,6 +269,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   // ----- cards section end --------
   createPTData(arr: PixelTracking[]) {
     this.createPTTableHeads(arr[0]);
+    this.putPTEventsListToStore();
     this.calcPTPropCount(arr);
   }
   calcPTPropCount(arr) {
@@ -282,8 +283,13 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   createPTTableHeads(el: PixelTracking) {
     this.ptData.ptTableHeads = Object.keys({ ...el });
   }
+
   getPTTableHeads() {
     return this.ptData.ptTableHeads.slice();
+  }
+
+  putPTEventsListToStore() {
+    this.store.dispatch(new MainAction.FillPTEventsNamesList(this.ptData.ptTableHeads.slice(1)));
   }
   // ----- cards section end --------
 
