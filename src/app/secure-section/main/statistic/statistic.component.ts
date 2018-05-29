@@ -77,14 +77,14 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
           this.mainService.fetchStatisticByPeriod();
           return;
         }
-        console.log('statistic State => ', r);
+        // console.log('statistic State => ', r);
         this.createStatisticTableHeads(r.statistic[0]);
         this.createPTData(r.pixelTracking);
         this.allFilters = r.filters;
-        console.log('allFilters => ', this.allFilters);
+        // console.log('allFilters => ', this.allFilters);
         this.fillAllFiltersForm();
         this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
-        console.log('selectedAllFilters => ', this.selectedAllFilters);
+        // console.log('selectedAllFilters => ', this.selectedAllFilters);
       }
     ));
     this.statisticState$ = this.store.select(fromMain.getStatistic);
@@ -92,13 +92,13 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.allFiltersForm.valueChanges.subscribe(
       formState => {
         this.selectedAllFilters = this.fillSelectedAllFilters(formState);
-        console.log('selectedAllFilters => ', this.selectedAllFilters);
+        // console.log('selectedAllFilters => ', this.selectedAllFilters);
       });
 
       this.subscriptions.push(this.store.select(fromRoot.getUserStatisticFilters)
       .subscribe((response: StatisticPanelFilterList) => {
         this.userStatisticPanelFilters = response;
-        console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
+        // console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
       }));
 
     // this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
@@ -238,7 +238,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   // ---- statistic table start -----
   createStatisticTableHeads(el: Statistic) {
-    this.statisticTableHeads = Object.keys(el).slice(1);
+    this.statisticTableHeads = Object.keys(el).slice(1, -1);
   }
 
   onChangeTableFilter($e, field) {
