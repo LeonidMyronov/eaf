@@ -456,6 +456,7 @@ export class MainService {
 
   private statisticByDay = {
     date: new Date(),
+    totalIncome: 200.25,
     data: [
       {
         creationDate: new Date(2018, 4, 11),

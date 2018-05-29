@@ -76,7 +76,7 @@ export class SubmitDiscountRequest implements Action {
 
 export class FetchDayStat implements Action {
   readonly type = FETCH_DAY_STAT;
-  constructor(public payload: {date: Date, data: StatisticByDate[]}) {}
+  constructor(public payload: {date: Date, totalIncome: number, data: StatisticByDate[]}) {}
 }
 
 export class BeforeFetchDayStat implements Action {

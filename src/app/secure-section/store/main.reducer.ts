@@ -69,6 +69,7 @@ export interface MainState {
   discounts: Discounts;
   statisticByDate: {
     date: Date;
+    totalIncome: number;
     data: StatisticByDate[]
   };
 }
@@ -123,6 +124,7 @@ export const initialState: MainState = {
   },
   statisticByDate: {
     date: null,
+    totalIncome: null,
     data: []
   },
 };
