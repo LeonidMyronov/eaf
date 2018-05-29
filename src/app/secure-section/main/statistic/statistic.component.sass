@@ -361,12 +361,15 @@
 .pt-list
   .table__left
     margin-right: 2px
+    .table__row:not(.table__head)
+      .table__cell
+        cursor: pointer
   .table__body
     .table__row:not(.table__head)
       .table__cell
         color: $primaryColor
         text-decoration: underline
-
+        cursor: pointer
   .table__cell
     width: 160px
 

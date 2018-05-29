@@ -266,7 +266,9 @@
             <div class="table__row table__head">
               <div class="table__cell">{{ getPTTableHeads()[0] | translate}}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking; let i = index">
+            <div class="table__row"
+              *ngFor="let el of (statisticState$ | async).pixelTracking; let i = index"
+              routerLink="/main/pt-statistic/{{el.date | date:'y-MM-dd'}}">
               <div class="table__cell">{{el.date | date:'dd MMM y' }}</div>
             </div>
             <div class="table__row table__head">
@@ -278,7 +280,10 @@
             <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{propName}}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__row"
+              *ngFor="let el of (statisticState$ | async).pixelTracking"
+              fxLayout="row" fxLayoutGap="2px"
+              routerLink="/main/pt-statistic/{{el.date | date:'y-MM-dd'}}">
               <div class="table__cell" *ngFor="let prop of getPTTableHeads().slice(1); let j = index">
                   {{el[prop] }}
               </div>
