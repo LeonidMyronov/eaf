@@ -137,3 +137,11 @@ export interface StatisticByDate {
   ratio: number;
   orderIncome: number;
 }
+
+export interface PixelTrackingEvent {
+  date: Date;
+  site: string;
+  responseStatus: string;
+  messageStatus: string;
+  eventDetails: string;
+}
