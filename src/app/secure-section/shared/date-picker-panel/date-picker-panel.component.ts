@@ -20,9 +20,10 @@ export class DatePickerPanelComponent implements OnInit, OnChanges {
   }
 
   initDateForm() {
-    const _date = new Date(this.dateInput.replace(/-/g, ','));
+    // const _date = new Date(this.dateInput.replace(/-/g, ','));
     // _date.setMonth(_date.getMonth() - 1);
-    this.date.setValue(_date);
+    // this.date.setValue(_date);
+    this.date.setValue(this.dateInput);
     this.MAX_DATE = this.setMaxDate();
   }
 
