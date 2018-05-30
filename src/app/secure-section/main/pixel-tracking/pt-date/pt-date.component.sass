@@ -5,9 +5,20 @@
 
   .table__left
     margin-right: 2px
+    // .table__cell
+    //   height: auto
+  
   .table__body
     .table__row:hover
       background-color: transparent
+  .table__row:not(.table__head)
+    .table__cell
+      // min-height: 60px
+      padding-top: 12px
+      line-height: 14px
+      &.wide-cell
+        padding-bottom: 12px
+
   .table__cell
     width: 91px
     &.wider-cell
@@ -15,11 +26,8 @@
       justify-content: flex-start
       text-align: left
     &.wide-cell
-      padding-top: 12px
-      padding-bottom: 12px
       width: 746px
       height: auto
-      min-height: 40px
       justify-content: flex-start
       text-align: left
 
