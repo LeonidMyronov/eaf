@@ -9,6 +9,8 @@ import { FormControl } from '@angular/forms';
 export class DatePickerPanelComponent implements OnInit, OnChanges {
   @Input() title;
   @Input() dateInput;
+  @Input() selectedDropdownItem;
+  @Input() dropdownList;
   @Output() change = new EventEmitter<{date: Date}>();
   public date = new FormControl(new Date());
   public MAX_DATE: Date;
@@ -20,16 +22,12 @@ export class DatePickerPanelComponent implements OnInit, OnChanges {
   }
 
   initDateForm() {
-    // const _date = new Date(this.dateInput.replace(/-/g, ','));
-    // _date.setMonth(_date.getMonth() - 1);
-    // this.date.setValue(_date);
     this.date.setValue(this.dateInput);
     this.MAX_DATE = this.setMaxDate();
   }
 
   setMaxDate() {
     const _date = new Date();
-    // _date.setDate(_date.getDate() + 1);
     return _date;
   }
 
@@ -37,45 +35,19 @@ export class DatePickerPanelComponent implements OnInit, OnChanges {
     this.initDateForm();
   }
 
-  // onChangeDropdownItem(item) {
-  //   this.selectedDropdownItem = {...item};
-  // }
+  onChangeDropdownItem(item) {
+    this.selectedDropdownItem = item;
+  }
 
-  // onChangeTermGroupItem(term: any) {
-  //   switch (term.id) {
-  //     case 1: {
-  //       const startDate = new Date();
-  //       startDate.setDate(1);
-  //       this.startDate.setValue(startDate);
-  //       this.endDate.setValue(new Date());
-  //       break;
-  //     }
-  //     case 2: {
-  //       const startDate = new Date();
-  //       startDate.setMonth(startDate.getMonth() - 1);
-  //       startDate.setDate(1);
-  //       this.startDate.setValue(startDate);
-  //       const endDate = new Date();
-  //       endDate.setDate(0);
-  //       this.endDate.setValue(endDate);
-  //       break;
-  //     }
-  //     case 3: {
-  //       const startDate = new Date();
-  //       startDate.setDate(startDate.getDate() - 7);
-  //       this.startDate.setValue(startDate);
-  //       this.endDate.setValue(new Date());
-  //       break;
-  //     }
-  //   }
-  //   this.selectedTermGroupItem = {...term};
-  // }
 
   onSubmit() {
-    this.change.emit(
-      {
-        date: this.date.value
-      }
-    );
+    const emitObj = {
+      date: this.date.value
+    };
+    if (this.selectedDropdownItem) {
+      emitObj['dropdown'] = this.selectedDropdownItem;
+    }
+
+    this.change.emit(emitObj);
   }
 }
