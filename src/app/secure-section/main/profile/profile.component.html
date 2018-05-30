@@ -1,0 +1,122 @@
+<article class="statistic-page">
+  <div class="container">
+    <section class="cards-group">
+      <div class="card grid-1">
+        <div class="title">
+          Аккаунт
+        </div>
+        <div class="content">
+          <div class="form-field">
+            <label for="code">Дата регистрации:</label>
+            <div class="form-field__data">
+              {{date | date:'MMMM dd, y, h:mm a'}}
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="code">Последний логин:</label>
+            <div class="form-field__data">
+              {{date | date:'MMMM dd, y, h:mm a'}}
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Forgot password?
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-2">
+        <div class="title">
+          Обновления и новости (подписка)
+        </div>
+        <div class="content light-color">
+          <div class="email small-text">{{ 'userEmail' }}</div>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Change
+          </div>
+        </div>
+      </div>
+
+      <div class="card high-card grid-3">
+        <div class="title">
+          Персональные данные
+        </div>
+        <div class="content">
+          <form class="form" [formGroup]="personalDataForm" (ngSubmit)="onSubmitPersonalData()">
+
+            <div class="form-field code-section">
+              <label for="code">Скидочный код:</label>
+              <div class="form-field__descr">5-20 символов:</div>
+              <!-- <input id="code" type="text" placeholder="XXXXXXXXXXXXXXXXXXXX" formControlName="code"> -->
+              <div class="form-field__actions">
+                <!-- <div *ngIf="personalDataForm.controls['code'].errors?.required && personalDataForm.controls['code'].touched" class="form-error">
+                  This field is required
+                </div> -->
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Edit
+          </div>
+        </div>
+      </div>
+
+      <div class="card high-card grid-4">
+        <div class="title">
+          Платежные данные
+        </div>
+        <div class="content">
+          <h1 class="value light-color">20
+            <span class="currency"> USD</span>
+          </h1>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Edit
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-5">
+        <div class="title">
+          Реферальная статистика
+        </div>
+        <div class="content light-color">
+          <h3 class="value">20
+            <span class="currency"> USD</span>
+          </h3>
+          <p>общая прибыль</p>
+        </div>
+        <div class="footer" routerLink="/main/statistic">
+          <div class="action">
+            Подробнее
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-6">
+        <div class="title">
+          Реферальная ссылка
+        </div>
+        <div class="content light-color">
+          <div class="link small-text">
+            https://edu-affiliates.com/?ref={{ 'user_id'}}
+          </div>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Copy link
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>
