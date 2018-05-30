@@ -139,7 +139,7 @@ export interface StatisticByDate {
 }
 
 export interface PixelTrackingEvent {
-  date: Date;
+  date: Date; // UTC timezone!
   site: string;
   responseStatus: number;
   messageStatus: string;

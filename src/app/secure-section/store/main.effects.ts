@@ -35,7 +35,6 @@ export class MainEffects {
   @Effect() ptEventsDetails = this.actions$
     .ofType(MainActions.BEFORE_FETCH_PT_EVENTS_DETAILS)
     .map((action: MainActions.BeforeFetchPTEventsDetails) => {
-      console.log(action);
       return action.payload;
     })
     .map((params: {date: Date, eventName: string}) => {
