@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate } from './main.model';
+import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent } from './main.model';
 
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
@@ -13,6 +13,9 @@ export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';
 export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';
 export const FETCH_DAY_STAT = '[MAIN] FETCH_DAY_STAT';
 export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
+export const FILL_PT_EVENTS_NAMES = '[MAIN] FILL_PT_EVENTS_NAMES';
+export const BEFORE_FETCH_PT_EVENTS_DETAILS = '[MAIN] BEFORE_FETCH_PT_EVENTS_DETAILS';
+export const FETCH_PT_EVENTS_DETAILS = '[MAIN] FETCH_PT_EVENTS_DETAILS';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -23,7 +26,6 @@ export class FetchStatistic implements Action {
   readonly type = FETCH_STATISTIC;
   constructor(public payload: any) {}
 }
-
 
 export class UpdateStatisticFilters implements Action {
   readonly type = UPDATE_STATISTIC_FILTERS;
@@ -84,6 +86,21 @@ export class BeforeFetchDayStat implements Action {
   constructor(public payload: {date: Date}) {}
 }
 
+export class FillPTEventsNamesList implements Action {
+  readonly type = FILL_PT_EVENTS_NAMES;
+  constructor(public payload: string[]) {}
+}
+
+export class BeforeFetchPTEventsDetails implements Action {
+  readonly type = BEFORE_FETCH_PT_EVENTS_DETAILS;
+  constructor(public payload: {date: Date, eventName: string}) {}
+}
+
+export class FetchPTEventsDetailsList implements Action {
+  readonly type = FETCH_PT_EVENTS_DETAILS;
+  constructor(public payload: PixelTrackingEvent[]) {}
+}
+
 export type MainActions =
   FetchConsolidatedData |
   FetchStatistic |
@@ -96,6 +113,9 @@ export type MainActions =
   SubmitDiscountRequest |
   FetchDiscountDetails |
   FetchDayStat |
-  BeforeFetchDayStat
+  BeforeFetchDayStat |
+  FillPTEventsNamesList |
+  BeforeFetchPTEventsDetails |
+  FetchPTEventsDetailsList
 ;
 

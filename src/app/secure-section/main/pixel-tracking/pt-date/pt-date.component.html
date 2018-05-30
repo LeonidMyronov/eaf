@@ -1,0 +1,55 @@
+<article class="statistic-page">
+  <div class="container">
+
+    <eaf-date-picker-panel
+    [dateInput]="dateInput"
+    [title]="panelTitle"
+    [dropdownList]="ptEventsNamesState | async"
+    [selectedDropdownItem]="currentPTEvent"
+    (change)="onChangePanelQuery($event)"></eaf-date-picker-panel>
+
+    <section class="pt-stat table-group">
+      <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
+        <div class="table-group__head__name">from {{ dateInput | date:'dd MMMM y'}}</div>
+      </div>
+  
+      <section class="table-group__body">
+        <div eafAlignRowHeight class="collapse-table table" fxLayout="row">
+          <div class="table__left" fxLayout="column" #actl>
+            <div class="table__row table__head">
+              <div class="table__cell">{{ getPTTableHeads()[0] | translate}}</div>
+            </div>
+            <div class="table__row" *ngFor="let el of ptEvents; let i = index" >
+              <div class="table__cell">{{ el.date | date:'hh:mm' }}<br>UTC</div>
+            </div>
+            <!-- {{el}} -->
+          </div>
+
+          <div class="table__body" #actb>
+            <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell"
+                *ngFor="let propName of getPTTableHeads().slice(1)"
+                [ngClass]="{'wider-cell': propName == 'site', 'wide-cell': propName == 'eventDetails'}">
+                {{ propName }}
+              </div>
+            </div>
+            <div class="table__row" *ngFor="let el of ptEvents; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__cell"
+                *ngFor="let propName of getPTTableHeads().slice(1); let j = index"
+                [ngClass]="{'wider-cell': propName == 'site', 'wide-cell': propName == 'eventDetails', 'notice-color': propName == 'messageStatus'}">
+                <ng-container *ngIf="propName == 'date'; else displayValue">
+                    {{ el[propName] | date:'hh:mm' }}<br>UTC
+                  </ng-container>
+                  <ng-template #displayValue>
+                    {{ el[propName] }}
+                  </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </section>
+    
+  </div>
+</article>

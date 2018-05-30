@@ -7,6 +7,7 @@ import { ConversionComponent } from './conversion/conversion.component';
 import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.component';
 import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking-list.component';
 import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.component';
+import { AlignRowHeightDirective } from './directives/align-row-height.directive';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.
     ConversionComponent,
     TermPickerPanelComponent,
     PixelTrackingListComponent,
-    DatePickerPanelComponent
+    DatePickerPanelComponent,
+    AlignRowHeightDirective
   ],
   imports: [
     CoreModule
@@ -27,6 +29,7 @@ import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.
     TermPickerPanelComponent,
     PixelTrackingListComponent,
     DatePickerPanelComponent,
+    AlignRowHeightDirective
   ]
 })
 

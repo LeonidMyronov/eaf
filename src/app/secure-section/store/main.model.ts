@@ -137,3 +137,11 @@ export interface StatisticByDate {
   ratio: number;
   orderIncome: number;
 }
+
+export interface PixelTrackingEvent {
+  date: Date; // UTC timezone!
+  site: string;
+  responseStatus: number;
+  messageStatus: string;
+  eventDetails: string;
+}

@@ -1,0 +1,51 @@
+@import variables
+@import mixins
+
+.table-group
+  margin-top: 15px
+
+  .table__left
+    margin-right: 2px
+    // .table__cell
+    //   height: auto
+  
+  .table__body
+    .table__row:hover
+      background-color: transparent
+  .table__row:not(.table__head)
+    .table__cell
+      // min-height: 60px
+      padding-top: 12px
+      line-height: 14px
+      &.wide-cell
+        padding-bottom: 12px
+
+  .table__cell
+    width: 91px
+    &.wider-cell
+      width: 279px
+      justify-content: flex-start
+      text-align: left
+    &.wide-cell
+      width: 746px
+      height: auto
+      justify-content: flex-start
+      text-align: left
+
+
+// ADAPTIVE STYLES
+@media(max-width: 1399px)
+  .table-group
+    .table__cell
+      &.wide-cell
+        width: 400px
+
+@media(max-width: 1023px)
+  .table-group
+    // margin-top: 40px
+    .table-group__body
+      @include fade-to-right-inner
+    .table__left
+      @include fade-to-right-outer        
+  
+

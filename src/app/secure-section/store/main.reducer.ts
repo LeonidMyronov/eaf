@@ -15,7 +15,8 @@ import {
   Transaction,
   News,
   Discounts,
-  StatisticByDate
+  StatisticByDate,
+  PixelTrackingEvent
 } from './main.model';
 import {
   MainActions,
@@ -29,7 +30,9 @@ import {
   FETCH_DISCOUNT_INTRO,
   SUBMIT_DISCOUNT_REQUEST,
   FETCH_DISCOUNT_DETAILS,
-  FETCH_DAY_STAT
+  FETCH_DAY_STAT,
+  FILL_PT_EVENTS_NAMES,
+  FETCH_PT_EVENTS_DETAILS
 } from './main.actions';
 
 export interface MainState {
@@ -71,6 +74,10 @@ export interface MainState {
     date: Date;
     totalIncome: number;
     data: StatisticByDate[]
+  };
+  pixelTracking: {
+    eventsNamesList: string[],
+    eventsDetailsList: PixelTrackingEvent[]
   };
 }
 
@@ -127,6 +134,10 @@ export const initialState: MainState = {
     totalIncome: null,
     data: []
   },
+  pixelTracking: {
+    eventsNamesList: [],
+    eventsDetailsList: []
+  }
 };
 
 
@@ -250,6 +261,23 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         ...state,
         statisticByDate: action.payload
       };
+
+    case FILL_PT_EVENTS_NAMES:
+      return {
+        ...state,
+        pixelTracking: {
+          ...state.pixelTracking,
+          eventsNamesList: action.payload
+        }
+      };
+    case FETCH_PT_EVENTS_DETAILS:
+      return {
+        ...state,
+        pixelTracking: {
+          ...state.pixelTracking,
+          eventsDetailsList: action.payload
+        }
+      };
     default:
       return state;
   }
@@ -279,4 +307,6 @@ export const getTransactions = createSelector(getMainState, (state: MainState) =
 export const getNews = createSelector(getMainState, (state: MainState) => state.news);
 export const getDiscounts = createSelector(getMainState, (state: MainState) => state.discounts);
 export const getStatisticByDate = createSelector(getMainState, (state: MainState) => state.statisticByDate);
+export const getPTEventsNames = createSelector(getMainState, (state: MainState) => state.pixelTracking.eventsNamesList);
+export const getPTEventsDetails = createSelector(getMainState, (state: MainState) => state.pixelTracking.eventsDetailsList);
 
