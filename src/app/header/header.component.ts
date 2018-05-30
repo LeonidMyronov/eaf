@@ -87,7 +87,7 @@ export class HeaderComponent implements OnInit {
         this.helper.preventBodyToScroll(true);
         break;
       case 'profile':
-        // TODO
+        this.router.navigate(['/main', 'profile']);
         break;
       case 'logout':
         this.authService.logout();
