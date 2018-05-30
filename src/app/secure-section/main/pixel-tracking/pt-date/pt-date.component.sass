@@ -1,4 +1,5 @@
 @import variables
+@import mixins
 
 .table-group
   margin-top: 15px
@@ -30,4 +31,21 @@
       height: auto
       justify-content: flex-start
       text-align: left
+
+
+// ADAPTIVE STYLES
+@media(max-width: 1399px)
+  .table-group
+    .table__cell
+      &.wide-cell
+        width: 400px
+
+@media(max-width: 1023px)
+  .table-group
+    // margin-top: 40px
+    .table-group__body
+      @include fade-to-right-inner
+    .table__left
+      @include fade-to-right-outer        
+  
 
