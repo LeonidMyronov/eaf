@@ -15,7 +15,7 @@ export class AlignRowHeightDirective implements OnInit, AfterContentChecked {
     // console.log('ngOnInit =>', this.elRef);
     this.headSide = this.elRef.nativeElement.children[0].children;
     this.bodySide = this.elRef.nativeElement.children[1].children;
-    console.log('headSide,bodySide =>', this.headSide, this.bodySide);
+    // console.log('headSide,bodySide =>', this.headSide, this.bodySide);
   }
 
   ngAfterContentChecked() {
