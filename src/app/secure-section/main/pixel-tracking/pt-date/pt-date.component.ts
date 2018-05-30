@@ -40,9 +40,10 @@ export class PtDateComponent implements OnInit, OnDestroy {
 
   }
 
-  onChangePanelQuery(e: {date: Date, eventName: string}) {
+  onChangePanelQuery(e: {date: Date, dropdown: string}) {
+    console.log(e);
     const routeSuffix = `${e.date.getFullYear()}-${e.date.getMonth() + 1}-${e.date.getDate()}`;
-    this.router.navigate(['../', routeSuffix], {relativeTo: this.route});
+    this.router.navigate(['../', routeSuffix], {relativeTo: this.route, queryParams: {event: e.dropdown}});
   }
 
   ngOnDestroy() {
