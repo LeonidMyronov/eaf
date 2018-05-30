@@ -194,7 +194,7 @@
               <div class="table__row" *ngFor="let el of discountsData.activeCoupons; let jRow = index" fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let prop of getCouponsStatTableHeads().slice(1); let j = index">
                   <ng-container *ngIf="prop == 'creationDate' || prop == 'expirationDate'; else displayValue">
-                      {{el[prop] | date:'dd.mm.y'}}
+                      {{el[prop] | date:'dd.MM.y'}}
                     </ng-container>
                     <ng-template #displayValue>
                       {{el[prop] }}
@@ -235,7 +235,7 @@
               <div class="table__row" *ngFor="let el of discountsData.expiredCoupons; let jRow = index" fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let prop of getCouponsStatTableHeads().slice(1); let j = index">
                   <ng-container *ngIf="prop == 'creationDate' || prop == 'expirationDate'; else displayValue">
-                      {{el[prop] | date:'dd.mm.y'}}
+                      {{el[prop] | date:'dd.MM.y'}}
                     </ng-container>
                     <ng-template #displayValue>
                       {{el[prop] }}
