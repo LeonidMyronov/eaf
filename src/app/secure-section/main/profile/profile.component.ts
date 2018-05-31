@@ -134,6 +134,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onPaymentDataFormSubmit() {}
   // <---  paymentDataForm
 
+  onRefLinkCopy(el) {
+    el.select();
+    document.execCommand('copy');
+    el.setSelectionRange(0, 0);
+  }
 
   ngOnDestroy() {
     this.subs.unsubscribe();

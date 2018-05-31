@@ -152,12 +152,10 @@
         <div class="title">
           Реферальная ссылка
         </div>
-        <div class="content light-color">
-          <div class="link small-text">
-            https://edu-affiliates.com/?ref={{ userState.id }}
+          <div class="form-field">
+            <input type="text" class="disabled" value="https://edu-affiliates.com/?ref={{ userState.id }}" #refLink>
           </div>
-        </div>
-        <div class="footer">
+        <div class="footer" (click)="onRefLinkCopy(refLink)">
           <div class="action">
             Copy link
           </div>
