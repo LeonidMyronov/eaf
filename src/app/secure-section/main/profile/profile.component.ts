@@ -2,10 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/take';
 
 import { MainStorageService } from '../../services/main-storage.service';
 
 import * as fromRoot from '../../../app.reducers';
+import * as UserActions from '../../user/store/user.actions';
 import { User } from '../../user/user.model';
 import { PaymentMethod } from '../../store/main.model';
 
@@ -33,15 +35,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.paymentMethods = this.mainStorage.getPaymentMethods();
 
-    this.store.select(fromRoot.getUserState)
+    this.subs = this.store.select(fromRoot.getUserState)
+      .take(1)
       .subscribe((response: {user: User}) => {
         this.userState = response.user;
         this.subscriptionFormInit();
         this.personalDataFormInit();
         this.paymentDataFormInit();
       });
-
-    // this.paymentDataForm.valueChanges.subscribe(v => console.log(this.paymentDataForm));
   }
 
   // subscriptionForm --->
@@ -62,7 +63,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscriptionForm.patchValue({editMode: false});
   }
 
-  onSubscriptionFormSubmit() {}
+  onSubscriptionFormSubmit() {
+    const updatedData = {...this.subscriptionForm.value};
+    delete updatedData.editMode;
+    this.store.dispatch(new UserActions.BeforeUpdateProfile(updatedData));
+    this.onSubscriptionFormCancel();
+  }
   // <--- subscriptionForm
 
 
@@ -72,9 +78,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
       editMode: false,
       name: this.fb.control({value: this.userState.name, disabled: true}),
       surname: this.fb.control({value: this.userState.surname, disabled: true}),
-      skype: this.fb.control({value: this.userState.skypeAccount, disabled: true}),
-      icq: this.fb.control({value: this.userState.icqAccount, disabled: true}),
-      jabber: this.fb.control({value: this.userState.jabberAccount, disabled: true}),
+      skypeAccount: this.fb.control({value: this.userState.skypeAccount, disabled: true}),
+      icqAccount: this.fb.control({value: this.userState.icqAccount, disabled: true}),
+      jabberAccount: this.fb.control({value: this.userState.jabberAccount, disabled: true}),
       info: this.fb.control({value: this.userState.info, disabled: true}),
     });
   }
@@ -82,9 +88,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onPersonalDataFormEdit() {
     this.personalDataForm.get('name').enable();
     this.personalDataForm.get('surname').enable();
-    this.personalDataForm.get('skype').enable();
-    this.personalDataForm.get('icq').enable();
-    this.personalDataForm.get('jabber').enable();
+    this.personalDataForm.get('skypeAccount').enable();
+    this.personalDataForm.get('icqAccount').enable();
+    this.personalDataForm.get('jabberAccount').enable();
     this.personalDataForm.get('info').enable();
     this.personalDataForm.patchValue({editMode: true});
   }
@@ -92,14 +98,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
   onPersonalDataFormCancel() {
     this.personalDataForm.get('name').disable();
     this.personalDataForm.get('surname').disable();
-    this.personalDataForm.get('skype').disable();
-    this.personalDataForm.get('icq').disable();
-    this.personalDataForm.get('jabber').disable();
+    this.personalDataForm.get('skypeAccount').disable();
+    this.personalDataForm.get('icqAccount').disable();
+    this.personalDataForm.get('jabberAccount').disable();
     this.personalDataForm.get('info').disable();
     this.personalDataForm.patchValue({editMode: false});
   }
 
-  onPersonalDataFormSubmit() {}
+  onPersonalDataFormSubmit() {
+    const updatedData = {...this.personalDataForm.value};
+    delete updatedData.editMode;
+    this.store.dispatch(new UserActions.BeforeUpdateProfile(updatedData));
+    this.onPersonalDataFormCancel();
+  }
   // <---  personalDataForm
 
 
@@ -110,28 +121,36 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
     this.paymentDataForm = this.fb.group({
       editMode: false,
-      method: this.fb.control({value: this.paymentMethod || '', disabled: true}),
-      notes: this.fb.control({value: this.userState.paymentNotes, disabled: true}),
+      prefferedPaymentMethod: this.fb.control({value: this.paymentMethod || '', disabled: true}),
+      paymentNotes: this.fb.control({value: this.userState.paymentNotes, disabled: true}),
     });
   }
 
   onPaymentDataFormEdit() {
-    this.paymentDataForm.get('method').enable();
-    this.paymentDataForm.get('notes').enable();
+    this.paymentDataForm.get('prefferedPaymentMethod').enable();
+    this.paymentDataForm.get('paymentNotes').enable();
     this.paymentDataForm.patchValue({editMode: true});
   }
 
   onPaymentDataFormCancel() {
-    this.paymentDataForm.get('method').disable();
-    this.paymentDataForm.get('notes').disable();
+    this.paymentDataForm.get('prefferedPaymentMethod').disable();
+    this.paymentDataForm.get('paymentNotes').disable();
     this.paymentDataForm.patchValue({editMode: false});
   }
 
   onChangePaymentMethod(item: PaymentMethod) {
-    this.paymentDataForm.patchValue({method: item});
+    this.paymentDataForm.patchValue({prefferedPaymentMethod: item});
+    this.paymentDataForm.markAsDirty();
   }
 
-  onPaymentDataFormSubmit() {}
+  onPaymentDataFormSubmit() {
+    const updatedData = {
+      prefferedPaymentMethod: this.paymentDataForm.get('prefferedPaymentMethod').value.id,
+      paymentNotes: this.paymentDataForm.get('paymentNotes').value
+    };
+    this.store.dispatch(new UserActions.BeforeUpdateProfile(updatedData));
+    this.onPaymentDataFormCancel();
+  }
   // <---  paymentDataForm
 
   onRefLinkCopy(el) {

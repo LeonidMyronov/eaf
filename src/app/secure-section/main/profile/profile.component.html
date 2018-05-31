@@ -62,20 +62,20 @@
             <input type="text" formControlName="name">
           </div>
           <div class="form-field">
-            <label for="">SurName:</label>
+            <label for="">Surname:</label>
             <input type="text" formControlName="surname">
           </div>
           <div class="form-field">
             <label for="">Skype ID:</label>
-            <input type="text" formControlName="skype">
+            <input type="text" formControlName="skypeAccount">
           </div>
           <div class="form-field">
             <label for="">ICQ:</label>
-            <input type="text" formControlName="icq">
+            <input type="text" formControlName="icqAccount">
           </div>
           <div class="form-field">
             <label for="">Jabber:</label>
-            <input type="text" formControlName="jabber">
+            <input type="text" formControlName="jabberAccount">
           </div>
           <div class="form-field">
             <label for="info">About:</label>
@@ -103,7 +103,7 @@
             <label for="">Preffered method:</label>
             <div eafDropdown class="dropdown-menu" [ngClass]="{disabled: paymentDataForm.get('editMode').value === false}">
               <div class="dropdown-select">
-                {{  (paymentDataForm.get('method').value?.name || '') | translate }}
+                {{  (paymentDataForm.get('prefferedPaymentMethod').value?.name || '') | translate }}
               </div>
               <ul class="dropdown-list">
                 <li class="dropdown-list__item" *ngFor="let item of paymentMethods" (click)="onChangePaymentMethod(item)">
@@ -114,7 +114,7 @@
           </div>
           <div class="form-field">
             <label for="notes">Payment notes:</label>
-            <textarea id="notes" type="text" placeholder="" formControlName="notes"></textarea>
+            <textarea id="notes" type="text" placeholder="" formControlName="paymentNotes"></textarea>
           </div>
           <div class="buttons-group" [hidden]="paymentDataForm.get('editMode').value === false">
             <button type="submit" class="btn-sm" [disabled]="paymentDataForm.pristine">Save</button>
