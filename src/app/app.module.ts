@@ -25,6 +25,7 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 
 import { reducers } from './app.reducers';
 import { AuthEffects } from './auth/store/auth.effects';
+import { UserEffects } from './secure-section/user/store/user.effects';
 
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -48,7 +49,7 @@ import { environment } from '../environments/environment';
     CustomFlexLayoutBreakPointsModule,
     AuthModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, UserEffects]),
     HttpClientModule,
     TranslateModule.forRoot({
         loader: {

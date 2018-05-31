@@ -3,6 +3,7 @@ import { User, StatisticPanelFilterList } from '../user.model';
 
 export const FILL_PROFILE = '[USER] FILL_PROFILE';
 export const CLEAR_PROFILE = '[USER] CLEAR_PROFILE';
+export const BEFORE_UPDATE_PROFILE = '[USER] BEFORE_UPDATE_PROFILE';
 export const ADD_FILTERS_LIST = '[USER] ADD_FILTERS_LIST';
 
 export class FillProfile implements Action {
@@ -19,4 +20,10 @@ export class AddFiltersList implements Action {
   constructor(public payload: StatisticPanelFilterList) {}
 }
 
-export type UserActions = FillProfile | ClearProfile | AddFiltersList;
+export class BeforeUpdateProfile implements Action {
+  readonly type = BEFORE_UPDATE_PROFILE;
+  constructor(public payload: {}) {}
+}
+
+
+export type UserActions = FillProfile | ClearProfile | AddFiltersList | BeforeUpdateProfile;
