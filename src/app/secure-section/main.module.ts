@@ -22,6 +22,7 @@ import { DiscountComponent } from './main/discount/discount.component';
 import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
 import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
 import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component';
+import { ProfileComponent } from './main/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component
     DiscountDetailsComponent,
     StatisticDateComponent,
     PtDateComponent,
+    ProfileComponent,
   ],
   imports: [
     CoreModule,

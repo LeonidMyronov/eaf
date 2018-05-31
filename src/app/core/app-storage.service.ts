@@ -65,6 +65,7 @@ export class AppStorageService {
     {
       name: 'profile',
       item_class: 'primary',
+      url: '/main/profile',
       auth: true
     },
     {

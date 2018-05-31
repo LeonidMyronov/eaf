@@ -16,6 +16,14 @@ const initialState: State = {
     balance: null,
     nextWithdrawDate: null,
     statisticFiltersList: null,
+    registrationDate: null,
+    lastVisit: null,
+    surname: '',
+    jabberAccount: '',
+    info: '',
+    prefferedPaymentMethod: null,
+    paymentNotes: '',
+    totalIncome: null,
   },
 };
 
@@ -29,16 +37,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
     case CLEAR_PROFILE:
       return {
         ...state,
-        user: {
-          email: null,
-          id: null,
-          name: null,
-          icqAccount: null,
-          skypeAccount: null,
-          balance: null,
-          nextWithdrawDate: null,
-          statisticFiltersList: null
-        }
+        ...initialState
       };
     case ADD_FILTERS_LIST:
     return {

@@ -1,0 +1,166 @@
+<article class="statistic-page">
+  <div class="container">
+    <section class="cards-group">
+      <div class="card grid-1">
+        <div class="title">
+          Аккаунт
+        </div>
+        <div class="content">
+          <div class="form-field">
+            <label for="">Дата регистрации:</label>
+            <div class="form-field__data">
+              {{ userState.registrationDate | date:'MMMM dd, y, h:mm a'}}
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="">Последний логин:</label>
+            <div class="form-field__data">
+              {{ userState.lastVisit | date:'MMMM dd, y, h:mm a'}}
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <div class="action">
+            Forgot password?
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-2">
+        <div class="title">
+          Обновления и новости (подписка)
+        </div>
+        <form class="content light-color" [formGroup]="subscriptionForm" (ngSubmit)="onSubscriptionFormSubmit()">
+          <div class="form-field">
+            <input type="text" formControlName="email">
+            <!-- <div class="form-field__actions">
+                <div *ngIf="personalDataForm.controls['code'].errors?.required && personalDataForm.controls['code'].touched" class="form-error">
+                  This field is required
+                </div>
+              </div> -->
+          </div>
+          <div class="buttons-group" [hidden]="subscriptionForm.get('editMode').value === false">
+            <button type="submit" class="btn-sm" [disabled]="subscriptionForm.pristine">Save</button>
+            <button type="button" class="btn-sm" (click)="onSubscriptionFormCancel()">Cancel</button>
+          </div>
+        </form>
+        <div class="footer" (click)="onSubscriptionFormEdit()" [hidden]="subscriptionForm.get('editMode').value === true">
+          <div class="action">
+            Change
+          </div>
+        </div>
+      </div>
+
+      <div class="card high-card grid-3">
+        <div class="title">
+          Персональные данные
+        </div>
+
+        <form class="content" [formGroup]="personalDataForm" (ngSubmit)="onPersonalDataFormSubmit()">
+          <div class="form-field">
+            <label for="">Name:</label>
+            <input type="text" formControlName="name">
+          </div>
+          <div class="form-field">
+            <label for="">Surname:</label>
+            <input type="text" formControlName="surname">
+          </div>
+          <div class="form-field">
+            <label for="">Skype ID:</label>
+            <input type="text" formControlName="skypeAccount">
+          </div>
+          <div class="form-field">
+            <label for="">ICQ:</label>
+            <input type="text" formControlName="icqAccount">
+          </div>
+          <div class="form-field">
+            <label for="">Jabber:</label>
+            <input type="text" formControlName="jabberAccount">
+          </div>
+          <div class="form-field">
+            <label for="info">About:</label>
+            <textarea id="info" type="text" placeholder="" formControlName="info"></textarea>
+          </div>
+          <div class="buttons-group" [hidden]="personalDataForm.get('editMode').value === false">
+            <button type="submit" class="btn-sm" [disabled]="personalDataForm.pristine">Save</button>
+            <button type="button" class="btn-sm" (click)="onPersonalDataFormCancel()">Cancel</button>
+          </div>
+        </form>
+
+        <div class="footer" (click)="onPersonalDataFormEdit()" [hidden]="personalDataForm.get('editMode').value === true">
+          <div class="action">
+            Edit
+          </div>
+        </div>
+      </div>
+
+      <div class="card high-card grid-4">
+        <div class="title">
+          Платежные данные
+        </div>
+        <form class="content" [formGroup]="paymentDataForm" (ngSubmit)="onPaymentDataFormSubmit()">
+          <div class="form-field">
+            <label for="">Preffered method:</label>
+            <div eafDropdown class="dropdown-menu" [ngClass]="{disabled: paymentDataForm.get('editMode').value === false}">
+              <div class="dropdown-select">
+                {{  (paymentDataForm.get('prefferedPaymentMethod').value?.name || '') | translate }}
+              </div>
+              <ul class="dropdown-list">
+                <li class="dropdown-list__item" *ngFor="let item of paymentMethods" (click)="onChangePaymentMethod(item)">
+                  {{ item.name | translate }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="notes">Payment notes:</label>
+            <textarea id="notes" type="text" placeholder="" formControlName="paymentNotes"></textarea>
+          </div>
+          <div class="buttons-group" [hidden]="paymentDataForm.get('editMode').value === false">
+            <button type="submit" class="btn-sm" [disabled]="paymentDataForm.pristine">Save</button>
+            <button type="button" class="btn-sm" (click)="onPaymentDataFormCancel()">Cancel</button>
+          </div>
+        </form>
+        <div class="footer" (click)="onPaymentDataFormEdit()" [hidden]="paymentDataForm.get('editMode').value === true">
+          <div class="action">
+            Edit
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-5">
+        <div class="title">
+          Реферальная статистика
+        </div>
+        <div class="content light-color">
+          <h3 class="value"> {{ userState.totalIncome | number:'0.2-2' }}
+            <span class="currency"> USD</span>
+          </h3>
+          <p>общая прибыль</p>
+        </div>
+        <div class="footer" routerLink="/main/statistic">
+          <div class="action">
+            Подробнее
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card grid-6">
+        <div class="title">
+          Реферальная ссылка
+        </div>
+          <div class="form-field">
+            <input type="text" class="disabled" value="https://edu-affiliates.com/?ref={{ userState.id }}" #refLink>
+          </div>
+        <div class="footer" (click)="onRefLinkCopy(refLink)">
+          <div class="action">
+            Copy link
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</article>

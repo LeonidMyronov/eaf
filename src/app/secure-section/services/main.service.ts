@@ -660,12 +660,12 @@ export class MainService {
   }
 
   fetchStatisticByPeriod() {
-    console.log('fetchStatisticByPeriod from Service');
+    // console.log('fetchStatisticByPeriod from Service');
     this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
   }
 
   fetchTransactionsByPeriod(query) {
-    console.log('fetchTransactionsByPeriod from Service');
+    // console.log('fetchTransactionsByPeriod from Service');
     this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
   }
 
@@ -682,11 +682,10 @@ export class MainService {
   }
 
   fetchStatisticByDate(date) {
-    // this.store.dispatch(new MainActions.FetchDayStat(this.statisticByDay));
     return this.statisticByDay;
   }
 
-  fetchPTEventsDetails({date: date, eventName: string}) {
+  fetchPTEventsDetails({date: Date, eventName: string}) {
     return this.pTEventsDetails;
   }
 }
