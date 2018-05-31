@@ -1,14 +1,22 @@
 import { StatisticPanelFilter } from '../store/main.model';
 
 export interface User {
-  email: string;
   id: number;
   name: string;
+  surname: string;
+  email: string;
   icqAccount: number;
   skypeAccount: string;
+  jabberAccount: string;
+  info: string;
+  registrationDate: Date;
+  lastVisit: Date;
   balance: number;
+  totalIncome: number;
   nextWithdrawDate: number;
   statisticFiltersList: StatisticPanelFilterList;
+  prefferedPaymentMethod: string;
+  paymentNotes: string;
 }
 
 
