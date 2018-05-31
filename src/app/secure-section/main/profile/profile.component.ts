@@ -138,6 +138,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     el.select();
     document.execCommand('copy');
     el.setSelectionRange(0, 0);
+    el.blur();
   }
 
   ngOnDestroy() {
