@@ -15,7 +15,7 @@ export interface User {
   totalIncome: number;
   nextWithdrawDate: number;
   statisticFiltersList: StatisticPanelFilterList;
-  prefferedPaymentMethod: string;
+  prefferedPaymentMethod: number; // payment ID
   paymentNotes: string;
 }
 

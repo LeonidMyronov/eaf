@@ -21,7 +21,7 @@ const initialState: State = {
     surname: '',
     jabberAccount: '',
     info: '',
-    prefferedPaymentMethod: '',
+    prefferedPaymentMethod: null,
     paymentNotes: '',
     totalIncome: null,
   },

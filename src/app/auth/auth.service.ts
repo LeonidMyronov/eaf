@@ -75,7 +75,7 @@ export class AuthService {
       surname: 'Myronov',
       jabberAccount: '',
       info: '',
-      prefferedPaymentMethod: '',
+      prefferedPaymentMethod: null,
       paymentNotes: '',
       totalIncome: 1200.50,
     };
