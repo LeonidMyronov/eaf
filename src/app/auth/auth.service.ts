@@ -58,7 +58,7 @@ export class AuthService {
     return {
       email: loginData.email,
       id: id,
-      name: 'user_' + id,
+      name: 'Leo',
       icqAccount: id,
       skypeAccount: 'skype' + id,
       balance: 100,
@@ -69,7 +69,15 @@ export class AuthService {
           {name: 'os', filterList: [{name: 'windows', enabled: true}]},
           {name: 'browsers', filterList: [{name: 'Chrome', enabled: true}]}
         ]
-      }
+      },
+      registrationDate: new Date(2017, 0, 16),
+      lastVisit: new Date(2018, 4, 30),
+      surname: 'Myronov',
+      jabberAccount: '',
+      info: '',
+      prefferedPaymentMethod: null,
+      paymentNotes: '',
+      totalIncome: 1200.50,
     };
   }
 }

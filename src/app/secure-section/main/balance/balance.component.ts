@@ -55,14 +55,6 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
   }
 
   ngAfterContentChecked() {
-    // const trtbArr = this.trtb.nativeElement.children;
-    // const trtlArr = this.trtl.nativeElement.children;
-    // for (let i = 0; i < trtbArr.length; i++) {
-    //   trtlArr[i].style.height = trtbArr[i].clientHeight + 'px';
-    //   // console.log(i, trtbArr[i].clientHeight);
-    // }
-    // console.log(trtbArr);
-    // console.log(trtlArr);
   }
 
   initForm() {
