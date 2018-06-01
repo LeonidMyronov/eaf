@@ -1,0 +1,53 @@
+@import variables
+  
+head
+  padding: 15px
+  position: relative
+  img
+    margin-right: 15px
+  .title
+    margin-right: auto
+  .sub-title
+    margin-right: 20px
+    font-size: 12px
+    flex-shrink: 0
+  .form-field
+    width: 397px
+    margin: 0
+    input
+      height: 30px
+      color: $primaryColor
+      font-size: 12px
+      border-top-right-radius: 0
+      border-bottom-right-radius: 0
+  button
+    width: 90px
+    font-size: 10px
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+
+
+@media(max-width: 1023px)
+  head
+    img
+      margin-bottom: 20px
+    .title
+      margin-right: 50%
+      margin-bottom: 20px
+    .form-field
+      width: 363px
+
+@media(max-width: 767px)
+  head
+    .title
+      margin-right: 30%
+    .sub-title
+      margin-left: 10px
+    .form-field
+      width: 260px
+      position: absolute
+      left: 0
+      top: 0
+      z-index: -1
+
+    

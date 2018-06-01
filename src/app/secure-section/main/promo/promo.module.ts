@@ -4,17 +4,17 @@ import { SharedModule } from '../../shared/shared.module';
 import { PromoRoutingModule } from './promo-routing.module';
 
 import { PromoComponent } from './promo.component';
-import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   imports: [
-    // CoreModule,
-    // SharedModule,
-    CommonModule,
+    CoreModule,
+    SharedModule,
     PromoRoutingModule
   ],
   declarations: [
     PromoComponent,
+    HeaderComponent,
   ]
 })
 export class PromoModule { }
