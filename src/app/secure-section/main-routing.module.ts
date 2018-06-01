@@ -34,7 +34,8 @@ const routes: Routes = [
       { path: 'postback', component: PostbackComponent },
       { path: 'whitelabel', component: WhitelabelComponent },
       { path: 'offer', component: OfferComponent },
-      { path: '**', redirectTo: 'profile' },
+      { path: 'promo', loadChildren: './main/promo/promo.module#PromoModule'},
+      { path: '**', redirectTo: 'today' }
     ]
   },
 ];
