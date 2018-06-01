@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="16px" viewBox="0 0 18 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Clip 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="0 15.0632825 17.2676461 15.0632825 17.2676461 0 0 0"></polygon>
+    </defs>
+    <g id="HD-Desktop-1920---1440-px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="HD-Desktop_EDU-Promo_Static" transform="translate(-350.000000, -262.000000)">
+            <g id="Group-23" transform="translate(350.000000, 259.000000)">
+                <g id="Page-1" transform="translate(0.000000, 3.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
