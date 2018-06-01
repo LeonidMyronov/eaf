@@ -13,6 +13,9 @@ import { DiscountDetailsComponent } from './main/discount-details/discount-detai
 import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
 import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component';
 import { ProfileComponent } from './main/profile/profile.component';
+import { PostbackComponent } from './main/postback/postback.component';
+import { WhitelabelComponent } from './main/whitelabel/whitelabel.component';
+import { OfferComponent } from './main/offer/offer.component';
 
 const routes: Routes = [
   {
@@ -28,6 +31,9 @@ const routes: Routes = [
       { path: 'discount', component: DiscountComponent },
       { path: 'discount/details', component: DiscountDetailsComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'postback', component: PostbackComponent },
+      { path: 'whitelabel', component: WhitelabelComponent },
+      { path: 'offer', component: OfferComponent },
       { path: '**', redirectTo: 'profile' },
     ]
   },
