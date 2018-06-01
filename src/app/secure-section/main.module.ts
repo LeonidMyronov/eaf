@@ -23,6 +23,9 @@ import { DiscountDetailsComponent } from './main/discount-details/discount-detai
 import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
 import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component';
 import { ProfileComponent } from './main/profile/profile.component';
+import { PostbackComponent } from './main/postback/postback.component';
+import { WhitelabelComponent } from './main/whitelabel/whitelabel.component';
+import { OfferComponent } from './main/offer/offer.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { ProfileComponent } from './main/profile/profile.component';
     StatisticDateComponent,
     PtDateComponent,
     ProfileComponent,
+    PostbackComponent,
+    WhitelabelComponent,
+    OfferComponent,
   ],
   imports: [
     CoreModule,
