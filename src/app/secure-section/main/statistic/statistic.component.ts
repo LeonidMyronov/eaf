@@ -47,8 +47,8 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public statisticTableHeads: string[];
   public activeMediaQuery: string;
   public isStatisticFiltersVisible: boolean;
+  public sitesList: any[];
   private filteredStatisticTableHeads = [];
-  private sitesList: any[];
   private subscriptions: Subscription[] = [];
 
   constructor(
