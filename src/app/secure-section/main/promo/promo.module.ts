@@ -7,6 +7,11 @@ import { PromoStorageService } from './services/promo-storage.service';
 
 import { PromoComponent } from './promo.component';
 import { HeaderComponent } from './header/header.component';
+import { StaticComponent } from './static/static.component';
+import { GifComponent } from './gif/gif.component';
+import { WpThemesComponent } from './wp-themes/wp-themes.component';
+import { CalculatorComponent } from './calculator/calculator.component';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   imports: [
@@ -17,6 +22,11 @@ import { HeaderComponent } from './header/header.component';
   declarations: [
     PromoComponent,
     HeaderComponent,
+    StaticComponent,
+    GifComponent,
+    WpThemesComponent,
+    CalculatorComponent,
+    LandingComponent,
   ],
   providers: [PromoStorageService]
 })
