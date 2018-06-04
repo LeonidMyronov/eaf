@@ -1,7 +1,7 @@
 import { StatisticPanelFilter } from '../store/main.model';
 
 export interface User {
-  id: number;
+  readonly id: number;
   name: string;
   surname: string;
   email: string;
@@ -24,3 +24,4 @@ export interface StatisticPanelFilterList {
   name: string;
   statisticFilters: StatisticPanelFilter[];
 }
+

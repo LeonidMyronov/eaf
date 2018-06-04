@@ -52,7 +52,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
   }
 }
 
-export const getShortUserState = (state: State) => {
+export const getShortUserState = (state: State): Partial<User>  => {
   return {
     id: state.user.id,
     email: state.user.email,
