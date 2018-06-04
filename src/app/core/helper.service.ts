@@ -5,7 +5,7 @@ export class HelperService {
 
   constructor() { }
 
-  preventBodyToScroll(scroll: boolean) {
+  preventBodyToScroll(scroll: boolean): void {
     const body = document.querySelector('body');
     if (scroll) {
       body.classList.add('no-scroll');
@@ -20,5 +20,11 @@ export class HelperService {
 
   convertTimestamp2Hours(date: Date): number {
     return Math.round(date.getDate() / 3600 / 1000);
+  }
+
+  copyToClipboard(el): void {
+    document.execCommand('copy');
+    el.setSelectionRange(0, 0);
+    el.blur();
   }
 }
