@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../core/app-storage.service';
@@ -25,7 +26,8 @@ export class MobileMenuComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private appStorage: AppStorageService,
     private authService: AuthService,
-    private helper: HelperService
+    private helper: HelperService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class MobileMenuComponent implements OnInit {
     this.onCloseMobileMenu();
     switch (name) {
       case 'profile':
-        // TODO
+        this.router.navigate(['main', 'profile']);
         break;
       case 'login':
         // TODO

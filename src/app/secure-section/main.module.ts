@@ -18,7 +18,7 @@ import { BalanceComponent } from './main/balance/balance.component';
 import { GuideComponent } from './main/guide/guide.component';
 import { NewsComponent } from './main/news/news.component';
 import { NewsItemComponent } from './main/news/news-item/news-item.component';
-import { DiscountComponent } from './main/discount/discount.component';
+// import { DiscountComponent } from './main/discount/discount.component';
 import { DiscountDetailsComponent } from './main/discount-details/discount-details.component';
 import { StatisticDateComponent } from './main/statistic/statistic-date/statistic-date.component';
 import { PtDateComponent } from './main/pixel-tracking/pt-date/pt-date.component';
@@ -36,7 +36,7 @@ import { OfferComponent } from './main/offer/offer.component';
     GuideComponent,
     NewsComponent,
     NewsItemComponent,
-    DiscountComponent,
+    // DiscountComponent,
     DiscountDetailsComponent,
     StatisticDateComponent,
     PtDateComponent,
