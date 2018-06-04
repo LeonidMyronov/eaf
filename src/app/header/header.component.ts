@@ -10,6 +10,7 @@ import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
 import { Observable } from 'rxjs/Observable';
+import { Site } from '../core/core.model';
 
 @Component({
   selector: 'eaf-header',
@@ -24,8 +25,8 @@ export class HeaderComponent implements OnInit {
 
   public navMenu: any[] = [];
   public authMenu: any[] = [];
-  public tariffsList: any[] = [];
-  public userTariff: any;
+  public tariffsList: Site[] = [];
+  public userTariff: Site;
   public langsList: any[] = [];
   public userLang;
   public userMenu: any[];

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Site } from './core.model';
 
 @Injectable()
 export class AppStorageService {
@@ -246,6 +247,7 @@ export class AppStorageService {
       fisrtOrderPercent: 50,
       rebillsPercent: 15,
       iconLightSrc: '/assets/images/header/sites/site-99papers-light.svg',
+      preview: '/assets/images/header/sites/preview-99papers.com.svg'
     },
     {
       id: 3,
@@ -254,6 +256,7 @@ export class AppStorageService {
       fisrtOrderPercent: 30,
       rebillsPercent: 25,
       iconLightSrc: '/assets/images/header/sites/site-essaybox-light.svg',
+      preview: '/assets/images/header/sites/preview-essaybox.org.svg'
     },
     {
       id: 4,
@@ -262,6 +265,7 @@ export class AppStorageService {
       fisrtOrderPercent: 45,
       rebillsPercent: 15,
       iconLightSrc: '/assets/images/header/sites/site-essayfactory-light.svg',
+      preview: '/assets/images/header/sites/preview-essayfactory.uk.svg'
     },
     {
       id: 5,
@@ -270,6 +274,7 @@ export class AppStorageService {
       fisrtOrderPercent: 40,
       rebillsPercent: 10,
       iconLightSrc: '/assets/images/header/sites/site-bookwarmlab-light.svg',
+      preview: '/assets/images/header/sites/preview-bookwormlab.com.svg'
     },
   ];
 
@@ -284,6 +289,6 @@ export class AppStorageService {
   getHomeSection5Cards() { return [...this.homeSection5Cards]; }
   getUserMenu() {return [...this.userMenu]; }
   getTimeList() {return [...this.timeList]; }
-  getTariffsList() {return this.tariffsList.slice(1); }
-  getAllSites() {return this.tariffsList.slice(); }
+  getTariffsList(): Site[] {return this.tariffsList.slice(1); }
+  getAllSites(): Site[] {return this.tariffsList.slice(); }
 }
