@@ -40,8 +40,17 @@ head
       text-decoration: none
       img
         margin-right: 10px
+    &:hover
+      background-color: $accentColor-lighter
     &.active
       background-color: $accentColor
+
+// ADAPTIVE STYLES
+
+@media(max-width: 1399px)
+  .nav-menu
+    &__item
+      width: 170px
 
 @media(max-width: 1023px)
   head
@@ -52,6 +61,9 @@ head
       margin-bottom: 20px
     .form-field
       width: 363px
+  .nav-menu
+    &__item
+      width: 112px
 
 @media(max-width: 767px)
   head
@@ -65,5 +77,11 @@ head
       left: 0
       top: 0
       z-index: -1
+  .nav-menu
+    &__item
+      width: 55px
+      a
+        img
+          margin-right: 0    
 
     

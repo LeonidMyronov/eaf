@@ -10,10 +10,11 @@
   <button type="button" class="btn-sm main" (click)="onLinkCopy(refLink)">{{'Copy' | translate}}</button>
 </head>
 
-<nav class="nav-menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px"> 
+<nav class="nav-menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px" fxLayoutGap.xs="1px"> 
   <li class="nav-menu__item bg-form-color"  *ngFor="let navItem of navMenu"  [routerLink]="navItem.url" routerLinkActive="active"  fxLayout="row" fxLayoutAlign="center center">
     <a fxLayout="row" fxLayoutAlign="center center">
-      <img [src]="navItem.iconSrc" [alt]="navItem.name">
-      {{ navItem.name }}</a>
+      <img [src]="navItem.iconSrc" [alt]="navItem.name" fxHide.sm>
+      <span fxHide.xs>{{ navItem.name }}</span>
+    </a>
   </li>
 </nav>
