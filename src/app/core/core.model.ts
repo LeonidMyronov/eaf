@@ -6,4 +6,7 @@ export interface Site {
   rebillsPercent?: number;
   iconLightSrc: string;
   preview?: string;
+  description?: string;
+  isDesktopVersion?: boolean;
+  isMobileVersion?: boolean;
 }

@@ -289,6 +289,6 @@ export class AppStorageService {
   getHomeSection5Cards() { return [...this.homeSection5Cards]; }
   getUserMenu() {return [...this.userMenu]; }
   getTimeList() {return [...this.timeList]; }
-  getTariffsList(): Site[] {return this.tariffsList.slice(1); }
+  // getTariffsList(): Site[] {return this.tariffsList.slice(1); }
   getAllSites(): Site[] {return this.tariffsList.slice(); }
 }
