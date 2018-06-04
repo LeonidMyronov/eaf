@@ -38,7 +38,6 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
 
   ) { }
   ngOnInit() {
-    this.sitesArr = this.appStorage.getTariffsList();
     this.subs.push(this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
@@ -48,6 +47,12 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
           this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
         }
       }));
+
+    this.subs.push(this.store.select(fromRoot.getOurSites)
+      .subscribe((response: Site[]) => {
+        this.sitesArr = response;
+      })
+    );
 
     this.subs.push(this.store.select(fromRoot.getActiveMediaQuery)
     .subscribe(
