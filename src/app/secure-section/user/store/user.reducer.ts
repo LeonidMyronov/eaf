@@ -1,9 +1,11 @@
 import { User } from '../user.model';
 import { UserActions, FILL_PROFILE, CLEAR_PROFILE, ADD_FILTERS_LIST } from './user.actions';
+import { Site } from '../../../core/core.model';
 
 
 export interface State {
   user: User;
+  sites: Site[];
 }
 
 const initialState: State = {
@@ -25,6 +27,7 @@ const initialState: State = {
     paymentNotes: '',
     totalIncome: null,
   },
+  sites: []
 };
 
 export function userReducer(state: State = initialState, action: UserActions) {
@@ -32,7 +35,7 @@ export function userReducer(state: State = initialState, action: UserActions) {
     case FILL_PROFILE:
       return {
         ...state,
-        user: action.payload
+        ...action.payload
       };
     case CLEAR_PROFILE:
       return {
@@ -69,4 +72,6 @@ export const getUserBalanceState = (state: State) => {
 };
 
 export const getUserStatisticFilters = (state: State) => state.user.statisticFiltersList;
+export const getAllSites = (state: State) => state.sites;
+export const getOurSites = (state: State) => state.sites.slice(1);
 
