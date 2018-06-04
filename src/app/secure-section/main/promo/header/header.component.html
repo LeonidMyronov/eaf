@@ -5,8 +5,15 @@
   <div class="sub-title accent-color">Ваша реферальная ссылка:</div>
 
   <div class="form-field">
-    <input type="text" value="https://essaybox.org/?ref_id=2520" #refLink>
+    <input type="text" value="https://essaybox.org/?ref_id={{ (userState$ | async).id }}" #refLink>
   </div>
   <button type="button" class="btn-sm main" (click)="onLinkCopy(refLink)">{{'Copy' | translate}}</button>
 </head>
-<nav></nav>
+
+<nav class="nav-menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px"> 
+  <li class="nav-menu__item bg-form-color"  *ngFor="let navItem of navMenu"  [routerLink]="navItem.url" routerLinkActive="active"  fxLayout="row" fxLayoutAlign="center center">
+    <a fxLayout="row" fxLayoutAlign="center center">
+      <img [src]="navItem.iconSrc" [alt]="navItem.name">
+      {{ navItem.name }}</a>
+  </li>
+</nav>

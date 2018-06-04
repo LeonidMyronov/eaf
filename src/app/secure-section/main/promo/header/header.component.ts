@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 
-import { HelperService } from '../../../../core/helper.service';
+import { PromoStorageService } from '../services/promo-storage.service';
+
+import * as fromRoot from '../../../../app.reducers';
+import { User } from '../../../user/user.model';
+import { NavItem } from '../promo.model';
 
 @Component({
   selector: 'eaf-header',
@@ -8,12 +14,16 @@ import { HelperService } from '../../../../core/helper.service';
   styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
-
+  userState$: Observable<Partial<User>>;
+  navMenu: NavItem[];
   constructor(
-    private helperService: HelperService
+    private store: Store<fromRoot.State>,
+    private promoStorage: PromoStorageService
   ) { }
 
   ngOnInit() {
+    this.navMenu = this.promoStorage._navMenu;
+    this.userState$ = this.store.select(fromRoot.getShortUserState);
   }
 
   onLinkCopy(el) {
