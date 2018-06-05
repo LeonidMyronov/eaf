@@ -230,6 +230,16 @@ a
       left: 10px
       &.form-field-required
         position: absolute
+.form-field-group
+  border-radius: 2px
+  & *
+    border-radius: 0 !important
+  & *:first-child
+    border-top-left-radius: 2px !important
+    border-bottom-left-radius: 2px !important
+  & *:last-child
+    border-top-right-radius: 2px !important
+    border-bottom-right-radius: 2px !important
 
 
 .term-selector
