@@ -62,7 +62,7 @@
           <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
             <label for="code">Call Back - ссылка</label>
             <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
-              <input id="code" type="text" placeholder="Your ref_id link">
+              <input id="code" class="primary-color" type="text" placeholder="Your ref_id link" [value]="'https://' + site.name.toLowerCase() + '/?ref_id=' + (userId$ | async)" #baseLink>
               <button type="button" class="main btn-sm">Копировать</button>
             </div>
           </div>
@@ -80,13 +80,17 @@
                     </li>
                   </ul>
                 </div>
-              <input id="code" type="text" placeholder="Your REF link">
+              <input id="code" class="primary-color" type="text" placeholder="Your REF link" [value]="baseLink.value + '&page=' + getUrlEnc(selectedRefPage.name)">
               <button type="button" class="main btn-sm">Копировать</button>
             </div>
           </div>
 
         </div>
-        <div class="buttons-group"></div>
+        <div class="buttons-group">
+            <button type="button" class="main btn-sm">Скачать ключи</button>
+            <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'static']">Промо материалы</button>
+            <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'landing']">Список лендингов</button>
+        </div>
       </div>
 
       
