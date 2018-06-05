@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentMethod } from '../store/main.model';
+import { PaymentMethod, RefPage } from '../store/main.model';
 
 export interface DiscountSite {
   id: number;
@@ -50,8 +50,29 @@ export class MainStorageService {
       logo: '/assets/images/main/discount/hws-logo.svg'
     },
   ];
+
+  private REfPagesList: RefPage[] = [
+    {
+      id: 1,
+      name: 'Main page'
+    },
+    {
+      id: 1,
+      name: 'How it works'
+    },
+    {
+      id: 1,
+      name: 'Pricing'
+    },
+    {
+      id: 1,
+      name: 'Samples'
+    }
+  ];
+
   constructor() {}
 
   getPaymentMethods(): PaymentMethod[] {return [...this.paymentMethods]; }
   getSitesArr(): DiscountSite[] {return [...this.sitesArr]; }
+  getRefPages(): RefPage[] {return [...this.REfPagesList]; }
 }
