@@ -50,12 +50,18 @@
           <p class="first-order-value light-color">{{ site.fisrtOrderPercent }}%</p>
           <p class="rebills accent-color">Ребилы:</p>
           <p class="rebills-value light-color">{{ site.rebillsPercent }}%</p>
-          <img class="desktop-v-a" [src]="site.isDesktopVersion ? '/assets/images/header/sites/desktop-avail.svg' : ''" alt="">
-          <img class="mobile-v-a" [src]="site.isMobileVersion ? '/assets/images/header/sites/mobile-avail.svg' : '/assets/images/header/sites/mobile-not-avail.svg'" alt="">
+          <img class="desktop-v-a"
+           [src]="site.isDesktopVersion ? '/assets/images/header/sites/desktop-avail.svg' : ''"
+            alt=""
+            fxHide.xs>
+          <img class="mobile-v-a"
+           [src]="site.isMobileVersion ? '/assets/images/header/sites/mobile-avail.svg' : '/assets/images/header/sites/mobile-not-avail.svg'"
+            alt=""
+            fxHide.xs>
         </header>
         <div class="content light-color" fxLayout="row" fxLayoutAlign="space-between start">
           <p>{{site.description}}</p>
-          <img [src]="site.preview" alt="site.name">
+          <img [src]="site.preview" alt="site.name" fxHide.xs>
         </div>
         <div class="links-group">
 
@@ -63,7 +69,7 @@
             <label for="code">Call Back - ссылка</label>
             <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
               <input id="code" class="primary-color" type="text" placeholder="Your ref_id link" [value]="'https://' + site.name.toLowerCase() + '/?ref_id=' + (userId$ | async)" #baseLink>
-              <button type="button" class="main btn-sm">Копировать</button>
+              <button type="button" class="main btn-sm cb-copy">Копировать</button>
             </div>
           </div>
 
@@ -81,7 +87,7 @@
                   </ul>
                 </div>
               <input id="code" class="primary-color" type="text" placeholder="Your REF link" [value]="baseLink.value + '&page=' + getUrlEnc(selectedRefPage.name)">
-              <button type="button" class="main btn-sm">Копировать</button>
+              <button type="button" class="main btn-sm ref-copy">Копировать</button>
             </div>
           </div>
 
@@ -91,6 +97,16 @@
             <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'static']">Промо материалы</button>
             <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'landing']">Список лендингов</button>
         </div>
+        <div class="icons-group" fxHide.gt-xs>
+            <img class="desktop-v-a"
+            [src]="site.isDesktopVersion ? '/assets/images/header/sites/desktop-avail.svg' : ''"
+             alt="">
+           <img class="mobile-v-a"
+            [src]="site.isMobileVersion ? '/assets/images/header/sites/mobile-avail.svg' : '/assets/images/header/sites/mobile-not-avail.svg'"
+             alt="">
+        </div>
+        <img [src]="site.preview" alt="site.name" fxHide.gt-xs>
+        
       </div>
 
       

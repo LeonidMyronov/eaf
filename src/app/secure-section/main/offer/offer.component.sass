@@ -101,7 +101,11 @@
       input
         height: 30px
       button
+        width: 90px
+        min-width: 90px
         font-size: 10px
+        line-height: 10px
+        padding: 0 5px
   .dropdown-menu
     width: 110px
     height: 30px
@@ -109,7 +113,6 @@
     line-height: 10px
     padding-left: 8px
     flex-shrink: 0
-    // background-color: $lightColor
     .dropdown-list__item
       height: 30px
       line-height: 10px
@@ -119,10 +122,88 @@
     align-self: flex-end
     button
       font-size: 10px
+      line-height: 10px
       width: 140px
-      padding: 0
+      padding: 0 5px
       &:not(:last-child)
         margin-right: 30px
     
 
+@media(max-width: 1399px)
+  .cards-group
+    grid-template-columns: 326px 670px
+  .grid-1
+    flex-direction: column
+  .grid-1_1
+    margin-right: 0
+    margin-bottom: 20px
 
+.high-card
+  &:nth-of-type(odd)
+    margin-top: 0
+    margin-left: 346px
+  &:nth-of-type(2n+4)
+    margin-top: 492px    
+
+@media(max-width: 1023px)
+  .cards-group
+    grid-template-columns: 670px
+  .grid-1
+    flex-direction: row
+  .grid-1_1
+    margin-right: 18px
+    margin-bottom: 0
+  .high-card
+    margin: 0 !important
+
+@media(max-width: 767px)
+  .cards-group
+    grid-gap: 10px
+    grid-template-columns: 326px
+  .grid-1
+    flex-direction: column
+  .grid-1_1
+    margin-right: 0
+    margin-bottom: 10px
+  .high-card
+    width: 326px
+    height: 740px
+    .content
+      margin-bottom: 60px
+    .form-field
+      label
+        width: auto
+        margin-right: auto
+      .form-field-group
+        width: auto
+        input
+          position: absolute
+          left: 0
+          z-index: -1
+        .cb-copy
+          width: 140px
+          border-radius: 2px !important
+    .dropdown-menu
+      width: 91px
+    .buttons-group
+      margin-top: 20px
+      align-self: stretch
+      button
+        font-size: 10px
+        width: 81px
+        min-width: 81px
+        &:not(:last-child)
+          margin-right: 8px
+
+  .card
+    header
+      .site-logo
+        margin-bottom: 20px
+      .title
+        margin-bottom: 20px
+        margin-right: 20%
+  .icons-group
+    margin-top: 30px
+
+      
+  
