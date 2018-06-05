@@ -247,7 +247,12 @@ export class AppStorageService {
       fisrtOrderPercent: 50,
       rebillsPercent: 15,
       iconLightSrc: '/assets/images/header/sites/site-99papers-light.svg',
-      preview: '/assets/images/header/sites/preview-99papers.com.svg'
+      preview: '/assets/images/header/sites/preview-99papers.com.svg',
+      isDesktopVersion: true,
+      isMobileVersion: true,
+      description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
+       исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
+       что позволяет удовлетворять самых взыскательных клиентов.`
     },
     {
       id: 3,
@@ -256,7 +261,12 @@ export class AppStorageService {
       fisrtOrderPercent: 30,
       rebillsPercent: 25,
       iconLightSrc: '/assets/images/header/sites/site-essaybox-light.svg',
-      preview: '/assets/images/header/sites/preview-essaybox.org.svg'
+      preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+      isDesktopVersion: true,
+      isMobileVersion: true,
+      description: `Сервис предоставляет исключительное качество услуг по написанию эссе, исследовательских работ, курсовых,
+       тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами, что позволяет удовлетворять
+        самых взыскательных клиентов.`
     },
     {
       id: 4,
@@ -265,7 +275,13 @@ export class AppStorageService {
       fisrtOrderPercent: 45,
       rebillsPercent: 15,
       iconLightSrc: '/assets/images/header/sites/site-essayfactory-light.svg',
-      preview: '/assets/images/header/sites/preview-essayfactory.uk.svg'
+      preview: '/assets/images/header/sites/preview-essayfactory.uk.svg',
+      isDesktopVersion: true,
+      isMobileVersion: true,
+      description: `Наш новый сайт был тщательно разработан для UK рынка. Мы наняли профессиональных авторов из UK,
+       которые точно знают как удовлетворить требования своих клиентов. Эссей рынок UK в общем дороже из-за высокой
+        платежеспособности студентов, многие из которых приезжают из Арабских стран. В результате, это приносит большую
+        прибыль нашим партнерам.`
     },
     {
       id: 5,
@@ -274,7 +290,13 @@ export class AppStorageService {
       fisrtOrderPercent: 40,
       rebillsPercent: 10,
       iconLightSrc: '/assets/images/header/sites/site-bookwarmlab-light.svg',
-      preview: '/assets/images/header/sites/preview-bookwormlab.com.svg'
+      preview: '/assets/images/header/sites/preview-bookwormlab.com.svg',
+      isDesktopVersion: true,
+      isMobileVersion: false,
+      description: `Самый надежный сайт в нише essay writing!
+      BookwormLab.com обслуживает клиентов с 2008 и успешно выполнил тысячи заказов! На работу нанимаются только носители языка,
+       имеющие профильное образование, что позволяет выполнять работы на высшем уровне. В среднем каждый клиент заказывает около
+        6 работ при среднем чеке более $120.`
     },
   ];
 
