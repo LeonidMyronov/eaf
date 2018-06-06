@@ -1,11 +1,11 @@
 <head fxLayout="row wrap" fxLayoutAlign="start center" class="bg-main-color">
-  <img src="/assets/images/promo/header/99logo.svg" alt="logo">
-  <div class="title accent-color">99papers.com</div>
+  <img [src]="(siteState$ | async).site.iconLightSrc" alt="logo">
+  <div class="title accent-color">{{ (siteState$ | async).site.name }}</div>
 
   <div class="sub-title accent-color">Ваша реферальная ссылка:</div>
 
   <div class="form-field">
-    <input type="text" value="https://essaybox.org/?ref_id={{ (userState$ | async).id }}" #refLink>
+    <input type="text" [value]="(siteState$ | async).refLink" #refLink>
   </div>
   <button type="button" class="btn-sm main" (click)="onLinkCopy(refLink.value)">{{'Copy' | translate}}</button>
 </head>
