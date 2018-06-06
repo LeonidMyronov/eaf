@@ -16,7 +16,8 @@ import {
   News,
   Discounts,
   StatisticByDate,
-  PixelTrackingEvent
+  PixelTrackingEvent,
+  Coupon
 } from './main.model';
 import {
   MainActions,
@@ -32,8 +33,11 @@ import {
   FETCH_DISCOUNT_DETAILS,
   FETCH_DAY_STAT,
   FILL_PT_EVENTS_NAMES,
-  FETCH_PT_EVENTS_DETAILS
+  FETCH_PT_EVENTS_DETAILS,
+  SET_PROMO_SITE_DATA
 } from './main.actions';
+import { Site } from '../../core/core.model';
+import { Banner } from '../main/promo/promo.model';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -78,6 +82,13 @@ export interface MainState {
   pixelTracking: {
     eventsNamesList: string[],
     eventsDetailsList: PixelTrackingEvent[]
+  };
+  promo: {
+    site: Site;
+    refLink: string;
+    coupons: Coupon[];
+    staticBanners: Banner[];
+    animatedBanners: Banner[];
   };
 }
 
@@ -137,7 +148,8 @@ export const initialState: MainState = {
   pixelTracking: {
     eventsNamesList: [],
     eventsDetailsList: []
-  }
+  },
+  promo: undefined
 };
 
 
@@ -278,6 +290,15 @@ export function mainReducer(state: MainState = initialState, action: MainActions
           eventsDetailsList: action.payload
         }
       };
+    case SET_PROMO_SITE_DATA:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          site: action.payload.site,
+          refLink: action.payload.refLink
+        }
+      };
     default:
       return state;
   }
@@ -309,4 +330,10 @@ export const getDiscounts = createSelector(getMainState, (state: MainState) => s
 export const getStatisticByDate = createSelector(getMainState, (state: MainState) => state.statisticByDate);
 export const getPTEventsNames = createSelector(getMainState, (state: MainState) => state.pixelTracking.eventsNamesList);
 export const getPTEventsDetails = createSelector(getMainState, (state: MainState) => state.pixelTracking.eventsDetailsList);
+export const getPromoSiteData = createSelector(getMainState, (state: MainState) => {
+  return {
+    site: state.promo.site,
+    refLink: state.promo.refLink
+  };
+});
 

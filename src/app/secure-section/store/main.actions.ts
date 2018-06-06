@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent } from './main.model';
+import { Site } from '../../core/core.model';
 
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
@@ -16,6 +17,7 @@ export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
 export const FILL_PT_EVENTS_NAMES = '[MAIN] FILL_PT_EVENTS_NAMES';
 export const BEFORE_FETCH_PT_EVENTS_DETAILS = '[MAIN] BEFORE_FETCH_PT_EVENTS_DETAILS';
 export const FETCH_PT_EVENTS_DETAILS = '[MAIN] FETCH_PT_EVENTS_DETAILS';
+export const SET_PROMO_SITE_DATA = '[MAIN] SET_PROMO_SITE_DATA';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -101,6 +103,12 @@ export class FetchPTEventsDetailsList implements Action {
   constructor(public payload: PixelTrackingEvent[]) {}
 }
 
+export class SetPromoSiteData implements Action {
+  readonly type = SET_PROMO_SITE_DATA;
+  constructor(public payload: {site: Site, refLink: string}) {}
+}
+
+
 export type MainActions =
   FetchConsolidatedData |
   FetchStatistic |
@@ -116,6 +124,7 @@ export type MainActions =
   BeforeFetchDayStat |
   FillPTEventsNamesList |
   BeforeFetchPTEventsDetails |
-  FetchPTEventsDetailsList
+  FetchPTEventsDetailsList |
+  SetPromoSiteData
 ;
 
