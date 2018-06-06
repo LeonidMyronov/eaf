@@ -7,6 +7,7 @@ import { MainStorageService } from '../../services/main-storage.service';
 import { MainService } from '../../services/main.service';
 
 import * as fromRoot from '../../../app.reducers';
+import * as MainActions from '../../store/main.actions';
 import { Site } from '../../../core/core.model';
 import { RefPage } from '../../store/main.model';
 import { User } from '../../user/user.model';
@@ -56,7 +57,8 @@ export class OfferComponent implements OnInit {
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 
-  onNavigateToPromoModule(page: {navigateTo: string}): void {
-    this.router.navigate(['/main', 'promo', page.navigateTo]);
+  onNavigateToPromoModule(refLink: string, site: Site, page: string): void {
+    this.store.dispatch(new MainActions.SetPromoSiteData({refLink, site}));
+    this.router.navigate(['/main', 'promo', page]);
   }
 }

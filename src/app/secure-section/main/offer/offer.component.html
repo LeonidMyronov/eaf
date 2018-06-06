@@ -114,8 +114,8 @@
         </div>
         <div class="buttons-group">
             <button type="button" class="main btn-sm">Скачать ключи</button>
-            <button type="button" class="main btn-sm" (click)="onNavigateToPromoModule({navigateTo: 'static'})">Промо материалы</button>
-            <button type="button" class="main btn-sm"  (click)="onNavigateToPromoModule({navigateTo: 'landing'})">Список лендингов</button>
+            <button type="button" class="main btn-sm" (click)="onNavigateToPromoModule(cbLink.value, site, 'static')">Промо материалы</button>
+            <button type="button" class="main btn-sm"  (click)="onNavigateToPromoModule(cbLink.value, site, 'landing')">Список лендингов</button>
         </div>
         <div class="icons-group" fxHide.gt-xs>
             <img class="desktop-v-a"
