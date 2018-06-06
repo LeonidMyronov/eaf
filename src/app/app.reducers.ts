@@ -31,3 +31,5 @@ export const getUserState = createFeatureSelector<fromUser.State>('user');
 export const getShortUserState = createSelector(getUserState, fromUser.getShortUserState);
 export const getUserBalanceState = createSelector(getUserState, fromUser.getUserBalanceState);
 export const getUserStatisticFilters = createSelector(getUserState, fromUser.getUserStatisticFilters);
+export const getAllSites = createSelector(getUserState, fromUser.getAllSites);
+export const getOurSites = createSelector(getUserState, fromUser.getOurSites);

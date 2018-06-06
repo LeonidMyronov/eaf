@@ -7,7 +7,7 @@
   <div class="form-field">
     <input type="text" value="https://essaybox.org/?ref_id={{ (userState$ | async).id }}" #refLink>
   </div>
-  <button type="button" class="btn-sm main" (click)="onLinkCopy(refLink)">{{'Copy' | translate}}</button>
+  <button type="button" class="btn-sm main" (click)="onLinkCopy(refLink.value)">{{'Copy' | translate}}</button>
 </head>
 
 <nav class="nav-menu" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="2px" fxLayoutGap.xs="1px"> 

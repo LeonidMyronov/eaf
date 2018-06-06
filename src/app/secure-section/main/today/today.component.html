@@ -81,7 +81,7 @@
         </div>
         <div class="content list-content">
           <div class="list-content__item" *ngFor="let site of (todayState$ | async).sitesTraffic.slice(0,3)">
-            <img class="list-content__item__image" src="/assets/images/main/sites-traffic/{{site.name}}.svg">
+            <img class="list-content__item__image" src="/assets/images/header/sites/site-{{site.name}}-light.svg">
             <div class="list-content__item__name">{{site.name}}</div>
             <div class="list-content__item__amount light-color">{{site.amount}}</div>
           </div>

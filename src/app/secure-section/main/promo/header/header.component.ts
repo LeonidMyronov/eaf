@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { PromoStorageService } from '../services/promo-storage.service';
+import { MainService } from '../../../services/main.service';
 
 import * as fromRoot from '../../../../app.reducers';
 import { User } from '../../../user/user.model';
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
   navMenu: NavItem[];
   constructor(
     private store: Store<fromRoot.State>,
-    private promoStorage: PromoStorageService
+    private promoStorage: PromoStorageService,
+    private mainService: MainService
   ) { }
 
   ngOnInit() {
@@ -26,10 +28,9 @@ export class HeaderComponent implements OnInit {
     this.userState$ = this.store.select(fromRoot.getShortUserState);
   }
 
-  onLinkCopy(el) {
-    el.select();
-    document.execCommand('copy');
-    el.setSelectionRange(0, 0);
-    el.blur();
+  onLinkCopy(link: string) {
+    this.mainService.copyToClipboard(link)
+      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 }

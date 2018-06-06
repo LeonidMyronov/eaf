@@ -14,6 +14,7 @@ import * as UserAction from '../../user/store/user.actions';
 import * as MainAction from '../../store/main.actions';
 import { Statistic, StatisticFilter, StatisticPanelFilter, PixelTracking } from '../../store/main.model';
 import { StatisticPanelFilterList } from '../../user/user.model';
+import { Site } from '../../../core/core.model';
 
 export interface QueryParams {
   fromDate: Date;
@@ -47,7 +48,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public statisticTableHeads: string[];
   public activeMediaQuery: string;
   public isStatisticFiltersVisible: boolean;
-  public sitesList: any[];
+  public sitesList: Site[];
   private filteredStatisticTableHeads = [];
   private subscriptions: Subscription[] = [];
 
@@ -63,7 +64,13 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     // this.selectedAllFiltersForm = [];
     this.queryParams = this.initQueryParams();
     this.initForms();
-    this.sitesList = this.appStorage.getAllSites();
+
+    this.subscriptions.push(this.store.select(fromRoot.getAllSites)
+      .subscribe((response: Site[]) => {
+        this.sitesList = response;
+      })
+    );
+
     this.consolidatedState$ = this.store.select(fromMain.getConsolidatedData);
 
     this.subscriptions.push(this.store.select(fromRoot.getActiveMediaQuery).subscribe((activeMedia: string) => {

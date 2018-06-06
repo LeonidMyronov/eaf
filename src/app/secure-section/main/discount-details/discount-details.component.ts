@@ -4,12 +4,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { MainService } from '../../services/main.service';
-import { MainStorageService, DiscountSite } from '../../services/main-storage.service';
+import { DiscountSite } from '../../services/main-storage.service';
+import { AppStorageService } from '../../../core/app-storage.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
 import { Discounts, Coupon } from '../../store/main.model';
+import { Site } from '../../../core/core.model';
 
 @Component({
   selector: 'eaf-discount-details',
@@ -21,7 +23,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('actl') trtl: ElementRef;
   discountGeneratorForm: FormGroup;
   discountsData: Discounts;
-  sitesArr: DiscountSite[];
+  sitesArr: Site[];
   sliderPos = 0;
   maxSlidesPerPage: number;
   activeSlideIndex = 0;
@@ -32,11 +34,10 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromMain.MainState>,
     private mainService: MainService,
-    private mainStorage: MainStorageService,
+    private appStorage: AppStorageService,
 
   ) { }
   ngOnInit() {
-    this.sitesArr = this.mainStorage.getSitesArr();
     this.subs.push(this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
@@ -46,6 +47,12 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
           this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
         }
       }));
+
+    this.subs.push(this.store.select(fromRoot.getOurSites)
+      .subscribe((response: Site[]) => {
+        this.sitesArr = response;
+      })
+    );
 
     this.subs.push(this.store.select(fromRoot.getActiveMediaQuery)
     .subscribe(
