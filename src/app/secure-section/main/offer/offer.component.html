@@ -66,15 +66,25 @@
         <div class="links-group">
 
           <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
-            <label for="code">Call Back - ссылка</label>
+            <label for="cb-link">Call Back - ссылка</label>
             <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
-              <input id="code" class="primary-color" type="text" placeholder="Your ref_id link" [value]="getRefLink(site.name, userId$ | async)" #baseLink>
-              <button type="button" class="main btn-sm cb-copy">Копировать</button>
+              <input
+                #cbLink
+                id="cb-link"
+                class="primary-color"
+                type="text"
+                placeholder="Your ref_id link" [value]="getRefLink(site.name, userId$ | async)">
+              <button
+                type="button"
+                class="main btn-sm cb-copy"
+                (click)="onCopyToClipboard(cbLink.value)">
+                Копировать
+              </button>
             </div>
           </div>
 
           <div class="form-field" fxLayout="row" fxLayoutAlign="start center">
-            <label for="code">REF - ссылка</label>
+            <label for="ref-link">REF - ссылка</label>
             <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
                 <div eafDropdown class="dropdown-menu main-theme">
                   <div class="dropdown-select">
@@ -86,20 +96,26 @@
                     </li>
                   </ul>
                 </div>
-              <input id="code"
-               class="primary-color"
+              <input id="ref-link"
+                #refLink
+                class="primary-color"
                 type="text"
-                 placeholder="Your REF link"
-                  [value]="getRefLink(site.name, userId$ | async, selectedRefPages.get(site.name).name)">
-              <button type="button" class="main btn-sm ref-copy">Копировать</button>
+                placeholder="Your REF link"
+                [value]="getRefLink(site.name, userId$ | async, selectedRefPages.get(site.name).name)">
+              <button
+                type="button"
+                class="main btn-sm ref-copy"
+                (click)="onCopyToClipboard(refLink.value)">
+                Копировать
+              </button>
             </div>
           </div>
 
         </div>
         <div class="buttons-group">
             <button type="button" class="main btn-sm">Скачать ключи</button>
-            <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'static']">Промо материалы</button>
-            <button type="button" class="main btn-sm" [routerLink]="['/main', 'promo', 'landing']">Список лендингов</button>
+            <button type="button" class="main btn-sm" (click)="onNavigateToPromoModule({navigateTo: 'static'})">Промо материалы</button>
+            <button type="button" class="main btn-sm"  (click)="onNavigateToPromoModule({navigateTo: 'landing'})">Список лендингов</button>
         </div>
         <div class="icons-group" fxHide.gt-xs>
             <img class="desktop-v-a"

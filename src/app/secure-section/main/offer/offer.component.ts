@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 import { MainStorageService } from '../../services/main-storage.service';
 import { MainService } from '../../services/main.service';
@@ -23,7 +24,8 @@ export class OfferComponent implements OnInit {
   constructor(
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
-    private mainService: MainService
+    private mainService: MainService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -46,5 +48,15 @@ export class OfferComponent implements OnInit {
 
   getRefLink(siteName: string, id: number, params?: string): string {
     return this.mainService.getRefLink(siteName, id, params);
+  }
+
+  onCopyToClipboard(link: string) {
+    this.mainService.copyToClipboard(link)
+      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .catch(error => console.log(`Error ${error} occured while copying text`));
+  }
+
+  onNavigateToPromoModule(page: {navigateTo: string}): void {
+    this.router.navigate(['/main', 'promo', page.navigateTo]);
   }
 }
