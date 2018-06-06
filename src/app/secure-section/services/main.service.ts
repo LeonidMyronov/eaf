@@ -688,4 +688,12 @@ export class MainService {
   fetchPTEventsDetails({date: Date, eventName: string}) {
     return this.pTEventsDetails;
   }
+
+  getRefLink(siteName: string, id: number, params?: string): string {
+    let baseRefLink = 'https://' + siteName.toLowerCase() + '/?ref_id=' + id;
+    if (params) {
+      baseRefLink += '&page=' + encodeURIComponent(params);
+    }
+    return baseRefLink;
+  }
 }
