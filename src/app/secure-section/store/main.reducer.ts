@@ -35,7 +35,9 @@ import {
   FILL_PT_EVENTS_NAMES,
   FETCH_PT_EVENTS_DETAILS,
   SET_PROMO_SITE_DATA,
-  STORE_PROMO_DATA
+  STORE_PROMO_DATA,
+  UPDATE_PROMO_SBANNER_COUPON,
+  UPDATE_PROMO_SBANNER_UTM
 } from './main.actions';
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
@@ -150,7 +152,91 @@ export const initialState: MainState = {
     eventsNamesList: [],
     eventsDetailsList: []
   },
-  promo: undefined
+  promo: {
+    site: {
+      id: 2,
+      name: '99papers.com',
+      iconSrc: '/assets/images/header/sites/site-99papers.svg',
+      fisrtOrderPercent: 50,
+      rebillsPercent: 15,
+      iconLightSrc: '/assets/images/header/sites/site-99papers-light.svg',
+      preview: '/assets/images/header/sites/preview-99papers.com.svg',
+      isDesktopVersion: true,
+      isMobileVersion: true,
+      description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
+       исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
+       что позволяет удовлетворять самых взыскательных клиентов.`
+    },
+    refLink: 'https://99papers.com/?ref_id=145',
+    coupons: [
+      {
+        name: 'AA11QQ21',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 12,
+        usageAmount: 1
+      },
+      {
+        name: 'AA11QQ22',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 7,
+        usageAmount: 11
+      },
+      {
+        name: 'AA11QQ23',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 2,
+        usageAmount: 111,
+      }
+    ],
+    staticBanners: [
+      {
+        id: 1,
+        title: 'The Best Essay Writing Service',
+        size: '160x600 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner1.svg'
+      },
+      {
+        id: 2,
+        title: 'The Best Essay Writing Service',
+        size: '300x250 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
+      },
+      {
+        id: 3,
+        title: 'The Best Essay Writing Service',
+        size: '300x600 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
+      }
+    ],
+    animatedBanners: [
+      {
+        id: 1,
+        title: 'The Best Essay Writing Service',
+        size: '160x600 px',
+        category: 'Анимированный баннер',
+        bannerSrc: '/assets/images/promo/statbanners/stat_banner_160x600.svg'
+      },
+      {
+        id: 2,
+        title: 'The Best Essay Writing Service',
+        size: '300x250 px',
+        category: 'Анимированный баннер',
+        bannerSrc: '/assets/images/promo/statbanners/stat_banner_300x250.svg'
+      }
+    ],
+  }
 };
 
 
@@ -308,6 +394,38 @@ export function mainReducer(state: MainState = initialState, action: MainActions
           ...action.payload
         }
       };
+    case UPDATE_PROMO_SBANNER_COUPON:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          staticBanners: state.promo.staticBanners.map(b => {
+            if (b.id !== action.payload.id) {
+              return b;
+            }
+            return {
+              ...b,
+              coupon: action.payload.coupon
+            };
+          })
+        }
+      };
+    case UPDATE_PROMO_SBANNER_UTM:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          staticBanners: state.promo.staticBanners.map(b => {
+            if (b.id !== action.payload.id) {
+              return b;
+            }
+            return {
+              ...b,
+              utm: action.payload.utm
+            };
+          })
+        }
+      };
     default:
       return state;
   }
@@ -343,6 +461,22 @@ export const getPromoSiteData = createSelector(getMainState, (state: MainState) 
   return {
     site: state.promo.site,
     refLink: state.promo.refLink
+  };
+});
+export const getPromoStatic = createSelector(getMainState, (state: MainState) => {
+  return {
+    siteName: state.promo.site.name,
+    refLink: state.promo.refLink,
+    banners: state.promo.staticBanners,
+    coupons: state.promo.coupons
+  };
+});
+export const getPromoAnimated = createSelector(getMainState, (state: MainState) => {
+  return {
+    siteName: state.promo.site.name,
+    refLink: state.promo.refLink,
+    banners: state.promo.animatedBanners,
+    coupons: state.promo.coupons
   };
 });
 
