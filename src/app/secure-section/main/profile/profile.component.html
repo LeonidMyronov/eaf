@@ -155,7 +155,7 @@
           <div class="form-field">
             <input type="text" class="disabled" value="https://edu-affiliates.com/?ref={{ userState.id }}" #refLink>
           </div>
-        <div class="footer" (click)="onRefLinkCopy(refLink)">
+        <div class="footer" (click)="onRefLinkCopy(refLink.value)">
           <div class="action">
             Copy link
           </div>

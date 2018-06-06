@@ -95,7 +95,7 @@
                     *ngFor="let site of sitesArr; let i = index"
                     [ngClass]="{active: i === activeSlideIndex}"
                     (click)="onClickSlide(i)">
-                    <img [src]="site.logo" alt="">
+                    <img [src]="site.preview" [alt]="site.name">
                     <p>{{ site.name }}</p>
                   </div>
                 </div>

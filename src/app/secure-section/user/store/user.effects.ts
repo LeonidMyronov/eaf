@@ -32,12 +32,14 @@ export class UserEffects {
       return this.store.select(fromRoot.getUserState).take(1)
       .map(data => {
         return {
-          ...data.user,
-          ...params
+          user: {
+            ...data.user,
+            ...params
+          }
         };
       });
     })
-    .map((data: User) => {
+    .map((data) => {
       return {
         type: UserActions.FILL_PROFILE,
         payload: data

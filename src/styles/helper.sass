@@ -196,12 +196,24 @@ button
       height: 40px
       padding: 0 15px
       box-sizing: border-box
+      color: $mainColor
       background-color: $formColor
       &:hover
         background-color: $accentColor-lighter !important
   &.opened
     .dropdown-list
       display: block
+  &.main-theme
+    color: $lightColor
+    background-color: $mainColor
+    background-image: url('/assets/images/header/dropdown-icon-active.svg')
+    border: 0.5px solid $lightColor
+    &:hover
+      color: $mainColor
+      background-color: $accentColor !important
+      background-image: url('/assets/images/header/dropdown-icon.svg')
+      border: 0.5px solid $accentColor
+    
 
 .select-menu
   &:not(:last-child)

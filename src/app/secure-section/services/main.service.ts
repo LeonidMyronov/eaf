@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { DOCUMENT } from '@angular/common';
 
 import * as fromMain from '../store/main.reducer';
 import * as MainActions from '../store/main.actions';
@@ -7,6 +8,7 @@ import { Statistic, StatisticByDate } from '../store/main.model';
 
 @Injectable()
 export class MainService {
+  private dom: Document;
   private consolidatedData = {
     totalIncomeAmount: 23500,
     rebillsAmount: 18050,
@@ -652,8 +654,11 @@ export class MainService {
   };
 
   constructor(
-    private store: Store<fromMain.MainState>
-  ) {}
+    private store: Store<fromMain.MainState>,
+    @Inject( DOCUMENT ) dom: Document,
+  ) {
+    this.dom = dom;
+  }
 
   fetchConsolidatedData() {
     this.store.dispatch(new MainActions.FetchConsolidatedData(this.consolidatedData));
@@ -687,5 +692,60 @@ export class MainService {
 
   fetchPTEventsDetails({date: Date, eventName: string}) {
     return this.pTEventsDetails;
+  }
+
+  getRefLink(siteName: string, id: number, params?: string): string {
+    let baseRefLink = 'https://' + siteName.toLowerCase() + '/?ref_id=' + id;
+    if (params) {
+      baseRefLink += '&page=' + encodeURIComponent(params);
+    }
+    return baseRefLink;
+  }
+
+  copyToClipboard(value: string): Promise<any> {
+    const promise = new Promise(
+      (resolve, reject): void => {
+        let textarea = null;
+        try {
+          textarea = this.dom.createElement('textarea');
+          textarea.style.width = '0';
+          textarea.style.height = '0';
+          textarea.style.top = '0';
+          textarea.style.left = '0';
+          textarea.style.position = 'fixed';
+          textarea.style.fontSize = '20px';  // to avoid focus textarea on select
+          textarea.style.opacity = '0';
+          textarea.style.zIndex = '-1';
+          textarea.contenteditable = true;
+          textarea.readonly = false;
+          this.dom.body.appendChild(textarea);
+          textarea.textContent = value;
+
+          if (navigator && navigator.userAgent.match(/ipad|ipod|iphone/i)) {
+            // It's tricky to copy on iOS browsers
+            const range = this.dom.createRange();
+            range.selectNodeContents(textarea);
+
+            const selection = this.dom.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            textarea.setSelectionRange(0, 999999);
+
+          } else {
+            textarea.select();
+          }
+
+          this.dom.execCommand('copy');
+          textarea.blur();
+
+          resolve(value);
+        } finally {
+          if (textarea && textarea.parentNode) {
+            textarea.parentNode.removeChild(textarea);
+          }
+        }
+      }
+    );
+    return (promise);
   }
 }

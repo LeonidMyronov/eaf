@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -10,13 +10,15 @@ import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
 import { Observable } from 'rxjs/Observable';
+import { Site } from '../core/core.model';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'eaf-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.sass']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public deployPath = environment.deployPath;
   public isAuth = false;
   public isMobileMenuOpened$: Observable<boolean>;
@@ -24,11 +26,14 @@ export class HeaderComponent implements OnInit {
 
   public navMenu: any[] = [];
   public authMenu: any[] = [];
-  public tariffsList: any[] = [];
-  public userTariff: any;
+  public tariffsList: Site[] = [];
+  public userTariff: Site;
   public langsList: any[] = [];
   public userLang;
   public userMenu: any[];
+
+  private authSubs: Subscription;
+  private siteSubs: Subscription;
 
 
   constructor(
@@ -40,16 +45,23 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(fromRoot.getIsAuth)
+    this.authSubs = this.store.select(fromRoot.getIsAuth)
       .subscribe(
         isAuth => {
-          this.tariffsList = this.appStorage.getTariffsList();
-          this.userTariff = this.tariffsList[0];
           this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
           this.userMenu = this.appStorage.getUserMenu();
           this.isAuth = isAuth;
         }
       );
+
+    this.siteSubs = this.store.select(fromRoot.getOurSites)
+      .subscribe(
+        (response: Site[]) => {
+          this.tariffsList = response;
+          this.userTariff = this.tariffsList[0];
+        }
+      );
+
     this.userState$ = this.store.select(fromRoot.getShortUserState);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
 
@@ -95,5 +107,10 @@ export class HeaderComponent implements OnInit {
       default:
         console.log(name);
     }
+  }
+
+  ngOnDestroy() {
+    this.authSubs.unsubscribe();
+    this.siteSubs.unsubscribe();
   }
 }

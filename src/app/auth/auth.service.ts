@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 
+import { AppStorageService } from '../core/app-storage.service';
+
 import { LoginData } from './login-data.model';
 import { SignupData } from './signup-data.model';
 import { User } from '../secure-section/user/user.model';
@@ -9,17 +11,19 @@ import * as fromRoot from '../app.reducers';
 import * as AuthAction from './store/auth.actions';
 import * as UserAction from '../secure-section/user/store/user.actions';
 import * as UIAction from '../ui/ui.actions';
+import { Site } from '../core/core.model';
 
 @Injectable()
 export class AuthService {
 
   constructor(
     private store: Store<fromRoot.State>,
-    private router: Router
+    private router: Router,
+    private appStorage: AppStorageService
   ) {}
 
   login(loginData: LoginData) {
-    const user: User = this.getFakeUserData(loginData);
+    const user: {user: User, sites: Site[]} = this.getFakeUserData(loginData);
     this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
@@ -33,7 +37,7 @@ export class AuthService {
   }
 
   signup(loginData: SignupData) {
-    const user: User = this.getFakeUserData(loginData);
+    const user: {user: User, sites: Site[]} = this.getFakeUserData(loginData);
 
     this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
@@ -56,6 +60,7 @@ export class AuthService {
   getFakeUserData(loginData) {
     const id = Math.round(Math.random() * 10000);
     return {
+      user:  {
       email: loginData.email,
       id: id,
       name: 'Leo',
@@ -78,6 +83,8 @@ export class AuthService {
       prefferedPaymentMethod: null,
       paymentNotes: '',
       totalIncome: 1200.50,
+    },
+      sites: this.appStorage.getAllSites()
     };
   }
 }

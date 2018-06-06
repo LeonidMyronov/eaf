@@ -65,6 +65,11 @@ export interface Browser {
   amount: number;
 }
 
+export interface UTM {
+  id: number;
+  name: string;
+}
+
 export interface StatisticFilter {
   name: string;
   enabled: boolean;
@@ -144,4 +149,9 @@ export interface PixelTrackingEvent {
   responseStatus: number;
   messageStatus: string;
   eventDetails: string;
+}
+
+export interface RefPage {
+  id: number;
+  name: string;
 }
