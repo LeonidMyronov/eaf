@@ -34,7 +34,8 @@ import {
   FETCH_DAY_STAT,
   FILL_PT_EVENTS_NAMES,
   FETCH_PT_EVENTS_DETAILS,
-  SET_PROMO_SITE_DATA
+  SET_PROMO_SITE_DATA,
+  STORE_PROMO_DATA
 } from './main.actions';
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
@@ -297,6 +298,14 @@ export function mainReducer(state: MainState = initialState, action: MainActions
           ...state.promo,
           site: action.payload.site,
           refLink: action.payload.refLink
+        }
+      };
+    case STORE_PROMO_DATA:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          ...action.payload
         }
       };
     default:

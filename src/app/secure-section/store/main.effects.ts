@@ -7,7 +7,8 @@ import 'rxjs/add/operator/do';
 import { MainService } from '../services/main.service';
 
 import * as MainActions from './main.actions';
-import { StatisticByDate, PixelTrackingEvent } from './main.model';
+import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
+import { Banner } from '../main/promo/promo.model';
 
 @Injectable()
 export class MainEffects {
@@ -47,5 +48,19 @@ export class MainEffects {
       };
     });
 
+  @Effect() fetchPromoData = this.actions$
+    .ofType(MainActions.SET_PROMO_SITE_DATA)
+    .map((action: MainActions.SetPromoSiteData) => {
+      return action.payload.site.id;
+    })
+    .map((id: number) => {
+      return this.mainService.fetchPromoData(id);
+    })
+    .map((data: {coupons: Coupon[], staticBanners: Banner[], animatedBanners: Banner[]}) => {
+      return {
+        type: MainActions.STORE_PROMO_DATA,
+        payload: data
+      };
+    });
 
 }
