@@ -186,6 +186,7 @@ a
   textarea
     width: 100%
     height: 104px
+    border-radius: 2px
     &.ng-touched.ng-invalid
       border: 1px solid red
   &__actions
@@ -230,6 +231,13 @@ a
       left: 10px
       &.form-field-required
         position: absolute
+  &.main-theme
+    input, textarea
+      border: 0.5px solid $lightColor
+      color: $lightColor
+      background-color: $mainColor
+
+
 .form-field-group
   border-radius: 2px
   & *
