@@ -1,3 +1,5 @@
+import { Coupon } from '../../store/main.model';
+
 export interface NavItem {
   name: string;
   iconSrc: string;
@@ -11,4 +13,5 @@ export interface Banner {
   category: string;
   bannerSrc: string;
   utm?: string;
+  coupon?: Coupon;
 }

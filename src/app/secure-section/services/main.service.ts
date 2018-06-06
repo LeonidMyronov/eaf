@@ -659,14 +659,21 @@ export class MainService {
         title: 'The Best Essay Writing Service',
         size: '160x600 px',
         category: 'Статический баннер',
-        bannerSrc: '/assets/images/promo/statbanners/stat_banner_160x600.svg'
+        bannerSrc: '/assets/images/promo/sbanners/banner1.svg'
       },
       {
         id: 2,
         title: 'The Best Essay Writing Service',
         size: '300x250 px',
         category: 'Статический баннер',
-        bannerSrc: '/assets/images/promo/statbanners/stat_banner_300x250.svg'
+        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
+      },
+      {
+        id: 3,
+        title: 'The Best Essay Writing Service',
+        size: '300x600 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
       }
     ],
     animatedBanners: [
