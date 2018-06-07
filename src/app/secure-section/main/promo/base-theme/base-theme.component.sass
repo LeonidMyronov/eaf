@@ -25,7 +25,7 @@
       font-size: 12px
       word-wrap: break-word
       ol
-        padding-left: 35px
+        padding-left: 20px
         li
           margin-bottom: 15px
       a
@@ -35,7 +35,7 @@
       display: inline-block
       width: 141px
       height: 30px
-      margin-right: 20px
+      padding: 0
       text-align: center
       color: $lightColor
       font-size: 10px
@@ -47,7 +47,8 @@
         background-color: $accentColor
         color: $mainColor
         border: 0.5px solid $accentColor
-
+      &:first-child
+        margin-right: 20px
 
 @media(max-width: 1399px)
   .cards-group
@@ -64,9 +65,15 @@
   .card
     width: 326px
     height: auto
-    &__left-side
+    .title
+      margin-bottom: 30px
+    .content
       width: 266px
-    .dropdowns-group
-      margin-bottom: 0
-      & *
-        width: 100%     
+      img
+        width: 266px
+        margin-bottom: 20px
+    .links-group
+      a
+        width: 126px
+        &:first-child
+          margin-right: 8px

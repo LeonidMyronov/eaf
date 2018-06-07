@@ -7,10 +7,15 @@
             {{ theme.name }}
           </div>
 
-          <div class="content" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="30px" >
+          <div class="content"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutAlign="start start"
+            fxLayoutGap="30px"
+            fxLayoutGap.xs="20px">
             
             <div class="intructions-container light-color">
-              <div class="form-field__descr light-color">ВИнструкция по установке</div>
+              <div class="form-field__descr light-color">Инструкция по установке</div>
               <div class="instructions" [innerHTML]="theme.instructions"></div>
             </div>
             <img [src]="theme.preview" [alt]="theme.name">
