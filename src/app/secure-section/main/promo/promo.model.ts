@@ -15,3 +15,12 @@ export interface Banner {
   utm?: string;
   coupon?: Coupon;
 }
+
+export interface PromoTheme {
+  id: number;
+  name: string;
+  preview: string;
+  instructions: string;
+  downloadLink: string;
+  demoLink: string;
+}

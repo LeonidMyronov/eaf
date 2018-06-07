@@ -42,7 +42,7 @@ import {
   UPDATE_PROMO_ABANNER_UTM
 } from './main.actions';
 import { Site } from '../../core/core.model';
-import { Banner } from '../main/promo/promo.model';
+import { Banner, PromoTheme } from '../main/promo/promo.model';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -94,6 +94,8 @@ export interface MainState {
     coupons: Coupon[];
     staticBanners: Banner[];
     animatedBanners: Banner[];
+    wpThemes: PromoTheme[];
+    landingThemes: PromoTheme[];
   };
 }
 
@@ -236,6 +238,26 @@ export const initialState: MainState = {
         size: '300x600 px',
         category: 'Animated баннер',
         bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
+      }
+    ],
+    wpThemes: [
+      {
+        id: 1,
+        name: 'WP Theme v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `<ol><li>download</li></ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
+      }
+    ],
+    landingThemes: [
+      {
+        id: 1,
+        name: 'WP Landing v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `<ol><li>download</li></ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
       }
     ],
   }
@@ -511,6 +533,16 @@ export const getPromoAnimated = createSelector(getMainState, (state: MainState) 
     refLink: state.promo.refLink,
     banners: state.promo.animatedBanners,
     coupons: state.promo.coupons
+  };
+});
+export const getPromoWP = createSelector(getMainState, (state: MainState) => {
+  return {
+    themes: state.promo.wpThemes
+  };
+});
+export const getPromoLandings = createSelector(getMainState, (state: MainState) => {
+  return {
+    themes: state.promo.landingThemes
   };
 });
 

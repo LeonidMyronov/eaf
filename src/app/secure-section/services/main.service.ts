@@ -692,6 +692,26 @@ export class MainService {
         bannerSrc: '/assets/images/promo/abanners/banner3.svg'
       }
     ],
+    wpThemes: [
+      {
+        id: 1,
+        name: 'WP Theme v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `<ol><li>download</li></ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
+      }
+    ],
+    landindThemes: [
+      {
+        id: 1,
+        name: 'WP Landing v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `<ol><li>download</li></ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
+      }
+    ],
   };
 
   private pTEventsDetails = {
