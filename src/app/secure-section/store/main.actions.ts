@@ -22,6 +22,8 @@ export const SET_PROMO_SITE_DATA = '[MAIN] SET_PROMO_SITE_DATA';
 export const STORE_PROMO_DATA = '[MAIN] STORE_PROMO_DATA';
 export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
 export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
+export const UPDATE_PROMO_ABANNER_COUPON = '[MAIN] UPDATE_PROMO_ABANNER_COUPON';
+export const UPDATE_PROMO_ABANNER_UTM = '[MAIN] UPDATE_PROMO_ABANNER_UTM';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -127,6 +129,16 @@ export class UpdatePromoSBannerUTM implements Action {
   constructor(public payload: {id: number, utm: string}) {}
 }
 
+export class UpdatePromoABannerCoupon implements Action {
+  readonly type = UPDATE_PROMO_ABANNER_COUPON;
+  constructor(public payload: {id: number, coupon: string}) {}
+}
+
+export class UpdatePromoABannerUTM implements Action {
+  readonly type = UPDATE_PROMO_ABANNER_UTM;
+  constructor(public payload: {id: number, utm: string}) {}
+}
+
 export type MainActions =
   FetchConsolidatedData |
   FetchStatistic |
@@ -146,6 +158,8 @@ export type MainActions =
   SetPromoSiteData |
   StorePromoData |
   UpdatePromoSBannerCoupon |
-  UpdatePromoSBannerUTM
+  UpdatePromoSBannerUTM |
+  UpdatePromoABannerCoupon |
+  UpdatePromoABannerUTM
 ;
 

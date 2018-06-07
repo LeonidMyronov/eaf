@@ -37,7 +37,9 @@ import {
   SET_PROMO_SITE_DATA,
   STORE_PROMO_DATA,
   UPDATE_PROMO_SBANNER_COUPON,
-  UPDATE_PROMO_SBANNER_UTM
+  UPDATE_PROMO_SBANNER_UTM,
+  UPDATE_PROMO_ABANNER_COUPON,
+  UPDATE_PROMO_ABANNER_UTM
 } from './main.actions';
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
@@ -222,18 +224,18 @@ export const initialState: MainState = {
     ],
     animatedBanners: [
       {
-        id: 1,
-        title: 'The Best Essay Writing Service',
-        size: '160x600 px',
-        category: 'Анимированный баннер',
-        bannerSrc: '/assets/images/promo/statbanners/stat_banner_160x600.svg'
-      },
-      {
         id: 2,
         title: 'The Best Essay Writing Service',
         size: '300x250 px',
-        category: 'Анимированный баннер',
-        bannerSrc: '/assets/images/promo/statbanners/stat_banner_300x250.svg'
+        category: 'Animated баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
+      },
+      {
+        id: 3,
+        title: 'The Best Essay Writing Service',
+        size: '300x600 px',
+        category: 'Animated баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
       }
     ],
   }
@@ -416,6 +418,38 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         promo: {
           ...state.promo,
           staticBanners: state.promo.staticBanners.map(b => {
+            if (b.id !== action.payload.id) {
+              return b;
+            }
+            return {
+              ...b,
+              utm: action.payload.utm
+            };
+          })
+        }
+      };
+    case UPDATE_PROMO_ABANNER_COUPON:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          animatedBanners: state.promo.animatedBanners.map(b => {
+            if (b.id !== action.payload.id) {
+              return b;
+            }
+            return {
+              ...b,
+              coupon: action.payload.coupon
+            };
+          })
+        }
+      };
+    case UPDATE_PROMO_ABANNER_UTM:
+      return {
+        ...state,
+        promo: {
+          ...state.promo,
+          animatedBanners: state.promo.animatedBanners.map(b => {
             if (b.id !== action.payload.id) {
               return b;
             }
