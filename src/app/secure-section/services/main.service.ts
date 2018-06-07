@@ -692,6 +692,40 @@ export class MainService {
         bannerSrc: '/assets/images/promo/abanners/banner3.svg'
       }
     ],
+    wpThemes: [
+      {
+        id: 1,
+        name: 'WP Theme v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `<ol><li>download</li></ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
+      }
+    ],
+    landindThemes: [
+      {
+        id: 1,
+        name: 'WP Landing v01',
+        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
+        instructions: `
+        <ol>
+          <li>
+              Скачайте файл: <a href="https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip">wp_theme_99papers-master.zip</a>
+          </li>
+          <li>
+              Поместите тему в <span class="accent-color">wp-content/themes/</span> и активируйте, используя админ панель WordPress
+          </li>
+          <li>
+              Добавьте .htaccess файл при необходимости.
+          </li>
+          <li>
+              Отредактируйте 3 строку в <span class="accent-color">wp-content/themes/&lt;theme_name&gt;/header.php</span> поместив ваш ref_id
+          </li>
+        </ol>`,
+        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
+        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
+      }
+    ],
   };
 
   private pTEventsDetails = {

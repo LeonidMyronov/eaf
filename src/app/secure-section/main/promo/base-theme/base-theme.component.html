@@ -1,0 +1,32 @@
+<article class="theme-page">
+  <div class="container">
+    <div class="cards-group">
+      <div class="card high-card" *ngFor="let theme of (themesState$ | async).themes">
+
+          <div class="title">
+            {{ theme.name }}
+          </div>
+
+          <div class="content"
+            fxLayout="row"
+            fxLayout.xs="column"
+            fxLayoutAlign="start start"
+            fxLayoutGap="30px"
+            fxLayoutGap.xs="20px">
+            
+            <div class="intructions-container light-color">
+              <div class="form-field__descr light-color">Инструкция по установке</div>
+              <div class="instructions" [innerHTML]="theme.instructions"></div>
+            </div>
+            <img [src]="theme.preview" [alt]="theme.name">
+
+          </div>
+          <div class="links-group">
+              <a class="main btn-sm" [href]="theme.downloadLink">Скачать тему</a>
+              <a class="main btn-sm" target="_blank" [href]="theme.demoLink">Demo</a>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</article>
