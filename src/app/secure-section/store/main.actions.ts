@@ -1,5 +1,7 @@
 import { Action } from '@ngrx/store';
 import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent } from './main.model';
+import { Site } from '../../core/core.model';
+import { Banner } from '../main/promo/promo.model';
 
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
@@ -16,6 +18,10 @@ export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
 export const FILL_PT_EVENTS_NAMES = '[MAIN] FILL_PT_EVENTS_NAMES';
 export const BEFORE_FETCH_PT_EVENTS_DETAILS = '[MAIN] BEFORE_FETCH_PT_EVENTS_DETAILS';
 export const FETCH_PT_EVENTS_DETAILS = '[MAIN] FETCH_PT_EVENTS_DETAILS';
+export const SET_PROMO_SITE_DATA = '[MAIN] SET_PROMO_SITE_DATA';
+export const STORE_PROMO_DATA = '[MAIN] STORE_PROMO_DATA';
+export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
+export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -101,6 +107,26 @@ export class FetchPTEventsDetailsList implements Action {
   constructor(public payload: PixelTrackingEvent[]) {}
 }
 
+export class SetPromoSiteData implements Action {
+  readonly type = SET_PROMO_SITE_DATA;
+  constructor(public payload: {site: Site, refLink: string}) {}
+}
+
+export class StorePromoData implements Action {
+  readonly type = STORE_PROMO_DATA;
+  constructor(public payload: {coupons: Coupon[], staticBanners: Banner[], animatedBanners: Banner[]}) {}
+}
+
+export class UpdatePromoSBannerCoupon implements Action {
+  readonly type = UPDATE_PROMO_SBANNER_COUPON;
+  constructor(public payload: {id: number, coupon: string}) {}
+}
+
+export class UpdatePromoSBannerUTM implements Action {
+  readonly type = UPDATE_PROMO_SBANNER_UTM;
+  constructor(public payload: {id: number, utm: string}) {}
+}
+
 export type MainActions =
   FetchConsolidatedData |
   FetchStatistic |
@@ -116,6 +142,10 @@ export type MainActions =
   BeforeFetchDayStat |
   FillPTEventsNamesList |
   BeforeFetchPTEventsDetails |
-  FetchPTEventsDetailsList
+  FetchPTEventsDetailsList |
+  SetPromoSiteData |
+  StorePromoData |
+  UpdatePromoSBannerCoupon |
+  UpdatePromoSBannerUTM
 ;
 

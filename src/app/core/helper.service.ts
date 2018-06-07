@@ -22,9 +22,4 @@ export class HelperService {
     return Math.round(date.getDate() / 3600 / 1000);
   }
 
-  copyToClipboard(el): void {
-    document.execCommand('copy');
-    el.setSelectionRange(0, 0);
-    el.blur();
-  }
 }
