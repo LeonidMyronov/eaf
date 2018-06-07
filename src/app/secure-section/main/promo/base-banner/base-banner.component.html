@@ -1,0 +1,70 @@
+<article class="offer-page">
+  <div class="container">
+    <div class="cards-group">
+      <div class="card high-card"
+        fxLayout="row"
+        fxLayoutAlign="start start"
+        fxLayoutGap="30px"
+        *ngFor="let banner of (promoState$ | async).banners">
+        <div class="card__left-side">
+
+          <div class="title">
+            {{ banner.size }} <br>
+            {{ banner.category }}
+          </div>
+
+          <img fxHide.gt-xs [src]="banner.bannerSrc" [alt]="banner.title">
+          
+          <div class="content">
+            <div class="dropdowns-group"
+              fxLayout="row"
+              fxLayout.xs="column"
+              fxLayoutAlign="space-between start"
+              fxLayoutGap="15px">
+              <div eafDropdown class="dropdown-menu main-theme coupons">
+                <div class="dropdown-select">
+                  {{ banner.coupon?.name || ('Добавить скидку' | translate)}}
+                </div>
+                <ul class="dropdown-list">
+                  <li
+                    class="dropdown-list__item"
+                    *ngFor="let coupon of (promoState$ | async).coupons"
+                    (click)="onSelectCoupon(banner.id, coupon)">
+                    {{ coupon.name }}
+                  </li>
+                </ul>
+              </div>
+              <div class="form-field main-theme">
+                <input type="text"
+                  placeholder="Input UTM codes here"
+                  [value]="banner.utm || ''"
+                  (keyup.enter)="onAddUtm(banner.id, $event.target.value)">
+              </div>
+            </div>
+
+            <div class="form-field__descr light-color">Вставьте этот код в ваш HTML</div>
+            <div class="snippet-container accent-color"
+              #snippet
+              [innerText]="generateSnippet(
+                (promoState$ | async).siteName,
+                (promoState$ | async).refLink,
+                banner
+                )">
+            </div>
+
+            <button
+              type="button"
+              class="main btn-sm"
+              (click)="onCopyToClipboard(snippet.innerText)">
+              Копировать
+            </button>
+          </div>
+          
+        </div>
+        <div class="card__right-side" fxHide.xs fxFlex fxLayout="column" fxLayoutAlign="center center">
+          <img [src]="banner.bannerSrc" [alt]="banner.title">
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
