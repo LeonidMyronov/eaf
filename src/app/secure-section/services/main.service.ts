@@ -623,6 +623,77 @@ export class MainService {
     ],
   };
 
+  private promoData = {
+    coupons: [
+      {
+        name: 'AA11QQ21',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 12,
+        usageAmount: 1
+      },
+      {
+        name: 'AA11QQ22',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 7,
+        usageAmount: 11
+      },
+      {
+        name: 'AA11QQ23',
+        group: 'coupon',
+        site: '99papers.cum',
+        creationDate: new Date(),
+        expirationDate: new Date(),
+        discountValue: 2,
+        usageAmount: 111,
+      }
+    ],
+    staticBanners: [
+      {
+        id: 1,
+        title: 'The Best Essay Writing Service',
+        size: '160x600 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner1.svg'
+      },
+      {
+        id: 2,
+        title: 'The Best Essay Writing Service',
+        size: '300x250 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
+      },
+      {
+        id: 3,
+        title: 'The Best Essay Writing Service',
+        size: '300x600 px',
+        category: 'Статический баннер',
+        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
+      }
+    ],
+    animatedBanners: [
+      {
+        id: 2,
+        title: 'The Best Essay Writing Service',
+        size: '300x250 px',
+        category: 'Animated баннер',
+        bannerSrc: '/assets/images/promo/abanners/banner2.svg'
+      },
+      {
+        id: 3,
+        title: 'The Best Essay Writing Service',
+        size: '300x600 px',
+        category: 'Animated баннер',
+        bannerSrc: '/assets/images/promo/abanners/banner3.svg'
+      }
+    ],
+  };
+
   private pTEventsDetails = {
     eventName: 'startedFillOrderForm',
     data: [
@@ -692,6 +763,10 @@ export class MainService {
 
   fetchPTEventsDetails({date: Date, eventName: string}) {
     return this.pTEventsDetails;
+  }
+
+  fetchPromoData(id: number) {
+    return {...this.promoData};
   }
 
   getRefLink(siteName: string, id: number, params?: string): string {
