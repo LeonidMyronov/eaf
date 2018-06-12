@@ -1,3 +1,65 @@
-<p>
-  calculator works!
-</p>
+<article class="theme-page">
+  <div class="container">
+    <section class="calc"
+    fxLayout="row"
+    fxLayoutAlign="start"
+    fxLayoutGap="18px">
+      <div class="card calc__side-bar">
+        <div class="title accent-color">Конструктор калькулятора</div>
+        <div class="calc-view-selection">
+          <div class="calc__section-title">1.  Выберете размер калькулятора</div>
+          <div class="calc-views-wrapper">
+            <div class="calc-view-item"
+              *ngFor="let calcView of calcViews"
+              (click)="onSelectView(calcView)"
+              [ngClass]="{selected: calcView.id === selectedCalcView?.id}">
+              <div class="calc-view-item__header">
+                <span class="calc-view-item__header__name accent-color">{{ calcView.name }}</span>
+                <span class="calc-view-item__header__size">{{ calcView.size }}</span>
+              </div>
+              <img class="calc-view-item__image" [src]="calcView.imageSrc" [alt]="calcView.name">
+              <div class="calc-view-item__action calc-item-selection"></div>
+            </div>
+          </div>
+          <div class="calc__section-hint">* Все калькуляторы и таблица имеют
+              адаптацию для мобильных устройств</div>
+        </div>
+        <div class="calc-colsch-selection">
+          <div class="calc__section-title">2.  Выберете цветовую схему</div>
+          <div class="col-scheme-container">
+            <div class="col-scheme"
+              *ngFor="let sch of calcColSchs"
+              [ngStyle]="{'background-color': sch.colors[0].color}"
+              fxLayout="row"
+              fxLayoutAlign="start center"
+              fxLayoutGap="7px"
+              (click)="onSelectColSch(sch)"
+              [ngClass]="{selected: sch.id === selectedcCalcColSch?.id}"
+              >
+              <div class="col-scheme__color" *ngFor="let col of sch.colors" [ngStyle]="{'background-color': col.color}"></div>
+              <div class="col-scheme__name">{{ sch.name }}</div>
+              <div class="col-scheme__action calc-item-selection"></div>
+
+            </div>
+          </div>
+        </div>
+        <div class="calc-snippet">
+            <div class="calc__section-title">3.  Вставьте этот код в ваш HTML</div>
+            <div class="snippet-container accent-color"
+              #snippet
+              [innerText]="generateSnippet()">
+            </div>
+            <button
+            type="button"
+            class="main btn-sm"
+            (click)="onCopyToClipboard(snippet.innerText)">
+            Копировать
+          </button>
+        </div>
+      </div>
+      <div class="card calc__preview">
+        <div class="calc-lg"  data-title="" data-title-discount=""></div>
+      </div>
+    </section>
+  </div>
+</article>
