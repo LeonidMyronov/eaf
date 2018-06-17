@@ -73,12 +73,14 @@ export class MainStorageService {
   private promoCalcViews: PromoCalcView[] = [
     {
       id: 1,
+      calcClass: 'calc-sm',
       name: 'Small',
       size: '260x414 px',
       imageSrc: '/assets/images/promo/calc/calc-small.svg'
     },
     {
       id: 2,
+      calcClass: 'calc-sm',
       name: 'Horizontal',
       size: '900x205 px',
       imageSrc: '/assets/images/promo/calc/calc-hor.svg'
@@ -86,11 +88,13 @@ export class MainStorageService {
     {
       id: 3,
       name: 'Big',
+      calcClass: 'calc-lg',
       size: '540x741 px',
       imageSrc: '/assets/images/promo/calc/calc-big.svg'
     },
     {
       id: 4,
+      calcClass: 'able-price',
       name: 'Table',
       size: '790x531 px',
       imageSrc: '/assets/images/promo/calc/calc-table.svg'

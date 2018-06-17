@@ -158,6 +158,7 @@ export interface RefPage {
 
 export interface PromoCalcView {
   id: number;
+  calcClass: string;
   name: string;
   size: string;
   imageSrc: string;
