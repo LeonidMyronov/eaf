@@ -1,0 +1,167 @@
+@import variables
+@import mixins
+
+
+//   .cl-dropdown::-webkit-scrollbar {
+//     box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+//     width: 10px;
+//     border-radius: 5px;
+//     background-color: transparent;
+// }
+
+// .cl-dropdown::-webkit-scrollbar-thumb {
+//     border-radius: 5px;
+//     height: 30px;
+//     background-color: #fce23f;
+//     border: 2px solid #21414a;
+// }
+
+.calc-constr
+  height: 1049px
+  margin-bottom: 40px
+  align-items: stretch
+  .calc__side-bar
+    width: 326px
+    background-color: $mainColor
+    justify-content: flex-start
+    align-items: flex-start
+    font-size: 10px
+    color: $lightColor
+    .title
+      margin-bottom: 30px
+      font-size: 18px
+  .calc__preview
+    width: 1016px
+    justify-content: flex-start
+    // background-color: $calcPvBg
+  .calc__section-title
+    margin-bottom: 20px
+  .calc__section-hint
+    margin-top: 20px
+    width: 190px
+.calc-views-wrapper
+  display: grid
+  grid-gap: 20px
+  grid-template-columns: repeat(2, 123px)
+.calc-view-item
+  width: 123px
+  height: 160px
+  padding-top: 14px
+  padding-bottom: 10px
+  display: flex
+  flex-flow: column
+  justify-content: space-between
+  align-items: center
+  border: 0.5px solid $lightColor
+  border-radius: 2px
+  &__header *
+    display: block
+    text-align: center
+  &:hover
+    background-color: #3E3F54
+    cursor: pointer
+
+.calc-item-selection
+    width: 15px
+    height: 15px
+    border: 1px solid $lightColor
+    border-radius: 50%
+.selected
+  .calc-item-selection
+    background-color: $accentColor
+    border: 1px solid $accentColor
+    position: relative
+    &:after
+      position: absolute
+      left: 25%
+      top: 30%
+      content: ''
+      width: 6px
+      height: 3px
+      border: 2px solid #2D2F45
+      border-top-width: 0
+      border-right-width: 0
+      transform: rotate(-45deg)
+
+.calc-view-selection
+  margin-bottom: 30px
+
+.calc-colsch-selection
+  width: 266px
+  margin-bottom: 30px
+.col-scheme-container
+  .col-scheme
+    width: 100%
+    height: 40px
+    padding-left: 10px
+    padding-right: 10px
+    border-radius: 2px
+    &:not(:last-child)
+      margin-bottom: 4px
+    &__color
+      width: 20px
+      height: 20px
+      &:first-child
+        display: none
+
+    &__name
+      margin-left: auto
+      margin-right: 20px !important
+    &:nth-child(n+3)
+      .col-scheme__name
+        color: $mainColor
+      .calc-item-selection
+        border-color: $mainColor
+    &:hover
+      cursor: pointer
+      opacity: 0.8
+
+
+.calc-snippet
+  width: 266px  
+  .snippet-container 
+    border: 0.5px solid $lightColor
+    border-radius: 2px
+    height: 184px
+    font-size: 10px
+    padding: 20px
+    word-wrap: break-word
+    overflow: scroll
+  button
+    margin-top: -1px
+    width: 90px
+    min-width: 90px
+    font-size: 10px
+    line-height: 10px
+    padding: 0 5px     
+
+@media(max-width: 1023px)
+  .calc-constr
+    height: auto
+    .calc__side-bar
+      width: 671px
+      height: 597px
+      flex-shrink: 0
+    .calc__preview
+      width: 671px
+      flex-shrink: 0
+  .calc-colsch-selection
+    margin-left: 343px
+    margin-top: -449px
+  .calc-snippet
+    margin-left: 343px
+  
+
+@media(max-width: 767px)
+  .calc-constr
+    .calc__side-bar
+      width: 326px
+      height: auto
+    .calc__preview
+      width: 326px
+  .calc-colsch-selection
+    margin-left: 0
+    margin-top: 0
+  .calc-snippet
+    margin-left: 0
+
