@@ -1,9 +1,9 @@
 <article class="theme-page">
   <div class="container">
-    <section class="calc"
-    fxLayout="row"
-    fxLayoutAlign="start"
-    fxLayoutGap="18px">
+    <section class="calc-constr"
+      fxLayout="row" fxLayout.lt-md="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="18px">
       <div class="card calc__side-bar">
         <div class="title accent-color">Конструктор калькулятора</div>
         <div class="calc-view-selection">
@@ -47,7 +47,7 @@
             <div class="calc__section-title">3.  Вставьте этот код в ваш HTML</div>
             <div class="snippet-container accent-color"
               #snippet
-              [innerText]="generateSnippet()">
+              [innerText]="calcCustomStylesSnippet">
             </div>
             <button
             type="button"
@@ -57,8 +57,11 @@
           </button>
         </div>
       </div>
-      <div class="card calc__preview">
+      <div class="card calc__preview" [ngStyle]="{'background-color': selectedcCalcColSch.colors[0].color}">
         <div class="calc-lg"  data-title="" data-title-discount=""></div>
+        <!-- <div class="calc-sm"  data-title="" data-title-discount=""></div>
+        <div class="calc-sm" data-type="horizontal" data-title="" data-title-discount=""></div>
+        <div class="table-price"></div> -->
       </div>
     </section>
   </div>
