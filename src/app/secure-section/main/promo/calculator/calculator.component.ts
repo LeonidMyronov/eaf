@@ -33,7 +33,6 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     this.selectedCalcView = this.calcViews[0];
     this.addCalcOptionParamsObject();
     this.addCalcStyleSheet();
-    // this.onSelectColSch(this.calcColSchs[1]);
     this.onSelectView(this.selectedCalcView);
     this.applyCalColSch();
   }
@@ -258,12 +257,49 @@ export class CalculatorComponent implements OnInit, OnDestroy {
         break;
       }
       case 'small': {
+        cssSnippet = `
+        .cs-wrap, .cs-counter--minus, .cs-counter--plus, .cs-btn--qoute {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .cs-dropdown::-webkit-scrollbar-thumb {
+          border-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .cs-counter-wrap, .cs-select, .cs-select:focus, .cs-dropdown__item:hover, .cs-dropdown::-webkit-scrollbar {
+          background-color: ${this.selectedcCalcColSch.colors[1].color};
+        }
+        .cs-select:after {
+        }
+        .cs-wrap, .cs-select:after, .cs-btn--qoute, .cs-btn--order  {
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .cs-title{
+          color:  ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .cs-dropdown::-webkit-scrollbar-thumb {
+          background-color: ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .cs-counter, .cs-select, .cs-page-value, .cs-price, .cs-price-title, .cs-btn {
+          color:  ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .cs-btn--order {
+          background-color: ${this.selectedcCalcColSch.colors[4].color};
+        }
+
+        `;
+        mediaSnippet = `
+        .cs-btn {
+          pointer-events: none;
+        }`;
         break;
       }
       case 'table': {
+        cssSnippet = ``;
+        mediaSnippet = ``;
         break;
       }
       case 'horizontal': {
+        cssSnippet = ``;
+        mediaSnippet = ``;
         break;
       }
       default: {
