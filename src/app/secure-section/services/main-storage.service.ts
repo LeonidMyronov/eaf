@@ -94,7 +94,7 @@ export class MainStorageService {
     },
     {
       id: 4,
-      calcClass: 'able-price',
+      calcClass: 'table-price',
       name: 'Table',
       size: '790x531 px',
       imageSrc: '/assets/images/promo/calc/calc-table.svg'

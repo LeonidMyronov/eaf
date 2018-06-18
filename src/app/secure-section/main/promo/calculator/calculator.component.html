@@ -47,7 +47,7 @@
             <div class="calc__section-title">3.  Вставьте этот код в ваш HTML</div>
             <div class="snippet-container accent-color"
               #snippet
-              [innerText]="calcCustomStylesSnippet">
+              [innerText]="calcCustomStylesSnippet?.length ? calcCustomStylesSnippet[0] : ''">
             </div>
             <button
             type="button"
@@ -58,10 +58,10 @@
         </div>
       </div>
       <div class="card calc__preview" [ngStyle]="{'background-color': selectedcCalcColSch.colors[0].color}">
-        <div class="calc-lg"  data-title="" data-title-discount=""></div>
-        <!-- <div class="calc-sm"  data-title="" data-title-discount=""></div>
-        <div class="calc-sm" data-type="horizontal" data-title="" data-title-discount=""></div>
-        <div class="table-price"></div> -->
+        <div *ngIf="selectedCalcView.name.toLowerCase()=='big'" class="calc-lg"  data-title="" data-title-discount=""></div>
+        <div *ngIf="selectedCalcView.name.toLowerCase()=='small'" class="calc-sm"  data-title="" data-title-discount=""></div>
+        <div *ngIf="selectedCalcView.name.toLowerCase()=='horizontal'" class="calc-sm" data-type="horizontal" data-title="" data-title-discount=""></div>
+        <div *ngIf="selectedCalcView.name.toLowerCase()=='table'" class="table-price"></div>
       </div>
     </section>
   </div>
