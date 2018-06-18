@@ -29,8 +29,8 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.calcViews = this.mainStorage.getPromoCalcViews();
     this.calcColSchs = this.mainStorage.getPromoCalcColorSchemes();
-    this.selectedcCalcColSch = this.calcColSchs[1];
-    this.selectedCalcView = this.calcViews[0];
+    this.selectedcCalcColSch = this.calcColSchs[0];
+    this.selectedCalcView = this.calcViews[2];
     this.addCalcOptionParamsObject();
     this.addCalcStyleSheet();
     this.onSelectView(this.selectedCalcView);
@@ -293,13 +293,134 @@ export class CalculatorComponent implements OnInit, OnDestroy {
         break;
       }
       case 'table': {
-        cssSnippet = ``;
-        mediaSnippet = ``;
+        cssSnippet = `
+        .tp-deadline__top, .tp-header {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .tp-title, .tp-header__dsc {
+          color: ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .tp-deadline__item, .tp-header__level-item {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-deadline__item.active, .active.tp-header__level-item, .tp-table__price.active, .tp-table__price.active:hover {
+          background-color: ${this.selectedcCalcColSch.colors[1].color} !important;
+        }
+        .tp-table__price, .tp-deadline__title, .tp-header__title, .tp-header__level-item, .tp-deadline__item {
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-table__price:nth-child(2n) {
+          background-color:  ${this.selectedcCalcColSch.colors[3].color};
+          color: ${this.selectedcCalcColSch.colors[1].color};
+        }
+        .tp-table__price:hover {
+          background-color:  ${this.selectedcCalcColSch.colors[2].color} !important;
+        }
+        .active .tp-table__price--dsc, .tp-table__price:hover .tp-table__price--dsc {
+          color:  ${this.selectedcCalcColSch.colors[3].color} !important;
+        }
+        .tp-table__price--dsc {
+          color: ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .tp-table, .tp-header {
+          border-left-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-table__price {
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-header__top {
+          border-bottom-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-header__level-item:not(:last-child) {
+          border-right-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal, .tp-modal__cross {
+          border: 2px solid ${this.selectedcCalcColSch.colors[3].color};
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal-wrap:after {
+          border-top-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .tp-modal-wrap:before {
+          border-top-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__date--title, .tp-modal__price-title{
+          color: ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .tp-modal__counter-btn--minus, .tp-modal__counter-btn--plus {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__counter {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__page-value {
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__date--value, .tp-modal__price-dsc {
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__btn--qoute {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .tp-modal__btn--order {
+          background-color: ${this.selectedcCalcColSch.colors[4].color};
+          color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        `;
+        mediaSnippet = `
+          .tp-container {
+            border: 2px solid ${this.selectedcCalcColSch.colors[3].color};
+            border-radius: 25px;
+          }
+          .tp-table__price {
+            height: 42px;
+          }
+          .tp-modal__btn {
+            pointer-events: none;
+          }
+        `;
         break;
       }
       case 'horizontal': {
-        cssSnippet = ``;
-        mediaSnippet = ``;
+        cssSnippet = `
+        .cs-wrap, .cs-counter--minus, .cs-counter--plus, .cs-btn--qoute {
+          background-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .cs-dropdown::-webkit-scrollbar-thumb {
+          border-color: ${this.selectedcCalcColSch.colors[0].color};
+        }
+        .cs-counter-wrap, .cs-select, .cs-select:focus, .cs-dropdown__item:hover, .cs-dropdown::-webkit-scrollbar {
+          background-color: ${this.selectedcCalcColSch.colors[1].color};
+        }
+        .cs-select:after {
+        }
+        .cs-wrap, .cs-select:after, .cs-btn--qoute, .cs-btn--order  {
+          border-color: ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .cs-title{
+          color:  ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .cs-dropdown::-webkit-scrollbar-thumb {
+          background-color: ${this.selectedcCalcColSch.colors[2].color};
+        }
+        .cs-counter, .cs-select, .cs-page-value, .cs-price, .cs-price-title, .cs-btn {
+          color:  ${this.selectedcCalcColSch.colors[3].color};
+        }
+        .cs-btn--order {
+          background-color: ${this.selectedcCalcColSch.colors[4].color};
+        }
+        `;
+        mediaSnippet = `
+        .cs-btn {
+          pointer-events: none;
+        }`;
         break;
       }
       default: {
