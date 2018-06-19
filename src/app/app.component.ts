@@ -18,6 +18,7 @@ import * as UIAction from './ui/ui.actions';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
   isLoginFormOpened$: Observable<boolean>;
+  isLoading$: Observable<boolean>;
   isSignupFormOpened$: Observable<boolean>;
   isMobileMenuOpened$: Observable<boolean>;
   watcher: Subscription;
@@ -32,6 +33,9 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isLoginFormOpened$ = this.store.select(fromRoot.getIsLoginFormOpened);
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
+    this.isLoading$ = this.store.select(fromRoot.getLoadingState);
+    this.store.select(fromRoot.getLoadingState)
+    .subscribe(r => console.log(r));
     // this.store.select(fromRoot.getIsAuth)
     //   .subscribe(response => console.log('Is Auth =>', response));
     this.store.select(fromRoot.getCurrentLanguage)
