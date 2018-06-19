@@ -726,6 +726,22 @@ export class MainService {
         demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
       }
     ],
+    calculator: {
+      scriptSrc: 'https://s3.amazonaws.com/genericapps/resources/calculators/bundle41.js',
+      scriptEduObj: {
+        'hostname': '99papers.com',
+        'website_id': 432,
+        'service_ids': '1674, 1675, 1673, 1690',
+        'new_api': false,
+        'segment_id': 'А',
+        'no_stat': true,
+        'email': false,
+        'dsc': 'ESSAYFIRST5',
+      },
+      styleSrc: 'https://s3.amazonaws.com/genericapps/resources/calculators/styles.css',
+      calcColSchs: [],
+      calcViews: [],
+    }
   };
 
   private pTEventsDetails = {
