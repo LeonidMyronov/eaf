@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { MainStorageService } from '../../../services/main-storage.service';
 import { MainService } from '../../../services/main.service';
 
-import { PromoCalcView, PromoCalcColorScheme } from '../../../store/main.model';
+import { PromoCalcView, PromoCalcColorScheme, PromoCalc } from '../promo.model';
+import * as fromMain from '../../../store/main.reducer';
+
 
 @Component({
   selector: 'eaf-calculator',
@@ -17,24 +19,33 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   public calcColSchs: PromoCalcColorScheme[];
   public selectedcCalcColSch: PromoCalcColorScheme;
   public calcCustomStylesSnippet: string[];
+  public userCalcSnippet: string;
+  private calcState: PromoCalc;
   private CALC_SCRIPT_ID = 'promo_calc_script';
   private CALC_CUSTOM_STYLES_ID = 'promo_calc_custom_styles';
   private CALC_CUSTOM_MEDIA_STYLES_ID = 'promo_calc_custom_media_styles';
   private CalcCustomStylesIDs = [this.CALC_CUSTOM_STYLES_ID, this.CALC_CUSTOM_MEDIA_STYLES_ID];
   constructor(
-    private mainStorage: MainStorageService,
-    private mainService: MainService
+    // private promoStorage: PromoStorageService,
+    // Refactoring - move to Effect
+    private mainService: MainService,
+    private store: Store <fromMain.MainState>
   ) { }
 
   ngOnInit() {
-    this.calcViews = this.mainStorage.getPromoCalcViews();
-    this.calcColSchs = this.mainStorage.getPromoCalcColorSchemes();
-    this.selectedcCalcColSch = this.calcColSchs[0];
-    this.selectedCalcView = this.calcViews[2];
-    this.addCalcOptionParamsObject();
-    this.addCalcStyleSheet();
-    this.onSelectView(this.selectedCalcView);
-    this.applyCalColSch();
+    this.store.select(fromMain.getPromoCalculator)
+      .subscribe((calculator: PromoCalc) => {
+        console.log(calculator);
+        this.calcState = calculator;
+        this.calcViews = calculator.calcViews;
+        this.calcColSchs = calculator.calcColSchs;
+        this.selectedcCalcColSch = this.calcColSchs[0];
+        this.selectedCalcView = this.calcViews[2];
+        this.addCalcOptionParamsObject();
+        this.addCalcStyleSheet();
+        this.onSelectView(this.selectedCalcView);
+        this.applyCalColSch();
+      });
   }
 
   onCopyToClipboard(value) {
@@ -60,21 +71,12 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     const element = document.createElement('link');
     element.type = 'text/css';
     element.rel = 'stylesheet';
-    element.href = 'https://s3.amazonaws.com/genericapps/resources/calculators/styles.css';
+    element.href = this.calcState.styleSrc;
     document.getElementsByTagName('head')[0].appendChild(element);
   }
 
   addCalcOptionParamsObject() {
-    window['eduOptions'] = {
-      'hostname': '99papers.com',
-      'website_id': 432,
-      'service_ids': '1674, 1675, 1673, 1690',
-      'new_api': false,
-      'segment_id': 'А',
-      'no_stat': true,
-      'email': false,
-      'dsc': 'ESSAYFIRST5',
-    };
+    window['eduOptions'] = this.calcState.scriptEduObj;
   }
 
   addCalcScripts() {
@@ -85,7 +87,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     const element = document.createElement('script');
     element.type = 'text/javascript';
     element.id = this.CALC_SCRIPT_ID;
-    element.src = 'https://s3.amazonaws.com/genericapps/resources/calculators/bundle41.js';
+    element.src = this.calcState.scriptSrc;
     document.getElementsByTagName('body')[0].appendChild(element);
   }
 
@@ -107,6 +109,24 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     calcCustomStylesEl.type = 'text/css';
     calcCustomStylesEl.appendChild(document.createTextNode(styleSnippet));
     head.appendChild(calcCustomStylesEl);
+  }
+
+  getUserCalcSnippet(): string {
+    return `
+      <!-- // at the HEAD tag end -->
+      <link type="text/css" rel="stylesheet" href="${this.calcState.styleSrc}">
+      <style type="text/css">${this.calcCustomStylesSnippet[0]}</style>
+
+      <!-- // at the BODY tag end -->
+      <script>window.eduOptions = {
+        'hostname': '99papers.com',
+        'website_id': 432,
+        'service_ids': '1674, 1675, 1673, 1690',
+        'apiMode': 'M',
+        'segment_id': 'А',
+      };</script>
+      <script type="text/javascript" src="${this.calcState.scriptSrc}"></script>
+    `;
   }
 
   createStyleSnippet(): string[] {
@@ -159,17 +179,14 @@ export class CalculatorComponent implements OnInit, OnDestroy {
             color: ${this.selectedcCalcColSch.colors[3].color};
             opacity: 1
           }
-
           .cl-search:-moz-placeholder {
             color: ${this.selectedcCalcColSch.colors[3].color};
             opacity: 1
           }
-
           .cl-search::-moz-placeholder {
             color: ${this.selectedcCalcColSch.colors[3].color};
             opacity: 1
           }
-
           .cl-search:-ms-input-placeholder {
             color: ${this.selectedcCalcColSch.colors[3].color};
             opacity: 1
@@ -284,7 +301,6 @@ export class CalculatorComponent implements OnInit, OnDestroy {
         .cs-btn--order {
           background-color: ${this.selectedcCalcColSch.colors[4].color};
         }
-
         `;
         mediaSnippet = `
         .cs-btn {
