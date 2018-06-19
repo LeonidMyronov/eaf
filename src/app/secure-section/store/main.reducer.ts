@@ -42,7 +42,7 @@ import {
   UPDATE_PROMO_ABANNER_UTM
 } from './main.actions';
 import { Site } from '../../core/core.model';
-import { Banner, PromoTheme } from '../main/promo/promo.model';
+import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
 
 export interface MainState {
   totalIncomeAmount: number;
@@ -96,6 +96,7 @@ export interface MainState {
     animatedBanners: Banner[];
     wpThemes: PromoTheme[];
     landingThemes: PromoTheme[];
+    calculator: PromoCalc
   };
 }
 
@@ -157,119 +158,14 @@ export const initialState: MainState = {
     eventsDetailsList: []
   },
   promo: {
-    site: {
-      id: 2,
-      name: '99papers.com',
-      iconSrc: '/assets/images/header/sites/site-99papers.svg',
-      fisrtOrderPercent: 50,
-      rebillsPercent: 15,
-      iconLightSrc: '/assets/images/header/sites/site-99papers-light.svg',
-      preview: '/assets/images/header/sites/preview-99papers.com.svg',
-      isDesktopVersion: true,
-      isMobileVersion: true,
-      description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
-       исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
-       что позволяет удовлетворять самых взыскательных клиентов.`
-    },
-    refLink: 'https://99papers.com/?ref_id=145',
-    coupons: [
-      {
-        name: 'AA11QQ21',
-        group: 'coupon',
-        site: '99papers.cum',
-        creationDate: new Date(),
-        expirationDate: new Date(),
-        discountValue: 12,
-        usageAmount: 1
-      },
-      {
-        name: 'AA11QQ22',
-        group: 'coupon',
-        site: '99papers.cum',
-        creationDate: new Date(),
-        expirationDate: new Date(),
-        discountValue: 7,
-        usageAmount: 11
-      },
-      {
-        name: 'AA11QQ23',
-        group: 'coupon',
-        site: '99papers.cum',
-        creationDate: new Date(),
-        expirationDate: new Date(),
-        discountValue: 2,
-        usageAmount: 111,
-      }
-    ],
-    staticBanners: [
-      {
-        id: 1,
-        title: 'The Best Essay Writing Service',
-        size: '160x600 px',
-        category: 'Статический баннер',
-        bannerSrc: '/assets/images/promo/sbanners/banner1.svg'
-      },
-      {
-        id: 2,
-        title: 'The Best Essay Writing Service',
-        size: '300x250 px',
-        category: 'Статический баннер',
-        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
-      },
-      {
-        id: 3,
-        title: 'The Best Essay Writing Service',
-        size: '300x600 px',
-        category: 'Статический баннер',
-        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
-      }
-    ],
-    animatedBanners: [
-      {
-        id: 2,
-        title: 'The Best Essay Writing Service',
-        size: '300x250 px',
-        category: 'Animated баннер',
-        bannerSrc: '/assets/images/promo/sbanners/banner2.svg'
-      },
-      {
-        id: 3,
-        title: 'The Best Essay Writing Service',
-        size: '300x600 px',
-        category: 'Animated баннер',
-        bannerSrc: '/assets/images/promo/sbanners/banner3.svg'
-      }
-    ],
-    wpThemes: [
-      {
-        id: 1,
-        name: 'WP Theme v01',
-        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
-        instructions: `<ol>
-          <li>Скачайте файл: <a class="download-link" href="https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip">wp_theme_99papers-master.zip</a></li>
-          <li>Поместите тему в <span class="accent-color">wp-content/themes/</span> и активируйте, используя админ панель WordPress</li>
-          <li>Добавьте .htaccess файл при необходимости.</li>
-          <li>Отредактируйте 3 строку в <span class="accent-color">wp-content/themes/&lt;theme_name&gt;/header.php</span> поместив ваш ref_id</li>
-        </ol>`,
-        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
-        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
-      }
-    ],
-    landingThemes: [
-      {
-        id: 1,
-        name: 'WP Landing v01',
-        preview: '/assets/images/header/sites/preview-essaybox.org.svg',
-        instructions: `<ol>
-        <li>Скачайте файл: <a class="download-link" href="https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip">wp_theme_99papers-master.zip</a></li>
-        <li>Поместите тему в <span class="accent-color">wp-content/themes/</span> и активируйте, используя админ панель WordPress</li>
-        <li>Добавьте .htaccess файл при необходимости.</li>
-        <li>Отредактируйте 3 строку в <span class="accent-color">wp-content/themes/&lt;theme_name&gt;/header.php</span> поместив ваш ref_id</li>
-      </ol>`,
-        downloadLink: 'https://github.com/edu-affiliates/wp_theme_99papers/archive/master.zip',
-        demoLink: 'https://edu-affiliates.com/ru/promo/site/4/'
-      }
-    ],
+    site: '',
+    refLink: '',
+    coupons: [],
+    staticBanners: [],
+    animatedBanners: [],
+    wpThemes: [],
+    landingThemes: [],
+    calculator: {}
   }
 };
 
@@ -553,6 +449,11 @@ export const getPromoWP = createSelector(getMainState, (state: MainState) => {
 export const getPromoLandings = createSelector(getMainState, (state: MainState) => {
   return {
     themes: state.promo.landingThemes
+  };
+});
+export const getPromoCalculator = createSelector(getMainState, (state: MainState) => {
+  return {
+    ...state.promo.calculator
   };
 });
 
