@@ -34,8 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
     this.isLoading$ = this.store.select(fromRoot.getLoadingState);
-    this.store.select(fromRoot.getLoadingState)
-    .subscribe(r => console.log(r));
     // this.store.select(fromRoot.getIsAuth)
     //   .subscribe(response => console.log('Is Auth =>', response));
     this.store.select(fromRoot.getCurrentLanguage)
