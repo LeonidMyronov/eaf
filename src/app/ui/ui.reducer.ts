@@ -5,6 +5,7 @@ import {
   IS_MOBILE_MENU_OPENED,
   SET_LANG,
   SET_MEDIA_QUERY,
+  IS_LOADING,
 } from './ui.actions';
 
 export interface State {
@@ -13,6 +14,7 @@ export interface State {
   isMobileMenuOpened: boolean;
   currentLanguage: string;
   activeMediaQuery: string;
+  isLoading: boolean;
 }
 
 export const initialState: State = {
@@ -21,6 +23,7 @@ export const initialState: State = {
   isMobileMenuOpened: false,
   currentLanguage: '',
   activeMediaQuery: '',
+  isLoading: true,
 };
 
 export function uiReducer(state: State = initialState, action: UIActions) {
@@ -51,6 +54,11 @@ export function uiReducer(state: State = initialState, action: UIActions) {
         ...state,
         activeMediaQuery: action.payload
       };
+    case IS_LOADING:
+    return {
+      ...state,
+      isLoading: action.payload
+    };
     default:
       return state;
   }
@@ -61,4 +69,5 @@ export const getIsSignupFormOpened = (state: State) => state.isSignupFormOpened;
 export const getIsMobileMenuOpened = (state: State) => state.isMobileMenuOpened;
 export const getCurrentLanguage = (state: State) => state.currentLanguage;
 export const getActiveMediaQuery = (state: State) => state.activeMediaQuery;
+export const getLoadingState = (state: State) => state.isLoading;
 
