@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'whitelabel', component: WhitelabelComponent },
       { path: 'offer', component: OfferComponent },
       { path: 'promo', loadChildren: './main/promo/promo.module#PromoModule'},
-      { path: '**', redirectTo: 'promo' }
+      { path: '**', redirectTo: 'today' }
     ]
   },
 ];

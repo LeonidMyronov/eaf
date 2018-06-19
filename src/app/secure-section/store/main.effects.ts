@@ -5,17 +5,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { MainService } from '../services/main.service';
+import { PromoStorageService } from '../main/promo/services/promo-storage.service';
 
 import * as MainActions from './main.actions';
 import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
-import { Banner } from '../main/promo/promo.model';
+import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
 
 @Injectable()
 export class MainEffects {
 
   constructor(
     private actions$: Actions,
-    private mainService: MainService
+    private mainService: MainService,
+    private promoStorage: PromoStorageService
   ) {}
 
   @Effect() dayStat = this.actions$
@@ -56,10 +58,24 @@ export class MainEffects {
     .map((id: number) => {
       return this.mainService.fetchPromoData(id);
     })
-    .map((data: {coupons: Coupon[], staticBanners: Banner[], animatedBanners: Banner[]}) => {
+    .map((data: {
+          coupons: Coupon[],
+          staticBanners: Banner[],
+          animatedBanners: Banner[],
+          wpThemes: PromoTheme[],
+          landindThemes: PromoTheme[],
+          calculator: PromoCalc,
+        }) => {
+          const promoData = {...data};
+          if (!data.calculator.calcViews || !data.calculator.calcViews.length) {
+            promoData.calculator.calcViews = this.promoStorage.getPromoCalcViews();
+          }
+          if (!data.calculator.calcColSchs || !data.calculator.calcColSchs.length) {
+            promoData.calculator.calcColSchs = this.promoStorage.getPromoCalcColorSchemes();
+          }
       return {
         type: MainActions.STORE_PROMO_DATA,
-        payload: data
+        payload: promoData
       };
     });
 
