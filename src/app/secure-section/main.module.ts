@@ -7,6 +7,7 @@ import { MainRoutingModule } from './main-routing.module';
 
 import { MainService } from './services/main.service';
 import { MainStorageService } from './services/main-storage.service';
+import { PromoStorageService } from './main/promo/services/promo-storage.service';
 
 import { MainComponent } from './main/main.component';
 import { TodayComponent } from './main/today/today.component';
@@ -53,7 +54,7 @@ import { OfferComponent } from './main/offer/offer.component';
     EffectsModule.forFeature([MainEffects])
   ],
   exports: [],
-  providers: [MainService, MainStorageService]
+  providers: [MainService, MainStorageService, PromoStorageService]
 })
 
 export class MainModule {

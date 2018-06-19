@@ -156,16 +156,3 @@ export interface RefPage {
   name: string;
 }
 
-export interface PromoCalcView {
-  id: number;
-  calcClass: string;
-  name: string;
-  size: string;
-  imageSrc: string;
-}
-
-export interface PromoCalcColorScheme {
-  id: number;
-  name: string;
-  colors: {name: string, color: string}[];
-}
