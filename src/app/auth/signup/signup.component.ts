@@ -41,9 +41,6 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.store.dispatch(new UIAction.IsLoading(true));
-    // console.log(this.signupForm);
-    // this.authService.signup(this.signupForm.value);
-    // this.onCloseForm();
     this.store.dispatch(new AuthAction.DoSignup(this.signupForm.value));
 
   }

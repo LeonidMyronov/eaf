@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/debounceTime';
 
 import { AuthService } from '../auth.service';
+import { HelperService } from '../../core/helper.service';
 
 import * as AuthActions from './auth.actions';
 import * as USerActions from '../../secure-section/user/store/user.actions';
@@ -23,7 +24,8 @@ export class AuthEffects {
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private helper: HelperService
   ) {}
 
   @Effect() doLogin = this.actions$
@@ -68,6 +70,27 @@ export class AuthEffects {
         {
           type: USerActions.FILL_PROFILE,
           payload: response
+        }
+      ];
+    });
+
+  @Effect() doLogout = this.actions$
+    .ofType(AuthActions.DO_LOGOUT)
+    // .switchMap( logoot API)
+    .debounceTime(2000)
+    .mergeMap(() => {
+      this.router.navigate(['/']);
+      this.helper.preventBodyToScroll(false);
+      return [
+        {
+          type: AuthActions.IS_UNAUTH
+        },
+        {
+          type: USerActions.CLEAR_PROFILE
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
         }
       ];
     });

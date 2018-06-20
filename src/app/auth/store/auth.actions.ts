@@ -6,6 +6,7 @@ export const IS_AUTH = '[AUTH Is Authenticated]';
 export const IS_UNAUTH = '[AUTH Is Unuthenticated]';
 export const DO_LOGIN = '[AUTH DO_LOGIN]';
 export const DO_SIGNUP = '[AUTH DO_SIGNUP]';
+export const DO_LOGOUT = '[AUTH DO_LOGOUT]';
 
 export class IsAuth implements Action {
   readonly type = IS_AUTH;
@@ -25,5 +26,9 @@ export class DoSignup implements Action {
   constructor (public payload: SignupData) {}
 }
 
-export type AuthActions = IsAuth | IsUnauth | DoLogin | DoSignup;
+export class DoLogout implements Action {
+  readonly type = DO_LOGOUT;
+}
+
+export type AuthActions = IsAuth | IsUnauth | DoLogin | DoSignup | DoLogout;
 

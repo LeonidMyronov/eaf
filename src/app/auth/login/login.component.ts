@@ -34,15 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm);
     this.store.dispatch(new UIAction.IsLoading(true));
-    // this.authService.login(this.loginForm.value);
-    // this.onCloseForm();
     this.store.dispatch(new AuthAction.DoLogin(this.loginForm.value));
   }
 
   onCloseForm() {
-    // this.location.back();
     this.store.dispatch(new UIAction.IsLoginFormOpened(false));
     this.helper.preventBodyToScroll(false);
   }

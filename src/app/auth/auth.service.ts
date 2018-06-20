@@ -59,9 +59,9 @@ export class AuthService {
   }
 
   logout() {
-    this.store.dispatch(new AuthAction.IsUnauth());
-    this.store.dispatch(new UserAction.ClearProfile());
-    this.router.navigate(['/']);
+    // this.store.dispatch(new AuthAction.IsUnauth());
+    // this.store.dispatch(new UserAction.ClearProfile());
+    // this.router.navigate(['/']);
   }
 
   getFakeUserData(loginData) {
