@@ -23,7 +23,7 @@ export const initialState: State = {
   isMobileMenuOpened: false,
   currentLanguage: '',
   activeMediaQuery: '',
-  isLoading: true,
+  isLoading: false,
 };
 
 export function uiReducer(state: State = initialState, action: UIActions) {
