@@ -42,16 +42,17 @@ export class AuthService {
     // do code here ...
   }
 
-  signup(loginData: SignupData) {
+  signup(loginData: SignupData): {user: User, sites: Site[]} {
     const user: {user: User, sites: Site[]} = this.getFakeUserData(loginData);
+    return user;
 
-    this.store.dispatch(new AuthAction.IsAuth());
+    // this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
 
     // TODO on success
-    this.router.navigate(['/main']);
-    this.store.dispatch(new UserAction.FillProfile(user));
+    // this.router.navigate(['/main']);
+    // this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
     // do code here ...
