@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,7 +15,7 @@ import * as UIAction from './ui/ui.actions';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   title = 'app';
   isLoginFormOpened$: Observable<boolean>;
   isLoading$: Observable<boolean>;
@@ -26,7 +26,8 @@ export class AppComponent implements OnInit, OnDestroy {
     private store: Store<fromRoot.State>,
     private translate: TranslateService,
     private runService: RunService,
-    private media: ObservableMedia
+    private media: ObservableMedia,
+    private changeDetector: ChangeDetectorRef
   ) { }
 
   ngOnInit() {
@@ -53,6 +54,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.store.dispatch(new UIAction.SetActiveMediaQuery(change.mqAlias));
       });
 
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
   }
 
   ngOnDestroy() {
