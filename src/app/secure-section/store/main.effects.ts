@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { MainService } from '../services/main.service';
 import { PromoStorageService } from '../main/promo/services/promo-storage.service';
+import { HelperService } from '../../core/helper.service';
 
 import * as MainActions from './main.actions';
+import * as UIActions from '../../ui/ui.actions';
 import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
 
@@ -17,8 +20,26 @@ export class MainEffects {
   constructor(
     private actions$: Actions,
     private mainService: MainService,
-    private promoStorage: PromoStorageService
+    private promoStorage: PromoStorageService,
+    private helperService: HelperService
   ) {}
+
+  @Effect() beforeFetchConsolidatedData = this.actions$
+    .ofType(MainActions.BEFORE_FETCH_CONSOLIDATED_DATA)
+    .map(_ => this.mainService.fetchConsolidatedData())
+    .mergeMap(data => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.FETCH_CONSOLIDATED_DATA,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
 
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)

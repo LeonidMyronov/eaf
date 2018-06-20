@@ -3,6 +3,7 @@ import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticBy
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
 
+export const BEFORE_FETCH_CONSOLIDATED_DATA = '[MAIN] BEFORE_FETCH_CONSOLIDATED_DATA';
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
 export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';
@@ -24,6 +25,10 @@ export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
 export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
 export const UPDATE_PROMO_ABANNER_COUPON = '[MAIN] UPDATE_PROMO_ABANNER_COUPON';
 export const UPDATE_PROMO_ABANNER_UTM = '[MAIN] UPDATE_PROMO_ABANNER_UTM';
+
+export class BeforeFetchConsolidatedData implements Action {
+  readonly type = BEFORE_FETCH_CONSOLIDATED_DATA;
+}
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -140,6 +145,7 @@ export class UpdatePromoABannerUTM implements Action {
 }
 
 export type MainActions =
+  BeforeFetchConsolidatedData |
   FetchConsolidatedData |
   FetchStatistic |
   UpdateStatisticFilters |

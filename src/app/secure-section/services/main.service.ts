@@ -796,7 +796,8 @@ export class MainService {
   }
 
   fetchConsolidatedData() {
-    this.store.dispatch(new MainActions.FetchConsolidatedData(this.consolidatedData));
+  //   this.store.dispatch(new MainActions.FetchConsolidatedData(this.consolidatedData));
+    return this.consolidatedData;
   }
 
   fetchStatisticByPeriod() {
