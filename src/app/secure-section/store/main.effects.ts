@@ -63,7 +63,7 @@ export class MainEffects {
           staticBanners: Banner[],
           animatedBanners: Banner[],
           wpThemes: PromoTheme[],
-          landindThemes: PromoTheme[],
+          landingThemes: PromoTheme[],
           calculator: PromoCalc,
         }) => {
           const promoData = {...data};
