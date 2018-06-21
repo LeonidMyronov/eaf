@@ -5,9 +5,12 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MainService } from '../../services/main.service';
 import { MainStorageService } from '../../services/main-storage.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
+import * as UIActions from '../../../ui/ui.actions';
+import * as UserActions from '../../user/store/user.actions';
 import { PaymentMethod, Transaction } from '../../store/main.model';
 
 export interface TransactionQueryParams {
@@ -36,6 +39,7 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
     private mainService: MainService,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
@@ -62,7 +66,7 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
       amount: new FormControl(null, Validators.required),
       details: new FormControl(''),
       payment: new FormControl(null),
-      regular: new FormControl()
+      regular: new FormControl(false)
     });
   }
 
@@ -84,7 +88,16 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
   }
 
   onSubmitBalanceForm() {
-    console.log(this.balanceForm.value);
+    const requestData = {
+      amount: this.balanceForm.value.amount,
+      details: this.balanceForm.value.details,
+      paymentId: this.balanceForm.value.payment.id,
+      regular: this.balanceForm.value.regular
+    };
+    console.log(requestData);
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.helper.preventBodyToScroll(true);
+    this.store.dispatch(new UserActions.DoSendWithdrawRequest(requestData));
   }
 
   onChangeTrnsactionQueryParams(queryParams) {

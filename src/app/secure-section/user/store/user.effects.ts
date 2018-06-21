@@ -65,4 +65,19 @@ export class UserEffects {
         payload: false
       };
     });
+
+  @Effect() doSenWithdrawRequest = this.actions$
+    .ofType(UserActions.DO_SEND_WITHDRAW_REQUEST)
+    .map((action: UserActions.DoSendWithdrawRequest) => action.payload)
+    .map(() => 'WithdrawRequest is sent successefully')
+    .debounceTime(1000)
+    .map(response => {
+      console.log(response);
+      this.helper.preventBodyToScroll(false);
+      // TODO if success or fail emit new Notify Action
+      return {
+        type: UIActions.IS_LOADING,
+        payload: false
+      };
+    });
 }
