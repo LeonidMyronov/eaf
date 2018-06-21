@@ -6,6 +6,7 @@ export const IS_MOBILE_MENU_OPENED = '[UI] IS_MOBILE_MENU_OPENED';
 export const SET_LANG = '[UI] SET_LANG';
 export const SET_MEDIA_QUERY = '[UI] SET_MEDIA_QUERY';
 export const IS_LOADING = '[UI] IS_LOADING';
+export const SHOW_NOTIFICATION = '[UI] SHOW_NOTIFICATION';
 
 export class IsLoginFormOpened implements Action {
   readonly type = IS_LOGIN_FORM_OPENED;
@@ -32,6 +33,11 @@ export class SetActiveMediaQuery implements Action {
   constructor(public payload: string) { }
 }
 
+export class ShowNotification implements Action {
+  readonly type = SHOW_NOTIFICATION;
+  constructor(public payload: string) { }
+}
+
 export class IsLoading implements Action {
   readonly type = IS_LOADING;
   constructor(public payload: boolean) { }
@@ -43,5 +49,6 @@ export type UIActions =
   IsMobileMenuOpened |
   SetLang |
   SetActiveMediaQuery |
-  IsLoading
+  IsLoading |
+  ShowNotification
   ;
