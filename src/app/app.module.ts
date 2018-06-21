@@ -31,6 +31,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { PreloaderComponent } from './ui/preloader/preloader.component';
+import { NotificationComponent } from './ui/notification/notification.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { PreloaderComponent } from './ui/preloader/preloader.component';
     FooterComponent,
     TariffsComponent,
     MobileMenuComponent,
-    PreloaderComponent
+    PreloaderComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

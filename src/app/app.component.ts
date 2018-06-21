@@ -21,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   isLoading$: Observable<boolean>;
   isSignupFormOpened$: Observable<boolean>;
   isMobileMenuOpened$: Observable<boolean>;
+  notification$: Observable<string>;
   watcher: Subscription;
   constructor (
     private store: Store<fromRoot.State>,
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
     this.isLoading$ = this.store.select(fromRoot.getLoadingState);
+    this.notification$ = this.store.select(fromRoot.getNotificationState);
     // this.store.select(fromRoot.getIsAuth)
     //   .subscribe(response => console.log('Is Auth =>', response));
     this.store.select(fromRoot.getCurrentLanguage)
