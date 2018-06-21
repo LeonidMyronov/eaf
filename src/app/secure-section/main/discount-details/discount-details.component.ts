@@ -6,10 +6,12 @@ import { Subscription } from 'rxjs/Subscription';
 import { MainService } from '../../services/main.service';
 import { DiscountSite } from '../../services/main-storage.service';
 import { AppStorageService } from '../../../core/app-storage.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
+import * as UIActions from '../../../ui/ui.actions';
 import { Discounts, Coupon } from '../../store/main.model';
 import { Site } from '../../../core/core.model';
 
@@ -35,7 +37,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     private store: Store<fromMain.MainState>,
     private mainService: MainService,
     private appStorage: AppStorageService,
-
+    private helper: HelperService
   ) { }
   ngOnInit() {
     this.subs.push(this.store.select(fromMain.getDiscounts)
@@ -120,8 +122,17 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.discountGeneratorForm.value);
-    // this.store.dispatch(new MainActions.SubmitDiscountRequest());
+    const requestData = {
+      code: this.discountGeneratorForm.value.code,
+      value: this.discountGeneratorForm.value.discountRange,
+      group: this.discountGeneratorForm.value.group,
+      siteId: this.discountGeneratorForm.value.site.id,
+      term: this.discountGeneratorForm.value.term
+    };
+    console.log(requestData);
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.helper.preventBodyToScroll(true);
+    this.store.dispatch(new MainActions.DoDiscountCreationRequest(requestData));
   }
 
   createTableHeads(el: Coupon) {

@@ -126,4 +126,17 @@ export class MainEffects {
       ];
     });
 
+
+  @Effect() doDiscountCreationRequest = this.actions$
+    .ofType(MainActions.DO_DISCOUNT_CREATION_REQUEST)
+    .map((action: MainActions.DoDiscountCreationRequest) => action.payload)
+    .map(r => 'DiscountCreationRequest is sent successefully')
+    .debounceTime(1000)
+    .map(r => {
+      this.helperService.preventBodyToScroll(false);
+      return {
+          type: UIActions.IS_LOADING,
+          payload: false
+        };
+    });
 }

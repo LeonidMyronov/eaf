@@ -9,7 +9,6 @@ import { HelperService } from '../../../core/helper.service';
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
 import * as UIActions from '../../../ui/ui.actions';
-import * as UserActions from '../../user/store/user.actions';
 import { Discounts } from '../../store/main.model';
 
 @Component({
