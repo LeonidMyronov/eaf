@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../core/app-storage.service';
 
@@ -22,39 +23,45 @@ export class AuthService {
     private appStorage: AppStorageService
   ) {}
 
-  login(loginData: LoginData) {
+  login(loginData: LoginData): Observable<{user: User, sites: Site[]}> {
+
     const user: {user: User, sites: Site[]} = this.getFakeUserData(loginData);
-    this.store.dispatch(new AuthAction.IsAuth());
+    return Observable.of(user);
+    // return user;
+    // this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
 
+
     // TODO on success
-  this.router.navigate(['/main']);
-    this.store.dispatch(new UserAction.FillProfile(user));
+    // debugger;
+    // this.router.navigate(['/main']);
+    // this.store.dispatch(new UserAction.FillProfile(user)); - moved to login effect
 
     // TODO handle server errors
     // do code here ...
   }
 
-  signup(loginData: SignupData) {
+  signup(loginData: SignupData): {user: User, sites: Site[]} {
     const user: {user: User, sites: Site[]} = this.getFakeUserData(loginData);
+    return user;
 
-    this.store.dispatch(new AuthAction.IsAuth());
+    // this.store.dispatch(new AuthAction.IsAuth());
     // set Preloader
     // do preloader here ...
 
     // TODO on success
-    this.router.navigate(['/main']);
-    this.store.dispatch(new UserAction.FillProfile(user));
+    // this.router.navigate(['/main']);
+    // this.store.dispatch(new UserAction.FillProfile(user));
 
     // TODO handle server errors
     // do code here ...
   }
 
   logout() {
-    this.store.dispatch(new AuthAction.IsUnauth());
-    this.store.dispatch(new UserAction.ClearProfile());
-    this.router.navigate(['/']);
+    // this.store.dispatch(new AuthAction.IsUnauth());
+    // this.store.dispatch(new UserAction.ClearProfile());
+    // this.router.navigate(['/']);
   }
 
   getFakeUserData(loginData) {

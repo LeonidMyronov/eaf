@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
 
 import * as fromRoot from '../../app.reducers';
 import * as UIAction from '../../ui/ui.actions';
+import * as AuthAction from '../store/auth.actions';
 
 @Component({
   selector: 'eaf-signup',
@@ -39,9 +40,9 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm);
-    this.authService.signup(this.signupForm.value);
-    this.onCloseForm();
+    this.store.dispatch(new UIAction.IsLoading(true));
+    this.store.dispatch(new AuthAction.DoSignup(this.signupForm.value));
+
   }
 
   onCloseForm() {

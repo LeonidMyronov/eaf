@@ -3,6 +3,7 @@ import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticBy
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
 
+export const BEFORE_FETCH_CONSOLIDATED_DATA = '[MAIN] BEFORE_FETCH_CONSOLIDATED_DATA';
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
 export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';
@@ -12,6 +13,8 @@ export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';
 export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';
+export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';
+export const DO_DISCOUNT_CREATION_REQUEST = '[MAIN] DO_DISCOUNT_CREATION_REQUEST';
 export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';
 export const FETCH_DAY_STAT = '[MAIN] FETCH_DAY_STAT';
 export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
@@ -24,6 +27,10 @@ export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
 export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
 export const UPDATE_PROMO_ABANNER_COUPON = '[MAIN] UPDATE_PROMO_ABANNER_COUPON';
 export const UPDATE_PROMO_ABANNER_UTM = '[MAIN] UPDATE_PROMO_ABANNER_UTM';
+
+export class BeforeFetchConsolidatedData implements Action {
+  readonly type = BEFORE_FETCH_CONSOLIDATED_DATA;
+}
 
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
@@ -84,6 +91,16 @@ export class SubmitDiscountRequest implements Action {
   readonly type = SUBMIT_DISCOUNT_REQUEST;
 }
 
+export class DoDiscountRequest implements Action {
+  readonly type = DO_DISCOUNT_REQUEST;
+  constructor(public payload: {}) {}
+}
+
+export class DoDiscountCreationRequest implements Action {
+  readonly type = DO_DISCOUNT_CREATION_REQUEST;
+  constructor(public payload: {}) {}
+}
+
 export class FetchDayStat implements Action {
   readonly type = FETCH_DAY_STAT;
   constructor(public payload: {date: Date, totalIncome: number, data: StatisticByDate[]}) {}
@@ -140,6 +157,7 @@ export class UpdatePromoABannerUTM implements Action {
 }
 
 export type MainActions =
+  BeforeFetchConsolidatedData |
   FetchConsolidatedData |
   FetchStatistic |
   UpdateStatisticFilters |
@@ -148,6 +166,8 @@ export type MainActions =
   FetchTransactions |
   FetchNews |
   FetchDiscountIntro |
+  DoDiscountRequest |
+  DoDiscountCreationRequest |
   SubmitDiscountRequest |
   FetchDiscountDetails |
   FetchDayStat |

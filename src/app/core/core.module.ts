@@ -3,7 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { MatSelectModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule } from '@angular/material';
+import { MatSelectModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatInputModule,
+  MatProgressSpinnerModule } from '@angular/material';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AppStorageService } from './app-storage.service';
@@ -26,7 +31,7 @@ import { ContactsComponent } from '../start-section/contacts/contacts.component'
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
-    MatSelectModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
+    MatSelectModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatProgressSpinnerModule,
     TranslateModule
   ],
   exports: [
@@ -34,7 +39,7 @@ import { ContactsComponent } from '../start-section/contacts/contacts.component'
     ReactiveFormsModule,
     FlexLayoutModule,
     RouterModule,
-    MatSelectModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule,
+    MatSelectModule, MatFormFieldModule, MatDatepickerModule, MatNativeDateModule, MatInputModule, MatProgressSpinnerModule,
     DropdownDirective,
     HomeTimeFormatPipe,
     ServerTimeFormatPipe,

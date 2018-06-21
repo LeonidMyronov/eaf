@@ -5,9 +5,11 @@ import { Router } from '@angular/router';
 
 import { MainStorageService } from '../../services/main-storage.service';
 import { MainService } from '../../services/main.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as MainActions from '../../store/main.actions';
+import * as UIActions from '../../../ui/ui.actions';
 import { Site } from '../../../core/core.model';
 import { RefPage } from '../../store/main.model';
 import { User } from '../../user/user.model';
@@ -26,7 +28,8 @@ export class OfferComponent implements OnInit {
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
     private mainService: MainService,
-    private router: Router
+    private router: Router,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
@@ -58,6 +61,8 @@ export class OfferComponent implements OnInit {
   }
 
   onNavigateToPromoModule(refLink: string, site: Site, page: string): void {
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.helper.preventBodyToScroll(true);
     this.store.dispatch(new MainActions.SetPromoSiteData({refLink, site}));
     this.router.navigate(['/main', 'promo', page]);
   }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { PaymentMethod, RefPage, PromoCalcView, PromoCalcColorScheme } from '../store/main.model';
+import { PaymentMethod, RefPage } from '../store/main.model';
 
 export interface DiscountSite {
   id: number;

@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 import { AppStorageService } from '../core/app-storage.service';
 import { HelperService } from '../core/helper.service';
@@ -9,9 +11,8 @@ import { AuthService } from '../auth/auth.service';
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
-import { Observable } from 'rxjs/Observable';
+import * as AuthActions from '../auth/store/auth.actions';
 import { Site } from '../core/core.model';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'eaf-header',
@@ -74,7 +75,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onChangeLang(lang: any) {
     console.log(`change lang to ${lang.abbr}`);
     this.store.dispatch(new UIAction.SetLang(lang.abbr));
-    // this.userLang = lang.abbr;
   }
 
   onChangeTariff(tariff: any) {
@@ -88,7 +88,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onAuthMenuClick(name: string) {
-    // this.router.navigate([`${url}`]);
     switch (name) {
       case 'login':
         this.store.dispatch(new UIAction.IsLoginFormOpened(true));
@@ -102,7 +101,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.router.navigate(['/main', 'profile']);
         break;
       case 'logout':
-        this.authService.logout();
+        // this.authService.logout();
+        this.helper.preventBodyToScroll(true);
+        this.store.dispatch(new UIAction.IsLoading(true));
+        this.store.dispatch(new AuthActions.DoLogout());
         break;
       default:
         console.log(name);

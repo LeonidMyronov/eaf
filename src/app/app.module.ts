@@ -11,7 +11,6 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { RunService } from './core/run.service';
@@ -26,10 +25,12 @@ import { MobileMenuComponent } from './mobile-menu/mobile-menu.component';
 import { reducers } from './app.reducers';
 import { AuthEffects } from './auth/store/auth.effects';
 import { UserEffects } from './secure-section/user/store/user.effects';
+import { UIEffects } from './ui/ui.effects';
 
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { PreloaderComponent } from './ui/preloader/preloader.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import { environment } from '../environments/environment';
     HeaderComponent,
     FooterComponent,
     TariffsComponent,
-    MobileMenuComponent
+    MobileMenuComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,7 @@ import { environment } from '../environments/environment';
     CustomFlexLayoutBreakPointsModule,
     AuthModule,
     StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([AuthEffects, UserEffects]),
+    EffectsModule.forRoot([AuthEffects, UserEffects, UIEffects]),
     HttpClientModule,
     TranslateModule.forRoot({
         loader: {

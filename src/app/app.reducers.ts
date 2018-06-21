@@ -26,6 +26,7 @@ export const getIsSignupFormOpened = createSelector(getUIState, fromUI.getIsSign
 export const getIsMobileMenuOpened = createSelector(getUIState, fromUI.getIsMobileMenuOpened);
 export const getCurrentLanguage = createSelector(getUIState, fromUI.getCurrentLanguage);
 export const getActiveMediaQuery = createSelector(getUIState, fromUI.getActiveMediaQuery);
+export const getLoadingState = createSelector(getUIState, fromUI.getLoadingState);
 
 export const getUserState = createFeatureSelector<fromUser.State>('user');
 export const getShortUserState = createSelector(getUserState, fromUser.getShortUserState);
