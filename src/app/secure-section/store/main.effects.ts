@@ -79,7 +79,8 @@ export class MainEffects {
     .map((id: number) => {
       return this.mainService.fetchPromoData(id);
     })
-    .map((data: {
+    .debounceTime(1000)
+    .mergeMap((data: {
           coupons: Coupon[],
           staticBanners: Banner[],
           animatedBanners: Banner[],
@@ -94,10 +95,17 @@ export class MainEffects {
           if (!data.calculator.calcColSchs || !data.calculator.calcColSchs.length) {
             promoData.calculator.calcColSchs = this.promoStorage.getPromoCalcColorSchemes();
           }
-      return {
-        type: MainActions.STORE_PROMO_DATA,
-        payload: promoData
-      };
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.STORE_PROMO_DATA,
+          payload: promoData
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
     });
 
 }
