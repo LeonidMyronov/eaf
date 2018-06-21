@@ -13,6 +13,7 @@ export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';
 export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';
+export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';
 export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';
 export const FETCH_DAY_STAT = '[MAIN] FETCH_DAY_STAT';
 export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
@@ -89,6 +90,11 @@ export class SubmitDiscountRequest implements Action {
   readonly type = SUBMIT_DISCOUNT_REQUEST;
 }
 
+export class DoDiscountRequest implements Action {
+  readonly type = DO_DISCOUNT_REQUEST;
+  constructor(public payload: {}) {}
+}
+
 export class FetchDayStat implements Action {
   readonly type = FETCH_DAY_STAT;
   constructor(public payload: {date: Date, totalIncome: number, data: StatisticByDate[]}) {}
@@ -154,6 +160,7 @@ export type MainActions =
   FetchTransactions |
   FetchNews |
   FetchDiscountIntro |
+  DoDiscountRequest |
   SubmitDiscountRequest |
   FetchDiscountDetails |
   FetchDayStat |

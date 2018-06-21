@@ -108,4 +108,22 @@ export class MainEffects {
       ];
     });
 
+  @Effect() doDiscountRequest = this.actions$
+    .ofType(MainActions.DO_DISCOUNT_REQUEST)
+    .map((action: MainActions.DoDiscountRequest) => action.payload)
+    .map(r => 'DiscountRequest is sent successefully')
+    .debounceTime(1000)
+    .mergeMap(r => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        },
+        {
+          type: MainActions.SUBMIT_DISCOUNT_REQUEST,
+        }
+      ];
+    });
+
 }
