@@ -158,14 +158,14 @@ export const initialState: MainState = {
     eventsDetailsList: []
   },
   promo: {
-    site: '',
+    site: null,
     refLink: '',
     coupons: [],
     staticBanners: [],
     animatedBanners: [],
     wpThemes: [],
     landingThemes: [],
-    calculator: {}
+    calculator: null
   }
 };
 

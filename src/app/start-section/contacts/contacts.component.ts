@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+
+import { HelperService } from '../../core/helper.service';
+
+import * as fromRoot from '../../app.reducers';
+import * as UserActions from '../../secure-section/user/store/user.actions';
+import * as UIActions from '../../ui/ui.actions';
 
 @Component({
   selector: 'eaf-contacts',
@@ -8,7 +15,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class ContactsComponent implements OnInit {
   contactsForm: FormGroup;
-  constructor() { }
+  constructor(
+    private helper: HelperService,
+    private store: Store<fromRoot.State>
+  ) {}
 
   ngOnInit() {
     this.contactsForm = new FormGroup({
@@ -19,6 +29,8 @@ export class ContactsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.contactsForm.value);
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.helper.preventBodyToScroll(true);
+    this.store.dispatch(new UserActions.DoSendMessage(this.contactsForm.value));
   }
 }

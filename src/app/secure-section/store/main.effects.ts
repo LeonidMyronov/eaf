@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 import { MainService } from '../services/main.service';
 import { PromoStorageService } from '../main/promo/services/promo-storage.service';
+import { HelperService } from '../../core/helper.service';
 
 import * as MainActions from './main.actions';
+import * as UIActions from '../../ui/ui.actions';
 import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
 
@@ -17,8 +20,26 @@ export class MainEffects {
   constructor(
     private actions$: Actions,
     private mainService: MainService,
-    private promoStorage: PromoStorageService
+    private promoStorage: PromoStorageService,
+    private helperService: HelperService
   ) {}
+
+  @Effect() beforeFetchConsolidatedData = this.actions$
+    .ofType(MainActions.BEFORE_FETCH_CONSOLIDATED_DATA)
+    .map(_ => this.mainService.fetchConsolidatedData())
+    .mergeMap(data => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.FETCH_CONSOLIDATED_DATA,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
 
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)
@@ -58,12 +79,13 @@ export class MainEffects {
     .map((id: number) => {
       return this.mainService.fetchPromoData(id);
     })
-    .map((data: {
+    .debounceTime(1000)
+    .mergeMap((data: {
           coupons: Coupon[],
           staticBanners: Banner[],
           animatedBanners: Banner[],
           wpThemes: PromoTheme[],
-          landindThemes: PromoTheme[],
+          landingThemes: PromoTheme[],
           calculator: PromoCalc,
         }) => {
           const promoData = {...data};
@@ -73,10 +95,48 @@ export class MainEffects {
           if (!data.calculator.calcColSchs || !data.calculator.calcColSchs.length) {
             promoData.calculator.calcColSchs = this.promoStorage.getPromoCalcColorSchemes();
           }
-      return {
-        type: MainActions.STORE_PROMO_DATA,
-        payload: promoData
-      };
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.STORE_PROMO_DATA,
+          payload: promoData
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
     });
 
+  @Effect() doDiscountRequest = this.actions$
+    .ofType(MainActions.DO_DISCOUNT_REQUEST)
+    .map((action: MainActions.DoDiscountRequest) => action.payload)
+    .map(r => 'DiscountRequest is sent successefully')
+    .debounceTime(1000)
+    .mergeMap(r => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        },
+        {
+          type: MainActions.SUBMIT_DISCOUNT_REQUEST,
+        }
+      ];
+    });
+
+
+  @Effect() doDiscountCreationRequest = this.actions$
+    .ofType(MainActions.DO_DISCOUNT_CREATION_REQUEST)
+    .map((action: MainActions.DoDiscountCreationRequest) => action.payload)
+    .map(r => 'DiscountCreationRequest is sent successefully')
+    .debounceTime(1000)
+    .map(r => {
+      this.helperService.preventBodyToScroll(false);
+      return {
+          type: UIActions.IS_LOADING,
+          payload: false
+        };
+    });
 }

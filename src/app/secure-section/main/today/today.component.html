@@ -10,7 +10,7 @@
             <span class="currency"> USD</span>
           </h1>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -35,7 +35,7 @@
             <span class="currency"> USD</span>
           </h3>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -52,7 +52,7 @@
             <span> уники</span>
           </h1>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -67,7 +67,7 @@
         <div class="content single-content">
           <span class="source small-text light-color" *ngFor="let source of (todayState$ | async).sources.slice(0,5)">{{source}}</span>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -86,7 +86,7 @@
             <div class="list-content__item__amount light-color">{{site.amount}}</div>
           </div>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -105,7 +105,7 @@
             <div class="list-content__item__amount light-color">{{target.amount}}</div>
           </div>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -124,7 +124,7 @@
             <div class="list-content__item__amount light-color">{{device.amount}}</div>
           </div>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'statistic']">
           <div class="action">
             Подробнее
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>
@@ -141,7 +141,7 @@
           <div class="news-title">{{ (todayState$ | async).lastNews.title}}</div>
           <div class="news-content">{{ (todayState$ | async).lastNews.excerpt}}</div>
         </div>
-        <div class="footer">
+        <div class="footer" [routerLink]="['/main', 'news']">
           <div class="action">
             Читать
             <span class="arrow-next"></span><span class="arrow-next"></span><span class="arrow-next"></span>

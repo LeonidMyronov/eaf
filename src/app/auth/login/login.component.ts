@@ -9,6 +9,7 @@ import { AuthService } from '../auth.service';
 
 import * as fromRoot from '../../app.reducers';
 import * as UIAction from '../../ui/ui.actions';
+import * as AuthAction from '../store/auth.actions';
 
 @Component({
   selector: 'eaf-login',
@@ -33,13 +34,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm);
-    this.authService.login(this.loginForm.value);
-    this.onCloseForm();
+    this.store.dispatch(new UIAction.IsLoading(true));
+    this.store.dispatch(new AuthAction.DoLogin(this.loginForm.value));
   }
 
   onCloseForm() {
-    // this.location.back();
     this.store.dispatch(new UIAction.IsLoginFormOpened(false));
     this.helper.preventBodyToScroll(false);
   }

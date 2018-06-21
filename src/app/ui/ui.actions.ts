@@ -5,6 +5,7 @@ export const IS_SIGNUP_FORM_OPENED = '[UI] IS_SIGNUP_FORM_OPENED';
 export const IS_MOBILE_MENU_OPENED = '[UI] IS_MOBILE_MENU_OPENED';
 export const SET_LANG = '[UI] SET_LANG';
 export const SET_MEDIA_QUERY = '[UI] SET_MEDIA_QUERY';
+export const IS_LOADING = '[UI] IS_LOADING';
 
 export class IsLoginFormOpened implements Action {
   readonly type = IS_LOGIN_FORM_OPENED;
@@ -31,10 +32,16 @@ export class SetActiveMediaQuery implements Action {
   constructor(public payload: string) { }
 }
 
+export class IsLoading implements Action {
+  readonly type = IS_LOADING;
+  constructor(public payload: boolean) { }
+}
+
 export type UIActions =
   IsLoginFormOpened |
   IsSignupFormOpened |
   IsMobileMenuOpened |
   SetLang |
-  SetActiveMediaQuery
+  SetActiveMediaQuery |
+  IsLoading
   ;

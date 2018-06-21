@@ -4,9 +4,11 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
 import { MainService } from '../../services/main.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
+import * as UIActions from '../../../ui/ui.actions';
 import { Discounts } from '../../store/main.model';
 
 @Component({
@@ -21,7 +23,8 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromMain.MainState>,
-    private mainService: MainService
+    private mainService: MainService,
+    private helper: HelperService
   ) { }
   ngOnInit() {
     this.subs = this.store.select(fromMain.getDiscounts)
@@ -45,8 +48,9 @@ export class DiscountComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.discountForm.value);
-    this.store.dispatch(new MainActions.SubmitDiscountRequest());
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.helper.preventBodyToScroll(true);
+    this.store.dispatch(new MainActions.DoDiscountRequest(this.discountForm.value));
   }
 
   ngOnDestroy() {

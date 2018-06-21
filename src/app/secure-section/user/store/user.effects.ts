@@ -6,9 +6,13 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/debounceTime';
+
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as UserActions from './user.actions';
+import * as UIActions from '../../../ui/ui.actions';
 import { User } from '../user.model';
 
 @Injectable()
@@ -17,7 +21,8 @@ export class UserEffects {
   constructor(
     private actions$: Actions,
     private http: HttpClient,
-    private store: Store<fromRoot.State>
+    private store: Store<fromRoot.State>,
+    private helper: HelperService
   ) {}
 
   @Effect() updateProfile = this.actions$
@@ -45,5 +50,34 @@ export class UserEffects {
         payload: data
       };
     });
-}
 
+  @Effect() doSendMessage = this.actions$
+    .ofType(UserActions.DO_SEND_MESSAGE)
+    .map((action: UserActions.DoSendMessage) => action.payload)
+    .map(() => 'Message is sent successefully')
+    .debounceTime(1000)
+    .map(response => {
+      console.log(response);
+      this.helper.preventBodyToScroll(false);
+      // TODO if success or fail emit new Notify Action
+      return {
+        type: UIActions.IS_LOADING,
+        payload: false
+      };
+    });
+
+  @Effect() doSenWithdrawRequest = this.actions$
+    .ofType(UserActions.DO_SEND_WITHDRAW_REQUEST)
+    .map((action: UserActions.DoSendWithdrawRequest) => action.payload)
+    .map(() => 'WithdrawRequest is sent successefully')
+    .debounceTime(1000)
+    .map(response => {
+      console.log(response);
+      this.helper.preventBodyToScroll(false);
+      // TODO if success or fail emit new Notify Action
+      return {
+        type: UIActions.IS_LOADING,
+        payload: false
+      };
+    });
+}

@@ -35,7 +35,6 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.store.select(fromMain.getPromoCalculator)
       .subscribe((calculator: PromoCalc) => {
-        console.log(calculator);
         this.calcState = calculator;
         this.calcViews = calculator.calcViews;
         this.calcColSchs = calculator.calcColSchs;
