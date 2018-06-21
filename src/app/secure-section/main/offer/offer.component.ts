@@ -56,7 +56,7 @@ export class OfferComponent implements OnInit {
 
   onCopyToClipboard(link: string) {
     this.mainService.copyToClipboard(link)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 

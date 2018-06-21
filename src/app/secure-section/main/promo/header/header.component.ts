@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { PromoStorageService } from '../services/promo-storage.service';
 import { MainService } from '../../../services/main.service';
+import { HelperService } from '../../../../core/helper.service';
 
 // import * as fromRoot from '../../../../app.reducers';
 import * as fromMain from '../../../store/main.reducer';
@@ -23,7 +24,8 @@ export class HeaderComponent implements OnInit {
     // private store: Store<fromRoot.State>,
     private store: Store<fromMain.State>,
     private promoStorage: PromoStorageService,
-    private mainService: MainService
+    private mainService: MainService,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class HeaderComponent implements OnInit {
 
   onLinkCopy(link: string) {
     this.mainService.copyToClipboard(link)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 }

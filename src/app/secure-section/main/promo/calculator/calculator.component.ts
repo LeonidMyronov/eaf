@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { MainService } from '../../../services/main.service';
+import { HelperService } from '../../../../core/helper.service';
 
 import { PromoCalcView, PromoCalcColorScheme, PromoCalc } from '../promo.model';
 import * as fromMain from '../../../store/main.reducer';
@@ -29,7 +30,8 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     // private promoStorage: PromoStorageService,
     // Refactoring - move to Effect
     private mainService: MainService,
-    private store: Store <fromMain.MainState>
+    private store: Store <fromMain.MainState>,
+    private helper: HelperService
   ) { }
 
   ngOnInit() {
@@ -49,7 +51,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
 
   onCopyToClipboard(value) {
     this.mainService.copyToClipboard(value)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 
