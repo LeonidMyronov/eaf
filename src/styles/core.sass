@@ -38,6 +38,18 @@ eaf-preloader
   align-items: center
   z-index: 200
 
+eaf-notification
+  position: fixed
+  top: 50px
+  left: 50%
+  transform: translateX(-50%)
+  max-width: 80%
+  box-sizing: border-box
+  padding: 30px
+  background-color: transparentize($mainColor, 0.3)
+  color: $lightColor
+  z-index: 300
+
 h1, h2, h3, h4, h5, h6
   @include regular-font()
   font-weight: normal
