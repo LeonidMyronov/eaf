@@ -33,11 +33,11 @@ export class AuthEffects {
     .ofType(AuthActions.DO_LOGIN)
     .map((action: AuthActions.DoLogin) => action.payload)
     // switchMap to BackEnd API
-    // .switchMap((data: LoginData) => this.authService.login(data))
-    .map(() => Observable.throw('Network error!'))
+    .switchMap((data: LoginData) => this.authService.login(data))
+    // .map(() => Observable.throw('Network error!'))
     .debounceTime(2000)
-    // .mergeMap((response: {user: User, sites: Site[]}) => {
-    .mergeMap((response: any) => {
+    .mergeMap((response: {user: User, sites: Site[]}) => {
+    // .mergeMap((response: any) => {
       this.router.navigate(['/main']);
       return [
         {
@@ -69,6 +69,10 @@ export class AuthEffects {
           type: AuthActions.IS_AUTH
         },
         {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: 'User successefully signed up'
+        },
+        {
           type: UIActions.IS_SIGNUP_FORM_OPENED,
           payload: false
         },
@@ -77,6 +81,9 @@ export class AuthEffects {
           payload: response
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
   @Effect() doLogout = this.actions$
