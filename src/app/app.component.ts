@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import { trigger, transition, style, animate, state } from '@angular/animations';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -8,12 +9,26 @@ import { TranslateService } from '@ngx-translate/core';
 import { RunService } from './core/run.service';
 
 import * as fromRoot from './app.reducers';
-import * as UIAction from './ui/ui.actions';
+import * as UIActions from './ui/ui.actions';
 
 @Component({
   selector: 'eaf-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
+  animations: [
+    trigger(
+      'showNotification', [
+        state('in', style({opacity: 1})),
+        transition('void => *', [
+          style({
+            opacity: 0
+          }),
+          animate(500)
+        ]
+      )
+    ]
+    )
+  ]
 })
 export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   title = 'app';
@@ -53,13 +68,18 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
       });
 
       this.watcher = this.media.subscribe((change: MediaChange) => {
-        this.store.dispatch(new UIAction.SetActiveMediaQuery(change.mqAlias));
+        this.store.dispatch(new UIActions.SetActiveMediaQuery(change.mqAlias));
       });
-
   }
 
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
+  }
+
+  onAnimationEnd() {
+    setTimeout(() => {
+      this.store.dispatch(new UIActions.ShowNotification(''));
+    }, 3000);
   }
 
   ngOnDestroy() {

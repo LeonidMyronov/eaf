@@ -1,4 +1,9 @@
-<eaf-notification *ngIf="notification$ | async" [message]="notification$ | async"></eaf-notification>
+<eaf-notification
+  *ngIf="notification$ | async" 
+  [message]="notification$ | async"
+  [@showNotification]
+  (@showNotification.done)="onAnimationEnd()">
+</eaf-notification>
 <eaf-preloader *ngIf="isLoading$ | async"></eaf-preloader>
 <eaf-login *ngIf="isLoginFormOpened$ | async"></eaf-login>
 <eaf-signup *ngIf="isSignupFormOpened$ | async"></eaf-signup>
