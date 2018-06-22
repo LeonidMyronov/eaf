@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Effect, Actions } from '@ngrx/effects';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -44,11 +45,20 @@ export class UserEffects {
         };
       });
     })
-    .map((data) => {
-      return {
-        type: UserActions.FILL_PROFILE,
-        payload: data
-      };
+    .mergeMap((data) => {
+      return [
+        {
+          type: UserActions.FILL_PROFILE,
+          payload: data
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: 'Profile setting is updated successefully.'
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
   @Effect() doSendMessage = this.actions$
@@ -56,14 +66,21 @@ export class UserEffects {
     .map((action: UserActions.DoSendMessage) => action.payload)
     .map(() => 'Message is sent successefully')
     .debounceTime(1000)
-    .map(response => {
-      console.log(response);
+    .mergeMap(response => {
       this.helper.preventBodyToScroll(false);
-      // TODO if success or fail emit new Notify Action
-      return {
-        type: UIActions.IS_LOADING,
-        payload: false
-      };
+      return [
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: response
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
   @Effect() doSenWithdrawRequest = this.actions$
@@ -71,13 +88,20 @@ export class UserEffects {
     .map((action: UserActions.DoSendWithdrawRequest) => action.payload)
     .map(() => 'WithdrawRequest is sent successefully')
     .debounceTime(1000)
-    .map(response => {
-      console.log(response);
+    .mergeMap(response => {
       this.helper.preventBodyToScroll(false);
-      // TODO if success or fail emit new Notify Action
-      return {
-        type: UIActions.IS_LOADING,
-        payload: false
-      };
+      return [
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: response
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 }
