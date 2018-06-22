@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
@@ -122,8 +123,15 @@ export class MainEffects {
         },
         {
           type: MainActions.SUBMIT_DISCOUNT_REQUEST,
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
 
@@ -132,11 +140,20 @@ export class MainEffects {
     .map((action: MainActions.DoDiscountCreationRequest) => action.payload)
     .map(r => 'DiscountCreationRequest is sent successefully')
     .debounceTime(1000)
-    .map(r => {
+    .mergeMap(r => {
       this.helperService.preventBodyToScroll(false);
-      return {
+      return [
+        {
           type: UIActions.IS_LOADING,
           payload: false
-        };
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 }
