@@ -98,6 +98,10 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new UserActions.DoSendWithdrawRequest(requestData));
+    this.store.select(fromRoot.getEraseFormState)
+    .subscribe(form => {
+      this.initForm();
+    });
   }
 
   onChangeTrnsactionQueryParams(queryParams) {
