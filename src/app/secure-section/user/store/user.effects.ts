@@ -76,6 +76,9 @@ export class UserEffects {
         {
           type: UIActions.SHOW_NOTIFICATION,
           payload: response
+        },
+        {
+          type: UIActions.ERASE_FORM
         }
       ];
     })
@@ -98,6 +101,9 @@ export class UserEffects {
         {
           type: UIActions.SHOW_NOTIFICATION,
           payload: response
+        },
+        {
+          type: UIActions.ERASE_FORM
         }
       ];
     })

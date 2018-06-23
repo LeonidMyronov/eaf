@@ -7,6 +7,7 @@ export const SET_LANG = '[UI] SET_LANG';
 export const SET_MEDIA_QUERY = '[UI] SET_MEDIA_QUERY';
 export const IS_LOADING = '[UI] IS_LOADING';
 export const SHOW_NOTIFICATION = '[UI] SHOW_NOTIFICATION';
+export const ERASE_FORM = '[UI] ERASE_FORM';
 
 export class IsLoginFormOpened implements Action {
   readonly type = IS_LOGIN_FORM_OPENED;
@@ -43,6 +44,10 @@ export class IsLoading implements Action {
   constructor(public payload: boolean) { }
 }
 
+export class EraseForm implements Action {
+  readonly type = ERASE_FORM;
+}
+
 export type UIActions =
   IsLoginFormOpened |
   IsSignupFormOpened |
@@ -50,5 +55,6 @@ export type UIActions =
   SetLang |
   SetActiveMediaQuery |
   IsLoading |
-  ShowNotification
+  ShowNotification |
+  EraseForm
   ;
