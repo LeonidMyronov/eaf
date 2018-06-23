@@ -36,8 +36,10 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   isLoading$: Observable<boolean>;
   isSignupFormOpened$: Observable<boolean>;
   isMobileMenuOpened$: Observable<boolean>;
-  notification$: Observable<string>;
-  watcher: Subscription;
+  notification: string;
+
+  private watcher: Subscription;
+  private notificationSubs: Subscription;
   constructor (
     private store: Store<fromRoot.State>,
     private translate: TranslateService,
@@ -51,7 +53,8 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.isSignupFormOpened$ = this.store.select(fromRoot.getIsSignupFormOpened);
     this.isMobileMenuOpened$ = this.store.select(fromRoot.getIsMobileMenuOpened);
     this.isLoading$ = this.store.select(fromRoot.getLoadingState);
-    this.notification$ = this.store.select(fromRoot.getNotificationState);
+    this.notificationSubs = this.store.select(fromRoot.getNotificationState)
+      .subscribe(message => this.notification = message);
     // this.store.select(fromRoot.getIsAuth)
     //   .subscribe(response => console.log('Is Auth =>', response));
     this.store.select(fromRoot.getCurrentLanguage)
@@ -77,12 +80,15 @@ export class AppComponent implements OnInit, AfterViewChecked, OnDestroy {
   }
 
   onAnimationEnd() {
-    setTimeout(() => {
-      this.store.dispatch(new UIActions.ShowNotification(''));
-    }, 3000);
+    if (this.notification) {
+      setTimeout(() => {
+        this.store.dispatch(new UIActions.ShowNotification(''));
+      }, 3000);
+    }
   }
 
   ngOnDestroy() {
     this.watcher.unsubscribe();
+    this.notificationSubs.unsubscribe();
   }
 }

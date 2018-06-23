@@ -1,6 +1,6 @@
 <eaf-notification
-  *ngIf="notification$ | async" 
-  [message]="notification$ | async"
+  *ngIf="notification" 
+  [message]="notification"
   [@showNotification]
   (@showNotification.done)="onAnimationEnd()">
 </eaf-notification>
