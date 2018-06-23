@@ -8,7 +8,7 @@ import { TariffsComponent } from './start-section/tariffs/tariffs.component';
 import { ContactsComponent } from './start-section/contacts/contacts.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: HomeComponent, pathMatch: 'full'},
   {path: 'tariffs', component: TariffsComponent},
   {path: 'contacts', component: ContactsComponent},
   {path: 'main',  loadChildren: './secure-section/main.module#MainModule', canLoad: [AuthGuard]},
