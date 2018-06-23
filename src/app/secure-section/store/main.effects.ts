@@ -113,7 +113,7 @@ export class MainEffects {
     .ofType(MainActions.DO_DISCOUNT_REQUEST)
     .map((action: MainActions.DoDiscountRequest) => action.payload)
     .map(r => 'DiscountRequest is sent successefully')
-    .debounceTime(1000)
+    .debounceTime(2000)
     .mergeMap(r => {
       this.helperService.preventBodyToScroll(false);
       return [
