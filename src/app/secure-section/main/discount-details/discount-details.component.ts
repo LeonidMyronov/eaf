@@ -133,6 +133,10 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new MainActions.DoDiscountCreationRequest(requestData));
+    this.store.select(fromRoot.getEraseFormState)
+      .subscribe(form => {
+        this.discountGeneratorForm.reset();
+      });
   }
 
   createTableHeads(el: Coupon) {
