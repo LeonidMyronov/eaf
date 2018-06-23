@@ -28,6 +28,7 @@ export const getCurrentLanguage = createSelector(getUIState, fromUI.getCurrentLa
 export const getActiveMediaQuery = createSelector(getUIState, fromUI.getActiveMediaQuery);
 export const getLoadingState = createSelector(getUIState, fromUI.getLoadingState);
 export const getNotificationState = createSelector(getUIState, fromUI.getNotificationState);
+export const getEraseFormState = createSelector(getUIState, fromUI.getEraseFormState);
 
 export const getUserState = createFeatureSelector<fromUser.State>('user');
 export const getShortUserState = createSelector(getUserState, fromUser.getShortUserState);

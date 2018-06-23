@@ -7,6 +7,7 @@ import {
   SET_MEDIA_QUERY,
   IS_LOADING,
   SHOW_NOTIFICATION,
+  ERASE_FORM,
 } from './ui.actions';
 
 export interface State {
@@ -17,6 +18,7 @@ export interface State {
   activeMediaQuery: string;
   isLoading: boolean;
   notification: string;
+  eraseForm: string;
 }
 
 export const initialState: State = {
@@ -27,6 +29,7 @@ export const initialState: State = {
   activeMediaQuery: '',
   isLoading: false,
   notification: '',
+  eraseForm: '',
 };
 
 export function uiReducer(state: State = initialState, action: UIActions) {
@@ -67,6 +70,11 @@ export function uiReducer(state: State = initialState, action: UIActions) {
         ...state,
         notification: action.payload
       };
+    case ERASE_FORM:
+      return {
+        ...state,
+        eraseForm: action.payload
+      };
     default:
       return state;
   }
@@ -79,4 +87,5 @@ export const getCurrentLanguage = (state: State) => state.currentLanguage;
 export const getActiveMediaQuery = (state: State) => state.activeMediaQuery;
 export const getLoadingState = (state: State) => state.isLoading;
 export const getNotificationState = (state: State) => state.notification;
+export const getEraseFormState = (state: State) => state.eraseForm;
 

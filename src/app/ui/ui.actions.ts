@@ -46,6 +46,7 @@ export class IsLoading implements Action {
 
 export class EraseForm implements Action {
   readonly type = ERASE_FORM;
+  constructor(public payload: string) { }
 }
 
 export type UIActions =

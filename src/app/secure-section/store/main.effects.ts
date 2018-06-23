@@ -129,7 +129,8 @@ export class MainEffects {
           payload: r
         },
         {
-          type: UIActions.ERASE_FORM
+          type: UIActions.ERASE_FORM,
+          payload: r
         }
       ];
     })
@@ -155,7 +156,8 @@ export class MainEffects {
           payload: r
         },
         {
-          type: UIActions.ERASE_FORM
+          type: UIActions.ERASE_FORM,
+          payload: r
         }
       ];
     })

@@ -78,7 +78,8 @@ export class UserEffects {
           payload: response
         },
         {
-          type: UIActions.ERASE_FORM
+          type: UIActions.ERASE_FORM,
+          payload: response
         }
       ];
     })
@@ -103,7 +104,8 @@ export class UserEffects {
           payload: response
         },
         {
-          type: UIActions.ERASE_FORM
+          type: UIActions.ERASE_FORM,
+          payload: response
         }
       ];
     })
