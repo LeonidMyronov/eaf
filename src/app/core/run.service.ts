@@ -15,7 +15,6 @@ export class RunService {
     private authService: AuthService
   ) {
       this.setLang();
-      this.authService.login({email: 'leo@leo.com', password: ''});
   }
 
   setLang() {
