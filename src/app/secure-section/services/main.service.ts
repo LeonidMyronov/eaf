@@ -802,7 +802,8 @@ export class MainService {
 
   fetchStatisticByPeriod() {
     // console.log('fetchStatisticByPeriod from Service');
-    this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
+    // this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
+    return this.statisticByPeriod;
   }
 
   fetchTransactionsByPeriod(query) {

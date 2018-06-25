@@ -10,6 +10,7 @@ import { MainService } from '../../services/main.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
+import * as UIActions from '../../../ui/ui.actions';
 import * as UserAction from '../../user/store/user.actions';
 import * as MainAction from '../../store/main.actions';
 import { Statistic, StatisticFilter, StatisticPanelFilter, PixelTracking } from '../../store/main.model';
@@ -19,7 +20,7 @@ import { Site } from '../../../core/core.model';
 export interface QueryParams {
   fromDate: Date;
   toDate: Date;
-  site: {};
+  siteId: number;
 }
 @Component({
   selector: 'eaf-statistic',
@@ -61,7 +62,6 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
 
 
   ngOnInit() {
-    // this.selectedAllFiltersForm = [];
     this.queryParams = this.initQueryParams();
     this.initForms();
 
@@ -81,7 +81,12 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.subscriptions.push(this.store.select(fromMain.getStatistic).subscribe(
       (r: any) => {
         if (!r) {
-          this.mainService.fetchStatisticByPeriod();
+          // this.mainService.fetchStatisticByPeriod();
+          this.store.dispatch(new UIActions.IsLoading(true));
+          this.store.dispatch(new MainAction.DoFetchStatistic(this.queryParams));
+          this.statisticTableHeads = [];
+          this.allFilters = [];
+          this.selectedAllFilters = [];
           return;
         }
         // console.log('statistic State => ', r);
@@ -120,10 +125,11 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     return {
       fromDate: new Date(currDate.setDate(currDate.getDate() - 7)),
       toDate: new Date(),
-      site: {
-        id: 1,
-        name: 'All sites'
-      }
+      siteId: 1
+      // {
+      //   id: 1,
+      //   name: 'All sites'
+      // }
     };
   }
 
@@ -238,8 +244,11 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   onChangeStatisticQueryParams(queryParams) {
     this.queryParams.fromDate = queryParams.fromDate;
     this.queryParams.toDate = queryParams.toDate;
-    this.queryParams.site = queryParams.dropdownItem;
-    // console.log(queryParams, this.queryParams);
+    this.queryParams.siteId = queryParams.dropdownItem.id;
+    console.log(this.queryParams);
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.store.dispatch(new MainAction.DoFetchStatistic(this.queryParams));
+
     // this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
@@ -267,6 +276,9 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   // ----- cards section start --------
 
   calcCardsGraphElHeight(arr: any): number {
+    if (!arr || !arr.length) {
+      return 1;
+    }
     return arr.reduce((sum, curr) => sum + curr.amount, 0);
   }
 

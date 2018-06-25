@@ -42,6 +42,24 @@ export class MainEffects {
       ];
     });
 
+  @Effect() doFetchStatistic = this.actions$
+    .ofType(MainActions.DO_FETCH_STATISTIC)
+    .map((action: MainActions.DoFetchStatistic) => action.payload)
+    .map((data: {fromDate: Date, toDate: Date, siteId: number}) => this.mainService.fetchStatisticByPeriod())
+    .debounceTime(1000)
+    .mergeMap(data => {
+      return [
+        {
+          type: MainActions.FETCH_STATISTIC,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
+
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)
     .map((action: MainActions.BeforeFetchDayStat) => {

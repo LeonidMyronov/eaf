@@ -15,6 +15,10 @@ export class RunService {
     private authService: AuthService
   ) {
       this.setLang();
+      // read cookie params to define whether user was logged in
+      // gather this info and dispatch
+      // auth = true
+      // fill user profile
   }
 
   setLang() {
