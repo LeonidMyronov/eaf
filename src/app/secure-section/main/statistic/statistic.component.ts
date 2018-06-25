@@ -7,6 +7,7 @@ import 'rxjs/add/operator/take';
 
 import { AppStorageService } from '../../../core/app-storage.service';
 import { MainService } from '../../services/main.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
@@ -60,6 +61,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     private store: Store<fromMain.MainState>,
     private appStorage: AppStorageService,
     private mainService: MainService,
+    private helper: HelperService,
     private changeDetector: ChangeDetectorRef
   ) { }
 
@@ -164,6 +166,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         // make statistic-table request when filter changes
         const params = {...this.queryParams};
         params.filters = this.selectedAllFilters;
+        this.helper.preventBodyToScroll(true);
         this.store.dispatch(new UIActions.IsLoading(true));
         this.store.dispatch(new MainAction.DoFetchStatisticTable(params));
       });

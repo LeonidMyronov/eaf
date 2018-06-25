@@ -63,8 +63,9 @@ export class MainEffects {
     .ofType(MainActions.DO_FETCH_STATISTIC_TABLE)
     .map((action: MainActions.DoFetchStatisticTable) => action.payload)
     .map(() => this.mainService.fetchFilteredStatistic())
-    .debounceTime(1000)
+    .debounceTime(500)
     .mergeMap(r => {
+      this.helperService.preventBodyToScroll(false);
       return [
         {
           type: MainActions.FETCH_STATISTIC_TABLE,
