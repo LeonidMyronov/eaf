@@ -68,11 +68,18 @@ export class MainEffects {
     .map((params: {date: Date}) => {
       return this.mainService.fetchStatisticByDate(params.date);
     })
-    .map((data: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
-      return {
-        type: MainActions.FETCH_DAY_STAT,
-        payload: data
-      };
+    .debounceTime(1000)
+    .mergeMap((data: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
+      return [
+        {
+          type: MainActions.FETCH_DAY_STAT,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
     });
 
   @Effect() ptEventsDetails = this.actions$

@@ -74,8 +74,7 @@ export class PtDateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.subs.unsubscribe();
-    console.log('destroy eaf-pt-date');
+    // do unsubscribe();
   }
 
 }
