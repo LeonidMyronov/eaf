@@ -83,11 +83,18 @@ export class MainEffects {
     .map((params: {date: Date, eventName: string}) => {
       return this.mainService.fetchPTEventsDetails(params);
     })
-    .map((data: {eventName: string, data: PixelTrackingEvent[]}) => {
-      return {
-        type: MainActions.FETCH_PT_EVENTS_DETAILS,
-        payload: data.data
-      };
+    .debounceTime(1000)
+    .mergeMap((data: {eventName: string, data: PixelTrackingEvent[]}) => {
+      return [
+        {
+          type: MainActions.FETCH_PT_EVENTS_DETAILS,
+          payload: data.data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          preloader: false
+        }
+    ];
     });
 
   @Effect() fetchPromoData = this.actions$

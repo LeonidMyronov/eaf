@@ -81,7 +81,6 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.subscriptions.push(this.store.select(fromMain.getStatistic).subscribe(
       (r: any) => {
         if (!r) {
-          // this.mainService.fetchStatisticByPeriod();
           this.store.dispatch(new UIActions.IsLoading(true));
           this.store.dispatch(new MainAction.DoFetchStatistic(this.queryParams));
           this.statisticTableHeads = [];
@@ -112,8 +111,6 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.userStatisticPanelFilters = response;
         // console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
       }));
-
-    // this.statisticQueryParamsState$ = this.store.select(fromMain.getStatisticQueryParams);
   }
 
   ngAfterViewChecked() {
@@ -245,11 +242,9 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.queryParams.fromDate = queryParams.fromDate;
     this.queryParams.toDate = queryParams.toDate;
     this.queryParams.siteId = queryParams.dropdownItem.id;
-    console.log(this.queryParams);
+    // console.log(this.queryParams);
     this.store.dispatch(new UIActions.IsLoading(true));
     this.store.dispatch(new MainAction.DoFetchStatistic(this.queryParams));
-
-    // this.store.dispatch(new MainAction.StatisticQueryParams(queryParams));
   }
 
   // ---- statistic table start -----
