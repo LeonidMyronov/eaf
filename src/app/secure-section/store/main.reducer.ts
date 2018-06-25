@@ -39,7 +39,8 @@ import {
   UPDATE_PROMO_SBANNER_COUPON,
   UPDATE_PROMO_SBANNER_UTM,
   UPDATE_PROMO_ABANNER_COUPON,
-  UPDATE_PROMO_ABANNER_UTM
+  UPDATE_PROMO_ABANNER_UTM,
+  FETCH_STATISTIC_TABLE
 } from './main.actions';
 import { Site } from '../../core/core.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
@@ -192,6 +193,14 @@ export function mainReducer(state: MainState = initialState, action: MainActions
         ...state,
         statistic: action.payload
       };
+    case FETCH_STATISTIC_TABLE:
+    return {
+      ...state,
+      statistic: {
+        ...state.statistic,
+        statistic: action.payload
+      }
+    };
     case UPDATE_STATISTIC_FILTERS:
       return {
         ...state,

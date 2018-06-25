@@ -59,6 +59,23 @@ export class MainEffects {
         }
       ];
     });
+  @Effect() doFetchStatisticTable = this.actions$
+    .ofType(MainActions.DO_FETCH_STATISTIC_TABLE)
+    .map((action: MainActions.DoFetchStatisticTable) => action.payload)
+    .map(() => this.mainService.fetchFilteredStatistic())
+    .debounceTime(1000)
+    .mergeMap(r => {
+      return [
+        {
+          type: MainActions.FETCH_STATISTIC_TABLE,
+          payload: r.statistic
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
 
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)

@@ -1,11 +1,13 @@
 import { Action } from '@ngrx/store';
-import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent } from './main.model';
+import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent, Statistic } from './main.model';
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
 
 export const BEFORE_FETCH_CONSOLIDATED_DATA = '[MAIN] BEFORE_FETCH_CONSOLIDATED_DATA';
 export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
 export const DO_FETCH_STATISTIC = '[MAIN] DO_FETCH_STATISTIC';
+export const DO_FETCH_STATISTIC_TABLE = '[MAIN] DO_FETCH_STATISTIC_TABLE';
+export const FETCH_STATISTIC_TABLE = '[MAIN] FETCH_STATISTIC_TABLE';
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
 export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
@@ -36,6 +38,16 @@ export class BeforeFetchConsolidatedData implements Action {
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
   constructor(public payload: any) {}
+}
+
+export class DoFetchStatisticTable implements Action {
+  readonly type = DO_FETCH_STATISTIC_TABLE;
+  constructor(public payload: {fromDate: Date, toDate: Date, siteId: number, filters?: StatisticPanelFilter[]}) {}
+}
+
+export class FetchStatisticTable implements Action {
+  readonly type = FETCH_STATISTIC_TABLE;
+  constructor(public payload: Statistic[]) {}
 }
 
 export class DoFetchStatistic implements Action {
@@ -166,6 +178,8 @@ export type MainActions =
   BeforeFetchConsolidatedData |
   FetchConsolidatedData |
   FetchStatistic |
+  FetchStatisticTable |
+  DoFetchStatisticTable |
   UpdateStatisticFilters |
   SaveStatisticFilters |
   StatisticQueryParams |
