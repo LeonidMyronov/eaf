@@ -21,7 +21,9 @@ export interface QueryParams {
   fromDate: Date;
   toDate: Date;
   siteId: number;
+  filters?: StatisticPanelFilter[];
 }
+
 @Component({
   selector: 'eaf-statistic',
   templateUrl: './statistic.component.html',
@@ -52,6 +54,7 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
   public sitesList: Site[];
   private filteredStatisticTableHeads = [];
   private subscriptions: Subscription[] = [];
+  private isPageLoaded: boolean = false;
 
   constructor(
     private store: Store<fromMain.MainState>,
@@ -89,28 +92,28 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
           return;
         }
         // console.log('statistic State => ', r);
-        this.createStatisticTableHeads(r.statistic[0]);
-        this.createPTData(r.pixelTracking);
-        this.allFilters = r.filters;
+
+        if (!this.isPageLoaded) {
+          this.createStatisticTableHeads(r.statistic[0]);
+          this.createPTData(r.pixelTracking);
+          this.allFilters = r.filters;
+          this.fillAllFiltersForm();
+          this.watchOnFiltersFormChanges();
+          this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
+          this.isPageLoaded = true;
+        }
         // console.log('allFilters => ', this.allFilters);
-        this.fillAllFiltersForm();
-        this.selectedAllFilters = this.fillSelectedAllFilters(this.allFiltersForm.value);
+
         // console.log('selectedAllFilters => ', this.selectedAllFilters);
       }
     ));
     this.statisticState$ = this.store.select(fromMain.getStatistic);
 
-    this.allFiltersForm.valueChanges.subscribe(
-      formState => {
-        this.selectedAllFilters = this.fillSelectedAllFilters(formState);
-        // console.log('selectedAllFilters => ', this.selectedAllFilters);
-      });
-
-      this.subscriptions.push(this.store.select(fromRoot.getUserStatisticFilters)
-      .subscribe((response: StatisticPanelFilterList) => {
-        this.userStatisticPanelFilters = response;
-        // console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
-      }));
+    this.subscriptions.push(this.store.select(fromRoot.getUserStatisticFilters)
+    .subscribe((response: StatisticPanelFilterList) => {
+      this.userStatisticPanelFilters = response;
+      // console.log('userStatisticPanelFilters => ', this.userStatisticPanelFilters);
+    }));
   }
 
   ngAfterViewChecked() {
@@ -151,6 +154,19 @@ export class StatisticComponent implements OnInit, AfterViewChecked, OnDestroy {
         this.allFiltersForm.addControl(menu.name, groupControl);
       }
     });
+  }
+
+  watchOnFiltersFormChanges() {
+    this.allFiltersForm.valueChanges.subscribe(
+      formState => {
+        this.selectedAllFilters = this.fillSelectedAllFilters(formState);
+        // console.log('selectedAllFilters => ', this.selectedAllFilters);
+        // make statistic-table request when filter changes
+        const params = {...this.queryParams};
+        params.filters = this.selectedAllFilters;
+        this.store.dispatch(new UIActions.IsLoading(true));
+        this.store.dispatch(new MainAction.DoFetchStatisticTable(params));
+      });
   }
 
   initSaveFiltersListForm() {
