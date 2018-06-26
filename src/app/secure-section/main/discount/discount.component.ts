@@ -65,7 +65,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
       this.store.select(fromRoot.getEraseFormState)
       .subscribe(response => {
         if (response === 'DiscountRequest is sent successefully') {
-          this.router.navigate(['details'], {relativeTo: this.route});
+          this.router.navigate(['main', 'discount', 'details']);
         }
       })
     );
