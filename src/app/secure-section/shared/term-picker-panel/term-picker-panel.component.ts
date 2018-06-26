@@ -15,7 +15,8 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
   public selectedTermGroupItem: any;
   public startDate = new FormControl(new Date());
   public endDate = new FormControl(new Date());
-  maxDate = new Date();
+  public maxDate = new Date();
+
   constructor() {
   }
 
@@ -68,6 +69,7 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
     }
     this.selectedTermGroupItem = {...term};
   }
+  
   onSubmit() {
     this.change.emit(
       {
@@ -77,4 +79,5 @@ export class TermPickerPanelComponent implements OnInit, OnChanges {
       }
     );
   }
+
 }

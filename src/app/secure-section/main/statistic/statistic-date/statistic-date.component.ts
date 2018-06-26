@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
 import * as MainActions from '../../../store/main.actions';
+import * as UIActions from '../../../../ui/ui.actions';
 import * as fromMain from '../../../store/main.reducer';
 import { StatisticByDate } from '../../../store/main.model';
 
@@ -13,11 +14,13 @@ import { StatisticByDate } from '../../../store/main.model';
   templateUrl: './statistic-date.component.html',
   styleUrls: ['./statistic-date.component.sass']
 })
+
 export class StatisticDateComponent implements OnInit, OnDestroy {
   dateInput: Date;
   panelTitle = 'Orders';
   statisticState: {date: Date, totalIncome: number, data: StatisticByDate[]};
-  statisticTableHeads: string[];
+  statisticTableHeads: string[] = [];
+
   private filteredStatisticTableHeads = [];
   private subs: Subscription;
 
@@ -30,24 +33,34 @@ export class StatisticDateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.params.subscribe(response => {
       this.dateInput = new Date(response.date.replace(/-/g, ','));
-      this.store.dispatch(new MainActions.BeforeFetchDayStat({date: this.dateInput}));
+      this.createQuery();
     });
 
     this.subs = this.store.select(fromMain.getStatisticByDate)
       .subscribe((r: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
-        this.createStatisticTableHeads(r.data[0]);
-        this.statisticState = r;
+        if (r) {
+          this.createStatisticTableHeads(r.data[0]);
+          this.statisticState = r;
+        }
       });
   }
 
+  createQuery() {
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.store.dispatch(new MainActions.BeforeFetchDayStat({date: this.dateInput}));
+  }
+
   onChangeDate(e: {date: Date}) {
+    this.createQuery();
     const routeSuffix = `${e.date.getFullYear()}-${e.date.getMonth() + 1}-${e.date.getDate()}`;
     this.router.navigate(['../', routeSuffix], {relativeTo: this.route});
   }
 
   // ---- statistic table start -----
   createStatisticTableHeads(el: StatisticByDate) {
-    this.statisticTableHeads = Object.keys(el).slice(1, -1);
+    if (el) {
+      this.statisticTableHeads = Object.keys(el).slice(1, -1);
+    }
   }
 
   onChangeTableFilter($e, field) {

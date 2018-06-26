@@ -4,7 +4,7 @@
     <eaf-date-picker-panel
     [dateInput]="dateInput"
     [title]="panelTitle"
-    [dropdownList]="ptEventsNamesState | async"
+    [dropdownList]="ptEventsNamesState$ | async"
     [selectedDropdownItem]="currentPTEvent"
     (change)="onChangePanelQuery($event)"></eaf-date-picker-panel>
 
@@ -22,7 +22,6 @@
             <div class="table__row" *ngFor="let el of ptEvents; let i = index" >
               <div class="table__cell">{{ el.date | date:'hh:mm' }}<br>UTC</div>
             </div>
-            <!-- {{el}} -->
           </div>
 
           <div class="table__body" #actb>

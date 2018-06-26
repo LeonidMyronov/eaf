@@ -4,7 +4,6 @@ import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { HelperService } from '../../core/helper.service';
-import { AuthService } from '../auth.service';
 
 import * as fromRoot from '../../app.reducers';
 import * as UIAction from '../../ui/ui.actions';
@@ -19,7 +18,6 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
 
   constructor(
-    private authService: AuthService,
     private store: Store<fromRoot.State>,
     private helper: HelperService
   ) { }

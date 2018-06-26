@@ -2,7 +2,7 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router, CanLo
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { take } from 'rxjs/operators';
+import 'rxjs/add/operator/take';
 
 import * as fromRoot from '../app.reducers';
 
@@ -14,19 +14,18 @@ export class AuthGuard implements CanActivate, CanLoad {
   ) {}
 
   canActivate (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
+    return this.store.select(fromRoot.getIsAuth).take(1);
   }
 
-  canLoad (route: Route): Observable<boolean>|Promise<boolean>|boolean {
-
-    return this.store.select(fromRoot.getIsAuth).pipe(take(1));
-    // .subscribe(response => {
-    //   if (response === true) {
-    //     return true;
-    //   } else {
-    //     this.router.navigate(['/']);
-    //     return false;
-    //   }
-    // });
+  canLoad (route: Route): Observable<boolean> | Promise<boolean> | boolean {
+    return this.store.select(fromRoot.getIsAuth)
+    .take(1)
+    .map(response => {
+      if (response === true) {
+        return true;
+      } else {
+        this.router.navigate(['/']);
+      }
+    });
   }
 }

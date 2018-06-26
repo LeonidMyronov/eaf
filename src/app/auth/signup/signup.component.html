@@ -29,7 +29,8 @@
         <div class="form-field__actions">
 
           <span class="form-required">*</span>
-          <div *ngIf="signupForm.get('passwords.password').errors?.required && signupForm.get('passwords.password').touched" class="form-error">
+          <div *ngIf="signupForm.get('passwords.password').errors?.required && signupForm.get('passwords.password').touched"
+          class="form-error">
             This field is required
           </div>
 

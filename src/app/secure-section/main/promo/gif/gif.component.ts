@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { MainService } from '../../../services/main.service';
+import { HelperService } from '../../../../core/helper.service';
 
 import { BaseBannerComponent } from '../base-banner/base-banner.component';
 
@@ -14,13 +15,15 @@ import { Coupon } from '../../../store/main.model';
   templateUrl: '../base-banner/base-banner.component.html',
   styleUrls: ['../base-banner/base-banner.component.sass']
 })
+
 export class GifComponent extends BaseBannerComponent implements OnInit {
 
   constructor(
     protected store: Store<fromMain.State>,
-    protected mainService: MainService
+    protected mainService: MainService,
+    protected helper: HelperService
   ) {
-    super(store, mainService);
+    super(store, mainService, helper);
    }
 
   ngOnInit() {

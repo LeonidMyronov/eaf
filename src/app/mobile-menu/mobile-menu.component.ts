@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
 import { AppStorageService } from '../core/app-storage.service';
 import { AuthService } from '../auth/auth.service';
@@ -9,18 +10,21 @@ import { HelperService } from '../core/helper.service';
 
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
+import { UserMenuItem, NavMenuItem, AuthMenuItem } from '../core/core.model';
 
 @Component({
   selector: 'eaf-mobile-menu',
   templateUrl: './mobile-menu.component.html',
   styleUrls: ['./mobile-menu.component.sass']
 })
-export class MobileMenuComponent implements OnInit {
-  public userMenu: any[];
-  public navMenu: any[];
-  public authMenu: any[];
+export class MobileMenuComponent implements OnInit, OnDestroy {
+  public userMenu: UserMenuItem[];
+  public navMenu: NavMenuItem[];
+  public authMenu: AuthMenuItem[];
   public isAuth = false;
   public userState$: Observable<any>;
+
+  private sub: Subscription;
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -31,7 +35,7 @@ export class MobileMenuComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.store.select(fromRoot.getIsAuth)
+    this.sub = this.store.select(fromRoot.getIsAuth)
       .subscribe(
         isAuth => {
           if (isAuth) {
@@ -53,7 +57,6 @@ export class MobileMenuComponent implements OnInit {
   }
 
   onAuthMenuClick(name: string) {
-    // this.router.navigate([`${url}`]);
     this.onCloseMobileMenu();
     switch (name) {
       case 'profile':
@@ -61,6 +64,7 @@ export class MobileMenuComponent implements OnInit {
         break;
       case 'login':
         // TODO
+        // when mockups will update
         break;
       case 'registration':
         this.store.dispatch(new UIAction.IsSignupFormOpened(true));
@@ -72,6 +76,10 @@ export class MobileMenuComponent implements OnInit {
       default:
         console.log(name);
     }
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
 }
