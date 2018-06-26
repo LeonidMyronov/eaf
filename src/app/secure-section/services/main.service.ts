@@ -456,6 +456,78 @@ export class MainService {
     ]
   };
 
+  private filteredStatistic: {statistic: Statistic[]} = {
+    statistic: [
+    {
+      date: new Date(2018, 3, 1),
+      uniques: 69069,
+      hits: 6902,
+      inquiries: 6903,
+      fakes: 6904,
+      sales: 6905,
+      salesIncome: 6906,
+      rebills: 6907,
+      rebillsIncome: 6908,
+      incomeOn1k: 6909,
+      salesOn1k: 69690,
+      chargeback: 696969,
+      refferers: 69692,
+      refferersIncome: 69693,
+      totalIncome: 69694,
+    },
+    {
+      date: new Date(2018, 3, 2),
+      uniques: 299,
+      hits: 299,
+      inquiries: 299,
+      fakes: 299,
+      sales: 299,
+      salesIncome: 299,
+      rebills: 299,
+      rebillsIncome: 299,
+      incomeOn1k: 299,
+      salesOn1k: 299,
+      chargeback: 299,
+      refferers: 299,
+      refferersIncome: 299,
+      totalIncome: 299,
+    },
+    {
+      date: new Date(2018, 3, 3),
+      uniques: 399,
+      hits: 399,
+      inquiries: 399,
+      fakes: 399,
+      sales: 399,
+      salesIncome: 399,
+      rebills: 399,
+      rebillsIncome: 399,
+      incomeOn1k: 399,
+      salesOn1k: 399,
+      chargeback: 399,
+      refferers: 399,
+      refferersIncome: 399,
+      totalIncome: 399,
+    },
+    {
+      date: new Date(2018, 3, 4),
+      uniques: 499,
+      hits: 499,
+      inquiries: 499,
+      fakes: 499,
+      sales: 499,
+      salesIncome: 499,
+      rebills: 499,
+      rebillsIncome: 499,
+      incomeOn1k: 499,
+      salesOn1k: 499,
+      chargeback: 499,
+      refferers: 499,
+      refferersIncome: 499,
+      totalIncome: 499,
+    },
+  ]};
+
   private statisticByDay = {
     date: new Date(),
     totalIncome: 200.25,
@@ -802,7 +874,8 @@ export class MainService {
 
   fetchStatisticByPeriod() {
     // console.log('fetchStatisticByPeriod from Service');
-    this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
+    // this.store.dispatch(new MainActions.FetchStatistic(this.statisticByPeriod));
+    return this.statisticByPeriod;
   }
 
   fetchTransactionsByPeriod(query) {
@@ -828,6 +901,10 @@ export class MainService {
 
   fetchPTEventsDetails({date: Date, eventName: string}) {
     return this.pTEventsDetails;
+  }
+
+  fetchFilteredStatistic(): {statistic: Statistic[]} {
+    return this.filteredStatistic;
   }
 
   fetchPromoData(id: number) {

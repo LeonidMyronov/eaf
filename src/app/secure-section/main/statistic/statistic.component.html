@@ -111,7 +111,7 @@
             <div class="table__head table__row">
               <div class="table__cell">{{'date' | translate }}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+            <div class="table__row" *ngFor="let el of (statisticState$ | async)?.statistic">
               <div class="table__cell" routerLink="{{el.date | date:'y-MM-dd'}}">{{el.date | date:'dd MMM y'}}</div>
             </div>
           </div>
@@ -119,7 +119,7 @@
             <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
               <div *ngFor="let el of getStatisticTableHeads()" class="table__cell">{{el | translate}}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__row" *ngFor="let el of (statisticState$ | async)?.statistic" fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()">{{el[prop]}}</div>
             </div>
           </div>
@@ -127,7 +127,7 @@
             <div class="table__head table__row">
               <div class="table__cell">{{'totalIncome' | translate}}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).statistic">
+            <div class="table__row" *ngFor="let el of (statisticState$ | async)?.statistic">
               <div class="table__cell">{{el.totalIncome}}</div>
             </div>
           </div>
@@ -144,15 +144,15 @@
         <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
           <div class="graph-section__item"
             #graphElDt
-            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).deviceTypes) * 100)"
-            *ngFor="let el of (statisticState$ | async).deviceTypes.slice(0, 4)"
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async)?.deviceTypes) * 100)"
+            *ngFor="let el of (statisticState$ | async)?.deviceTypes.slice(0, 4)"
             [ngStyle]="{'height': graphElDt.dataset.calcvalue  +'%'}">
             <span class="graph-section__item__value">{{graphElDt.dataset.calcvalue | number:'0.0-0'}}%</span>
           </div>
         </div>
         <div class="descr-list">
           <div class="descr-list__item"
-            *ngFor="let el of (statisticState$ | async).deviceTypes"
+            *ngFor="let el of (statisticState$ | async)?.deviceTypes"
             fxLayout="row" fxLayoutAlign="space-between center">
             <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
             <div class="descr-list__item__value">{{el.amount}}</div>
@@ -168,15 +168,15 @@
         <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
           <div class="graph-section__item"
             #graphElOs
-            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).os) * 100)"
-            *ngFor="let el of (statisticState$ | async).os.slice(0, 4)"
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async)?.os) * 100)"
+            *ngFor="let el of (statisticState$ | async)?.os.slice(0, 4)"
             [ngStyle]="{'height': graphElOs.dataset.calcvalue  +'%'}">
             <span class="graph-section__item__value">{{graphElOs.dataset.calcvalue | number:'0.0-0'}}%</span>
           </div>
         </div>
         <div class="descr-list">
           <div class="descr-list__item"
-            *ngFor="let el of (statisticState$ | async).os"
+            *ngFor="let el of (statisticState$ | async)?.os"
             fxLayout="row" fxLayoutAlign="space-between center">
             <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
             <div class="descr-list__item__value">{{el.amount}}</div>
@@ -192,15 +192,15 @@
         <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
           <div class="graph-section__item"
             #graphElBr
-            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).browsers) * 100)"
-            *ngFor="let el of (statisticState$ | async).browsers.slice(0, 4)"
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async)?.browsers) * 100)"
+            *ngFor="let el of (statisticState$ | async)?.browsers.slice(0, 4)"
             [ngStyle]="{'height': graphElBr.dataset.calcvalue  +'%'}">
             <span class="graph-section__item__value">{{graphElBr.dataset.calcvalue | number:'0.0-0'}}%</span>
           </div>
         </div>
         <div class="descr-list">
           <div class="descr-list__item"
-            *ngFor="let el of (statisticState$ | async).browsers"
+            *ngFor="let el of (statisticState$ | async)?.browsers"
             fxLayout="row" fxLayoutAlign="space-between center">
             <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
             <div class="descr-list__item__value">{{el.amount}}</div>
@@ -216,15 +216,15 @@
         <div class="graph-section" fxLayout="row" fxLayoutAlign="center stretch" fxLayoutGap="10px">
           <div class="graph-section__item"
             #graphElCo
-            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async).countries) * 100)"
-            *ngFor="let el of (statisticState$ | async).countries.slice(0, 4)"
+            [attr.data-calcvalue]="(el.amount / calcCardsGraphElHeight((statisticState$ | async)?.countries) * 100)"
+            *ngFor="let el of (statisticState$ | async)?.countries.slice(0, 4)"
             [ngStyle]="{'height': graphElCo.dataset.calcvalue  +'%'}">
             <span class="graph-section__item__value">{{graphElCo.dataset.calcvalue | number:'0.0-0'}}%</span>
           </div>
         </div>
         <div class="descr-list">
           <div class="descr-list__item"
-            *ngFor="let el of (statisticState$ | async).countries"
+            *ngFor="let el of (statisticState$ | async)?.countries"
             fxLayout="row" fxLayoutAlign="space-between center">
             <div class="descr-list__item__name" fxLayout="row" fxLayoutAlign="start center"><span class="badge"></span> {{el.name}}</div>
             <div class="descr-list__item__value">{{el.amount}}</div>
@@ -240,7 +240,7 @@
         <div class="graph__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="graph__body">
-          <eaf-graph [data]="(statisticState$ | async).incomes"></eaf-graph>
+          <eaf-graph [data]="(statisticState$ | async)?.incomes"></eaf-graph>
       </div>
     </section>
 
@@ -250,7 +250,7 @@
         <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="table-group__body">
-        <eaf-conversion [data]="(statisticState$ | async).conversions" widthClass="full"></eaf-conversion>
+        <eaf-conversion [data]="(statisticState$ | async)?.conversions" widthClass="full"></eaf-conversion>
       </div>
     </section>
 
@@ -267,7 +267,7 @@
               <div class="table__cell">{{ getPTTableHeads()[0] | translate}}</div>
             </div>
             <div class="table__row"
-              *ngFor="let el of (statisticState$ | async).pixelTracking; let i = index">
+              *ngFor="let el of (statisticState$ | async)?.pixelTracking; let i = index">
               <div class="table__cell">{{el.date | date:'dd MMM y' }}</div>
             </div>
             <div class="table__row table__head">
@@ -280,7 +280,7 @@
               <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{propName}}</div>
             </div>
             <div class="table__row"
-              *ngFor="let el of (statisticState$ | async).pixelTracking"
+              *ngFor="let el of (statisticState$ | async)?.pixelTracking"
               fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell"
                 *ngFor="let prop of getPTTableHeads().slice(1); let j = index"
@@ -294,25 +294,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="collapse-table table">
-          <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
-            <div class="table__cell" [ngClass]="{headcol: i==0}" *ngFor="let el of getPTTableHeads(); let i = index" >{{el }}</div>
-          </div>
-
-          <div class="table__body">
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
-              <div class="table__cell"  [ngClass]="{headcol: j==0}" *ngFor="let prop of getPTTableHeads(); let j = index">
-                <ng-container *ngIf="j == 0; else displayValue">
-                  {{el[prop] | date:'dd MMM y'}}
-                </ng-container>
-                <ng-template #displayValue>
-                  {{el[prop] }}
-                </ng-template>
-                
-              </div>
-            </div>
-          </div>
-        </div> -->
 
       </section>
 

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Effect, Actions } from '@ngrx/effects';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/map';
@@ -26,6 +27,7 @@ export class MainEffects {
 
   @Effect() beforeFetchConsolidatedData = this.actions$
     .ofType(MainActions.BEFORE_FETCH_CONSOLIDATED_DATA)
+        // TODO make request to backend
     .map(_ => this.mainService.fetchConsolidatedData())
     .mergeMap(data => {
       this.helperService.preventBodyToScroll(false);
@@ -41,19 +43,65 @@ export class MainEffects {
       ];
     });
 
+  @Effect() doFetchStatistic = this.actions$
+    .ofType(MainActions.DO_FETCH_STATISTIC)
+    .map((action: MainActions.DoFetchStatistic) => action.payload)
+        // TODO make request to backend
+    .map((data: {fromDate: Date, toDate: Date, siteId: number}) => this.mainService.fetchStatisticByPeriod())
+    .debounceTime(500)
+    .mergeMap(data => {
+      return [
+        {
+          type: MainActions.FETCH_STATISTIC,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
+  @Effect() doFetchStatisticTable = this.actions$
+    .ofType(MainActions.DO_FETCH_STATISTIC_TABLE)
+    .map((action: MainActions.DoFetchStatisticTable) => action.payload)
+        // TODO make request to backend
+    .map(() => this.mainService.fetchFilteredStatistic())
+    .debounceTime(500)
+    .mergeMap(r => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.FETCH_STATISTIC_TABLE,
+          payload: r.statistic
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
+
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)
     .map((action: MainActions.BeforeFetchDayStat) => {
       return action.payload;
     })
+        // TODO make request to backend
     .map((params: {date: Date}) => {
       return this.mainService.fetchStatisticByDate(params.date);
     })
-    .map((data: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
-      return {
-        type: MainActions.FETCH_DAY_STAT,
-        payload: data
-      };
+    .debounceTime(500)
+    .mergeMap((data: {date: Date, totalIncome: number, data: StatisticByDate[]}) => {
+      return [
+        {
+          type: MainActions.FETCH_DAY_STAT,
+          payload: data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
     });
 
   @Effect() ptEventsDetails = this.actions$
@@ -61,14 +109,22 @@ export class MainEffects {
     .map((action: MainActions.BeforeFetchPTEventsDetails) => {
       return action.payload;
     })
+        // TODO make request to backend
     .map((params: {date: Date, eventName: string}) => {
       return this.mainService.fetchPTEventsDetails(params);
     })
-    .map((data: {eventName: string, data: PixelTrackingEvent[]}) => {
-      return {
-        type: MainActions.FETCH_PT_EVENTS_DETAILS,
-        payload: data.data
-      };
+    .debounceTime(500)
+    .mergeMap((data: {eventName: string, data: PixelTrackingEvent[]}) => {
+      return [
+        {
+          type: MainActions.FETCH_PT_EVENTS_DETAILS,
+          payload: data.data
+        },
+        {
+          type: UIActions.IS_LOADING,
+          preloader: false
+        }
+    ];
     });
 
   @Effect() fetchPromoData = this.actions$
@@ -76,10 +132,11 @@ export class MainEffects {
     .map((action: MainActions.SetPromoSiteData) => {
       return action.payload.site.id;
     })
+    // TODO make request to backend
     .map((id: number) => {
       return this.mainService.fetchPromoData(id);
     })
-    .debounceTime(1000)
+    .debounceTime(500)
     .mergeMap((data: {
           coupons: Coupon[],
           staticBanners: Banner[],
@@ -112,7 +169,8 @@ export class MainEffects {
     .ofType(MainActions.DO_DISCOUNT_REQUEST)
     .map((action: MainActions.DoDiscountRequest) => action.payload)
     .map(r => 'DiscountRequest is sent successefully')
-    .debounceTime(1000)
+    // TODO make request to backend
+    .debounceTime(500)
     .mergeMap(r => {
       this.helperService.preventBodyToScroll(false);
       return [
@@ -122,8 +180,19 @@ export class MainEffects {
         },
         {
           type: MainActions.SUBMIT_DISCOUNT_REQUEST,
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r
+        },
+        {
+          type: UIActions.ERASE_FORM,
+          payload: r
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
 
@@ -131,12 +200,26 @@ export class MainEffects {
     .ofType(MainActions.DO_DISCOUNT_CREATION_REQUEST)
     .map((action: MainActions.DoDiscountCreationRequest) => action.payload)
     .map(r => 'DiscountCreationRequest is sent successefully')
-    .debounceTime(1000)
-    .map(r => {
+    // TODO make request to backend
+    .debounceTime(500)
+    .mergeMap(r => {
       this.helperService.preventBodyToScroll(false);
-      return {
+      return [
+        {
           type: UIActions.IS_LOADING,
           payload: false
-        };
+        },
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r
+        },
+        {
+          type: UIActions.ERASE_FORM,
+          payload: r
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 }

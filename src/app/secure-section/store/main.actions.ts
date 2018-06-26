@@ -1,28 +1,39 @@
 import { Action } from '@ngrx/store';
-import { StatisticPanelFilter, Transaction, News, Coupon, Discounts, StatisticByDate, PixelTrackingEvent } from './main.model';
+import { StatisticPanelFilter,
+  Transaction,
+  News,
+  Coupon,
+  Discounts,
+  StatisticByDate,
+  PixelTrackingEvent,
+  Statistic
+} from './main.model';
 import { Site } from '../../core/core.model';
 import { Banner } from '../main/promo/promo.model';
 
-export const BEFORE_FETCH_CONSOLIDATED_DATA = '[MAIN] BEFORE_FETCH_CONSOLIDATED_DATA';
-export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';
-export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';
-export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';
+export const BEFORE_FETCH_CONSOLIDATED_DATA = '[MAIN] BEFORE_FETCH_CONSOLIDATED_DATA'; // effect action for fetching consolidated data
+export const FETCH_CONSOLIDATED_DATA = '[MAIN] FETCH_CONSOLIDATED_DATA';               // put consolidated data to Store
+export const DO_FETCH_STATISTIC = '[MAIN] DO_FETCH_STATISTIC';                         // effect action for fetching all statistic data
+export const DO_FETCH_STATISTIC_TABLE = '[MAIN] DO_FETCH_STATISTIC_TABLE';             // effect action for fetching data for table-section
+export const FETCH_STATISTIC_TABLE = '[MAIN] FETCH_STATISTIC_TABLE';                   // put statistic-table-section data to Store
+export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';                               // put all statistic data to Store
+export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                         // put transaction dat ato Store
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
 export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
-export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';
-export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';
-export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';
-export const DO_DISCOUNT_CREATION_REQUEST = '[MAIN] DO_DISCOUNT_CREATION_REQUEST';
-export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';
-export const FETCH_DAY_STAT = '[MAIN] FETCH_DAY_STAT';
-export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';
-export const FILL_PT_EVENTS_NAMES = '[MAIN] FILL_PT_EVENTS_NAMES';
-export const BEFORE_FETCH_PT_EVENTS_DETAILS = '[MAIN] BEFORE_FETCH_PT_EVENTS_DETAILS';
-export const FETCH_PT_EVENTS_DETAILS = '[MAIN] FETCH_PT_EVENTS_DETAILS';
+export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';                     // put data for discount page to store
+export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';                 // put data for discount/details page to Store
+export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';                       // effect action for sending discount-request data
+export const DO_DISCOUNT_CREATION_REQUEST = '[MAIN] DO_DISCOUNT_CREATION_REQUEST';     // effect action for sending discount-creation-request data
+export const SUBMIT_DISCOUNT_REQUEST = '[MAIN] SUBMIT_DISCOUNT_REQUEST';               // action indicates successfull submitting a form
+export const BEFORE_FETCH_DAY_STAT = '[MAIN] BEFORE_FETCH_DAY_STAT';                   // effect action for fetching 1-day-statistic data
+export const FETCH_DAY_STAT = '[MAIN] FETCH_DAY_STAT';                                 // put 1-day-statistic data to Store
+export const FILL_PT_EVENTS_NAMES = '[MAIN] FILL_PT_EVENTS_NAMES';                     // put Pixel-Tracking events names to Store
+export const BEFORE_FETCH_PT_EVENTS_DETAILS = '[MAIN] BEFORE_FETCH_PT_EVENTS_DETAILS'; // effect action for fetching PT-data
+export const FETCH_PT_EVENTS_DETAILS = '[MAIN] FETCH_PT_EVENTS_DETAILS';               // put PT-data to Store
 export const SET_PROMO_SITE_DATA = '[MAIN] SET_PROMO_SITE_DATA';
-export const STORE_PROMO_DATA = '[MAIN] STORE_PROMO_DATA';
+export const STORE_PROMO_DATA = '[MAIN] STORE_PROMO_DATA';                             // put data for PromoModule to Store
 export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
 export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
 export const UPDATE_PROMO_ABANNER_COUPON = '[MAIN] UPDATE_PROMO_ABANNER_COUPON';
@@ -35,6 +46,21 @@ export class BeforeFetchConsolidatedData implements Action {
 export class FetchConsolidatedData implements Action {
   readonly type = FETCH_CONSOLIDATED_DATA;
   constructor(public payload: any) {}
+}
+
+export class DoFetchStatisticTable implements Action {
+  readonly type = DO_FETCH_STATISTIC_TABLE;
+  constructor(public payload: {fromDate: Date, toDate: Date, siteId: number, filters?: StatisticPanelFilter[]}) {}
+}
+
+export class FetchStatisticTable implements Action {
+  readonly type = FETCH_STATISTIC_TABLE;
+  constructor(public payload: Statistic[]) {}
+}
+
+export class DoFetchStatistic implements Action {
+  readonly type = DO_FETCH_STATISTIC;
+  constructor(public payload: {fromDate: Date, toDate: Date, siteId: number}) {}
 }
 
 export class FetchStatistic implements Action {
@@ -160,6 +186,8 @@ export type MainActions =
   BeforeFetchConsolidatedData |
   FetchConsolidatedData |
   FetchStatistic |
+  FetchStatisticTable |
+  DoFetchStatisticTable |
   UpdateStatisticFilters |
   SaveStatisticFilters |
   StatisticQueryParams |

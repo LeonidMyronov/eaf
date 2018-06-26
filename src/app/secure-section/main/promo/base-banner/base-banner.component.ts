@@ -2,6 +2,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import { MainService } from '../../../services/main.service';
+import { HelperService } from '../../../../core/helper.service';
 
 import * as fromMain from '../../../store/main.reducer';
 import { Banner } from '../promo.model';
@@ -12,7 +13,8 @@ export abstract class BaseBannerComponent {
 
   constructor(
     protected store: Store<fromMain.State>,
-    protected mainService: MainService
+    protected mainService: MainService,
+    protected helper: HelperService
   ) {}
 
   abstract onSelectCoupon(id: number, coupon: Coupon): void;
@@ -40,7 +42,7 @@ export abstract class BaseBannerComponent {
 
   onCopyToClipboard(value) {
     this.mainService.copyToClipboard(value)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 

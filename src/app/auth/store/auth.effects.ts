@@ -11,12 +11,13 @@ import { AuthService } from '../auth.service';
 import { HelperService } from '../../core/helper.service';
 
 import * as AuthActions from './auth.actions';
-import * as USerActions from '../../secure-section/user/store/user.actions';
+import * as UserActions from '../../secure-section/user/store/user.actions';
 import * as UIActions from '../../ui/ui.actions';
 import { LoginData } from '../login-data.model';
 import { SignupData } from '../signup-data.model';
 import { User } from '../../secure-section/user/user.model';
 import { Site } from '../../core/core.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class AuthEffects {
@@ -31,9 +32,11 @@ export class AuthEffects {
   @Effect() doLogin = this.actions$
     .ofType(AuthActions.DO_LOGIN)
     .map((action: AuthActions.DoLogin) => action.payload)
+    // TODO
     // switchMap to BackEnd API
     .switchMap((data: LoginData) => this.authService.login(data))
-    .debounceTime(2000)
+    // .map(() => Observable.throw('Network error!'))
+    .debounceTime(500)
     .mergeMap((response: {user: User, sites: Site[]}) => {
       this.router.navigate(['/main']);
       return [
@@ -45,18 +48,22 @@ export class AuthEffects {
           payload: false
         },
         {
-          type: USerActions.FILL_PROFILE,
+          type: UserActions.FILL_PROFILE,
           payload: response
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
-    // .catch(error => console.log(error));
 
   @Effect() doSignup = this.actions$
     .ofType(AuthActions.DO_SIGNUP)
     .map((action: AuthActions.DoSignup) => action.payload)
+    // TODO
+    // switchMap to BackEnd API
     .map((data: SignupData) => this.authService.signup(data))
-    .debounceTime(2000)
+    .debounceTime(500)
     .mergeMap((response: {user: User, sites: Site[]}) => {
       this.router.navigate(['/main']);
       return [
@@ -64,20 +71,28 @@ export class AuthEffects {
           type: AuthActions.IS_AUTH
         },
         {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: 'User successefully signed up'
+        },
+        {
           type: UIActions.IS_SIGNUP_FORM_OPENED,
           payload: false
         },
         {
-          type: USerActions.FILL_PROFILE,
+          type: UserActions.FILL_PROFILE,
           payload: response
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
     });
 
   @Effect() doLogout = this.actions$
     .ofType(AuthActions.DO_LOGOUT)
-    // .switchMap( logoot API)
-    .debounceTime(2000)
+    // TODO
+    // switchMap to BackEnd API
+    .debounceTime(500)
     .mergeMap(() => {
       this.router.navigate(['/']);
       this.helper.preventBodyToScroll(false);
@@ -86,7 +101,7 @@ export class AuthEffects {
           type: AuthActions.IS_UNAUTH
         },
         {
-          type: USerActions.CLEAR_PROFILE
+          type: UserActions.CLEAR_PROFILE
         },
         {
           type: UIActions.IS_LOADING,

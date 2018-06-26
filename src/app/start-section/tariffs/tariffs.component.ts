@@ -19,6 +19,9 @@ export class TariffsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // TODO
+    // pass static data to the AppStorageService
+    // fetch them here
   }
 
   onRegister() {

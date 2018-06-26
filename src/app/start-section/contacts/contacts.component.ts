@@ -32,5 +32,9 @@ export class ContactsComponent implements OnInit {
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new UserActions.DoSendMessage(this.contactsForm.value));
+    this.store.select(fromRoot.getEraseFormState)
+      .subscribe(form => {
+        this.contactsForm.reset();
+      });
   }
 }

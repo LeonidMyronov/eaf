@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Site } from './core.model';
+import { Site, TimeList, NavMenuItem, UserMenuItem, AuthMenuItem, LangListItem } from './core.model';
 
 @Injectable()
 export class AppStorageService {
@@ -72,6 +72,7 @@ export class AppStorageService {
     {
       name: 'logout',
       item_class: 'secondary',
+      url: '/',
       auth: true
     }
   ];
@@ -302,15 +303,15 @@ export class AppStorageService {
 
   constructor() {}
 
-  getNavMenu() { return [...this.navMenu]; }
-  getAuthMenu() { return [...this.authMenu]; }
-  getLangsList() { return [...this.langsList]; }
+  getNavMenu(): NavMenuItem[] { return [...this.navMenu]; }
+  getAuthMenu(): AuthMenuItem[] { return [...this.authMenu]; }
+  getLangsList(): LangListItem[] { return [...this.langsList]; }
   getCountryList() { return [...this.countryList]; }
   getHomeSection1Cards() { return [...this.homeSection1Cards]; }
   getWorkTypes() { return [...this.workTypes]; }
   getHomeSection5Cards() { return [...this.homeSection5Cards]; }
-  getUserMenu() {return [...this.userMenu]; }
-  getTimeList() {return [...this.timeList]; }
+  getUserMenu(): UserMenuItem[] {return [...this.userMenu]; }
+  getTimeList(): TimeList[] {return [...this.timeList]; }
   // getTariffsList(): Site[] {return this.tariffsList.slice(1); }
   getAllSites(): Site[] {return this.tariffsList.slice(); }
 }

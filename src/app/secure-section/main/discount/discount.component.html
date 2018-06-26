@@ -45,7 +45,7 @@
         </div>
       </div>
 
-      <form class="form grid-4" [formGroup]="discountForm" (ngSubmit)="onSubmit()" *ngIf="!discountsData.isRequestSubmitted">
+      <form class="form grid-4" [formGroup]="discountForm" (ngSubmit)="onSubmit()" *ngIf="!isRequestSubmitted">
         <div class="title">Подать заявку на скидки</div>
 
         <div class="form-field">
@@ -111,7 +111,7 @@
         <button type="submit" class="primary btn-lg" [disabled]="discountForm.invalid">Send</button>
 
       </form>
-      <div class="submit-banner grid-4 bg-form-color" *ngIf="discountsData.isRequestSubmitted" fxLayout="column" fxLayoutAlign="center center">
+      <div class="submit-banner grid-4 bg-form-color" *ngIf="isRequestSubmitted" fxLayout="column" fxLayoutAlign="center center">
         <img src="/assets/images/main/discount/timer-icon.svg" alt="">
         <h1>Ваша заявка обрабатывается</h1>
         <p>После обработки вашей заявки интерфейс для генерации скидок появится на этой странице</p>

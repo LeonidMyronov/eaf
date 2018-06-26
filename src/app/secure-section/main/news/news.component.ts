@@ -19,9 +19,11 @@ export interface NewsState {
   templateUrl: './news.component.html',
   styleUrls: ['./news.component.sass']
 })
+
 export class NewsComponent implements OnInit, OnDestroy {
   newsState: NewsState;
   newsSubs: Subscription;
+
   constructor(
     private store: Store<fromMain.MainState>,
     private mainService: MainService
@@ -37,8 +39,7 @@ export class NewsComponent implements OnInit, OnDestroy {
             this.newsState = response;
           }
         }
-      )
-    ;
+      );
   }
 
   ngOnDestroy() {

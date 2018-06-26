@@ -6,6 +6,7 @@ import 'rxjs/add/operator/take';
 
 import { MainStorageService } from '../../services/main-storage.service';
 import { MainService } from '../../services/main.service';
+import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as UserActions from '../../user/store/user.actions';
@@ -30,7 +31,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
-    private mainService: MainService
+    private mainService: MainService,
+    private helper: HelperService
 
   ) { }
 
@@ -157,7 +159,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   onRefLinkCopy(link: string) {
     this.mainService.copyToClipboard(link)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 

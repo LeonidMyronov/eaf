@@ -19,11 +19,13 @@ import { User } from '../../user/user.model';
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.sass']
 })
+
 export class OfferComponent implements OnInit {
   public siteState$: Observable<Site[]>;
   public userId$: Observable<number>;
   public refPages: RefPage[];
   public selectedRefPages = new Map();
+
   constructor(
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
@@ -56,7 +58,7 @@ export class OfferComponent implements OnInit {
 
   onCopyToClipboard(link: string) {
     this.mainService.copyToClipboard(link)
-      .then(resolve => console.log(`Text ${resolve} copied successefully`))
+      .then(resolve => this.helper.onSuccessClipboardCopy())
       .catch(error => console.log(`Error ${error} occured while copying text`));
   }
 

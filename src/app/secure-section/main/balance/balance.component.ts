@@ -1,7 +1,8 @@
-import { Component, OnInit, AfterContentChecked, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs/Subscription';
 
 import { MainService } from '../../services/main.service';
 import { MainStorageService } from '../../services/main-storage.service';
@@ -24,7 +25,7 @@ export interface TransactionQueryParams {
   templateUrl: './balance.component.html',
   styleUrls: ['./balance.component.sass']
 })
-export class BalanceComponent implements OnInit, AfterContentChecked {
+export class BalanceComponent implements OnInit, OnDestroy {
   @ViewChild('trtb') trtb: ElementRef;
   @ViewChild('trtl') trtl: ElementRef;
   userBalanceState$: Observable<any>;
@@ -34,6 +35,8 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
   paymentMethods: PaymentMethod[];
   transactionQueryParams: TransactionQueryParams;
   transactionsTableHeads: string[];
+
+  private subs: Subscription[] = [];
 
   constructor(
     private store: Store<fromRoot.State>,
@@ -47,18 +50,19 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
     this.initForm();
     this.transactionQueryParams = this.initTransactionQueryParams();
     this.onChangePaymentMethod(this.paymentMethods[0]);
-    this.userBalanceState$ = this.store.select(fromRoot.getUserBalanceState);
-    this.store.select(fromMain.getTransactions).subscribe((r: Transaction[]) => {
-      if (!r.length) {
-        this.mainService.fetchTransactionsByPeriod(this.transactionQueryParams);
-      } else {
-        this.createTrTableHeads(r[0]);
-        this.transactionsState = r;
-      }
-    });
-  }
 
-  ngAfterContentChecked() {
+    this.userBalanceState$ = this.store.select(fromRoot.getUserBalanceState);
+
+    this.subs.push(
+      this.store.select(fromMain.getTransactions).subscribe((r: Transaction[]) => {
+        if (!r.length) {
+          this.mainService.fetchTransactionsByPeriod(this.transactionQueryParams);
+        } else {
+          this.createTrTableHeads(r[0]);
+          this.transactionsState = r;
+        }
+      })
+    );
   }
 
   initForm() {
@@ -94,10 +98,14 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
       paymentId: this.balanceForm.value.payment.id,
       regular: this.balanceForm.value.regular
     };
-    console.log(requestData);
+    // console.log(requestData);
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new UserActions.DoSendWithdrawRequest(requestData));
+    this.subs.push(
+      this.store.select(fromRoot.getEraseFormState)
+        .subscribe(form => this.initForm())
+    );
   }
 
   onChangeTrnsactionQueryParams(queryParams) {
@@ -110,7 +118,15 @@ export class BalanceComponent implements OnInit, AfterContentChecked {
   createTrTableHeads(el: Transaction) {
     this.transactionsTableHeads = Object.keys(el).slice();
   }
+
   getTrTableHeads() {
     return [...this.transactionsTableHeads];
   }
+
+  ngOnDestroy() {
+    this.subs.forEach(sub => {
+      sub.unsubscribe();
+    });
+  }
+
 }
