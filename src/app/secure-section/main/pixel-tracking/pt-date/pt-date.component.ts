@@ -14,19 +14,21 @@ import { PixelTrackingEvent } from '../../../store/main.model';
   templateUrl: './pt-date.component.html',
   styleUrls: ['./pt-date.component.sass']
 })
+
 export class PtDateComponent implements OnInit, OnDestroy {
   dateInput: Date;
   currentPTEvent: string;
   panelTitle = 'Pixel Tracking';
   ptEvents: PixelTrackingEvent[] = [];
-  ptEventsNamesState: Observable<string[]>;
+  ptEventsNamesState$: Observable<string[]>;
   ptTableHeads: string[] = [];
+
+  private sub: Subscription;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromMain.MainState>,
-
   ) { }
 
   ngOnInit() {
@@ -39,15 +41,15 @@ export class PtDateComponent implements OnInit, OnDestroy {
       this.createQuery();
     });
 
-    this.store.select(fromMain.getPTEventsDetails)
-    .subscribe(r => {
-      if (r) {
-        this.ptEvents = r;
-        this.createPTTableHeads(this.ptEvents[0]);
-      }
+    this.sub = this.store.select(fromMain.getPTEventsDetails)
+      .subscribe(r => {
+        if (r) {
+          this.ptEvents = r;
+          this.createPTTableHeads(this.ptEvents[0]);
+        }
     });
 
-    this.ptEventsNamesState = this.store.select(fromMain.getPTEventsNames);
+    this.ptEventsNamesState$ = this.store.select(fromMain.getPTEventsNames);
 
   }
 
@@ -74,7 +76,7 @@ export class PtDateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // do unsubscribe();
+    this.sub.unsubscribe();
   }
 
 }

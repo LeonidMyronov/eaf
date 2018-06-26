@@ -1,4 +1,4 @@
-import { Directive, AfterContentChecked, Renderer2, ElementRef, OnInit } from '@angular/core';
+import { Directive, AfterContentChecked, ElementRef, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[eafAlignRowHeight]'
@@ -8,7 +8,6 @@ export class AlignRowHeightDirective implements OnInit, AfterContentChecked {
   bodySide;
   constructor(
     private elRef: ElementRef,
-    private renderer: Renderer2
   ) { }
 
   ngOnInit() {

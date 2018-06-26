@@ -19,10 +19,6 @@ export class TodayComponent implements OnInit {
 
   ngOnInit() {
     this.todayState$ = this.store.select(fromMain.getConsolidatedData);
-    // this.store.select(fromMain.getConsolidatedData)
-    //   .subscribe(resp => console.log(resp));
   }
-
-
 
 }

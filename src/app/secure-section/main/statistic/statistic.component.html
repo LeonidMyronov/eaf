@@ -294,25 +294,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="collapse-table table">
-          <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
-            <div class="table__cell" [ngClass]="{headcol: i==0}" *ngFor="let el of getPTTableHeads(); let i = index" >{{el }}</div>
-          </div>
-
-          <div class="table__body">
-            <div class="table__row" *ngFor="let el of (statisticState$ | async).pixelTracking" fxLayout="row" fxLayoutGap="2px">
-              <div class="table__cell"  [ngClass]="{headcol: j==0}" *ngFor="let prop of getPTTableHeads(); let j = index">
-                <ng-container *ngIf="j == 0; else displayValue">
-                  {{el[prop] | date:'dd MMM y'}}
-                </ng-container>
-                <ng-template #displayValue>
-                  {{el[prop] }}
-                </ng-template>
-                
-              </div>
-            </div>
-          </div>
-        </div> -->
 
       </section>
 

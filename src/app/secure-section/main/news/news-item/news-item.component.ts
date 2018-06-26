@@ -14,7 +14,9 @@ import { News } from '../../../store/main.model';
 export class NewsItemComponent implements OnInit, OnDestroy {
   @Input() news: News;
   public displayContent: boolean;
+
   private subs: Subscription;
+
   constructor(
     private store: Store<fromRoot.State>
   ) { }

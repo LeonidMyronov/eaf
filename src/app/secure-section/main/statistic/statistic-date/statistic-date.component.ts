@@ -14,11 +14,13 @@ import { StatisticByDate } from '../../../store/main.model';
   templateUrl: './statistic-date.component.html',
   styleUrls: ['./statistic-date.component.sass']
 })
+
 export class StatisticDateComponent implements OnInit, OnDestroy {
   dateInput: Date;
   panelTitle = 'Orders';
   statisticState: {date: Date, totalIncome: number, data: StatisticByDate[]};
   statisticTableHeads: string[] = [];
+
   private filteredStatisticTableHeads = [];
   private subs: Subscription;
 

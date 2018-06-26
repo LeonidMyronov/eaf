@@ -19,11 +19,13 @@ import { User } from '../../user/user.model';
   templateUrl: './offer.component.html',
   styleUrls: ['./offer.component.sass']
 })
+
 export class OfferComponent implements OnInit {
   public siteState$: Observable<Site[]>;
   public userId$: Observable<number>;
   public refPages: RefPage[];
   public selectedRefPages = new Map();
+
   constructor(
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,

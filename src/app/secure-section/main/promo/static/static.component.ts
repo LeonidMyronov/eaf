@@ -15,6 +15,7 @@ import { Coupon } from '../../../store/main.model';
   templateUrl: '../base-banner/base-banner.component.html',
   styleUrls: ['../base-banner/base-banner.component.sass']
 })
+
 export class StaticComponent extends BaseBannerComponent implements OnInit {
   constructor(
     protected store: Store<fromMain.State>,
@@ -35,7 +36,6 @@ export class StaticComponent extends BaseBannerComponent implements OnInit {
 
   onAddUtm(id: number, utm: string) {
     this.store.dispatch(new MainActions.UpdatePromoSBannerUTM({id, utm}));
-
   }
 
 }

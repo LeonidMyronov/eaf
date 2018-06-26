@@ -22,7 +22,8 @@ export class DiscountComponent implements OnInit, OnDestroy {
   discountForm: FormGroup;
   discountsData: Discounts;
   isRequestSubmitted = false;
-  private subs: Subscription;
+
+  private subs: Subscription[] = [];
 
   constructor(
     private store: Store<fromMain.MainState>,
@@ -31,15 +32,18 @@ export class DiscountComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute
   ) { }
+
   ngOnInit() {
-    this.subs = this.store.select(fromMain.getDiscounts)
+    this.subs.push(
+      this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.visitorsLastMonth) {
           this.mainService.fetchDiscountIntro();
         } else {
           this.discountsData = response;
         }
-      });
+      })
+    );
     this.initForm();
   }
 
@@ -57,15 +61,19 @@ export class DiscountComponent implements OnInit, OnDestroy {
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new MainActions.DoDiscountRequest(this.discountForm.value));
-    this.store.select(fromRoot.getEraseFormState)
-    .subscribe(form => {
-      if (form === 'DiscountRequest is sent successefully') {
-        this.router.navigate(['details'], {relativeTo: this.route});
-      }
-    });
+    this.subs.push(
+      this.store.select(fromRoot.getEraseFormState)
+      .subscribe(response => {
+        if (response === 'DiscountRequest is sent successefully') {
+          this.router.navigate(['details'], {relativeTo: this.route});
+        }
+      })
+    );
   }
 
   ngOnDestroy() {
-    this.subs.unsubscribe();
+    this.subs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 }

@@ -15,6 +15,7 @@ export class RunService {
     private authService: AuthService
   ) {
       this.setLang();
+      // TODO
       // read cookie params to define whether user was logged in
       // gather this info and dispatch
       // auth = true

@@ -21,6 +21,7 @@ import { Income } from '../../store/main.model';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.sass']
 })
+
 export class GraphComponent implements OnInit, AfterViewChecked, OnChanges, OnDestroy {
   @Input() data: Income[];
   @ViewChild('graph') graph;
@@ -64,7 +65,6 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges, OnDe
       this.data = this.data.slice();
       this.maxDataArrValue = this.getMaxDataArrValue();
       this.maxYscaleValue = this.getMaxYscaleValue();
-      // this.graphInit();
       setTimeout(_ => this.graphInit(), 0); // setTimeout needed to avoid ExpressionChangedAfterItHasBeenCheckedError
     }
 
@@ -72,8 +72,6 @@ export class GraphComponent implements OnInit, AfterViewChecked, OnChanges, OnDe
 
   ngAfterViewChecked() {
     this.changeDetector.detectChanges();
-        // draw chart
-        // this.drawChart();
   }
 
   graphInit() {

@@ -12,7 +12,7 @@ import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
 import * as AuthActions from '../auth/store/auth.actions';
-import { Site } from '../core/core.model';
+import { Site, AuthMenuItem, NavMenuItem, UserMenuItem, LangListItem } from '../core/core.model';
 
 @Component({
   selector: 'eaf-header',
@@ -25,17 +25,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isMobileMenuOpened$: Observable<boolean>;
   public userState$: Observable<any>;
 
-  public navMenu: any[] = [];
-  public authMenu: any[] = [];
+  public navMenu: NavMenuItem[] = [];
+  public authMenu: AuthMenuItem[] = [];
   public tariffsList: Site[] = [];
   public userTariff: Site;
-  public langsList: any[] = [];
-  public userLang;
-  public userMenu: any[];
+  public langsList: LangListItem[] = [];
+  public userLang: string;
+  public userMenu: UserMenuItem[];
 
-  private authSubs: Subscription;
-  private siteSubs: Subscription;
-
+  private subs: Subscription[] = [];
 
   constructor(
     private appStorage: AppStorageService,
@@ -46,21 +44,24 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.authSubs = this.store.select(fromRoot.getIsAuth)
-      .subscribe(
-        isAuth => {
-          this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
-          this.userMenu = this.appStorage.getUserMenu();
-          this.isAuth = isAuth;
-        }
-      );
+    this.subs.push(
+      this.store.select(fromRoot.getIsAuth)
+        .subscribe(
+          isAuth => {
+            this.authMenu = this.appStorage.getAuthMenu().filter(item => item.auth === isAuth);
+            this.userMenu = this.appStorage.getUserMenu();
+            this.isAuth = isAuth;
+          }
+        )
+    );
 
-    this.siteSubs = this.store.select(fromRoot.getOurSites)
-      .subscribe(
-        (response: Site[]) => {
-          this.tariffsList = response;
-          this.userTariff = this.tariffsList[0];
-        }
+    this.subs.push(
+      this.store.select(fromRoot.getOurSites)
+        .subscribe(
+          (response: Site[]) => {
+            this.tariffsList = response;
+            this.userTariff = this.tariffsList[0];
+          })
       );
 
     this.userState$ = this.store.select(fromRoot.getShortUserState);
@@ -68,8 +69,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.navMenu = this.appStorage.getNavMenu();
     this.langsList = this.appStorage.getLangsList();
-    this.store.select(fromRoot.getCurrentLanguage)
-    .subscribe( lang => this.userLang = lang);
+    this.subs.push(
+      this.store.select(fromRoot.getCurrentLanguage)
+        .subscribe( lang => this.userLang = lang)
+    );
   }
 
   onChangeLang(lang: any) {
@@ -101,7 +104,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.router.navigate(['/main', 'profile']);
         break;
       case 'logout':
-        // this.authService.logout();
         this.helper.preventBodyToScroll(true);
         this.store.dispatch(new UIAction.IsLoading(true));
         this.store.dispatch(new AuthActions.DoLogout());
@@ -112,7 +114,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authSubs.unsubscribe();
-    this.siteSubs.unsubscribe();
+    this.subs.forEach(sub => {
+      sub.unsubscribe();
+    });
   }
 }

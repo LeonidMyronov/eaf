@@ -10,8 +10,10 @@ import { PromoTheme } from '../promo.model';
   templateUrl: '../base-theme/base-theme.component.html',
   styleUrls: ['../base-theme/base-theme.component.sass']
 })
+
 export class LandingComponent implements OnInit {
   themesState$: Observable<{themes: PromoTheme[]}>;
+
   constructor(
     private store: Store<fromMain.MainState>
   ) { }

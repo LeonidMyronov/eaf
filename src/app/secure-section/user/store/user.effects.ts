@@ -64,8 +64,9 @@ export class UserEffects {
   @Effect() doSendMessage = this.actions$
     .ofType(UserActions.DO_SEND_MESSAGE)
     .map((action: UserActions.DoSendMessage) => action.payload)
+    // TODO make request to backend
     .map(() => 'Message is sent successefully')
-    .debounceTime(1000)
+    .debounceTime(500)
     .mergeMap(response => {
       this.helper.preventBodyToScroll(false);
       return [
@@ -90,8 +91,9 @@ export class UserEffects {
   @Effect() doSenWithdrawRequest = this.actions$
     .ofType(UserActions.DO_SEND_WITHDRAW_REQUEST)
     .map((action: UserActions.DoSendWithdrawRequest) => action.payload)
+    // TODO make request to backend
     .map(() => 'WithdrawRequest is sent successefully')
-    .debounceTime(1000)
+    .debounceTime(500)
     .mergeMap(response => {
       this.helper.preventBodyToScroll(false);
       return [

@@ -31,6 +31,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
   activeSlideIndex = 0;
   rangePoints = new Array(16);
   couponsStatTableHeads: string[];
+
   private subs: Subscription[] = [];
 
   constructor(
@@ -39,8 +40,10 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     private appStorage: AppStorageService,
     private helper: HelperService
   ) { }
+
   ngOnInit() {
-    this.subs.push(this.store.select(fromMain.getDiscounts)
+    this.subs.push(
+      this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
           this.mainService.fetchDiscountDetails();
@@ -48,18 +51,22 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
           this.discountsData = response;
           this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
         }
-      }));
+      })
+    );
 
-    this.subs.push(this.store.select(fromRoot.getOurSites)
+    this.subs.push(
+      this.store.select(fromRoot.getOurSites)
       .subscribe((response: Site[]) => {
         this.sitesArr = response;
       })
     );
 
-    this.subs.push(this.store.select(fromRoot.getActiveMediaQuery)
-    .subscribe(
-      (activeMedia: string) => this.maxSlidesPerPage = activeMedia === 'xs' ? 1 : 3
-    ));
+    this.subs.push(
+      this.store.select(fromRoot.getActiveMediaQuery)
+        .subscribe(
+          (activeMedia: string) => this.maxSlidesPerPage = activeMedia === 'xs' ? 1 : 3
+        )
+    );
 
     this.initForm();
     this.discountGeneratorForm.get('discountRange').valueChanges.subscribe(v => {
@@ -78,6 +85,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  // swap site-slide left
   onSlideLeft() {
     if (this.sliderPos === 0) {
       return;
@@ -86,6 +94,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // swap site-slide right
   onSlideRight() {
     if (this.sitesArr.length - (this.maxSlidesPerPage - this.sliderPos) === 0) {
       return;
@@ -94,6 +103,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
+  // select site on slider
   onClickSlide(i) {
     this.activeSlideIndex = i;
     this.discountGeneratorForm.patchValue({site: this.sitesArr[i]});
@@ -129,19 +139,22 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
       siteId: this.discountGeneratorForm.value.site.id,
       term: this.discountGeneratorForm.value.term
     };
-    console.log(requestData);
+    // console.log(requestData);
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new MainActions.DoDiscountCreationRequest(requestData));
-    this.store.select(fromRoot.getEraseFormState)
-      .subscribe(form => {
-        this.discountGeneratorForm.reset();
-      });
+    this.subs.push(
+      this.store.select(fromRoot.getEraseFormState)
+        .subscribe(form => {
+          this.discountGeneratorForm.reset();
+        })
+    );
   }
 
   createTableHeads(el: Coupon) {
     return Object.keys(el).slice();
   }
+
   getCouponsStatTableHeads() {
     return [...this.couponsStatTableHeads];
   }

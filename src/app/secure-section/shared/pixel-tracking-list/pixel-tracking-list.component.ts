@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
+import { Component, Input, ViewChild, ChangeDetectorRef, AfterViewChecked } from '@angular/core';
 
 import { PixelTracking } from '../../store/main.model';
 
@@ -7,7 +7,7 @@ import { PixelTracking } from '../../store/main.model';
   templateUrl: './pixel-tracking-list.component.html',
   styleUrls: ['./pixel-tracking-list.component.sass']
 })
-export class PixelTrackingListComponent implements OnInit, AfterViewChecked {
+export class PixelTrackingListComponent implements AfterViewChecked {
 
   @Input('data') data: PixelTracking[];
   @ViewChild('time') time;
@@ -19,9 +19,6 @@ export class PixelTrackingListComponent implements OnInit, AfterViewChecked {
   constructor(
     private changeDetector: ChangeDetectorRef
   ) { }
-
-  ngOnInit() {
-  }
 
   // prevent ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked on ng 4
   // https://github.com/angular/angular/issues/17572

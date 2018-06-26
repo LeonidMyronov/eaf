@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
 
 import { MainService } from '../../../services/main.service';
 import { HelperService } from '../../../../core/helper.service';
@@ -7,12 +8,12 @@ import { HelperService } from '../../../../core/helper.service';
 import { PromoCalcView, PromoCalcColorScheme, PromoCalc } from '../promo.model';
 import * as fromMain from '../../../store/main.reducer';
 
-
 @Component({
   selector: 'eaf-calculator',
   templateUrl: './calculator.component.html',
   styleUrls: ['./calculator.component.sass']
 })
+
 export class CalculatorComponent implements OnInit, OnDestroy {
 
   public calcViews: PromoCalcView[];
@@ -21,21 +22,22 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   public selectedcCalcColSch: PromoCalcColorScheme;
   public calcCustomStylesSnippet: string[];
   public userCalcSnippet: string;
+
   private calcState: PromoCalc;
+  private sub: Subscription;
   private CALC_SCRIPT_ID = 'promo_calc_script';
   private CALC_CUSTOM_STYLES_ID = 'promo_calc_custom_styles';
   private CALC_CUSTOM_MEDIA_STYLES_ID = 'promo_calc_custom_media_styles';
   private CalcCustomStylesIDs = [this.CALC_CUSTOM_STYLES_ID, this.CALC_CUSTOM_MEDIA_STYLES_ID];
+
   constructor(
-    // private promoStorage: PromoStorageService,
-    // Refactoring - move to Effect
     private mainService: MainService,
     private store: Store <fromMain.MainState>,
     private helper: HelperService
   ) { }
 
   ngOnInit() {
-    this.store.select(fromMain.getPromoCalculator)
+    this.sub = this.store.select(fromMain.getPromoCalculator)
       .subscribe((calculator: PromoCalc) => {
         this.calcState = calculator;
         this.calcViews = calculator.calcViews;
@@ -450,5 +452,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     const el = document.getElementById('promo_calc_script');
     document.getElementsByTagName('body')[0].removeChild(el);
+    this.sub.unsubscribe();
   }
+
 }

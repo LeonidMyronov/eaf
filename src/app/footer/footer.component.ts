@@ -8,6 +8,7 @@ import { AppStorageService } from '../core/app-storage.service';
 
 import { environment } from '../../environments/environment';
 import * as fromRoot from '../app.reducers';
+import { TimeList, NavMenuItem, UserMenuItem } from '../core/core.model';
 
 @Component({
   selector: 'eaf-footer',
@@ -16,16 +17,17 @@ import * as fromRoot from '../app.reducers';
 })
 export class FooterComponent implements OnInit {
   public deployPath = environment.deployPath;
-  public navMenu: any;
-  public userMenu: any;
-  public timeList: any;
-  public currentTime: number ;
+  public navMenu: NavMenuItem[];
+  public userMenu: UserMenuItem[];
+  public timeList: TimeList[];
+  public currentTime: TimeList ;
   public currentYear: number ;
   public isAuth$: Observable<boolean>;
+  public currentTimer$: Observable<string>;
+  public serverTimer$: Observable<string>;
+  public homeTimer$: Observable<string>;
+
   private timerGenerator$: Observable<Date>;
-  private currentTimer$: Observable<string>;
-  private homeTimer$: Observable<string>;
-  private serverTimer$: Observable<string>;
 
   constructor(
     private appStorage: AppStorageService,
@@ -46,7 +48,7 @@ export class FooterComponent implements OnInit {
     this.currentTimer$ = this.serverTimer$;
   }
 
-
+  // update clocks in the footer
   createTimer() {
     return Observable.timer(0, 60000);
   }

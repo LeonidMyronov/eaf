@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import { FormControl } from '@angular/forms';
   templateUrl: './date-picker-panel.component.html',
   styleUrls: ['./date-picker-panel.component.sass']
 })
-export class DatePickerPanelComponent implements OnInit, OnChanges {
+export class DatePickerPanelComponent implements OnChanges {
   @Input() title;
   @Input() dateInput;
   @Input() selectedDropdownItem;
@@ -14,11 +14,8 @@ export class DatePickerPanelComponent implements OnInit, OnChanges {
   @Output() change = new EventEmitter<{date: Date}>();
   public date = new FormControl(new Date());
   public MAX_DATE: Date;
+
   constructor() {
-  }
-
-  ngOnInit() {
-
   }
 
   initDateForm() {
