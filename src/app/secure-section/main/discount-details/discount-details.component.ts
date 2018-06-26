@@ -146,7 +146,13 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.store.select(fromRoot.getEraseFormState)
         .subscribe(form => {
-          this.discountGeneratorForm.reset();
+          this.activeSlideIndex = 0;
+          this.discountGeneratorForm.reset({
+            site: this.sitesArr[this.activeSlideIndex],
+            term: '1',
+            discountRange: 5,
+            discountValue: '5%'
+          });
         })
     );
   }
