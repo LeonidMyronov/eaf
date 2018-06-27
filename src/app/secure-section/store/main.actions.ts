@@ -17,7 +17,8 @@ export const DO_FETCH_STATISTIC = '[MAIN] DO_FETCH_STATISTIC';                  
 export const DO_FETCH_STATISTIC_TABLE = '[MAIN] DO_FETCH_STATISTIC_TABLE';             // effect action for fetching data for table-section
 export const FETCH_STATISTIC_TABLE = '[MAIN] FETCH_STATISTIC_TABLE';                   // put statistic-table-section data to Store
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';                               // put all statistic data to Store
-export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                         // put transaction dat ato Store
+export const DO_FETCH_TRANSACTIONS = '[MAIN] DO_FETCH_TRANSACTIONS';                   // effect action for fetching transactions data for balance page
+export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                         // put transaction data to Store
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
 export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
@@ -81,6 +82,11 @@ export class SaveStatisticFilters implements Action {
 export class StatisticQueryParams implements Action {
   readonly type = STATISTIC_QUERY_PARAMS;
   constructor(public payload: {}) {}
+}
+
+export class DoFetchTransactions implements Action {
+  readonly type = DO_FETCH_TRANSACTIONS;
+  constructor(public payload: {fromDate: Date, toDate: Date, paymentMethodId: number}) {}
 }
 
 export class FetchTransactions implements Action {
@@ -191,6 +197,7 @@ export type MainActions =
   UpdateStatisticFilters |
   SaveStatisticFilters |
   StatisticQueryParams |
+  DoFetchTransactions |
   FetchTransactions |
   FetchNews |
   FetchDiscountIntro |

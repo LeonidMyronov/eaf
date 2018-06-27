@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 
 import * as fromMain from '../store/main.reducer';
 import * as MainActions from '../store/main.actions';
-import { Statistic, StatisticByDate } from '../store/main.model';
+import { Statistic, StatisticByDate, Transaction } from '../store/main.model';
 
 @Injectable()
 export class MainService {
@@ -878,9 +878,10 @@ export class MainService {
     return this.statisticByPeriod;
   }
 
-  fetchTransactionsByPeriod(query) {
+  fetchTransactionsByPeriod(query): Transaction[] {
     // console.log('fetchTransactionsByPeriod from Service');
-    this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
+    // this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
+    return this.transactionsByPeriod;
   }
 
   fetchNews() {

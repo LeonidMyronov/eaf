@@ -12,7 +12,7 @@ import { HelperService } from '../../core/helper.service';
 
 import * as MainActions from './main.actions';
 import * as UIActions from '../../ui/ui.actions';
-import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
+import { StatisticByDate, PixelTrackingEvent, Coupon, Transaction } from './main.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
 
 @Injectable()
@@ -73,6 +73,25 @@ export class MainEffects {
         {
           type: MainActions.FETCH_STATISTIC_TABLE,
           payload: r.statistic
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
+
+  @Effect() doFetchTransactions = this.actions$
+    .ofType(MainActions.DO_FETCH_TRANSACTIONS)
+    .map((action: MainActions.DoFetchTransactions) => action.payload)
+    .map((r) => this.mainService.fetchTransactionsByPeriod(r))
+    .debounceTime(500)
+    .mergeMap((r: Transaction[]) => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.FETCH_TRANSACTIONS,
+          payload: r
         },
         {
           type: UIActions.IS_LOADING,
