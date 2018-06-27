@@ -12,8 +12,9 @@ import { HelperService } from '../../core/helper.service';
 
 import * as MainActions from './main.actions';
 import * as UIActions from '../../ui/ui.actions';
-import { StatisticByDate, PixelTrackingEvent, Coupon } from './main.model';
+import { StatisticByDate, PixelTrackingEvent, Coupon, Transaction } from './main.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
+import { NewsState } from '../main/news/news.component';
 
 @Injectable()
 export class MainEffects {
@@ -81,6 +82,25 @@ export class MainEffects {
       ];
     });
 
+  @Effect() doFetchTransactions = this.actions$
+    .ofType(MainActions.DO_FETCH_TRANSACTIONS)
+    .map((action: MainActions.DoFetchTransactions) => action.payload)
+    .map((r) => this.mainService.fetchTransactionsByPeriod(r))
+    .debounceTime(500)
+    .mergeMap((r: Transaction[]) => {
+      this.helperService.preventBodyToScroll(false);
+      return [
+        {
+          type: MainActions.FETCH_TRANSACTIONS,
+          payload: r
+        },
+        {
+          type: UIActions.IS_LOADING,
+          payload: false
+        }
+      ];
+    });
+
   @Effect() dayStat = this.actions$
     .ofType(MainActions.BEFORE_FETCH_DAY_STAT)
     .map((action: MainActions.BeforeFetchDayStat) => {
@@ -127,6 +147,18 @@ export class MainEffects {
     ];
     });
 
+  @Effect() doFetchNews = this.actions$
+    .ofType(MainActions.DO_FETCH_NEWS)
+    .map((action: MainActions.DoFetchNews) => action.payload)
+    .map((page: number) => this.mainService.fetchNews(page)) // current o next available page with news
+    .debounceTime(500)
+    .map((r: NewsState) => {
+      return {
+        type: MainActions.FETCH_NEWS,
+        payload: r
+      };
+    });
+
   @Effect() fetchPromoData = this.actions$
     .ofType(MainActions.SET_PROMO_SITE_DATA)
     .map((action: MainActions.SetPromoSiteData) => {
@@ -163,6 +195,26 @@ export class MainEffects {
           payload: false
         }
       ];
+    });
+
+  @Effect() doFetchDiscountPageData = this.actions$
+    .ofType(MainActions.DO_FETCH_DISCOUNT_INTRO)
+    .map(() => this.mainService.fetchDiscountIntro())
+    .map(r => {
+      return {
+        type: MainActions.FETCH_DISCOUNT_INTRO,
+        payload: r
+      };
+    });
+
+    @Effect() doFetchDiscountDetailsData = this.actions$
+    .ofType(MainActions.DO_FETCH_DISCOUNT_DETAILS)
+    .map(() => this.mainService.fetchDiscountDetails())
+    .map(r => {
+      return {
+        type: MainActions.FETCH_DISCOUNT_DETAILS,
+        payload: r
+      };
     });
 
   @Effect() doDiscountRequest = this.actions$
