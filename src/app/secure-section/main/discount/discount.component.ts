@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { MainService } from '../../services/main.service';
 import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
@@ -27,7 +26,6 @@ export class DiscountComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromMain.MainState>,
-    private mainService: MainService,
     private helper: HelperService,
     private router: Router,
     private route: ActivatedRoute
@@ -38,7 +36,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
       this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.visitorsLastMonth) {
-          this.mainService.fetchDiscountIntro();
+          this.store.dispatch(new MainActions.DoFetchDiscountIntro())
         } else {
           this.discountsData = response;
         }

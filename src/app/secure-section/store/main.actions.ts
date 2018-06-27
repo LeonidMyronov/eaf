@@ -24,7 +24,9 @@ export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
 export const DO_FETCH_NEWS = '[MAIN] DO_FETCH_NEWS';                                   // effect action for fetching news
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
+export const DO_FETCH_DISCOUNT_INTRO = '[MAIN] DO_FETCH_DISCOUNT_INTRO';               // effect action for fetching data for Discount page
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';                     // put data for discount page to store
+export const DO_FETCH_DISCOUNT_DETAILS = '[MAIN] DO_FETCH_DISCOUNT_DETAILS';           // effect action for fetching data for discount/details page
 export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';                 // put data for discount/details page to Store
 export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';                       // effect action for sending discount-request data
 export const DO_DISCOUNT_CREATION_REQUEST = '[MAIN] DO_DISCOUNT_CREATION_REQUEST';     // effect action for sending discount-creation-request data
@@ -103,6 +105,10 @@ export class DoFetchNews implements Action {
 export class FetchNews implements Action {
   readonly type = FETCH_NEWS;
   constructor(public payload: {more: boolean, lastFetched: number, news: News[]}) {}
+}
+
+export class DoFetchDiscountIntro implements Action {
+  readonly type = DO_FETCH_DISCOUNT_INTRO;
 }
 
 export class FetchDiscountIntro implements Action {

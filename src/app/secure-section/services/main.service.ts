@@ -891,11 +891,13 @@ export class MainService {
   }
 
   fetchDiscountIntro() {
-    this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
+    // this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
+    return this.discountIntro;
   }
 
   fetchDiscountDetails() {
-    this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
+    // this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
+    return this.discountDetails;
   }
 
   fetchStatisticByDate(date) {

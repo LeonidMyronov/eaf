@@ -3,8 +3,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MainService } from '../../services/main.service';
-
 import * as fromMain from '../../store/main.reducer';
 import * as MainActions from '../../store/main.actions';
 import { News } from '../../store/main.model';
@@ -27,7 +25,6 @@ export class NewsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromMain.MainState>,
-    private mainService: MainService
   ) { }
 
   ngOnInit() {

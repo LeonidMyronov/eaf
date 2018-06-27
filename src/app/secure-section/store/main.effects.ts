@@ -197,6 +197,16 @@ export class MainEffects {
       ];
     });
 
+  @Effect() doFetchDiscountPageData = this.actions$
+    .ofType(MainActions.DO_FETCH_DISCOUNT_INTRO)
+    .map(() => this.mainService.fetchDiscountIntro())
+    .map(r => {
+      return {
+        type: MainActions.FETCH_DISCOUNT_INTRO,
+        payload: r
+      };
+    });
+
   @Effect() doDiscountRequest = this.actions$
     .ofType(MainActions.DO_DISCOUNT_REQUEST)
     .map((action: MainActions.DoDiscountRequest) => action.payload)
