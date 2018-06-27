@@ -207,6 +207,16 @@ export class MainEffects {
       };
     });
 
+    @Effect() doFetchDiscountDetailsData = this.actions$
+    .ofType(MainActions.DO_FETCH_DISCOUNT_DETAILS)
+    .map(() => this.mainService.fetchDiscountDetails())
+    .map(r => {
+      return {
+        type: MainActions.FETCH_DISCOUNT_DETAILS,
+        payload: r
+      };
+    });
+
   @Effect() doDiscountRequest = this.actions$
     .ofType(MainActions.DO_DISCOUNT_REQUEST)
     .map((action: MainActions.DoDiscountRequest) => action.payload)

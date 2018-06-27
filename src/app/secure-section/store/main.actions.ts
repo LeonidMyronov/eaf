@@ -116,6 +116,10 @@ export class FetchDiscountIntro implements Action {
   constructor(public payload: {visitorsLastMonth: number,  uniquesLastMonth: number}) {}
 }
 
+export class DoFetchDiscountDetails implements Action {
+  readonly type = DO_FETCH_DISCOUNT_DETAILS;
+}
+
 export class FetchDiscountDetails implements Action {
   readonly type = FETCH_DISCOUNT_DETAILS;
   constructor(public payload: {
@@ -211,11 +215,14 @@ export type MainActions =
   StatisticQueryParams |
   DoFetchTransactions |
   FetchTransactions |
+  DoFetchNews |
   FetchNews |
+  DoFetchDiscountIntro |
   FetchDiscountIntro |
   DoDiscountRequest |
   DoDiscountCreationRequest |
   SubmitDiscountRequest |
+  DoFetchDiscountDetails |
   FetchDiscountDetails |
   FetchDayStat |
   BeforeFetchDayStat |

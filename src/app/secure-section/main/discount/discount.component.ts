@@ -36,7 +36,7 @@ export class DiscountComponent implements OnInit, OnDestroy {
       this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.visitorsLastMonth) {
-          this.store.dispatch(new MainActions.DoFetchDiscountIntro())
+          this.store.dispatch(new MainActions.DoFetchDiscountIntro());
         } else {
           this.discountsData = response;
         }

@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MainService } from '../../services/main.service';
 import { DiscountSite } from '../../services/main-storage.service';
 import { AppStorageService } from '../../../core/app-storage.service';
 import { HelperService } from '../../../core/helper.service';
@@ -36,7 +35,6 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<fromMain.MainState>,
-    private mainService: MainService,
     private appStorage: AppStorageService,
     private helper: HelperService
   ) { }
@@ -46,7 +44,7 @@ export class DiscountDetailsComponent implements OnInit, OnDestroy {
       this.store.select(fromMain.getDiscounts)
       .subscribe((response: Discounts) => {
         if (!response.availableCoupons) {
-          this.mainService.fetchDiscountDetails();
+          this.store.dispatch(new MainActions.DoFetchDiscountDetails());
         } else {
           this.discountsData = response;
           this.couponsStatTableHeads = this.createTableHeads(this.discountsData.activeCoupons[0]);
