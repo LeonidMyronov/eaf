@@ -14,6 +14,7 @@ import * as MainActions from './main.actions';
 import * as UIActions from '../../ui/ui.actions';
 import { StatisticByDate, PixelTrackingEvent, Coupon, Transaction } from './main.model';
 import { Banner, PromoTheme, PromoCalc } from '../main/promo/promo.model';
+import { NewsState } from '../main/news/news.component';
 
 @Injectable()
 export class MainEffects {
@@ -144,6 +145,18 @@ export class MainEffects {
           preloader: false
         }
     ];
+    });
+
+  @Effect() doFetchNews = this.actions$
+    .ofType(MainActions.DO_FETCH_NEWS)
+    .map((action: MainActions.DoFetchNews) => action.payload)
+    .map((page: number) => this.mainService.fetchNews(page)) // current o next available page with news
+    .debounceTime(500)
+    .map((r: NewsState) => {
+      return {
+        type: MainActions.FETCH_NEWS,
+        payload: r
+      };
     });
 
   @Effect() fetchPromoData = this.actions$

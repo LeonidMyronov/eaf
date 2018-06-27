@@ -22,6 +22,7 @@ export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                  
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
 export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
+export const DO_FETCH_NEWS = '[MAIN] DO_FETCH_NEWS';                                   // effect action for fetching news
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';                     // put data for discount page to store
 export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';                 // put data for discount/details page to Store
@@ -92,6 +93,11 @@ export class DoFetchTransactions implements Action {
 export class FetchTransactions implements Action {
   readonly type = FETCH_TRANSACTIONS;
   constructor(public payload: Transaction[]) {}
+}
+
+export class DoFetchNews implements Action {
+  readonly type = DO_FETCH_NEWS;
+  constructor(public payload: number) {}
 }
 
 export class FetchNews implements Action {
