@@ -4,12 +4,12 @@ import { Store } from '@ngrx/store';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 
-import { MainService } from '../../services/main.service';
 import { MainStorageService } from '../../services/main-storage.service';
 import { HelperService } from '../../../core/helper.service';
 
 import * as fromRoot from '../../../app.reducers';
 import * as fromMain from '../../store/main.reducer';
+import * as MainActions from '../../store/main.actions';
 import * as UIActions from '../../../ui/ui.actions';
 import * as UserActions from '../../user/store/user.actions';
 import { PaymentMethod, Transaction } from '../../store/main.model';
@@ -17,7 +17,10 @@ import { PaymentMethod, Transaction } from '../../store/main.model';
 export interface TransactionQueryParams {
   fromDate: Date;
   toDate: Date;
-  paymentMethod: {};
+  paymentMethod: {
+    id: number;
+    name: string;
+  };
 }
 
 @Component({
@@ -29,19 +32,19 @@ export class BalanceComponent implements OnInit, OnDestroy {
   @ViewChild('trtb') trtb: ElementRef;
   @ViewChild('trtl') trtl: ElementRef;
   userBalanceState$: Observable<any>;
-  transactionsState: Transaction[];
+  transactionsState: Transaction[] = [];
   balanceForm: FormGroup;
   paymentMethod: PaymentMethod;
-  paymentMethods: PaymentMethod[];
+  paymentMethods: PaymentMethod[] = [];
   transactionQueryParams: TransactionQueryParams;
-  transactionsTableHeads: string[];
+  transactionsTableHeads: string[] = [];
 
   private subs: Subscription[] = [];
 
   constructor(
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
-    private mainService: MainService,
+    // private mainService: MainService,
     private helper: HelperService
   ) { }
 
@@ -56,7 +59,7 @@ export class BalanceComponent implements OnInit, OnDestroy {
     this.subs.push(
       this.store.select(fromMain.getTransactions).subscribe((r: Transaction[]) => {
         if (!r.length) {
-          this.mainService.fetchTransactionsByPeriod(this.transactionQueryParams);
+          this.makeTransactionsRequest();
         } else {
           this.createTrTableHeads(r[0]);
           this.transactionsState = r;
@@ -86,6 +89,18 @@ export class BalanceComponent implements OnInit, OnDestroy {
     };
   }
 
+  makeTransactionsRequest() {
+    const params = {
+      fromDate: this.transactionQueryParams.fromDate,
+      toDate: this.transactionQueryParams.toDate,
+      paymentMethodId: this.transactionQueryParams.paymentMethod.id
+    };
+    // console.log(params);
+    this.helper.preventBodyToScroll(true);
+    this.store.dispatch(new UIActions.IsLoading(true));
+    this.store.dispatch(new MainActions.DoFetchTransactions(params));
+  }
+
   onChangePaymentMethod(payment: PaymentMethod) {
     this.paymentMethod = payment;
     this.balanceForm.patchValue({payment: payment});
@@ -108,11 +123,11 @@ export class BalanceComponent implements OnInit, OnDestroy {
     );
   }
 
-  onChangeTrnsactionQueryParams(queryParams) {
+  onChangeTransactionQueryParams(queryParams) {
     this.transactionQueryParams.fromDate = queryParams.fromDate;
     this.transactionQueryParams.toDate = queryParams.toDate;
     this.transactionQueryParams.paymentMethod = queryParams.dropdownItem;
-    // console.log(queryParams, this.transactionQueryParams);
+    this.makeTransactionsRequest();
   }
 
   createTrTableHeads(el: Transaction) {

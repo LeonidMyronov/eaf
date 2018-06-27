@@ -4,7 +4,8 @@ import { DOCUMENT } from '@angular/common';
 
 import * as fromMain from '../store/main.reducer';
 import * as MainActions from '../store/main.actions';
-import { Statistic, StatisticByDate } from '../store/main.model';
+import { Statistic, StatisticByDate, Transaction } from '../store/main.model';
+import { NewsState } from '../main/news/news.component';
 
 @Injectable()
 export class MainService {
@@ -878,21 +879,25 @@ export class MainService {
     return this.statisticByPeriod;
   }
 
-  fetchTransactionsByPeriod(query) {
+  fetchTransactionsByPeriod(query): Transaction[] {
     // console.log('fetchTransactionsByPeriod from Service');
-    this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
+    // this.store.dispatch(new MainActions.FetchTransactions(this.transactionsByPeriod));
+    return this.transactionsByPeriod;
   }
 
-  fetchNews() {
-    this.store.dispatch(new MainActions.FetchNews(this.news));
+  fetchNews(page: number): NewsState {
+    // this.store.dispatch(new MainActions.FetchNews(this.news));
+    return this.news;
   }
 
   fetchDiscountIntro() {
-    this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
+    // this.store.dispatch(new MainActions.FetchDiscountIntro(this.discountIntro));
+    return this.discountIntro;
   }
 
   fetchDiscountDetails() {
-    this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
+    // this.store.dispatch(new MainActions.FetchDiscountDetails(this.discountDetails));
+    return this.discountDetails;
   }
 
   fetchStatisticByDate(date) {

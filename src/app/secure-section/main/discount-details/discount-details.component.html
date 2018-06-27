@@ -17,7 +17,7 @@
             Трафик за последний месяц
           </div>
           <div class="content single-content">
-            <h1 class="value light-color">{{discountsData.visitorsLastMonth}}
+            <h1 class="value light-color">{{discountsData?.visitorsLastMonth}}
               <span> посетителя</span>
             </h1>
           </div>
@@ -35,7 +35,7 @@
             Уникальные посетители за последний месяц
           </div>
           <div class="content single-content">
-            <h1 class="value light-color">{{discountsData.uniquesLastMonth}}
+            <h1 class="value light-color">{{discountsData?.uniquesLastMonth}}
               <span> уникума</span>
             </h1>
           </div>
@@ -54,7 +54,7 @@
               Доступно купонов на скидку
           </div>
           <div class="content single-content">
-            <h1 class="value light-color">{{discountsData.availableCoupons}}
+            <h1 class="value light-color">{{discountsData?.availableCoupons}}
               <span> купонов</span>
             </h1>
           </div>
@@ -78,7 +78,7 @@
         <form class="form grid-6" [formGroup]="discountGeneratorForm" (ngSubmit)="onSubmit()">
           <div class="title">Генератор скидок</div>
           <div class="small-text sub-title">
-              Доступон купонов: {{discountsData.availableCoupons - discountsData.usedCoupons}}/{{discountsData.availableCoupons}}
+              Доступон купонов: {{discountsData?.availableCoupons - discountsData?.usedCoupons}}/{{discountsData?.availableCoupons}}
           </div>
 
           <div class="form-field">

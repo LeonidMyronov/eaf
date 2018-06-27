@@ -17,12 +17,16 @@ export const DO_FETCH_STATISTIC = '[MAIN] DO_FETCH_STATISTIC';                  
 export const DO_FETCH_STATISTIC_TABLE = '[MAIN] DO_FETCH_STATISTIC_TABLE';             // effect action for fetching data for table-section
 export const FETCH_STATISTIC_TABLE = '[MAIN] FETCH_STATISTIC_TABLE';                   // put statistic-table-section data to Store
 export const FETCH_STATISTIC = '[MAIN] FETCH_STATISTIC';                               // put all statistic data to Store
-export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                         // put transaction dat ato Store
+export const DO_FETCH_TRANSACTIONS = '[MAIN] DO_FETCH_TRANSACTIONS';                   // effect action for fetching transactions data for balance page
+export const FETCH_TRANSACTIONS = '[MAIN] FETCH_TRANSACTIONS';                         // put transaction data to Store
 export const UPDATE_STATISTIC_FILTERS = '[MAIN] UPDATE_STATISTIC_FILTERS';
 export const SAVE_STATISTIC_FILTERS = '[MAIN] SAVE_STATISTIC_FILTERS';
 export const STATISTIC_QUERY_PARAMS = '[MAIN] STATISTIC_QUERY_PARAMS';
+export const DO_FETCH_NEWS = '[MAIN] DO_FETCH_NEWS';                                   // effect action for fetching news
 export const FETCH_NEWS = '[MAIN] FETCH_NEWS';
+export const DO_FETCH_DISCOUNT_INTRO = '[MAIN] DO_FETCH_DISCOUNT_INTRO';               // effect action for fetching data for Discount page
 export const FETCH_DISCOUNT_INTRO = '[MAIN] FETCH_DISCOUNT_INTRO';                     // put data for discount page to store
+export const DO_FETCH_DISCOUNT_DETAILS = '[MAIN] DO_FETCH_DISCOUNT_DETAILS';           // effect action for fetching data for discount/details page
 export const FETCH_DISCOUNT_DETAILS = '[MAIN] FETCH_DISCOUNT_DETAILS';                 // put data for discount/details page to Store
 export const DO_DISCOUNT_REQUEST = '[MAIN] DO_DISCOUNT_REQUEST';                       // effect action for sending discount-request data
 export const DO_DISCOUNT_CREATION_REQUEST = '[MAIN] DO_DISCOUNT_CREATION_REQUEST';     // effect action for sending discount-creation-request data
@@ -83,9 +87,19 @@ export class StatisticQueryParams implements Action {
   constructor(public payload: {}) {}
 }
 
+export class DoFetchTransactions implements Action {
+  readonly type = DO_FETCH_TRANSACTIONS;
+  constructor(public payload: {fromDate: Date, toDate: Date, paymentMethodId: number}) {}
+}
+
 export class FetchTransactions implements Action {
   readonly type = FETCH_TRANSACTIONS;
   constructor(public payload: Transaction[]) {}
+}
+
+export class DoFetchNews implements Action {
+  readonly type = DO_FETCH_NEWS;
+  constructor(public payload: number) {}
 }
 
 export class FetchNews implements Action {
@@ -93,9 +107,17 @@ export class FetchNews implements Action {
   constructor(public payload: {more: boolean, lastFetched: number, news: News[]}) {}
 }
 
+export class DoFetchDiscountIntro implements Action {
+  readonly type = DO_FETCH_DISCOUNT_INTRO;
+}
+
 export class FetchDiscountIntro implements Action {
   readonly type = FETCH_DISCOUNT_INTRO;
   constructor(public payload: {visitorsLastMonth: number,  uniquesLastMonth: number}) {}
+}
+
+export class DoFetchDiscountDetails implements Action {
+  readonly type = DO_FETCH_DISCOUNT_DETAILS;
 }
 
 export class FetchDiscountDetails implements Action {
@@ -191,12 +213,16 @@ export type MainActions =
   UpdateStatisticFilters |
   SaveStatisticFilters |
   StatisticQueryParams |
+  DoFetchTransactions |
   FetchTransactions |
+  DoFetchNews |
   FetchNews |
+  DoFetchDiscountIntro |
   FetchDiscountIntro |
   DoDiscountRequest |
   DoDiscountCreationRequest |
   SubmitDiscountRequest |
+  DoFetchDiscountDetails |
   FetchDiscountDetails |
   FetchDayStat |
   BeforeFetchDayStat |
