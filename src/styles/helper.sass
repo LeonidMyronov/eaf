@@ -133,7 +133,23 @@ button
   align-items: center
   &.high-card
     min-height: 472px
-
+  .footer
+    margin: 0 -30px -30px
+    padding: 0 30px
+    height: 48px
+    font-size: 12px
+    line-height: 48px
+    cursor: pointer
+    .action
+      text-align: right
+    .arrow-next
+      @include triangle-right(4px, $accentColor)
+    &:hover
+      color: $mainColor
+      background-color: $accentColor
+      .arrow-next
+        @include triangle-right(4px, $mainColor)
+        
 .link-group
   a:not(:last-child)
     border-right: 1px solid $placeholderColor
