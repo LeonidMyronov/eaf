@@ -15,8 +15,8 @@ ul, nav
 
 .no-scroll
   width: 100%
-  height: 100vh
-  overflow: hidden  
+  height: 100%
+  // overflow: hidden  
 
 .light-color
   color: $lightColor
@@ -149,7 +149,7 @@ button
       background-color: $accentColor
       .arrow-next
         @include triangle-right(4px, $mainColor)
-        
+
 .link-group
   a:not(:last-child)
     border-right: 1px solid $placeholderColor
@@ -287,7 +287,7 @@ button
 // checkbox
 input:checked + label
   .check
-    background-color: $mainColor
+    background-color: $mainColor !important
     &:before
       content: ''
       position: absolute
@@ -295,7 +295,7 @@ input:checked + label
       height: 2px
       top: 4px
       left: 2px
-      background-color: $lightColor
+      background-color: $lightColor !important
     &:after
       content: ''
       position: absolute
@@ -303,7 +303,7 @@ input:checked + label
       height: 6px
       top: 2px
       left: 4px
-      background-color: $lightColor
+      background-color: $lightColor !important
 
 label
   position: relative
@@ -317,7 +317,9 @@ label
     border: 1px solid $mainColor
 
 .overlay
-  position: absolute
+  position: fixed
+  left: 0
+  top: 0
   background: rgba(0,0,0, .5)
   width: 100%
   height: 100%
