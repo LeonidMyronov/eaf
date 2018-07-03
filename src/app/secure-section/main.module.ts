@@ -27,6 +27,8 @@ import { ProfileComponent } from './main/profile/profile.component';
 import { PostbackComponent } from './main/postback/postback.component';
 import { WhitelabelComponent } from './main/whitelabel/whitelabel.component';
 import { OfferComponent } from './main/offer/offer.component';
+import { PtListComponent } from './main/pixel-tracking/pt-list/pt-list.component';
+import { PtFormComponent } from './main/pixel-tracking/pt-form/pt-form.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { OfferComponent } from './main/offer/offer.component';
     PostbackComponent,
     WhitelabelComponent,
     OfferComponent,
+    PtListComponent,
+    PtFormComponent,
   ],
   imports: [
     CoreModule,

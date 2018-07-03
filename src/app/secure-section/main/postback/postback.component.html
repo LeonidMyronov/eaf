@@ -35,8 +35,11 @@
           </div>
         </div>
       </div>
+      <div class="card" *ngFor="let site of userSitesState$ | async">
+        {{ site.name }}
+      </div>
 
-      <div class="card card-new">
+      <div class="card card-new" (click)="onAddPostback()">
         <h4>Добавить Post Back для сайта</h4>
         <img src="/assets/images/main/postback/new-icon.svg" alt="">
       </div>
@@ -44,3 +47,4 @@
     </div>
   </div>
 </article>
+<eaf-pt-list *ngIf="addPostbackMode" (close)="onCloseForm($event)"></eaf-pt-list>
