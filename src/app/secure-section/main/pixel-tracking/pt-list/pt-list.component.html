@@ -9,14 +9,14 @@
   <div class="sites-group" fxLayout="row" >
     <div class="site"
       *ngFor="let site of userSitesState$ | async; let i = index"
-      [ngClass]="{active: i === activeSiteIndex}"
-      (click)="onClickSite(i)">
+      [ngClass]="{active: i === activeSiteIndex}">
       <img [src]="site.preview" [alt]="site.name">
       <p>{{ site.name }}</p>
-      <input type="radio" id="ptItem{{i}}" name="regular">
+      <input type="radio" id="ptItem{{i}}" name="regular" (click)="onClickSite(site)">
       <label for="ptItem{{i}}">
         <span class="check"></span>
       </label>
     </div>
   </div>
+  <button type="button" class="btn-md primary" [disabled]="!selectedSite" (click)="onAdd()">Add</button>
 </article>

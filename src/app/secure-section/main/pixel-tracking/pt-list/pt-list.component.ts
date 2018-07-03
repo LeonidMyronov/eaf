@@ -13,7 +13,10 @@ import { Site } from '../../../../core/core.model';
 export class PtListComponent implements OnInit {
 
   @Output() close = new EventEmitter<boolean>();
+  @Output() add = new EventEmitter<Site>();
   public userSitesState$: Observable<Site[]>;
+  public selectedSite: Site = null;
+
   constructor(
     private store: Store <fromRoot.State>
   ) { }
@@ -26,8 +29,12 @@ export class PtListComponent implements OnInit {
     this.close.emit(true);
   }
 
-  onClickSite(index: number) {
-    console.log(index);
+  onClickSite(site: Site) {
+    this.selectedSite = site;
+  }
+
+  onAdd() {
+    this.add.emit(this.selectedSite);
   }
 
 }
