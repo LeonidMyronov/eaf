@@ -9,6 +9,8 @@ export interface Site {
   description?: string;
   isDesktopVersion?: boolean;
   isMobileVersion?: boolean;
+  pixelTrackingEnabled?: boolean; // is pixel-tracking added for this site
+  pixelTrackingActivated?: boolean; // is post-back activated or not for this site
 }
 
 export interface TimeList {
