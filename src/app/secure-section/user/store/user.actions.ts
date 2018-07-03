@@ -8,6 +8,7 @@ export const BEFORE_UPDATE_PROFILE = '[USER] BEFORE_UPDATE_PROFILE';
 export const ADD_FILTERS_LIST = '[USER] ADD_FILTERS_LIST';
 export const DO_SEND_MESSAGE = '[USER] DO_SEND_MESSAGE';
 export const DO_SEND_WITHDRAW_REQUEST = '[USER] DO_SEND_WITHDRAW_REQUEST';
+export const ENABLE_PIXEL_TRACKING = '[USER] ENABLE_PIXEL_TRACKING';
 
 export class FillProfile implements Action {
   readonly type = FILL_PROFILE;
@@ -38,6 +39,17 @@ export class DoSendWithdrawRequest implements Action {
   constructor(public payload: {}) {}
 }
 
+export class EnablePixelTracking implements Action {
+  readonly type = ENABLE_PIXEL_TRACKING;
+  constructor(public payload: number) {}
+}
 
 
-export type UserActions = FillProfile | ClearProfile | AddFiltersList | BeforeUpdateProfile | DoSendMessage | DoSendWithdrawRequest;
+export type UserActions =
+  FillProfile |
+  ClearProfile |
+  AddFiltersList |
+  BeforeUpdateProfile |
+  DoSendMessage |
+  DoSendWithdrawRequest |
+  EnablePixelTracking;

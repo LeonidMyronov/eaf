@@ -39,7 +39,7 @@
         {{ site.name }}
       </div>
 
-      <div class="card card-new" (click)="onAddPostback()">
+      <div class="card card-new" (click)="openPostbackForm()">
         <h4>Добавить Post Back для сайта</h4>
         <img src="/assets/images/main/postback/new-icon.svg" alt="">
       </div>
@@ -47,4 +47,14 @@
     </div>
   </div>
 </article>
-<eaf-pt-list *ngIf="addPostbackMode" (close)="onCloseForm($event)"></eaf-pt-list>
+<eaf-pt-list
+  *ngIf="addPostbackMode"
+  (close)="closePostbackForm($event)"
+  (add)="onAddSiteToPostback($event)">
+</eaf-pt-list>
+<eaf-pt-form
+  [data]="selectedSite"
+  *ngIf="ptEventsMode"
+  (close)="closePTEventsForm($event)"
+  (submit)="onSubmitPTEvents($event)">
+</eaf-pt-form>
