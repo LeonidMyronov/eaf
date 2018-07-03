@@ -70,10 +70,41 @@ export class MainStorageService {
     }
   ];
 
+  private ptEvents = [
+    {
+      id: 1,
+      name: 'startedFillOrderForm'
+    },
+    {
+      id: 2,
+      name: 'startedFillInquiryForm'
+    },
+    {
+      id: 3,
+      name: 'orderCreated',
+    },
+    {
+      id: 4,
+      name: 'inquiryCreated',
+    },
+    {
+      id: 5,
+      name: 'orderPaid',
+    },
+    {
+      id: 6,
+      name: 'userRegistered',
+    },
+    {
+      id: 7,
+      name: 'onlineChat'
+    }
+  ];
 
   constructor() {}
 
   getPaymentMethods(): PaymentMethod[] {return [...this.paymentMethods]; }
   getSitesArr(): DiscountSite[] {return [...this.sitesArr]; }
   getRefPages(): RefPage[] {return [...this.REfPagesList]; }
+  getPTEvents() {return [...this.ptEvents]; }
 }

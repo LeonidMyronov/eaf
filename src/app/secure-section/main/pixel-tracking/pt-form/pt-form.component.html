@@ -1,3 +1,26 @@
-<p>
-  pt-form works!
-</p>
+<article class="pt-form">
+
+  <form class="form" [formGroup]="ptEventsForm" (ngSubmit)="onSubmit()">
+    <div class="form-images">
+      <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
+    </div>
+    <header>
+      <img [src]="data.iconSrc" [alt]="data.name">
+      <span>{{ data.name }}</span>
+    </header>
+    <div class="form-title">События Pixel Tracking</div>
+    <div class="descr">Выберите и настройте событие которое вы хотите отслеживать:</div>
+    <div
+      class="pt-event bg-light-color"
+      *ngFor="let e of ptEventsList"
+      (click)="onClickPTEvent(e.id)"
+      fxLayout="row"
+      fxLayoutAlign="start center">
+      <div class="pt-event-status">
+      </div>
+      <div class="pt-event-title">
+        Event "{{ e.name }}"
+      </div>
+    </div>
+  </form>
+</article>
