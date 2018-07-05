@@ -101,10 +101,42 @@ export class MainStorageService {
     }
   ];
 
+  ptEventFormData = [
+    {
+      name: 'source',
+      label: 'Send data from:',
+      items: [
+        {
+          id: 1,
+          name: 'Back-end'
+        },
+        {
+          id: 2,
+          name: 'Front-end'
+        }
+      ]
+    },
+    {
+      name: 'method',
+      label: 'Use method:',
+      items: [
+        {
+          id: 1,
+          name: 'Post'
+        },
+        {
+          id: 2,
+          name: 'Get'
+        }
+      ]
+    }
+  ];
+
   constructor() {}
 
   getPaymentMethods(): PaymentMethod[] {return [...this.paymentMethods]; }
   getSitesArr(): DiscountSite[] {return [...this.sitesArr]; }
   getRefPages(): RefPage[] {return [...this.REfPagesList]; }
   getPTEvents() {return [...this.ptEvents]; }
+  getPTEventFormdata() {return [...this.ptEventFormData]; }
 }
