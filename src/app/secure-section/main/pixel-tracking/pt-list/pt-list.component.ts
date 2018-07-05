@@ -13,9 +13,9 @@ import { Site } from '../../../../core/core.model';
 export class PtListComponent implements OnInit {
 
   @Output() close = new EventEmitter<boolean>();
-  @Output() add = new EventEmitter<Site>();
+  @Output() add = new EventEmitter<number>();
   public userSitesState$: Observable<Site[]>;
-  public selectedSite: Site = null;
+  public selectedSiteId: number = null;
 
   constructor(
     private store: Store <fromRoot.State>
@@ -29,12 +29,12 @@ export class PtListComponent implements OnInit {
     this.close.emit(true);
   }
 
-  onClickSite(site: Site) {
-    this.selectedSite = site;
+  onClickSite(id: number) {
+    this.selectedSiteId = id;
   }
 
   onAdd() {
-    this.add.emit(this.selectedSite);
+    this.add.emit(this.selectedSiteId);
   }
 
 }

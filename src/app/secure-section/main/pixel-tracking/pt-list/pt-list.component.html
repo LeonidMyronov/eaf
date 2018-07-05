@@ -12,11 +12,11 @@
       [ngClass]="{active: i === activeSiteIndex}">
       <img [src]="site.preview" [alt]="site.name">
       <p>{{ site.name }}</p>
-      <input type="radio" id="ptItem{{i}}" name="regular" (click)="onClickSite(site)">
+      <input type="radio" id="ptItem{{i}}" name="regular" (click)="onClickSite(site.id)">
       <label for="ptItem{{i}}">
         <span class="check"></span>
       </label>
     </div>
   </div>
-  <button type="button" class="btn-md primary" [disabled]="!selectedSite" (click)="onAdd()">Add</button>
+  <button type="button" class="btn-md primary" [disabled]="!selectedSiteId" (click)="onAdd()">Add</button>
 </article>
