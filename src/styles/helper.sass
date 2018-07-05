@@ -100,7 +100,10 @@ button
       color: $mainColor
       background-color: $accentColor
       border: 0.5px solid $accentColor
-      
+    &.disabled, &[disabled]
+      cursor: not-allowed
+      color: $inactiveColor
+      background-color: $formColor     
 
   &.btn-sm
     width: 100px
@@ -315,6 +318,28 @@ label
     left: 0
     top: 4px
     border: 1px solid $mainColor
+
+
+.switches-group
+  input
+    display: none
+    &:checked + label
+      background-color: $accentColor !important
+  label
+    margin-bottom: 0
+    width: 144px
+    height: 40px
+    line-height: 40px
+    background-color: $lightColor
+    text-align: center
+    cursor: pointer
+    &:first-of-type
+      border-top-left-radius: 2px
+      border-bottom-left-radius: 2px
+      
+    &:last-of-type
+      border-top-right-radius: 2px
+      border-bottom-right-radius: 2px
 
 .overlay
   position: fixed
