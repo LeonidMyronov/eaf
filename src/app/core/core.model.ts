@@ -1,3 +1,5 @@
+import { PTEventParamsData } from '../secure-section/store/main.model';
+
 export interface Site {
   id: number;
   name: string;
@@ -11,6 +13,7 @@ export interface Site {
   isMobileVersion?: boolean;
   pixelTrackingEnabled?: boolean; // is pixel-tracking added for this site
   pixelTrackingActivated?: boolean; // is post-back activated or not for this site
+  ptEventParamsData?: PTEventParamsData[]; // pixel-tracking params for event
 }
 
 export interface TimeList {
