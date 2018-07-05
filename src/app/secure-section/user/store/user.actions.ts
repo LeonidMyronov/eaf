@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 import { User, StatisticPanelFilterList } from '../user.model';
 import { Site } from '../../../core/core.model';
+import { PTEventParamsData } from '../../store/main.model';
 
 export const FILL_PROFILE = '[USER] FILL_PROFILE';
 export const CLEAR_PROFILE = '[USER] CLEAR_PROFILE';
@@ -9,6 +10,8 @@ export const ADD_FILTERS_LIST = '[USER] ADD_FILTERS_LIST';
 export const DO_SEND_MESSAGE = '[USER] DO_SEND_MESSAGE';
 export const DO_SEND_WITHDRAW_REQUEST = '[USER] DO_SEND_WITHDRAW_REQUEST';
 export const ENABLE_PIXEL_TRACKING = '[USER] ENABLE_PIXEL_TRACKING';
+export const DO_SEND_PIXEL_TRACKING_EVENT_PARAMS = '[USER] DO_SEND_PIXEL_TRACKING_EVENT_PARAMS'; // send new pt-params from PostBack-form to backend
+export const SET_PIXEL_TRACKING_EVENT_PARAMS = '[USER] SET_PIXEL_TRACKING_EVENT_PARAMS'; // put new pt-params to Store
 
 export class FillProfile implements Action {
   readonly type = FILL_PROFILE;
@@ -44,6 +47,16 @@ export class EnablePixelTracking implements Action {
   constructor(public payload: number) {}
 }
 
+export class DoSendPixelTrackingEventParams implements Action {
+  readonly type = DO_SEND_PIXEL_TRACKING_EVENT_PARAMS;
+  constructor(public payload: {id: number, ptEventParamsData: PTEventParamsData}) {}
+}
+
+export class SetPixelTrackingEventParams implements Action {
+  readonly type = SET_PIXEL_TRACKING_EVENT_PARAMS;
+  constructor(public payload: {id: number, ptEventParamsData: PTEventParamsData[]}) {}
+}
+
 
 export type UserActions =
   FillProfile |
@@ -52,4 +65,7 @@ export type UserActions =
   BeforeUpdateProfile |
   DoSendMessage |
   DoSendWithdrawRequest |
-  EnablePixelTracking;
+  EnablePixelTracking |
+  SetPixelTrackingEventParams |
+  DoSendPixelTrackingEventParams
+  ;

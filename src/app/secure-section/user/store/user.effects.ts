@@ -15,6 +15,7 @@ import * as fromRoot from '../../../app.reducers';
 import * as UserActions from './user.actions';
 import * as UIActions from '../../../ui/ui.actions';
 import { User } from '../user.model';
+import { PTEventParamsData } from '../../store/main.model';
 
 @Injectable()
 export class UserEffects {
@@ -108,6 +109,36 @@ export class UserEffects {
         {
           type: UIActions.ERASE_FORM,
           payload: response
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
+    });
+
+  @Effect() doSendPixelTrackingEventParams = this.actions$
+    .ofType(UserActions.DO_SEND_PIXEL_TRACKING_EVENT_PARAMS)
+    .map((action: UserActions.DoSendPixelTrackingEventParams) => action.payload)
+    // TODO make request to backend
+    .map((r: {id: number, ptEventParamsData: PTEventParamsData}) => {
+      return {
+        id: r.id,
+        ptEventParamsData: [r.ptEventParamsData],
+        message: 'Your data have been saved successefully'
+      };
+    })
+    .mergeMap(r => {
+      return [
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r.message
+        },
+        {
+          type: UserActions.SET_PIXEL_TRACKING_EVENT_PARAMS,
+          payload: {
+            id: r.id,
+            ptEventParamsData: r.ptEventParamsData
+          }
         }
       ];
     })
