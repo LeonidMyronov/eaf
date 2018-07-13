@@ -6,7 +6,7 @@
   <div class="descr">
       Выберите сайт на котором вы хотите отслеживать события:
   </div>
-  <div class="sites-group" fxLayout="row" >
+  <div class="sites-group" fxLayout="row" fxLayout.xs="row wrap">
     <div class="site"
       *ngFor="let site of userSitesState$ | async; let i = index"
       [ngClass]="{active: i === activeSiteIndex}">

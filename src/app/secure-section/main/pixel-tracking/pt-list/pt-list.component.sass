@@ -3,8 +3,9 @@
 .pt-list
   position: relative
   width: 1016px
-  height: 376px
+  height: auto
   padding: 40px  120px
+  margin-bottom: auto
 .form-close
   position: absolute
   right: 30px
@@ -43,5 +44,14 @@
 button
   display: block
   margin-left: auto
+
+@media(max-width: 1023px)
+  .pt-list
+    width: 96%
+
+@media(max-width: 767px)
+  .pt-list
+    padding-left: 30px
+    padding-right: 30px
 
 
