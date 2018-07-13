@@ -1,26 +1,47 @@
 <article class="pt-form">
 
-  <form class="form" [formGroup]="ptEventsForm" (ngSubmit)="onSubmit()">
+  <form class="form" [formGroup]="ptEventsForm">
     <div class="form-images">
       <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
     </div>
     <header>
-      <img [src]="data.iconSrc" [alt]="data.name">
-      <span>{{ data.name }}</span>
+      <img [src]="siteState?.iconSrc" [alt]="siteState?.name">
+      <span>{{ siteState?.name }}</span>
     </header>
     <div class="form-title">События Pixel Tracking</div>
     <div class="descr">Выберите и настройте событие которое вы хотите отслеживать:</div>
+
     <div
       class="pt-event bg-light-color"
+      [ngClass]="{'opened': e.id === selectedPTEvent?.id, enabled: getPTEventStatus(e.id)}"
       *ngFor="let e of ptEventsList"
-      (click)="onClickPTEvent(e.id)"
-      fxLayout="row"
+      (click)="onClickPTEvent(e)"
+      fxLayout="row wrap"
       fxLayoutAlign="start center">
-      <div class="pt-event-status">
-      </div>
+      <div class="pt-event-status"></div>
       <div class="pt-event-title">
         Event "{{ e.name }}"
       </div>
+      <div class="pt-event-actions" *ngIf="selectedPTEvent?.id !== e.id">
+        <a class="pt-event-actions__disable"
+          [innerHTML]="getPTEventStatus(e.id) === 1 ? 'disable' : getPTEventStatus(e.id) === 0 ? 'enable' : ''"
+          (click)="onChangePTEventStatus(e.id, $event)"></a>
+        <a class="pt-event-actions__edit">edit</a>
+      </div>
+      <eaf-pt-event-form *ngIf="e.id === selectedPTEvent?.id" [ptEventParams]="isPTEventExist(e.id)" (changePTEvent)=onAddEvent($event)></eaf-pt-event-form>
     </div>
   </form>
+</article>
+<article class="pt-event-example" *ngIf="selectedPTEvent">
+    <div class="card">
+      <p class="pb-title small-text light-color">Вы можете использовать следующие динамические параметры в Post Back URL:</p>
+      <ul>
+        <li class="pb-param" *ngFor="let p of postBackParams">
+          &#123; {{ p.param }} &#125; <span class="pb-param__divider">&#124;</span> <span class="pb-param__name">{{ p.name }}</span>
+        </li>
+      </ul>
+      <p class="pb-snippet-title small-text light-color">Пример Post Back URL:</p>
+      <div class="pb-snippet"> {{ pbSnippet }}
+      </div>
+    </div>
 </article>
