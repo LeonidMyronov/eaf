@@ -132,6 +132,29 @@ export class MainStorageService {
     }
   ];
 
+  private postBackParams = [
+    {param: 'tracking', name:  'Tracking'},
+    {param: 'site', name:  'Site'},
+    {param: 'event', name:  'Event name'},
+    {param: 'rid', name:  'Webmaster\'s ID'},
+    {param: 'sid', name:  'Sub ID'},
+    {param: 'click_id', name:  'Click ID'},
+    {param: 'user_id', name:  'User ID'},
+    {param: 'user_geo', name:  'User\' Geo Location'},
+    {param: 'user_device', name:  'User\s device'},
+    {param: 'transaction_id', name:  'Transaction ID'},
+    {param: 'date_added', name:  'Creation date'},
+    {param: 'date_paid', name:  'Payment date'},
+    {param: 'order_status', name:  'Order status'},
+    {param: 'order_title', name:  'Order title'},
+    {param: 'order_service', name:  'Type of service'},
+    {param: 'order_discipline', name:  'Discipline'},
+    {param: 'order_amount', name:  'Order amount'},
+    {param: 'order_coeff', name:  'Earning coefficient'},
+    {param: 'order_profit', name:  'Income amount'},
+    {param: 'order_id', name:  'Order ID'},
+  ];
+
   constructor() {}
 
   getPaymentMethods(): PaymentMethod[] {return [...this.paymentMethods]; }
@@ -139,4 +162,5 @@ export class MainStorageService {
   getRefPages(): RefPage[] {return [...this.REfPagesList]; }
   getPTEvents() {return [...this.ptEvents]; }
   getPTEventFormdata() {return [...this.ptEventFormData]; }
+  getPostBackParams() {return [...this.postBackParams]; }
 }
