@@ -156,3 +156,14 @@ export interface RefPage {
   name: string;
 }
 
+export interface PTEventParamsData extends PTEventData {
+  id: number; // pixel-tracking event id
+  status: number; // pixel-tracking event status: 1 - enabled, 0 - disabled
+  name: string; // pixel-tracking event name
+}
+
+export interface PTEventData {
+  source: number; // pixel-tracking event source (backend | frontend)
+  method: number; // pixel-tracking event method (post | get)
+  params: string; // pixel-tracking event URL and additional params
+}

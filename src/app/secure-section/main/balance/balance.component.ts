@@ -44,7 +44,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
   constructor(
     private store: Store<fromRoot.State>,
     private mainStorage: MainStorageService,
-    // private mainService: MainService,
     private helper: HelperService
   ) { }
 

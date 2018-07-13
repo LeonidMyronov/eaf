@@ -15,6 +15,7 @@ import * as fromRoot from '../../../app.reducers';
 import * as UserActions from './user.actions';
 import * as UIActions from '../../../ui/ui.actions';
 import { User } from '../user.model';
+import { PTEventParamsData } from '../../store/main.model';
 
 @Injectable()
 export class UserEffects {
@@ -110,6 +111,76 @@ export class UserEffects {
           payload: response
         }
       ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
+    });
+
+  @Effect() doSendPixelTrackingEventParams = this.actions$
+    .ofType(UserActions.DO_SEND_PIXEL_TRACKING_EVENT_PARAMS)
+    .map((action: UserActions.DoSendPixelTrackingEventParams) => action.payload)
+    // TODO make request to backend
+    .map((r: {id: number, ptEventParamsData: PTEventParamsData}) => {
+      return {
+        id: r.id,
+        ptEventParamsData: [r.ptEventParamsData],
+        message: 'Your data have been saved successefully'
+      };
+    })
+    .mergeMap(r => {
+      return [
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r.message
+        },
+        {
+          type: UserActions.SET_PIXEL_TRACKING_EVENT_PARAMS,
+          payload: {
+            id: r.id,
+            ptEventParamsData: r.ptEventParamsData
+          }
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
+    });
+
+  @Effect() doChangePixelTrackingEventStatus = this.actions$
+    .ofType(UserActions.DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS)
+    .map((action: UserActions.DoChangePixelTrackingEventStatus) => action.payload)
+    // TODO make request to backend
+    .map(r => {
+      return {
+        id: r.id,
+        ptEventParamsData: [
+          {
+            id: 2,
+            name: 'startedFillOrderForm',
+            status: 0,
+            method: 1,
+            params: 'some test URL and params',
+            source: 1
+          },
+          {
+            id: 4,
+            name: 'startedFillOrderForm',
+            status: 0,
+            method: 2,
+            params: 'some test URL and params',
+            source: 2
+          }
+        ],
+      };
+    })
+    .map(r => {
+      return {
+          type: UserActions.SET_PIXEL_TRACKING_EVENT_PARAMS,
+          payload: {
+            id: r.id,
+            ptEventParamsData: r.ptEventParamsData
+          }
+        };
     })
     .catch(error => {
       return Observable.of(new UIActions.ShowNotification(error.message));

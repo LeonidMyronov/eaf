@@ -1,0 +1,30 @@
+@import variables
+
+.pt-event-form
+  button
+    font-size: 10px
+    margin-left: auto
+.form-field
+  margin-bottom: 0
+  label
+    font-size: 10px
+    margin-top: 8px
+  textarea
+    font-size: 10px
+    border: 0.5px solid $mainColor
+    box-shadow: none
+.switches-group
+  label
+    margin: 0
+    width: 70px
+    height: 30px
+    line-height: 30px
+    background-color: $formColor
+
+
+@media(max-width: 1023px)
+  .form-field:first-child
+    margin-right: auto !important
+  .pt-event-form
+    button
+      margin-top: 15px

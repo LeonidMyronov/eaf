@@ -14,6 +14,7 @@ html, body
   font-smoothing: antialiased
   -webkit-font-smoothing: antialiased
   overflow-x: hidden
+  position: relative
 
 div, p, form, section, article, input, textarea, label
   box-sizing: border-box
@@ -29,10 +30,24 @@ eaf-footer
 eaf-mobile-menu
   @extend .overlay
   background-color: $lightColor
-eaf-login, eaf-signup
+
+eaf-login, eaf-signup, eaf-pt-form
   @extend .overlay
   article
     margin-top: 100px
+
+eaf-pt-form
+  article
+    margin-top: 60px
+
+eaf-pt-event-form
+  width: 100%
+
+eaf-pt-list
+  @extend .overlay
+  article
+    margin-top: 170px
+    
 eaf-preloader
   @extend .overlay
   align-items: center
