@@ -4,7 +4,7 @@
     <label for="pt-event-details">URL и дополнительные параметры:</label>
     <textarea id="pt-event-details" type="text" placeholder="" formControlName="params"></textarea>
   </div>
-  <div class="buttons-group" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="10px">
+  <div class="buttons-group" fxLayout="row wrap" fxLayoutAlign="start end" fxLayoutGap="10px" fxLayoutGap.sm="0px">
     <div class="form-field" *ngFor="let param of ptEventFormData">
       <label>{{ param.label }}</label>
       <div class="switches-group" fxLayout="row" fxLayoutAlign="start start">
