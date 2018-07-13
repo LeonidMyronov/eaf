@@ -40,7 +40,6 @@ export class PtEventFormComponent implements OnInit {
 
   updateForm() {
     Object.keys(this.ptEventForm.controls).forEach( c => {
-      console.log(c, this.ptEventParams[c]);
       this.ptEventForm.get(c).patchValue(this.ptEventParams[c].toString());
     });
   }

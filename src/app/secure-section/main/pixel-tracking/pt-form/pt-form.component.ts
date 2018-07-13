@@ -46,7 +46,7 @@ export class PtFormComponent implements OnInit, OnChanges, OnDestroy {
     }
     this.subs = this.store.select(fromRoot.getOurSites)
       .map(sites => sites.find(s => s.id === this.id))
-      .subscribe(r => {this.siteState = r; console.log(r); });
+      .subscribe(r => this.siteState = r);
   }
 
   initForm() {

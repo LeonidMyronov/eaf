@@ -1,8 +1,11 @@
 @import variables
+.wrapper
+  overflow: scroll
 
 .pt-event-example
   .card
     min-height: 813px
+    width: 360px
 
 .form
   width: 670px
@@ -94,3 +97,18 @@
   font-size: 12px
   border: 0.5px solid $lightColor
   padding: 8px
+
+@media(max-width: 1023px)
+  .form .form-images .form-close
+    top: 15px
+    right: 15px
+  .pt-form
+    .form
+      width: 360px
+      padding-left: 15px
+      padding-right: 15px
+  .pt-event-actions
+    margin-top: 8px
+  .pt-event
+    padding-left: 15px
+    padding-right: 15px
