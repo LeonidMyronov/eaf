@@ -158,6 +158,7 @@ export interface RefPage {
 
 export interface PTEventParamsData extends PTEventData {
   id: number; // pixel-tracking event id
+  status: number; // pixel-tracking event status: 1 - enabled, 0 - disabled
   name: string; // pixel-tracking event name
 }
 

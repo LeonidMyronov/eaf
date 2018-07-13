@@ -11,6 +11,7 @@ export const DO_SEND_MESSAGE = '[USER] DO_SEND_MESSAGE';
 export const DO_SEND_WITHDRAW_REQUEST = '[USER] DO_SEND_WITHDRAW_REQUEST';
 export const ENABLE_PIXEL_TRACKING = '[USER] ENABLE_PIXEL_TRACKING';
 export const DO_SEND_PIXEL_TRACKING_EVENT_PARAMS = '[USER] DO_SEND_PIXEL_TRACKING_EVENT_PARAMS'; // send new pt-params from PostBack-form to backend
+export const DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS = '[USER] DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS'; // send new event status from PostBack-form to backend
 export const SET_PIXEL_TRACKING_EVENT_PARAMS = '[USER] SET_PIXEL_TRACKING_EVENT_PARAMS'; // put new pt-params to Store
 
 export class FillProfile implements Action {
@@ -52,6 +53,11 @@ export class DoSendPixelTrackingEventParams implements Action {
   constructor(public payload: {id: number, ptEventParamsData: PTEventParamsData}) {}
 }
 
+export class DoChangePixelTrackingEventStatus implements Action {
+  readonly type = DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS;
+  constructor(public payload: {id: number, event: {id: number, status: number}}) {}
+}
+
 export class SetPixelTrackingEventParams implements Action {
   readonly type = SET_PIXEL_TRACKING_EVENT_PARAMS;
   constructor(public payload: {id: number, ptEventParamsData: PTEventParamsData[]}) {}
@@ -67,5 +73,6 @@ export type UserActions =
   DoSendWithdrawRequest |
   EnablePixelTracking |
   SetPixelTrackingEventParams |
-  DoSendPixelTrackingEventParams
+  DoSendPixelTrackingEventParams |
+  DoChangePixelTrackingEventStatus
   ;

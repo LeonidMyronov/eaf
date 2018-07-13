@@ -145,4 +145,44 @@ export class UserEffects {
     .catch(error => {
       return Observable.of(new UIActions.ShowNotification(error.message));
     });
+
+  @Effect() doChangePixelTrackingEventStatus = this.actions$
+    .ofType(UserActions.DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS)
+    .map((action: UserActions.DoChangePixelTrackingEventStatus) => action.payload)
+    // TODO make request to backend
+    .map(r => {
+      return {
+        id: r.id,
+        ptEventParamsData: [
+          {
+            id: 2,
+            name: 'startedFillOrderForm',
+            status: 0,
+            method: 1,
+            params: 'some test URL and params',
+            source: 1
+          },
+          {
+            id: 4,
+            name: 'startedFillOrderForm',
+            status: 0,
+            method: 2,
+            params: 'some test URL and params',
+            source: 2
+          }
+        ],
+      };
+    })
+    .map(r => {
+      return {
+          type: UserActions.SET_PIXEL_TRACKING_EVENT_PARAMS,
+          payload: {
+            id: r.id,
+            ptEventParamsData: r.ptEventParamsData
+          }
+        };
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
+    });
 }
