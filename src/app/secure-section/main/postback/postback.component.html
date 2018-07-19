@@ -1,5 +1,93 @@
 <article class="postback-page">
-    <div class="container">
-      <img src="/assets/images/under-construction.gif" alt="" style="margin:  0 auto;display:  block;width: 80%;">
+  <div class="container">
+    <div class="cards-group">
+
+      <div class="card card-1 card-intro">
+        <div class="title">
+            Статистика Post Back
+        </div>
+        <div class="content light-color">
+          <p>Посмотрите всю статистику Post Back в деталях</p>
+        </div>
+        <div class="footer" routerLink="/main/">
+          <div class="action">
+            Details
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-2 card-intro">
+        <div class="title">
+            Как настроить Post Back
+        </div>
+        <div class="content light-color">
+          <p>Как отправить  данные Pixel Tracking на другой ресурс</p>
+        </div>
+        <div class="footer" routerLink="/main/">
+          <div class="action">
+            Details
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+      <div class="card pb-card" *ngFor="let site of userSitesState$ | async">
+        <div class="header">
+          <img [src]="site.iconLightSrc" alt="">
+          {{ site.name }}
+        </div>
+        <div class="content">
+          <div class="left-side">
+            <img src="/assets/images/main/postback/wl-icon.svg" alt="">
+            <div class="pb-events-descr">Событий за 7дней</div>
+            <div class="pb-events-count">{{ site.lastWeekEventsCount || 0}}</div>
+          </div>
+          <div class="right-side">
+            <div class="form-field pb-status">
+              <label for="name">Post Back:</label>
+              <div class="switches-group on-off-switches" fxLayout="row" fxLayoutAlign="start start">
+                <input type="radio" id="status-on-{{site.id}}" class="status-on" name="status-{{site.id}}" value="1" [checked]="site.pixelTrackingActivated">
+                <label for="status-on-{{site.id}}" (click)="onPTActivate(site.id, true)">On</label>
+                <input type="radio" id="status-off-{{site.id}}" class="status-off" name="status-{{site.id}}" value="0" [checked]="!site.pixelTrackingActivated">
+                <label for="status-off-{{site.id}}" (click)="onPTActivate(site.id, false)">Off</label>
+              </div>
+            </div>
+            <div class="pb-track-info">
+              <div class="pb-track-info__descr">Tracked</div> 
+              <div class="pb-track-info__count">{{ site.trackedEventsCount || 0}} Events</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer" (click)="onChangePTEventsSettings(site.id)">
+          <div class="action">
+            Settings
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-new" (click)="openPostbackForm()">
+        <h4>Добавить Post Back для сайта</h4>
+        <img src="/assets/images/main/postback/new-icon.svg" alt="">
+      </div>
+
     </div>
-  </article>
+  </div>
+</article>
+<eaf-pt-list
+  *ngIf="addPostbackMode"
+  (close)="closePostbackForm($event)"
+  (add)="onAddSiteToPostback($event)">
+</eaf-pt-list>
+<eaf-pt-form
+  [id]="selectedSiteId"
+  *ngIf="ptEventsMode"
+  (close)="closePTEventsForm($event)"
+  (submit)="onSubmitPTEvents($event)">
+</eaf-pt-form>

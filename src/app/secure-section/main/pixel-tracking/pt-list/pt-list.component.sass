@@ -1,0 +1,61 @@
+@import variables
+  
+.pt-list
+  position: relative
+  width: 1016px
+  height: auto
+  padding: 40px  120px
+  margin-bottom: auto
+.form-close
+  position: absolute
+  right: 30px
+  top: 30px
+  cursor: pointer
+
+.title
+  margin-bottom: 12px
+.descr
+  font-size: 10px
+  margin-bottom: 22px
+.sites-group
+  overflow: scroll
+  margin-bottom: 20px
+  .site
+    img
+      width: 134px
+      height: 105px
+    p
+      font-size: 10px
+      text-align: center
+    input
+      display: none
+    label
+      display: block
+      margin-top: 20px
+      width: 100%
+      height: 20px
+      cursor: pointer
+    &:hover
+      .check
+        background-color: $accentColor-lighter
+.check
+  left: 50%
+  transform: translateX(-50%)
+button
+  display: block
+  margin-left: auto
+
+@media(max-width: 1023px)
+  .pt-list
+    width: 96%
+
+@media(max-width: 767px)
+  .form-close
+    top: 15px
+    right: 15px
+  .pt-list
+    min-width: 360px
+    padding-left: 30px
+    padding-right: 30px
+
+

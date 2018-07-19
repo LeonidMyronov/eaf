@@ -1,0 +1,114 @@
+@import variables
+.wrapper
+  overflow: scroll
+
+.pt-event-example
+  .card
+    min-height: 813px
+    width: 360px
+
+.form
+  width: 670px
+  min-height: 813px
+  padding: 40px 50px
+  header
+    height: 30px
+    margin-bottom: 14px
+    display: flex
+    flex-flow: row wrap
+    align-items: center
+    img
+      margin-right: 7px
+      height: 30px
+      width: auto
+  .form-title
+    font-size: 14px
+    margin-bottom: 7px
+  .descr
+    font-size: 10px
+    margin-bottom: 15px
+
+.pt-event
+  width: 100%
+  min-height: 40px
+  padding: 13px 20px
+  cursor: pointer
+  border-radius: 2px
+  &:not(:last-child)
+    margin-bottom: 10px
+  &:hover
+    background-color: $accentColor-lighter
+  &-title
+    font-size: 12px
+    margin-right: auto
+  &-actions
+    font-size: 12px
+    &__disable
+      color: $dangerColor
+    
+  &-status
+    position: relative
+    width: 14px
+    height: 14px
+    border: 1px solid $mainColor
+    margin-right: 10px
+
+  eaf-pt-event-form
+    display: none
+  &.opened
+    cursor: default
+    background-color: $lightColor
+    eaf-pt-event-form
+      display: block
+  &.enabled
+    .pt-event-status
+      background: $accentColor
+      border-color: $accentColor
+      &:before
+        position: absolute
+        width: 7px
+        height: 2px
+        content: ''
+        left: 1px
+        top: 1px
+        border: 2px solid $mainColor
+        border-top-color: transparent
+        border-right-color: transparent
+        -webkit-transform: rotate(-55deg)
+        transform: rotate(-55deg)
+
+.pt-event-example
+  .card
+    align-items: flex-start
+    justify-content: flex-start
+.pb-title
+  margin-bottom: 30px
+.pb-param
+  font-size: 12px
+  line-height: 24px
+  &__name
+    color: $lightColor
+  &__divider
+    color: #75799E
+.pb-snippet-title
+  margin-top: 25px
+  margin-bottom: 15px
+.pb-snippet
+  font-size: 12px
+  border: 0.5px solid $lightColor
+  padding: 8px
+
+@media(max-width: 1023px)
+  .form .form-images .form-close
+    top: 15px
+    right: 15px
+  .pt-form
+    .form
+      width: 360px
+      padding-left: 15px
+      padding-right: 15px
+  .pt-event-actions
+    margin-top: 8px
+  .pt-event
+    padding-left: 15px
+    padding-right: 15px

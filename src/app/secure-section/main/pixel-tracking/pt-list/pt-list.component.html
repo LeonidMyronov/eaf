@@ -1,0 +1,22 @@
+<article class="pt-list bg-form-color">
+  <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
+  <div class="title">
+      Добавить на сайт Pixel Tracking
+  </div>
+  <div class="descr">
+      Выберите сайт на котором вы хотите отслеживать события:
+  </div>
+  <div class="sites-group" fxLayout="row" fxLayout.xs="row wrap">
+    <div class="site"
+      *ngFor="let site of userSitesState$ | async; let i = index"
+      [ngClass]="{active: i === activeSiteIndex}">
+      <img [src]="site.preview" [alt]="site.name">
+      <p>{{ site.name }}</p>
+      <input type="radio" id="ptItem{{i}}" name="regular" (click)="onClickSite(site.id)">
+      <label for="ptItem{{i}}">
+        <span class="check"></span>
+      </label>
+    </div>
+  </div>
+  <button type="button" class="btn-md primary" [disabled]="!selectedSiteId" (click)="onAdd()">Add</button>
+</article>

@@ -27,6 +27,9 @@ import { ProfileComponent } from './main/profile/profile.component';
 import { PostbackComponent } from './main/postback/postback.component';
 import { WhitelabelComponent } from './main/whitelabel/whitelabel.component';
 import { OfferComponent } from './main/offer/offer.component';
+import { PtListComponent } from './main/pixel-tracking/pt-list/pt-list.component';
+import { PtFormComponent } from './main/pixel-tracking/pt-form/pt-form.component';
+import { PtEventFormComponent } from './main/pixel-tracking/pt-form/pt-event-form/pt-event-form.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,6 @@ import { OfferComponent } from './main/offer/offer.component';
     GuideComponent,
     NewsComponent,
     NewsItemComponent,
-    // DiscountComponent,
     DiscountDetailsComponent,
     StatisticDateComponent,
     PtDateComponent,
@@ -45,6 +47,9 @@ import { OfferComponent } from './main/offer/offer.component';
     PostbackComponent,
     WhitelabelComponent,
     OfferComponent,
+    PtListComponent,
+    PtFormComponent,
+    PtEventFormComponent,
   ],
   imports: [
     CoreModule,

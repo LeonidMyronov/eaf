@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="326px" height="226px" viewBox="0 0 326 226" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Rectangle 5 Copy 9</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M282,436 L604,436 C605.104569,436 606,436.895431 606,438 L606,660 C606,661.104569 605.104569,662 604,662 L282,662 C280.895431,662 280,661.104569 280,660 L280,438 C280,436.895431 280.895431,436 282,436 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="326" height="226" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="HD-Desktop-1920---1440-px" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-dasharray="10">
+        <g id="HD-Desktop_EDU-Post-Back" transform="translate(-280.000000, -436.000000)" fill="#FFFFFF" stroke="#287DFC" stroke-width="2">
+            <use id="Rectangle-5-Copy-9" mask="url(#mask-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
