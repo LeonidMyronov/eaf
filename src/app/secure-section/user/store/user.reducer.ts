@@ -4,7 +4,9 @@ import { UserActions,
   CLEAR_PROFILE,
   ADD_FILTERS_LIST,
   ENABLE_PIXEL_TRACKING,
-  SET_PIXEL_TRACKING_EVENT_PARAMS } from './user.actions';
+  SET_PIXEL_TRACKING_EVENT_PARAMS,
+  ACTIVATE_PIXEL_TRACKING
+} from './user.actions';
 import { Site } from '../../../core/core.model';
 
 
@@ -64,11 +66,27 @@ export function userReducer(state: State = initialState, action: UserActions) {
         } else {
           return {
             ...s,
-            pixelTrackingEnabled: true
+            pixelTrackingEnabled: true,
+            pixelTrackingActivated: true
           };
         }
       })
     };
+    case ACTIVATE_PIXEL_TRACKING:
+    return {
+      ...state,
+      sites: state.sites.map(s => {
+        if (s.id !== action.payload.id) {
+          return s;
+        } else {
+          return {
+            ...s,
+            pixelTrackingActivated: action.payload.status
+          };
+        }
+      })
+    };
+
     case SET_PIXEL_TRACKING_EVENT_PARAMS:
     return {
       ...state,

@@ -185,4 +185,36 @@ export class UserEffects {
     .catch(error => {
       return Observable.of(new UIActions.ShowNotification(error.message));
     });
+
+  @Effect() doActivatePixelTracking = this.actions$
+    .ofType(UserActions.DO_ACTIVATE_PIXEL_TRACKING)
+    .map((action: UserActions.DoActivatePixelTracking) => action.payload)
+    // TODO check if status the same - don't send request !!!!!!  ======================== !!!! =========================
+    // TODO check if status the same - don't send request !!!!!!  ======================== !!!! =========================
+    // TODO check if status the same - don't send request !!!!!!  ======================== !!!! =========================
+    .map((r: {id: number, status: boolean}) => {
+      return {
+        id: r.id,
+        status: r.status,
+        message: 'Your data have been saved successefully'
+      };
+    })
+    .mergeMap(r => {
+      return [
+        {
+          type: UIActions.SHOW_NOTIFICATION,
+          payload: r.message
+        },
+        {
+          type: UserActions.ACTIVATE_PIXEL_TRACKING,
+          payload: {
+            id: r.id,
+            status: r.status
+          }
+        }
+      ];
+    })
+    .catch(error => {
+      return Observable.of(new UIActions.ShowNotification(error.message));
+    });
 }
