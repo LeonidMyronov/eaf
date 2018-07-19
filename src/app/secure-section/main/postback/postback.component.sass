@@ -84,4 +84,17 @@
       text-align: right
 
 
+// ADAPTIVE STYLES
+@media(max-width: 1399px)
+  .cards-group
+    grid-template-columns: repeat(3, 326px)
+
+@media(max-width: 1023px)
+  .cards-group
+    grid-template-columns: repeat(2, 326px)
+@media(max-width: 767px)
+  .cards-group
+    grid-template-columns: repeat(1, 326px)
+    grid-gap: 10px
+
 
