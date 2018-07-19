@@ -16,7 +16,7 @@ export class PostbackComponent implements OnInit {
   public addPostbackMode: boolean = false;
   public ptEventsMode: boolean = false;
   public userSitesState$: Observable<Site[]>;
-  public selectedSite: Site = null;
+  public selectedSiteId: number = null;
 
   constructor(
     private store: Store <fromRoot.State>
@@ -24,6 +24,11 @@ export class PostbackComponent implements OnInit {
 
   ngOnInit() {
     this.userSitesState$ = this.store.select(fromRoot.getOurSites).map(s => s.filter(e => e.pixelTrackingEnabled));
+  }
+
+  onChangePTEventsSettings(id: number) {
+    this.selectedSiteId = id;
+    this.ptEventsMode = true;
   }
 
   openPostbackForm() {
@@ -41,11 +46,16 @@ export class PostbackComponent implements OnInit {
     this.ptEventsMode = false;
   }
 
-  onAddSiteToPostback(e: Site) {
-    this.store.dispatch(new UserActions.EnablePixelTracking(e.id));
-    this.selectedSite = e;
+  onAddSiteToPostback(id: number) {
+    this.store.dispatch(new UserActions.EnablePixelTracking(id));
+    this.selectedSiteId = id;
     this.closePostbackForm();
     this.openPTEventsForm();
+  }
+
+  onPTActivate(id: number, status: true) {
+    console.log('ptActivation', id, status);
+    this.store.dispatch(new UserActions.DoActivatePixelTracking({id, status}));
   }
 
   onSubmitPTEvents(e) {
