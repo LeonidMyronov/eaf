@@ -136,6 +136,10 @@ button
   align-items: center
   &.high-card
     min-height: 472px
+  .header
+    display: flex
+    flex-direction: row
+    justify-content: flex-start
   .footer
     margin: 0 -30px -30px
     padding: 0 30px
@@ -340,6 +344,30 @@ label
     &:last-of-type
       border-top-right-radius: 2px
       border-bottom-right-radius: 2px
+  &.on-off-switches
+    label
+      width: 73px
+      height: 30px
+      line-height: 30px
+      color: $lightColor
+    input + label
+      background-color: $mainColor
+      border: 1px solid $lightColor
+      &:hover
+        background-color: $accentColor
+    input.status-on
+      &:checked + label
+        background-color: $successColor !important
+        border: none
+      &:not(:checked) + label
+        border-right-width: 0
+    input.status-off
+      &:checked + label
+        background-color: $dangerColor !important
+        border: none
+      &:not(:checked) + label
+        border-left-width: 0
+
 
 .overlay
   position: fixed

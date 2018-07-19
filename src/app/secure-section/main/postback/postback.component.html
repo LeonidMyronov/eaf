@@ -9,9 +9,9 @@
         <div class="content light-color">
           <p>Посмотрите всю статистику Post Back в деталях</p>
         </div>
-        <div class="footer" routerLink="/main/discount">
+        <div class="footer" routerLink="/main/">
           <div class="action">
-            Подать заявку
+            Details
             <span class="arrow-next"></span>
             <span class="arrow-next"></span>
             <span class="arrow-next"></span>
@@ -26,17 +26,50 @@
         <div class="content light-color">
           <p>Как отправить  данные Pixel Tracking на другой ресурс</p>
         </div>
-        <div class="footer" routerLink="/main/discount">
+        <div class="footer" routerLink="/main/">
           <div class="action">
-            Подать заявку
+            Details
             <span class="arrow-next"></span>
             <span class="arrow-next"></span>
             <span class="arrow-next"></span>
           </div>
         </div>
       </div>
-      <div class="card" *ngFor="let site of userSitesState$ | async">
-        {{ site.name }}
+      <div class="card pb-card" *ngFor="let site of userSitesState$ | async">
+        <div class="header">
+          <img [src]="site.iconLightSrc" alt="">
+          {{ site.name }}
+        </div>
+        <div class="content">
+          <div class="left-side">
+            <img src="/assets/images/main/postback/wl-icon.svg" alt="">
+            <div class="pb-events-descr">Событий за 7дней</div>
+            <div class="pb-events-count">{{ site.lastWeekEventsCount || 0}}</div>
+          </div>
+          <div class="right-side">
+            <div class="form-field pb-status">
+              <label for="name">Post Back:</label>
+              <div class="switches-group on-off-switches" fxLayout="row" fxLayoutAlign="start start">
+                <input type="radio" id="status-on-{{site.id}}" class="status-on" name="status-{{site.id}}" value="1" [checked]="site.pixelTrackingActivated">
+                <label for="status-on-{{site.id}}" (click)="onPTActivate(site.id, true)">On</label>
+                <input type="radio" id="status-off-{{site.id}}" class="status-off" name="status-{{site.id}}" value="0" [checked]="!site.pixelTrackingActivated">
+                <label for="status-off-{{site.id}}" (click)="onPTActivate(site.id, false)">Off</label>
+              </div>
+            </div>
+            <div class="pb-track-info">
+              <div class="pb-track-info__descr">Tracked</div> 
+              <div class="pb-track-info__count">{{ site.trackedEventsCount || 0}} Events</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer" (click)="onChangePTEventsSettings(site.id)">
+          <div class="action">
+            Settings
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+            <span class="arrow-next"></span>
+          </div>
+        </div>
       </div>
 
       <div class="card card-new" (click)="openPostbackForm()">
@@ -53,7 +86,7 @@
   (add)="onAddSiteToPostback($event)">
 </eaf-pt-list>
 <eaf-pt-form
-  [data]="selectedSite"
+  [id]="selectedSiteId"
   *ngIf="ptEventsMode"
   (close)="closePTEventsForm($event)"
   (submit)="onSubmitPTEvents($event)">

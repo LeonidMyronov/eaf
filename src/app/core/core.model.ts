@@ -14,6 +14,8 @@ export interface Site {
   pixelTrackingEnabled?: boolean; // is pixel-tracking added for this site
   pixelTrackingActivated?: boolean; // is post-back activated or not for this site
   ptEventParamsData?: PTEventParamsData[]; // pixel-tracking params for event
+  trackedEventsCount?: number; // postBack section: amount of events are tracked for Site
+  lastWeekEventsCount?: number; // postBack prop: amount of events were triggered for the last week
 }
 
 export interface TimeList {

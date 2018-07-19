@@ -39,6 +39,62 @@
     margin-bottom: auto
   &:hover
     background-color: $accentColor-lighter
+.pb-card
+  .header
+    align-items: center
+    margin-bottom: 15px
+    img
+      height: 30px
+      width: auto
+      margin-right: 15px
+  .content
+    height: 100px
+    margin-bottom: auto
+    display: flex
+    flex-direction: row
+    .left-side
+      width: 120px
+      padding-right: 30px
+      height: 100%
+      display: flex
+      flex-flow: column
+      justify-content: space-around
+      align-items: center
+      img
+      .pb-events-descr
+        font-size: 10px
+        width: 90px
+      .pb-events-count
+        color: $lightColor
+    .right-side
+      height: 100%
+  .pb-status
+    margin-bottom: 0
+    label
+      margin-bottom: 8px
+      font-size: 12px
+      color: $lightColor
+  .pb-track-info
+    &__descr
+      color: $lightColor
+      font-size: 12px
+      text-align: right
+    &__count
+      font-size: 14px
+      text-align: right
 
+
+// ADAPTIVE STYLES
+@media(max-width: 1399px)
+  .cards-group
+    grid-template-columns: repeat(3, 326px)
+
+@media(max-width: 1023px)
+  .cards-group
+    grid-template-columns: repeat(2, 326px)
+@media(max-width: 767px)
+  .cards-group
+    grid-template-columns: repeat(1, 326px)
+    grid-gap: 10px
 
 
