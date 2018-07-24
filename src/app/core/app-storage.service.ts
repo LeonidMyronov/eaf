@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Site, TimeList, NavMenuItem, UserMenuItem, AuthMenuItem, LangListItem, WhiteLabel } from './core.model';
+import { Site, TimeList, NavMenuItem, UserMenuItem, AuthMenuItem, LangListItem } from './core.model';
 
 @Injectable()
 export class AppStorageService {
@@ -253,21 +253,7 @@ export class AppStorageService {
       isMobileVersion: true,
       description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
        исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
-       что позволяет удовлетворять самых взыскательных клиентов.`,
-       pixelTrackingEnabled: true,
-       pixelTrackingActivated: true,
-       trackedEventsCount: 10,
-       lastWeekEventsCount: 62,
-       ptEventParamsData: [
-         {
-          id: 1,
-          name: 'startedFillOrderForm',
-          status: 1,
-          method: 1,
-          params: 'some test URL and params',
-          source: 1
-         }
-       ]
+       что позволяет удовлетворять самых взыскательных клиентов.`
     },
     {
       id: 3,
@@ -281,25 +267,7 @@ export class AppStorageService {
       isMobileVersion: true,
       description: `Сервис предоставляет исключительное качество услуг по написанию эссе, исследовательских работ, курсовых,
        тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами, что позволяет удовлетворять
-        самых взыскательных клиентов.`,
-      ptEventParamsData: [
-        {
-          id: 2,
-          name: 'startedFillOrderForm',
-          status: 1,
-          method: 1,
-          params: 'some test URL and params',
-          source: 1
-        },
-        {
-          id: 4,
-          name: 'startedFillOrderForm',
-          status: 0,
-          method: 2,
-          params: 'some test URL and params',
-          source: 2
-        }
-      ]
+        самых взыскательных клиентов.`
     },
     {
       id: 4,
@@ -333,77 +301,6 @@ export class AppStorageService {
     },
   ];
 
-  private whiteLabels = [
-    {
-      id: 11,
-      name: 'WhiteLabels.com',
-      iconSrc: '',
-      fisrtOrderPercent: 50,
-      rebillsPercent: 15,
-      iconLightSrc: '/assets/images/header/sites/site-bookwormlab-light.svg',
-      preview: '/assets/images/main/whitelabel/wl-preview.svg',
-      isDesktopVersion: true,
-      isMobileVersion: true,
-      description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
-       исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
-       что позволяет удовлетворять самых взыскательных клиентов.`,
-       pixelTrackingEnabled: true,
-       pixelTrackingActivated: true,
-       trackedEventsCount: 10,
-       lastWeekEventsCount: 62,
-       ptEventParamsData: [
-         {
-          id: 1,
-          name: 'startedFillOrderForm',
-          status: 1,
-          method: 1,
-          params: 'some test URL and params',
-          source: 1
-         }
-       ],
-       stat:
-        {
-        income: 2355,
-        sales: 34,
-        uniques: 324
-        }
-    },
-    {
-      id: 12,
-      name: 'WhiteLabels2.com',
-      iconSrc: '',
-      fisrtOrderPercent: 30,
-      rebillsPercent: 15,
-      iconLightSrc: '',
-      preview: '/assets/images/main/whitelabel/wl-preview.svg',
-      isDesktopVersion: true,
-      isMobileVersion: true,
-      description: `Абсолютный лидер в нише essay writing! Сервис предоставляет исключительное качество услуг по написанию эссе,
-       исследовательских работ, курсовых, тезисов, отчетов или диссертаций. Работы выполняются исключительно американскими райтерами,
-       что позволяет удовлетворять самых взыскательных клиентов.`,
-       pixelTrackingEnabled: true,
-       pixelTrackingActivated: false,
-       trackedEventsCount: 10,
-       lastWeekEventsCount: 62,
-       ptEventParamsData: [
-         {
-          id: 1,
-          name: 'startedFillOrderForm',
-          status: 1,
-          method: 1,
-          params: 'some test URL and params',
-          source: 1
-         }
-       ],
-       stat:
-        {
-        income: 355,
-        sales: 41,
-        uniques: 24
-        }
-    }
-  ];
-
   constructor() {}
 
   getNavMenu(): NavMenuItem[] { return [...this.navMenu]; }
@@ -417,5 +314,4 @@ export class AppStorageService {
   getTimeList(): TimeList[] {return [...this.timeList]; }
   // getTariffsList(): Site[] {return this.tariffsList.slice(1); }
   getAllSites(): Site[] {return this.tariffsList.slice(); }
-  getWhiteLabels(): WhiteLabel[] {return this.whiteLabels.slice(); }
 }
