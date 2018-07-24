@@ -13,8 +13,8 @@ import { Site } from '../../../core/core.model';
 })
 export class PostbackComponent implements OnInit {
 
-  public addPostbackMode: boolean = false;
-  public ptEventsMode: boolean = false;
+  public addPostbackMode: boolean = false; // open pop-up site-list for add PostBack tracking
+  public ptEventsMode: boolean = false; // open PT-events form
   public userSitesState$: Observable<Site[]>;
   public selectedSiteId: number = null;
 
@@ -54,7 +54,6 @@ export class PostbackComponent implements OnInit {
   }
 
   onPTActivate(id: number, status: true) {
-    console.log('ptActivation', id, status);
     this.store.dispatch(new UserActions.DoActivatePixelTracking({id, status}));
   }
 

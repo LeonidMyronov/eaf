@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
 import { User, StatisticPanelFilterList } from '../user.model';
-import { Site } from '../../../core/core.model';
+import { Site, WhiteLabel } from '../../../core/core.model';
 import { PTEventParamsData } from '../../store/main.model';
 
 export const FILL_PROFILE = '[USER] FILL_PROFILE';
@@ -10,15 +10,17 @@ export const ADD_FILTERS_LIST = '[USER] ADD_FILTERS_LIST';
 export const DO_SEND_MESSAGE = '[USER] DO_SEND_MESSAGE';
 export const DO_SEND_WITHDRAW_REQUEST = '[USER] DO_SEND_WITHDRAW_REQUEST';
 export const ENABLE_PIXEL_TRACKING = '[USER] ENABLE_PIXEL_TRACKING';
-export const DO_ACTIVATE_PIXEL_TRACKING = '[USER] DO_ACTIVATE_PIXEL_TRACKING';
-export const ACTIVATE_PIXEL_TRACKING = '[USER] ACTIVATE_PIXEL_TRACKING';
+export const DO_ACTIVATE_PIXEL_TRACKING = '[USER] DO_ACTIVATE_PIXEL_TRACKING'; // send pt-status of our site to BE
+export const ACTIVATE_PIXEL_TRACKING = '[USER] ACTIVATE_PIXEL_TRACKING'; // put pt-status of our site to Store
+// export const DO_ACTIVATE_WL_PIXEL_TRACKING = '[USER] DO_ACTIVATE_WL_PIXEL_TRACKING'; // send pt-status of WL site to BE
+// export const ACTIVATE_WL_PIXEL_TRACKING = '[USER] ACTIVATE_WL_PIXEL_TRACKING'; // put pt-status of WL site to Store
 export const DO_SEND_PIXEL_TRACKING_EVENT_PARAMS = '[USER] DO_SEND_PIXEL_TRACKING_EVENT_PARAMS'; // send new pt-params from PostBack-form to backend
 export const DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS = '[USER] DO_CHANGE_PIXEL_TRACKING_EVENT_STATUS'; // send new event status from PostBack-form to backend
 export const SET_PIXEL_TRACKING_EVENT_PARAMS = '[USER] SET_PIXEL_TRACKING_EVENT_PARAMS'; // put new pt-params to Store
 
 export class FillProfile implements Action {
   readonly type = FILL_PROFILE;
-  constructor(public payload: {user: User, sites: Site[]}) {}
+  constructor(public payload: {user: User, sites: Site[], wl: WhiteLabel[]}) {}
 }
 
 export class ClearProfile implements Action {

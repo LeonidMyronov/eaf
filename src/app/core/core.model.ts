@@ -18,6 +18,16 @@ export interface Site {
   lastWeekEventsCount?: number; // postBack prop: amount of events were triggered for the last week
 }
 
+export interface WhiteLabel extends Site {
+  stat: WhiteLabelStat;
+}
+
+export interface WhiteLabelStat {
+  income: number;
+  sales: number;
+  uniques: number;
+}
+
 export interface TimeList {
   id: number;
   name: string;

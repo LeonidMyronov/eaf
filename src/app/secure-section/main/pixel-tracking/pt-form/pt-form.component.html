@@ -7,7 +7,9 @@
         <img class="form-close" src="/assets/images/header/icon-close-form.svg" alt="" (click)="onCloseForm()">
       </div>
       <header>
-        <img [src]="siteState?.iconSrc" [alt]="siteState?.name">
+        <span *ngIf="!siteState?.iconSrc" class="site-icon"></span>
+
+        <img *ngIf="siteState?.iconSrc" [src]="siteState?.iconSrc" [alt]="siteState?.name">
         <span>{{ siteState?.name }}</span>
       </header>
       <div class="form-title">События Pixel Tracking</div>
