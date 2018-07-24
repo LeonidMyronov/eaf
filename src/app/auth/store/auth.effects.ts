@@ -16,7 +16,7 @@ import * as UIActions from '../../ui/ui.actions';
 import { LoginData } from '../login-data.model';
 import { SignupData } from '../signup-data.model';
 import { User } from '../../secure-section/user/user.model';
-import { Site } from '../../core/core.model';
+import { Site, WhiteLabel } from '../../core/core.model';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -37,7 +37,7 @@ export class AuthEffects {
     .switchMap((data: LoginData) => this.authService.login(data))
     // .map(() => Observable.throw('Network error!'))
     .debounceTime(500)
-    .mergeMap((response: {user: User, sites: Site[]}) => {
+    .mergeMap((response: {user: User, sites: Site[], wl: WhiteLabel[]}) => {
       this.router.navigate(['/main']);
       return [
         {
@@ -64,7 +64,7 @@ export class AuthEffects {
     // switchMap to BackEnd API
     .map((data: SignupData) => this.authService.signup(data))
     .debounceTime(500)
-    .mergeMap((response: {user: User, sites: Site[]}) => {
+    .mergeMap((response: {user: User, sites: Site[], wl: WhiteLabel[]}) => {
       this.router.navigate(['/main']);
       return [
         {

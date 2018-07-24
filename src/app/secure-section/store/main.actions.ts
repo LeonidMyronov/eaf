@@ -42,6 +42,7 @@ export const UPDATE_PROMO_SBANNER_COUPON = '[MAIN] UPDATE_PROMO_SBANNER_COUPON';
 export const UPDATE_PROMO_SBANNER_UTM = '[MAIN] UPDATE_PROMO_SBANNER_UTM';
 export const UPDATE_PROMO_ABANNER_COUPON = '[MAIN] UPDATE_PROMO_ABANNER_COUPON';
 export const UPDATE_PROMO_ABANNER_UTM = '[MAIN] UPDATE_PROMO_ABANNER_UTM';
+export const DO_SEND_WL_REQUEST = '[MAIN] DO_SEND_WL_REQUEST'; // effect action sending request on adding new WL site
 
 export class BeforeFetchConsolidatedData implements Action {
   readonly type = BEFORE_FETCH_CONSOLIDATED_DATA;
@@ -204,6 +205,11 @@ export class UpdatePromoABannerUTM implements Action {
   constructor(public payload: {id: number, utm: string}) {}
 }
 
+export class DoSendWLRequest implements Action {
+  readonly type = DO_SEND_WL_REQUEST;
+  constructor(public payload: {name: string, proto: string, details: string}) {}
+}
+
 export type MainActions =
   BeforeFetchConsolidatedData |
   FetchConsolidatedData |
@@ -234,6 +240,7 @@ export type MainActions =
   UpdatePromoSBannerCoupon |
   UpdatePromoSBannerUTM |
   UpdatePromoABannerCoupon |
-  UpdatePromoABannerUTM
+  UpdatePromoABannerUTM |
+  DoSendWLRequest
 ;
 
