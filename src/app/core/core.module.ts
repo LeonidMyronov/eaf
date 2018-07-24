@@ -13,6 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { AppStorageService } from './app-storage.service';
 import { HelperService } from './helper.service';
+import { ErrorsHandler } from './errors-handler.service';
 
 import { DropdownDirective } from './directives/dropdown.directive';
 import { HomeTimeFormatPipe } from './pipes/home-time.pipe';
@@ -46,7 +47,7 @@ import { ContactsComponent } from '../start-section/contacts/contacts.component'
     TranslateModule,
     ContactsComponent
   ],
-  providers: [AppStorageService, HelperService]
+  providers: [AppStorageService, HelperService, ErrorsHandler]
 })
 
 export class CoreModule {}
