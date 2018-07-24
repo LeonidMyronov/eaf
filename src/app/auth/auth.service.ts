@@ -91,8 +91,7 @@ export class AuthService {
       paymentNotes: '',
       totalIncome: 1200.50,
     },
-      sites: this.appStorage.getAllSites(),
-      wl: this.appStorage.getWhiteLabels()
+      sites: this.appStorage.getAllSites()
     };
   }
 }

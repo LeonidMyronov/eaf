@@ -7,13 +7,12 @@ import { UserActions,
   SET_PIXEL_TRACKING_EVENT_PARAMS,
   ACTIVATE_PIXEL_TRACKING
 } from './user.actions';
-import { Site, WhiteLabel } from '../../../core/core.model';
+import { Site } from '../../../core/core.model';
 
 
 export interface State {
   user: User;
   sites: Site[];
-  wl: WhiteLabel[];
 }
 
 const initialState: State = {
@@ -35,8 +34,7 @@ const initialState: State = {
     paymentNotes: '',
     totalIncome: null,
   },
-  sites: [],
-  wl: []
+  sites: []
 };
 
 export function userReducer(state: State = initialState, action: UserActions) {
@@ -78,16 +76,6 @@ export function userReducer(state: State = initialState, action: UserActions) {
     return {
       ...state,
       sites: state.sites.map(s => {
-        if (s.id !== action.payload.id) {
-          return s;
-        } else {
-          return {
-            ...s,
-            pixelTrackingActivated: action.payload.status
-          };
-        }
-      }),
-      wl: state.wl.map(s => {
         if (s.id !== action.payload.id) {
           return s;
         } else {
@@ -138,8 +126,4 @@ export const getUserBalanceState = (state: State) => {
 export const getUserStatisticFilters = (state: State) => state.user.statisticFiltersList;
 export const getAllSites = (state: State) => state.sites;
 export const getOurSites = (state: State) => state.sites.slice(1);
-export const getWLs = (state: State) => state.wl;
-export const getAllUserSites = (state: State) => {
-  return [...state.sites.slice(1), ...state.wl];
-};
 

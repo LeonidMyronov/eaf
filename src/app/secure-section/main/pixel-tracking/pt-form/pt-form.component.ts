@@ -44,7 +44,7 @@ export class PtFormComponent implements OnInit, OnChanges, OnDestroy {
     if (!v || !Number.isInteger(v) ) {
       return;
     }
-    this.subs = this.store.select(fromRoot.getAllUserSites)
+    this.subs = this.store.select(fromRoot.getOurSites)
       .map(sites => sites.find(s => s.id === this.id))
       .subscribe(r => this.siteState = r);
   }

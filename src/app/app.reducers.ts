@@ -36,5 +36,3 @@ export const getUserBalanceState = createSelector(getUserState, fromUser.getUser
 export const getUserStatisticFilters = createSelector(getUserState, fromUser.getUserStatisticFilters);
 export const getAllSites = createSelector(getUserState, fromUser.getAllSites);
 export const getOurSites = createSelector(getUserState, fromUser.getOurSites);
-export const getWLSites = createSelector(getUserState, fromUser.getWLs);
-export const getAllUserSites = createSelector(getUserState, fromUser.getAllUserSites);
