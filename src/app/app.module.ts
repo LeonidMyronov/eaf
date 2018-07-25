@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { RunService } from './core/run.service';
+import { ErrorsHandler } from './core/errors-handler.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './start-section/home/home.component';
@@ -67,7 +68,11 @@ import { NotificationComponent } from './ui/notification/notification.component'
     // StoreDevtoolsModule.instrument()
   ],
   providers: [
-    AuthService, RunService
+    AuthService, RunService,
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    }
   ],
   bootstrap: [AppComponent]
 })
