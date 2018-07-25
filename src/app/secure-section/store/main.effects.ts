@@ -274,30 +274,4 @@ export class MainEffects {
     .catch(error => {
       return Observable.of(new UIActions.ShowNotification(error.message));
     });
-
-  @Effect() doSendWLRequest = this.actions$
-    .ofType(MainActions.DO_SEND_WL_REQUEST)
-    .map((action: MainActions.DoSendWLRequest) => 'Your WL request is sent successefully')
-    // TODO make request to backend
-    .debounceTime(500)
-    .mergeMap(r => {
-      this.helperService.preventBodyToScroll(false);
-      return [
-        {
-          type: UIActions.IS_LOADING,
-          payload: false
-        },
-        {
-          type: UIActions.SHOW_NOTIFICATION,
-          payload: r
-        },
-        {
-          type: UIActions.ERASE_FORM,
-          payload: r
-        }
-      ];
-    })
-    .catch(error => {
-      return Observable.of(new UIActions.ShowNotification(error.message));
-    });
 }
