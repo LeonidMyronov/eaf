@@ -1,5 +1,186 @@
 <article class="whitelabel-page">
-  <div class="container">
-    <img src="/assets/images/under-construction.gif" alt="" style="margin:  0 auto;display:  block;width: 80%;">
-  </div>
-</article>
+
+    <div class="container">
+      <div class="cards-group">
+  
+        <div class="cards-wrapper grid-1">
+
+          <div class="card card-1 card-intro grid-1_1">
+            <div class="title">
+                Как добавить WhiteLabel
+            </div>
+            <div class="content light-color">
+              <p>Как добавить Ваш сайт к нам в базу?</p>
+            </div>
+            <div class="footer" routerLink="/main/">
+              <div class="action">
+                Details
+                <span class="arrow-next"></span>
+                <span class="arrow-next"></span>
+                <span class="arrow-next"></span>
+              </div>
+            </div>
+          </div>
+    
+          <div class="card card-2 card-intro grid-1_2">
+            <div class="title">
+                Создать новый WhiteLabel
+            </div>
+            <div class="content light-color">
+              <p>Мы можем помочь Вам в создании  нового WhiteLabel</p>
+            </div>
+            <div class="footer" routerLink="/main/">
+              <div class="action">
+                Order
+                <span class="arrow-next"></span>
+                <span class="arrow-next"></span>
+                <span class="arrow-next"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="form grid-2" [formGroup]="wLForm" (ngSubmit)="onSubmit()">
+          <div class="title">Отправить запрос на добавление WL</div>
+  
+          <div class="form-field">
+            <label for="name">Your WhiteLabel:</label>
+            <div class="form-field__descr">
+                Пожалуйста, укажите ваш WhiteLabel, на котором <br>вы будете лить трафик:
+            </div>
+            <div class="form-field-group" fxLayout="row" fxLayoutAlign="space-between center">
+  
+              <div class="proto-wrapper" fxLayout="row" fxLayoutAlign="space-between center">
+                <div class="proto-switches">
+                  <input type="radio" id="http-switch" formControlName="proto" value="http">
+                  <label for="http-switch"></label>
+                  <input type="radio" id="https-switch" formControlName="proto" value="https">
+                  <label for="https-switch"></label>
+                </div>
+                <span class="proto-value">{{wLForm.get('proto').value}}://</span>
+              </div>
+              <div class="form-field site-input">
+                <input id="name" type="text" placeholder="Input site name:" formControlName="name">
+                <div class="form-field__actions">
+                  <span class="form-required">*</span>
+                  <div *ngIf="wLForm.controls['name'].errors?.required && wLForm.controls['name'].touched" class="form-error">
+                    This field is required
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-field">
+            <label for="details">Комментарии:</label>
+            <div class="form-field__descr">Пожалуйста, укажите в комментариях как вы планируете использовать ваш WhiteLabel:</div>
+            <textarea id="details" type="text" placeholder="Input your details:" formControlName="details"></textarea>
+            <div class="form-field__actions">
+              <span class="form-required textarea">*</span>
+              <div *ngIf="wLForm.controls['details'].errors?.required && wLForm.controls['details'].touched" class="form-error">
+                This field is required
+              </div>
+            </div>
+          </div>
+  
+          <button type="submit" class="primary btn-lg" [disabled]="wLForm.invalid">Send</button>
+  
+        </form>
+
+        <div class="card wl-card high-card"
+          fxLayout="row" fxLayout.xs="column"
+          fxLayoutAlign="start start"
+          *ngFor="let wl of userWLState$ | async">
+            <div class="left-side">
+              <div class="header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <span *ngIf="!wl.iconLightSrc" class="wl-icon"></span>
+                <img *ngIf="wl.iconLightSrc" [src]="wl.iconLightSrc" alt="">
+                <div class="wl-title">{{ wl.name }}</div>
+              </div>
+              <div class="wl-settings">
+                <div class="wl-settings__discount" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px">
+                  <div class="wl-settings__discount__details">
+                    <div class="wl-settings__discount__details__item">
+                      <span class="wl-item-name">Первый заказ: . . </span><span class="wl-item-value">{{ wl.fisrtOrderPercent }}%</span>
+                    </div>
+                    <div class="wl-settings__discount__details__item">
+                      <span class="wl-item-name">Ребилы: . . . . . . . .</span><span class="wl-item-value">{{ wl.rebillsPercent }}%</span>
+                    </div>
+                  </div>
+                  <div class="wl-settings__discount__actions">
+                    <button type="button" class="button main" [routerLink]="['/main','discount','details']">
+                      <span class="accent-color">Скидки</span><br>Удалить/Добавить
+                    </button>
+                  </div>
+                </div>
+                <div class="wl-settings__pb" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px">
+                 <div class="wl-settings__pb__details">
+                    <div class="wl-settings__pb__details__item">
+                      <span class="wl-item-name">PostBack: . . .</span><span class="wl-item-value">{{ wl.pixelTrackingActivated ? 'Enabled' : 'Disabled'}}</span>
+                    </div>
+                  </div>
+                  <div class="wl-settings__pb__actions">
+                    <button type="button" class="button main" (click)="onChangePTEvents(wl.id)">
+                      Настройки
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="wl-stat" fxLayout="column" fxLayoutAlign="start center">
+                <div class="wl-stat__header">for today</div>
+                <div class="wl-stat__content list-content">
+                  <div class="list-content__item">
+                    <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-income.svg">
+                    <div class="list-content__item__name">Income ($)</div>
+                    <div class="list-content__item__amount light-color">{{wl.stat.income}}</div>
+                  </div>
+                  <div class="list-content__item">
+                    <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-sales.svg">
+                    <div class="list-content__item__name">Sales ($)</div>
+                    <div class="list-content__item__amount light-color">{{wl.stat.sales}}</div>
+                  </div>
+                  <div class="list-content__item">
+                    <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-uniques.svg">
+                    <div class="list-content__item__name">Uniques</div>
+                    <div class="list-content__item__amount light-color">{{wl.stat.uniques}}</div>
+                  </div>                                      
+                </div>
+                <button class="button main" [routerLink]="['/main','statistic']">
+                  Detailed statistic &nbsp;
+                  <span class="arrow-next"></span>
+                  <span class="arrow-next"></span>
+                  <span class="arrow-next"></span>
+                </button>
+              </div>
+            </div>
+            <div class="right-side">
+              <div class="header">
+                Первый заказ: <span class="wl-item-value">{{ wl.fisrtOrderPercent }}%</span>
+                Ребилы: <span class="wl-item-value">{{ wl.rebillsPercent }}%</span>
+              </div>
+              <img class="wl-preview" [src]="wl.preview" [alt]="wl.name">
+              <div class="form-field pb-status" fxLayout="row" fxLayoutAlign="start center">
+                <label class="pb-status__label" for="name">WL status:</label>
+                <div class="switches-group on-off-switches" fxLayout="row" fxLayoutAlign="start start">
+                  <input type="radio" id="status-on-{{wl.id}}" class="status-on" name="status-{{wl.id}}" value="1" [checked]="wl.pixelTrackingActivated">
+                  <label for="status-on-{{wl.id}}" (click)="onPTActivate(wl.id, true)">On</label>
+                  <input type="radio" id="status-off-{{wl.id}}" class="status-off" name="status-{{wl.id}}" value="0" [checked]="!wl.pixelTrackingActivated">
+                  <label for="status-off-{{wl.id}}" (click)="onPTActivate(wl.id, false)">Off</label>
+                </div>
+              </div>
+              
+          </div>
+
+        </div>
+  
+      </div>
+    </div>
+  </article>
+
+  <eaf-pt-form
+    [id]="selectedSiteId"
+    *ngIf="ptEventsMode"
+    (close)="closePTEventsForm($event)"
+    (submit)="onSubmitPTEvents($event)">
+  </eaf-pt-form>
