@@ -1,5 +1,6 @@
 @import variables
 @import mixins
+@import helper
 
 .today-page
   padding-bottom: 40px
@@ -156,7 +157,7 @@
   &__body
     overflow-y: scroll
     height: 360px
-  
+    @extend .scroll-bar
 
 
 // RESPONSIVE SECTION
