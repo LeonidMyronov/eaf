@@ -1,6 +1,5 @@
 @import variables
 @import mixins
-@import helper
 
 // ::-webkit-scrollbar
 //   -webkit-appearance: scrollbargripper-horizontal
@@ -230,7 +229,7 @@
   &__body
     max-width: 868px
     overflow-x: scroll
-    @extend .scroll-bar
+    @include scroll-bar($formColor, $inactiveColor)
     .table__row
       cursor: default
       &:hover
