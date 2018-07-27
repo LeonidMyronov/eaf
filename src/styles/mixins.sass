@@ -171,3 +171,14 @@
     height: 20px
     z-index: 5
     background: linear-gradient(to top, $color, rgba(255,255,255,0))
+
+@mixin scroll-bar($scrollbarColor, $scrollbarThumbColor)
+  &::-webkit-scrollbar-thumb
+    background-color: $scrollbarThumbColor
+    border-radius: 5px
+    height: 30px
+  &::-webkit-scrollbar
+    width: 6px
+    height: 6px
+    border-radius: 5px
+    background-color: $scrollbarColor   

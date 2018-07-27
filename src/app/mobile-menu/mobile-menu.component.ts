@@ -10,6 +10,7 @@ import { HelperService } from '../core/helper.service';
 
 import * as fromRoot from '../app.reducers';
 import * as UIAction from '../ui/ui.actions';
+import * as AuthActions from '../auth/store/auth.actions';
 import { UserMenuItem, NavMenuItem, AuthMenuItem } from '../core/core.model';
 
 @Component({
@@ -71,7 +72,9 @@ export class MobileMenuComponent implements OnInit, OnDestroy {
         this.helper.preventBodyToScroll(true);
         break;
       case 'logout':
-        this.authService.logout();
+        this.helper.preventBodyToScroll(true);
+        this.store.dispatch(new UIAction.IsLoading(true));
+        this.store.dispatch(new AuthActions.DoLogout());
         break;
       default:
         console.log(name);

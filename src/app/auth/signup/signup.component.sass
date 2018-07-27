@@ -1,4 +1,13 @@
+.wrapper
+  overflow: scroll
+
 .signup-form
   .action-group
     button[type="submit"]
       height: 60px
+
+@media(max-width: 767px)
+  .wrapper
+    max-height: 800px
+  .signup-form
+    padding-bottom: 30px
