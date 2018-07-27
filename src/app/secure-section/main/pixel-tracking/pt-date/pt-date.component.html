@@ -32,7 +32,10 @@
                 {{ propName }}
               </div>
             </div>
-            <div class="table__row" *ngFor="let el of ptEvents; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__row"
+              *ngFor="let el of ptEvents; let jRow = index"
+              eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
+              fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell"
                 *ngFor="let propName of getPTTableHeads().slice(1); let j = index"
                 [ngClass]="{'wider-cell': propName == 'site', 'wide-cell': propName == 'eventDetails', 'notice-color': propName == 'messageStatus'}">

@@ -119,7 +119,10 @@
             <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
               <div *ngFor="let el of getStatisticTableHeads()" class="table__cell">{{el | translate}}</div>
             </div>
-            <div class="table__row" *ngFor="let el of (statisticState$ | async)?.statistic" fxLayout="row" fxLayoutGap="2px">
+            <div class="table__row"
+              *ngFor="let el of (statisticState$ | async)?.statistic"
+              eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
+              fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()">{{el[prop]}}</div>
             </div>
           </div>
@@ -280,6 +283,7 @@
               <div class="table__cell" *ngFor="let propName of getPTTableHeads().slice(1)">{{propName}}</div>
             </div>
             <div class="table__row"
+              eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
               *ngFor="let el of (statisticState$ | async)?.pixelTracking"
               fxLayout="row" fxLayoutGap="2px">
               <div class="table__cell"
