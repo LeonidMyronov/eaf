@@ -8,6 +8,7 @@ import { TermPickerPanelComponent } from './term-picker-panel/term-picker-panel.
 import { PixelTrackingListComponent } from './pixel-tracking-list/pixel-tracking-list.component';
 import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.component';
 import { AlignRowHeightDirective } from './directives/align-row-height.directive';
+import { SelectRowOnHoverDirective } from './directives/select-row-on-hover.directive';
 import { DiscountComponent } from '../main/discount/discount.component';
 
 @NgModule({
@@ -19,6 +20,7 @@ import { DiscountComponent } from '../main/discount/discount.component';
     PixelTrackingListComponent,
     DatePickerPanelComponent,
     AlignRowHeightDirective,
+    SelectRowOnHoverDirective,
     DiscountComponent
   ],
   imports: [
@@ -32,6 +34,7 @@ import { DiscountComponent } from '../main/discount/discount.component';
     PixelTrackingListComponent,
     DatePickerPanelComponent,
     AlignRowHeightDirective,
+    SelectRowOnHoverDirective,
     DiscountComponent
   ]
 })

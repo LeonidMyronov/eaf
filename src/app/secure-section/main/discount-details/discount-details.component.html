@@ -175,7 +175,7 @@
           <div class="table-group__head__name">Active coupons</div>
         </div>
     
-        <section class="table-group__body">
+        <section class="table-group__body collapse-table-inside">
           <div class="collapse-table table" fxLayout="row">
             <div class="table__left" fxLayout="column" #actl>
               <div class="table__row table__head">
@@ -190,7 +190,10 @@
               <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let propName of getCouponsStatTableHeads().slice(1)">{{propName}}</div>
               </div>
-              <div class="table__row" *ngFor="let el of discountsData.activeCoupons; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__row"
+                *ngFor="let el of discountsData.activeCoupons; let jRow = index"
+                eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
+                fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let prop of getCouponsStatTableHeads().slice(1); let j = index">
                   <ng-container *ngIf="prop == 'creationDate' || prop == 'expirationDate'; else displayValue">
                       {{el[prop] | date:'dd.MM.y'}}
@@ -215,7 +218,7 @@
           <div class="table-group__head__name">Expired coupons</div>
         </div>
     
-        <section class="table-group__body">
+        <section class="table-group__body collapse-table-inside">
           <div class="collapse-table table" fxLayout="row">
             <div class="table__left" fxLayout="column" #actl>
               <div class="table__row table__head">
@@ -230,7 +233,10 @@
               <div class="table__row table__head" fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let propName of getCouponsStatTableHeads().slice(1)">{{propName}}</div>
               </div>
-              <div class="table__row" *ngFor="let el of discountsData.expiredCoupons; let jRow = index" fxLayout="row" fxLayoutGap="2px">
+              <div class="table__row"
+                *ngFor="let el of discountsData.expiredCoupons; let jRow = index"
+                eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
+                fxLayout="row" fxLayoutGap="2px">
                 <div class="table__cell" *ngFor="let prop of getCouponsStatTableHeads().slice(1); let j = index">
                   <ng-container *ngIf="prop == 'creationDate' || prop == 'expirationDate'; else displayValue">
                       {{el[prop] | date:'dd.MM.y'}}

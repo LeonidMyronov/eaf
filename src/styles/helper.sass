@@ -368,7 +368,6 @@ label
       &:not(:checked) + label
         border-left-width: 0
 
-
 .overlay
   position: fixed
   left: 0
@@ -415,6 +414,7 @@ label
   padding-right: 30px
   &__head
     margin-bottom: 20px
+
 
 .collapse-table
   .table__body
@@ -483,13 +483,21 @@ label
 
 
 @media(max-width: 1399px)
-  // 
-@media(max-width: 1023px) 
+  .table-group
+    &__body:not(.collapse-table-inside)
+      @include scroll-bar($formColor, $inactiveColor)
+
+  .collapse-table
+    .table__body
+      @include scroll-bar($formColor, $inactiveColor)
+
+@media(max-width: 1023px)
   .collapse-table
     .table__body
       .table__row
         &:hover
           background-color: transparent
+
 @media(max-width: 767px)
   .card
     .title

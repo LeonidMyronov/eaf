@@ -27,47 +27,49 @@
           </div>
         </div>
 
-        <section class="table flex-table statistic-table" fxLayout="row wrap" fxLayoutGap="2px">
-          <div class="flex-table__left">
-            <div class="table__head table__row">
-              <div class="table__cell">{{'Added' | translate }}</div>
-            </div>
-            <div class="table__row" *ngFor="let el of statisticState.data">
-              <div class="table__cell">{{el.creationDate | date:'dd.MM.y hh:mm'}} UTC</div>
-            </div>
-            <!-- <div class="table__head table__row">
-              <div class="table__cell foot-cell"><span>Total: {{statisticState.data.length}} orders</span></div>
-            </div> -->
-          </div>
-          <div class="flex-table__body table__body">
-            <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
-              <div class="table__cell" *ngFor="let el of getStatisticTableHeads()" [ngClass]="{'wide-cell': el == 'site' || el == 'title' || el == 'serviceType'}">
-                {{el | translate}}
+        <section class="table flex-table statistic-table">
+          <div class="table-content-wrapper" fxLayout="row nowrap" fxLayoutGap="2px">
+
+            <div class="flex-table__left">
+              <div class="table__head table__row">
+                <div class="table__cell">{{'Added' | translate }}</div>
               </div>
+              <div class="table__row" *ngFor="let el of statisticState.data">
+                <div class="table__cell">{{el.creationDate | date:'dd.MM.y hh:mm'}} UTC</div>
+              </div>
+
             </div>
-            <div class="table__row" *ngFor="let el of statisticState.data" fxLayout="row" fxLayoutGap="2px">
-              <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()" [ngClass]="{'wide-cell': prop == 'site' || prop == 'title' || prop == 'serviceType'}">
-                <ng-container *ngIf="prop == 'creationDate' || prop == 'paymentDate'; else displayValue">
+            <div class="flex-table__body table__body">
+              <div class="table__head table__row" fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" *ngFor="let el of getStatisticTableHeads()" [ngClass]="{'wide-cell': el == 'site' || el == 'title' || el == 'serviceType'}">
+                  {{el | translate}}
+                </div>
+              </div>
+              <div class="table__row"
+                *ngFor="let el of statisticState.data"
+                eafSelectRowOnHover defaultColor="#fff" hoverColor="#FEF7E9"
+                fxLayout="row" fxLayoutGap="2px">
+                <div class="table__cell" *ngFor="let prop of getStatisticTableHeads()" [ngClass]="{'wide-cell': prop == 'site' || prop == 'title' || prop == 'serviceType'}">
+                  <ng-container *ngIf="prop == 'creationDate' || prop == 'paymentDate'; else displayValue">
                     {{el[prop] | date:'dd.MM.y hh:mm'}} UTC
                   </ng-container>
                   <ng-template #displayValue>
                     {{el[prop] }}
                   </ng-template>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="flex-table__right">
-            <div class="table__head table__row">
-              <div class="table__cell">{{'orderIncome' | translate}}</div>
+            <div class="flex-table__right">
+              <div class="table__head table__row">
+                <div class="table__cell">{{'orderIncome' | translate}}</div>
+              </div>
+              <div class="table__row" *ngFor="let el of statisticState.data">
+                <div class="table__cell">$ {{el.orderIncome}}</div>
+              </div>
+
             </div>
-            <div class="table__row" *ngFor="let el of statisticState.data">
-              <div class="table__cell">$ {{el.orderIncome}}</div>
-            </div>
-            <!-- <div class="table__head table__row">
-              <div class="table__cell foot-cell">{{statisticState.totalIncome}}</div>
-            </div> -->
           </div>
-          <div class="table__footer" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between start">
+          <div class="table__footer" fxLayout="row" fxLayoutAlign="space-between start">
             <div class="table__cell head-cell">Total: {{statisticState.data.length}} orders</div>
             <div class="table__cell right-cell">$ {{statisticState.totalIncome}}</div>
           </div>
