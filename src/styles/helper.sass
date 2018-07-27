@@ -368,6 +368,16 @@ label
       &:not(:checked) + label
         border-left-width: 0
 
+.scroll-bar
+  &::-webkit-scrollbar-thumb
+    background-color: $inactiveColor
+    border-radius: 5px
+    height: 30px
+  &::-webkit-scrollbar
+    width: 6px
+    height: 6px
+    border-radius: 5px
+    background-color: $formColor
 
 .overlay
   position: fixed
@@ -415,10 +425,13 @@ label
   padding-right: 30px
   &__head
     margin-bottom: 20px
+  &__body:not(.collapse-table-inside)
+    @extend .scroll-bar
 
 .collapse-table
   .table__body
     overflow-x: scroll
+    @extend .scroll-bar
 
   .table__cell
     display: flex
