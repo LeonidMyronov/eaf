@@ -1,13 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { LoginComponent } from './login.component';
+import { ContactsComponent } from './contacts.component';
 import { HelperService } from '../../core/helper.service';
 import { Store, StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import * as fromRoot from '../../app.reducers';
-import * as AuthAction from '../store/auth.actions';
 import { reducers } from '../../app.reducers';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -15,9 +14,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-describe('login form Integration Tests:', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('Contacts form Integration Tests:', () => {
+  let component: ContactsComponent;
+  let fixture: ComponentFixture<ContactsComponent>;
   let store: Store<fromRoot.State>;
 
 
@@ -36,26 +35,26 @@ describe('login form Integration Tests:', () => {
           }
       })
     ],
-      declarations: [ LoginComponent],
+      declarations: [ ContactsComponent],
       providers: [HelperService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(ContactsComponent);
     component = fixture.componentInstance;
     store = fixture.debugElement.injector.get(Store);
 
     fixture.detectChanges();
   });
 
-  it('should create LoginComponent', () => {
+  it('should create ContactsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should bind form icon at the header of the form', () => {
-    const de = fixture.debugElement.query(By.css('.form-logo'));
+  it('should bind contacts-icon at the form', () => {
+    const de = fixture.debugElement.query(By.css('img'));
 
     expect(de.attributes.src).not.toBe('');
   });
@@ -68,12 +67,15 @@ describe('login form Integration Tests:', () => {
 
   it('should remove disabled property on submit button if form is valid', () => {
     component.ngOnInit();
-    const emailControl = component.loginForm.get('email');
-    const passwordControl = component.loginForm.get('password');
-    const button = fixture.debugElement.query(By.css('.btn-lg'));
+    const emailControl = component.contactsForm.get('email');
+    const nameControl = component.contactsForm.get('name');
+    const messageControl = component.contactsForm.get('message');
 
     emailControl.setValue('leo@leo.com');
-    passwordControl.setValue('123321');
+    nameControl.setValue('leo');
+    messageControl.setValue('test message');
+    const button = fixture.debugElement.query(By.css('.btn-lg'));
+
     fixture.detectChanges();
 
     expect(button.properties.disabled).toBeFalsy();
@@ -81,12 +83,14 @@ describe('login form Integration Tests:', () => {
 
   it('should call onSubmit method if submit button is clicked', () => {
     component.ngOnInit();
-    const emailControl = component.loginForm.get('email');
-    const passwordControl = component.loginForm.get('password');
+    const emailControl = component.contactsForm.get('email');
+    const nameControl = component.contactsForm.get('name');
+    const messageControl = component.contactsForm.get('message');
     const spy = spyOn(component, 'onSubmit');
 
     emailControl.setValue('leo@leo.com');
-    passwordControl.setValue('123321');
+    nameControl.setValue('leo');
+    messageControl.setValue('test message');
     fixture.detectChanges();
 
     fixture.debugElement.query(By.css('.btn-lg')).nativeElement.click();

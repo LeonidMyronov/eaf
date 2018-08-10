@@ -1,23 +1,28 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
-import { LoginComponent } from './login.component';
-import { HelperService } from '../../core/helper.service';
+import { BalanceComponent } from './balance.component';
+import { HelperService } from '../../../core/helper.service';
 import { Store, StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import * as fromRoot from '../../app.reducers';
-import * as AuthAction from '../store/auth.actions';
-import { reducers } from '../../app.reducers';
+import * as fromRoot from '../../../app.reducers';
+import { reducers } from '../../../app.reducers';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MainStorageService } from '../../services/main-storage.service';
+import { TermPickerPanelComponent } from '../../shared/term-picker-panel/term-picker-panel.component';
+import { DropdownDirective } from '../../../core/directives/dropdown.directive';
+import { CoreModule } from '../../../core/core.module';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/from';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
-describe('login form Integration Tests:', () => {
-  let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+describe('Balance form Integration Tests:', () => {
+  let component: BalanceComponent;
+  let fixture: ComponentFixture<BalanceComponent>;
   let store: Store<fromRoot.State>;
 
 
@@ -28,6 +33,7 @@ describe('login form Integration Tests:', () => {
         TranslateModule,
         HttpClientModule,
         StoreModule.forRoot(reducers),
+        CoreModule,
         TranslateModule.forRoot({
           loader: {
               provide: TranslateLoader,
@@ -36,28 +42,24 @@ describe('login form Integration Tests:', () => {
           }
       })
     ],
-      declarations: [ LoginComponent],
-      providers: [HelperService]
+      declarations: [ BalanceComponent, TermPickerPanelComponent],
+      providers: [HelperService, MainStorageService]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
+    fixture = TestBed.createComponent(BalanceComponent);
     component = fixture.componentInstance;
     store = fixture.debugElement.injector.get(Store);
+
+    spyOn(store, 'select').and.returnValue(Observable.from([ [1] ]));
 
     fixture.detectChanges();
   });
 
-  it('should create LoginComponent', () => {
+  it('should create BalanceComponent', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should bind form icon at the header of the form', () => {
-    const de = fixture.debugElement.query(By.css('.form-logo'));
-
-    expect(de.attributes.src).not.toBe('');
   });
 
   it('should initially set disabled property on submit button if form is invalid', () => {
@@ -67,38 +69,34 @@ describe('login form Integration Tests:', () => {
   });
 
   it('should remove disabled property on submit button if form is valid', () => {
-    component.ngOnInit();
-    const emailControl = component.loginForm.get('email');
-    const passwordControl = component.loginForm.get('password');
+    const control = component.balanceForm.get('amount');
+
+    control.setValue('123');
     const button = fixture.debugElement.query(By.css('.btn-lg'));
 
-    emailControl.setValue('leo@leo.com');
-    passwordControl.setValue('123321');
     fixture.detectChanges();
 
     expect(button.properties.disabled).toBeFalsy();
   });
 
   it('should call onSubmit method if submit button is clicked', () => {
-    component.ngOnInit();
-    const emailControl = component.loginForm.get('email');
-    const passwordControl = component.loginForm.get('password');
-    const spy = spyOn(component, 'onSubmit');
+    const control = component.balanceForm.get('amount');
+    const spy = spyOn(component, 'onSubmitBalanceForm');
 
-    emailControl.setValue('leo@leo.com');
-    passwordControl.setValue('123321');
+    control.setValue('123');
+    const button = fixture.debugElement.query(By.css('.btn-lg'));
     fixture.detectChanges();
 
     fixture.debugElement.query(By.css('.btn-lg')).nativeElement.click();
 
-    expect(component.onSubmit).toHaveBeenCalled();
+    expect(component.onSubmitBalanceForm).toHaveBeenCalled();
   });
 
 
   it('should dispatch action if form is submitted', () => {
     const spy = spyOn(store, 'dispatch');
 
-    component.onSubmit();
+    component.onSubmitBalanceForm();
 
     expect(spy).toHaveBeenCalled();
   });

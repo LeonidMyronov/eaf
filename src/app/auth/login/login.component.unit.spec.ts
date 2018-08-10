@@ -23,7 +23,7 @@ describe('login form Unit Tests:', () => {
     expect(component.loginForm.contains('password')).toBeTruthy();
   });
 
-  it('should check email control as required fields', () => {
+  it('should check EMAIL control as required field', () => {
     const control = component.loginForm.get('email');
 
     control.setValue('');
@@ -31,12 +31,20 @@ describe('login form Unit Tests:', () => {
     expect(control.valid).toBeFalsy();
   });
 
-  it('should check password control as required fields', () => {
+  it('should check PASSWORD control as required field', () => {
     const control = component.loginForm.get('password');
 
     control.setValue('');
 
     expect(control.valid).toBeFalsy();
+  });
+
+  it('should set loginForm to invalid if email field in empty', () => {
+    const control = component.loginForm.get('password');
+
+    control.setValue('123321');
+
+    expect(component.loginForm.valid).toBeFalsy();
   });
 
   it('should set loginForm to invalid if password field in empty', () => {
@@ -47,7 +55,7 @@ describe('login form Unit Tests:', () => {
     expect(component.loginForm.valid).toBeFalsy();
   });
 
-  it('should set loginForm to valid if email & password fields in filled', () => {
+  it('should set loginForm to valid if email & password fields are filled', () => {
     const emailControl = component.loginForm.get('email');
     const passwordControl = component.loginForm.get('password');
 
@@ -58,4 +66,5 @@ describe('login form Unit Tests:', () => {
   });
 
 });
+
 
