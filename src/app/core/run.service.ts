@@ -7,7 +7,7 @@ import * as fromRoot from '../app.reducers';
 import * as UIActions from '../ui/ui.actions';
 
 // temp for env=dev
-import * as AuthActions from '../auth/store/auth.actions';
+// import * as AuthActions from '../auth/store/auth.actions';
 
 @Injectable()
 export class RunService {
@@ -25,7 +25,7 @@ export class RunService {
       // fill user profile
 
       // temp for env=dev
-      this.store.dispatch(new AuthActions.DoLogin({email: 'test@t.t', password: ''}));
+      // this.store.dispatch(new AuthActions.DoLogin({email: 'test@t.t', password: ''}));
   }
 
   setLang() {
