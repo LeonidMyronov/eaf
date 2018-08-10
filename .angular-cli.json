@@ -60,6 +60,6 @@
   },
   "defaults": {
     "styleExt": "sass",
-    "component": {"spec": false}
+    "component": {"spec": true}
   }
 }

@@ -94,7 +94,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
       toDate: this.transactionQueryParams.toDate,
       paymentMethodId: this.transactionQueryParams.paymentMethod.id
     };
-    // console.log(params);
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new UIActions.IsLoading(true));
     this.store.dispatch(new MainActions.DoFetchTransactions(params));
@@ -112,7 +111,6 @@ export class BalanceComponent implements OnInit, OnDestroy {
       paymentId: this.balanceForm.value.payment.id,
       regular: this.balanceForm.value.regular
     };
-    // console.log(requestData);
     this.store.dispatch(new UIActions.IsLoading(true));
     this.helper.preventBodyToScroll(true);
     this.store.dispatch(new UserActions.DoSendWithdrawRequest(requestData));
