@@ -67,7 +67,7 @@ eaf-notification
   z-index: 300
 
 h1, h2, h3, h4, h5, h6
-  @include regular-font()
+  @include bold-font()
   font-weight: normal
   margin: 0
 
@@ -95,7 +95,11 @@ h4
 
 .small-text
   font-size: 14px
-
+b
+  @include bold-font()
+em
+  @include medium-font()
+  font-style: normal
 p
   padding: 0
   margin: 0
@@ -114,7 +118,7 @@ input, textarea
   padding-right: 10px
   box-shadow: inset 1px 1px 2px 0 transparentize(#000, 0.86)
   font-size: 14px
-  @include regular-font()
+  @include medium-font()
   color: $mainColor
   &:hover
     background-color: $accentColor-lighter

@@ -1,4 +1,5 @@
 @import variables
+@import mixins
   
 head
   padding: 15px
@@ -40,6 +41,7 @@ head
       color: $mainColor
       font-size: 14px
       text-decoration: none
+      @include medium-font()
       img
         margin-right: 10px
     &:hover
