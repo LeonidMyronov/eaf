@@ -94,7 +94,7 @@
               <div class="header" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
                 <span *ngIf="!wl.iconLightSrc" class="wl-icon"></span>
                 <img *ngIf="wl.iconLightSrc" [src]="wl.iconLightSrc" alt="">
-                <div class="wl-title">{{ wl.name }}</div>
+                <div class="wl-title bold">{{ wl.name }}</div>
               </div>
               <div class="wl-settings">
                 <div class="wl-settings__discount" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="25px">
@@ -131,18 +131,18 @@
                 <div class="wl-stat__content list-content">
                   <div class="list-content__item">
                     <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-income.svg">
-                    <div class="list-content__item__name">Income ($)</div>
-                    <div class="list-content__item__amount light-color">{{wl.stat.income}}</div>
+                    <div class="list-content__item__name regular">Income ($)</div>
+                    <div class="list-content__item__amount light-color bold">{{wl.stat.income}}</div>
                   </div>
                   <div class="list-content__item">
                     <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-sales.svg">
-                    <div class="list-content__item__name">Sales ($)</div>
-                    <div class="list-content__item__amount light-color">{{wl.stat.sales}}</div>
+                    <div class="list-content__item__name regular">Sales ($)</div>
+                    <div class="list-content__item__amount light-color bold">{{wl.stat.sales}}</div>
                   </div>
                   <div class="list-content__item">
                     <img class="list-content__item__image" src="/assets/images/main/whitelabel/wl-uniques.svg">
-                    <div class="list-content__item__name">Uniques</div>
-                    <div class="list-content__item__amount light-color">{{wl.stat.uniques}}</div>
+                    <div class="list-content__item__name regular">Uniques</div>
+                    <div class="list-content__item__amount light-color bold">{{wl.stat.uniques}}</div>
                   </div>                                      
                 </div>
                 <button class="button main" [routerLink]="['/main','statistic']">
@@ -155,8 +155,8 @@
             </div>
             <div class="right-side">
               <div class="header">
-                Первый заказ: <span class="wl-item-value">{{ wl.fisrtOrderPercent }}%</span>
-                Ребилы: <span class="wl-item-value">{{ wl.rebillsPercent }}%</span>
+                Первый заказ: <span class="wl-item-value bold">{{ wl.fisrtOrderPercent }}%</span>
+                Ребилы: <span class="wl-item-value bold">{{ wl.rebillsPercent }}%</span>
               </div>
               <img class="wl-preview" [src]="wl.preview" [alt]="wl.name">
               <div class="form-field pb-status" fxLayout="row" fxLayoutAlign="start center">

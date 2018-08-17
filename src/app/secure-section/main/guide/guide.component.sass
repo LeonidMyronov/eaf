@@ -5,6 +5,7 @@
   text-align: center
   margin-top: 20px
   margin-bottom: 30px
+  @include medium-font()
 
 .link
   color: $primaryColor
@@ -45,6 +46,8 @@
         margin-bottom: 30px
         &.smaller-text
           font-size: 14px
+    .hint
+      font-size: 14px
 
   .grid-1
     grid-column: 1
@@ -102,12 +105,15 @@
 .panels-group
   .panel
     width: 380px
+    @include medium-font()
     &__content
       height: 145px
       &-descr
+        @include regular-font()
         margin-top: 20px
         font-size: 14px
         text-align: left
+        
 
     &__link
       padding-left: 10px
@@ -117,6 +123,7 @@
       &.link-hint
         margin-top: 8px
         line-height: 14px
+        font-style: italic
 
 .partners
   .panels-group
@@ -183,6 +190,8 @@
         margin-bottom: 65px
       &:nth-child(10), &:nth-child(11), &:nth-child(12)
         margin-bottom: 55px
+      .sub-title
+        @include medium-font()
 // ADAPTIVE STYLES
 @media(max-width: 1399px)
   .cards-group

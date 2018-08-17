@@ -97,6 +97,7 @@
       text-align: center
       margin-left: auto
       margin-right: auto
+      @include regular-font()
       a
         color: $accentColor
         text-decoration: none
@@ -119,6 +120,7 @@
   height: 788px
   padding-top: 30px
   padding-bottom: 80px
+  @include medium-font()
   .form-field
     label
       margin-bottom: 8px
@@ -180,6 +182,9 @@
       &.active, &:hover
         opacity: 1
 
+  .discount-term
+    label
+      @include bold-font()
   .rangeContainer
     width: 320px /* Width of the outside container */
     margin-left: 10px
@@ -272,6 +277,7 @@
             position: absolute
             top: 16px
             transform: translate(-50%)
+            @include bold-font()
   .valueContainer
     width: 60px
     input
@@ -281,6 +287,9 @@
     float: right
 
 .table-group
+  &__head
+    &__name
+      @include bold-font()
   &__body
     .table__footer
       height: 40px

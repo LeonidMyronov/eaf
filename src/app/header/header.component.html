@@ -19,8 +19,8 @@
       <img class="promo-cards promo-card-4" src="/assets/images/main/user-menu/promo-card-4.svg" alt="">
     </div>
 
-    <div class="user-balance">
-      <div class="upper-label">{{ 'balance' | translate }}:</div>
+    <div class="user-balance bold">
+      <div class="upper-label regular">{{ 'balance' | translate }}:</div>
       {{ (userState$ | async).balance }} USD
     </div>
 
@@ -30,12 +30,12 @@
         <span class="user-tariff__icon">
           <img [src]="userTariff.iconSrc" alt="">
         </span>
-        <span class="user-tariff__shortsitename" fxHide.md fxHide.xs>{{ userTariff.name }}</span>
-        <span class="user-tariff__fo">
-          <span fxHide.md fxHide.xs>{{'first order' | translate }}</span>
+        <span class="user-tariff__shortsitename bold" fxHide.md fxHide.xs>{{ userTariff.name }}</span>
+        <span class="user-tariff__fo bold">
+          <span class="regular" fxHide.md fxHide.xs>{{'first order' | translate }}</span>
           <span fxHide.lg fxHide.sm>{{ 'FO' | translate }}</span>: {{ userTariff.fisrtOrderPercent }}%</span>
-        <span class="user-tariff__r">
-          <span fxHide.md fxHide.xs>{{ 'rebills' | translate }}</span>
+        <span class="user-tariff__r bold">
+          <span class="regular"  fxHide.md fxHide.xs>{{ 'rebills' | translate }}</span>
           <span fxHide.lg fxHide.sm>{{ 'R' | translate }}</span>: {{ userTariff.rebillsPercent }}%</span>
       </div>
       <ul class="dropdown-list">
@@ -43,9 +43,9 @@
           <span class="user-tariff__icon">
             <img [src]="tariff?.iconSrc" alt="">
           </span>
-          <span class="user-tariff__sitename" fxHide.md fxHide.xs>{{ tariff.name }}</span>
-          <span class="user-tariff__fo"> {{ 'FO' | translate }}: {{ tariff?.fisrtOrderPercent }}%</span>
-          <span class="user-tariff__r"> {{ 'R' | translate }}: {{ tariff?.rebillsPercent }}%</span>
+          <span class="user-tariff__sitename bold" fxHide.md fxHide.xs>{{ tariff.name }}</span>
+          <span class="user-tariff__fo"> {{ 'FO' | translate }}: <b>{{ tariff?.fisrtOrderPercent }}%</b></span>
+          <span class="user-tariff__r"> {{ 'R' | translate }}: <b>{{ tariff?.rebillsPercent }}%</b></span>
         </li>
       </ul>
     </div>
@@ -64,7 +64,12 @@
   </div>
 
   <div class="user-menu-group" fxLayout.xs="row" fxLayoutAlign.xs="center">
-    <button type="button" *ngFor="let item of authMenu" class="user-menu-group__item {{item.item_class}}" (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}</button>
+    <button type="button" 
+      *ngFor="let item of authMenu"
+      class="user-menu-group__item {{item.item_class}}"
+      [ngClass]="{'accent': item.name === 'profile' && isOnProfilePage()}"
+      (click)="onAuthMenuClick(item.name)">{{ item.name | translate }}
+    </button>
   </div>
 
   <div class="hamburger_button" fxLayout="column" fxLayoutAlign="center center" (click)="onOpenMobileMenu()"
