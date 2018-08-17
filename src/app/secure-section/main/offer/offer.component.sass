@@ -23,18 +23,21 @@
       margin: 0
       text-decoration: underline
       margin-right: auto
+      @include bold-font()      
     .first-order
       font-size: 10px
       margin-right: 7px
     .first-order-value
       font-size: 12px
       margin-right: 30px
+      @include bold-font()
     .rebills
       font-size: 10px
       margin-right: 7px
     .rebills-value
       font-size: 12px
       margin-right: 30px
+      @include bold-font()
   .desktop-v-a
     margin-right: 18px
   .mobile-v-a
@@ -84,11 +87,13 @@
 .high-card
   width: 670px
   height: 472px
+  @include medium-font()
   &:nth-of-type(odd)
     margin-top: -246px
   .content
     p
       width: 265px
+      @include regular-font()
   .form-field
     margin-bottom: 10px
     label
@@ -100,6 +105,7 @@
       width: 100%
       input
         height: 30px
+        @include medium-font()
       button
         width: 90px
         min-width: 90px

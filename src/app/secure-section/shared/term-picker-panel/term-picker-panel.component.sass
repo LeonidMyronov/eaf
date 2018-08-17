@@ -13,6 +13,7 @@
   background-image: url('/assets/images/header/dropdown-icon-active.svg')
   border: 0.5px solid $lightColor
   margin-right: auto
+  @include bold-font()
   .dropdown-item-icon
     width: 27px
   .dropdown-select
@@ -68,6 +69,7 @@
   font-size: 14px
   cursor: pointer
   text-align: center
+  @include medium-font()  
   &.active, &:hover
     background-color: $accentColor
     color: $mainColor

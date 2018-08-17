@@ -115,6 +115,7 @@
     height: 367px
     background-color: $formColor
     overflow-y: scroll
+    @include scroll-bar($formColor, $inactiveColor)
     .all-filters-content
       // display: none
       width: 100%
@@ -193,7 +194,7 @@
               border: 1px solid $mainColor
 
     .save-filters-form
-      font: 12px
+      font-size: 12px
       .form-field
         margin-bottom: 5px
         input
@@ -303,6 +304,8 @@
       width: 100%
       max-height: 222px
       overflow-y: scroll
+      @include scroll-bar(transparent, $inactiveColor, $accentColor)
+
       &__item
         font-size: 14px
         line-height: 26px
@@ -338,7 +341,10 @@
         &:nth-child(3)
           .descr-list__item__name
             .badge
-              background-color: $lightColor 
+              background-color: $lightColor
+        &:nth-child(n+4)
+          .descr-list__item__name
+            @include regular-font()
     &-country
       background-image: url(/assets/images/main/stat-cards/bg-card-co.svg)
     &-browser

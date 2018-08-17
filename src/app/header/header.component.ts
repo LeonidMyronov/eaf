@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/filter';
 
 import { AppStorageService } from '../core/app-storage.service';
 import { HelperService } from '../core/helper.service';
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public userMenu: UserMenuItem[];
 
   private subs: Subscription[] = [];
+  private activeRoute: string;
 
   constructor(
     private appStorage: AppStorageService,
@@ -44,6 +46,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.router.events
+    .filter(event => event instanceof NavigationEnd)
+    .subscribe(
+      (e: NavigationEnd) => this.activeRoute = e.urlAfterRedirects
+    );
+
     this.subs.push(
       this.store.select(fromRoot.getIsAuth)
         .subscribe(
@@ -111,6 +119,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       default:
         console.log(name);
     }
+  }
+
+  isOnProfilePage(): boolean {
+    return this.activeRoute === '/main/profile';
   }
 
   ngOnDestroy() {

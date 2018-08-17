@@ -15,7 +15,7 @@
             <span *ngIf="rangeType == 'hours'" class="time-with-clock">{{ point.time | date:'HH:mm' }}</span>
             <span *ngIf="rangeType == 'dates'" class="time-with-clock">{{ point.time | date:'dd MMM y' }}</span>
           </div>
-          <div class="point__value light-color"> $ {{ point.value | number:'0.2-3'}}</div>
+          <div class="point__value light-color bold"> $ {{ point.value | number:'0.2-3'}}</div>
           
         </div>
         <div class="point-marker"></div>

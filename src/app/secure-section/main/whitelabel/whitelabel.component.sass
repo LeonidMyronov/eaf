@@ -63,6 +63,7 @@
     margin-right: 20px
     width: 87px
     height: 40px
+    @include bold-font()
     .proto-switches
       display: inline-block
       label
@@ -107,6 +108,7 @@
 
 .wl-card
   width: 670px
+  @include medium-font()
   .header
     height: 31px
     line-height: 31px
@@ -158,15 +160,19 @@
       float: right
       color: $lightColor
     .wl-item-name
-      max-width: 100px
+      max-width: 95px
+      display: inline-block
       overflow: hidden
+      white-space: nowrap
     .wl-settings__discount
       margin-bottom: 20px
     .wl-settings__discount__details__item:first-child
       margin-bottom: 5px
     .wl-settings__discount__details, .wl-settings__pb__details
       width: 121px
-
+    .wl-settings__pb__details__item      
+      .wl-item-name
+        max-width: 72px
   .wl-stat
     width: 100%
     &__header
@@ -202,7 +208,7 @@
       width: 190px
       height: 30px
       font-size: 10px
-      line-height: 30px
+      line-height: 23px
       .arrow-next
         @include triangle-right(4px, $lightColor)
       &:hover

@@ -38,13 +38,9 @@
       </div>
       <img fxHide.gt-xs src="/assets/images/home/home-2-world-map.svg" alt="">
       <div class="content-right">
-        {{ 'home-page.section-2.content-1' | translate }}
-        <br>
-        <br> {{ 'home-page.section-2.content-2' | translate }}
-        <br>
-        <br> {{ 'home-page.section-2.content-3' | translate }}
-        <br>
-        <br>
+        <p [innerHTML]="'home-page.section-2.content-1' | translate"> 
+        <p [innerHTML]="'home-page.section-2.content-2' | translate"> 
+        <p [innerHTML]="'home-page.section-2.content-3' | translate"> 
       </div>
     </div>
 
@@ -58,11 +54,11 @@
       <div class="intro-group" fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="50px">
         <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
           <img src="/assets/images/home/home-3-img-uniques.svg" alt="">
-          <p>{{ 'home-page.section-3.content-1.intro-1' | translate }}</p>
+          <p [innerHTML]="'home-page.section-3.content-1.intro-1' | translate"></p>
         </div>
         <div class="intro" fxFlex="48%" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="40px">
           <img src="/assets/images/home/home-3-img-keys.svg" alt="">
-          <p>{{ 'home-page.section-3.content-1.intro-2' | translate }}</p>
+          <p [innerHTML]="'home-page.section-3.content-1.intro-2' | translate"></p>
         </div>
       </div>
       <p>{{ 'home-page.section-3.content-1.p-1' | translate }}
@@ -105,8 +101,7 @@
       <div class="intro-group" fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="30px">
         <div class="intro" fxFlex fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="40px">
           <img src="/assets/images/home/home-3-img-rebills.svg" alt="">
-          <p>{{ 'home-page.section-3.content-2.p-1' | translate }}
-            <br> {{ 'home-page.section-3.content-2.p-2' | translate }}</p>
+          <p [innerHTML]="'home-page.section-3.content-2.p-1' | translate"></p>
         </div>
       </div>
 
@@ -196,10 +191,7 @@
       <h3 [innerHTML]="'home-page.section-5.h3-2' | translate"></h3>
     </div>
 
-    <p class="descr">{{ 'home-page.section-5.p-1' | translate }}
-      <br>
-      <br>{{ 'home-page.section-5.p-2' | translate }}
-    </p>
+    <p class="descr" [innerHTML]="'home-page.section-5.p-1' | translate"></p>
 
     <div class="action" fxLayout.xs="column" fxLayoutAlign.xs="center center" fxLayoutGap.xs="20px" fxLayout="row" fxLayoutAlign="space-around center">
       <div class="left-side" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="30px">

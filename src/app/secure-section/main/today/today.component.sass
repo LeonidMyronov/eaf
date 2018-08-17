@@ -71,10 +71,10 @@
           text-overflow: ellipsis
           white-space: nowrap
           max-width: 100%
+          @include regular-font()
 
     .source
       text-align: right
-
 
   .footer
     margin: 0 -30px
@@ -110,6 +110,9 @@
       width: auto
   &.card-6
     background-image: url('/assets/images/main/today-cards/card-6.svg')
+    .list-content__item__image
+      height: 33px
+      width: auto    
   &.card-7
     background-image: url('/assets/images/main/today-cards/card-7.svg')
   &.card-news
@@ -154,18 +157,11 @@
   &__head
     margin-bottom: 20px
   &__body
-    overflow-y: scroll
-    height: 360px
-    @include scroll-bar($formColor, $inactiveColor)
 
 
 // RESPONSIVE SECTION
 @include desktop-screen()
-  // .container
-  //   width: 1020px
-  //   margin-left: -50px
   .card-group
-    // margin-left: -50px
     grid-template-columns: repeat(3, 1fr)
     grid-column: 1
     grid-row: 1
@@ -181,19 +177,15 @@
 @include tablet-screen()
   // .container
   //   width: 671px
-    margin-left: 0
+  margin-left: 0  
   .card-group
-    // margin-left: 0
     grid-template-columns: repeat(2, 1fr)
   .graph
     width: 670px
   .conversion-list
     width: 670px
 
-// @include mobile-screen()
 @media(max-width: 767px)
-  // .container
-  //   width: 326px
   .card-group
     grid-template-columns: repeat(1, 1fr)
     grid-gap: 10px

@@ -10,6 +10,7 @@ import { DatePickerPanelComponent } from './date-picker-panel/date-picker-panel.
 import { AlignRowHeightDirective } from './directives/align-row-height.directive';
 import { SelectRowOnHoverDirective } from './directives/select-row-on-hover.directive';
 import { DiscountComponent } from '../main/discount/discount.component';
+import { FixPanelOnTopDirective } from './directives/fix-panel-on-top.directive';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DiscountComponent } from '../main/discount/discount.component';
     DatePickerPanelComponent,
     AlignRowHeightDirective,
     SelectRowOnHoverDirective,
+    FixPanelOnTopDirective,
     DiscountComponent
   ],
   imports: [
@@ -35,6 +37,7 @@ import { DiscountComponent } from '../main/discount/discount.component';
     DatePickerPanelComponent,
     AlignRowHeightDirective,
     SelectRowOnHoverDirective,
+    FixPanelOnTopDirective,
     DiscountComponent
   ]
 })

@@ -1,4 +1,5 @@
 @import variables
+@import mixins
   
 head
   padding: 15px
@@ -9,10 +10,12 @@ head
     margin-right: 15px
   .title
     margin-right: auto
+    @include bold-font()   
   .sub-title
     margin-right: 20px
     font-size: 12px
     flex-shrink: 0
+    @include medium-font()    
   .form-field
     width: 397px
     margin: 0
@@ -22,6 +25,8 @@ head
       font-size: 12px
       border-top-right-radius: 0
       border-bottom-right-radius: 0
+      @include medium-font()
+
   button
     width: 90px
     font-size: 10px
@@ -40,6 +45,7 @@ head
       color: $mainColor
       font-size: 14px
       text-decoration: none
+      @include bold-font()
       img
         margin-right: 10px
     &:hover
