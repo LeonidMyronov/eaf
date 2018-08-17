@@ -118,7 +118,7 @@ input, textarea
   padding-right: 10px
   box-shadow: inset 1px 1px 2px 0 transparentize(#000, 0.86)
   font-size: 14px
-  @include medium-font()
+  @include bold-font()
   color: $mainColor
   &:hover
     background-color: $accentColor-lighter
@@ -174,6 +174,7 @@ a
 
   
 .form
+  width: 670px
   max-width: 670px
   padding: 120px
   background-color: $formColor
@@ -197,7 +198,8 @@ a
     text-transform: uppercase
     text-align: left
     margin-bottom: 20px
-
+    @include bold-font()
+    
 .form-field
   position: relative
   margin-bottom: 20px
@@ -205,10 +207,12 @@ a
     display: inline-block
     font-size: 14px
     margin-bottom: 12px
+    @include medium-font()    
   &__descr
     font-size: 10px
-    line-height: 10px
+    line-height: 12px
     margin-bottom: 10px
+    @include medium-font()    
   &-image
     margin-left: 10px
     margin-right: 10px
@@ -288,7 +292,7 @@ a
 .term-selector
   cursor: pointer
   width: 124px
-  height: 39px
+  height: 40px
   position: relative
   .term-selector-wrapper
     position: absolute
@@ -309,6 +313,8 @@ a
     text-align: center
     box-shadow: none
     cursor: pointer
+    @include medium-font()
+    
 
 .mat-datepicker-content .mat-calendar
   background-color: $formColor

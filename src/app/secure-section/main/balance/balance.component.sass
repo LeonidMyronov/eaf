@@ -53,6 +53,8 @@
   grid-column: 4
   grid-row: 1/3
   height: 472px
+  p
+    @include regular-font()
 .currency-label
   color: $noticeColor
   text-transform: uppercase
@@ -74,6 +76,7 @@
     margin-bottom: 18px
   .regular-wrapper
     margin-top: -5px
+    @include medium-font()
     input
       display: none
     label
@@ -88,7 +91,7 @@
       .check
         width: 20px
         height: 20px
-        top: -3px
+        // top: -3px
         border-radius: 50%
         border: 2px solid $lightColor
         background-color: $lightColor
@@ -115,8 +118,8 @@
   padding-right: 60px
 .pm-menu
   background-color: $lightColor
-  .dropdown-list__item
-    // background-color: $lightColor
+  @include bold-font()
+  font-size: 14px
 
 .transactions-list
   margin-top: 20px  
@@ -133,6 +136,8 @@
       width: 250px
       min-height: 40px
       height: auto
+      text-align: left
+      align-items: flex-start
 
 // ADAPTIVE STYLES
 @media(max-width: 1399px)
@@ -180,6 +185,7 @@
       @include fade-to-right-inner
     .table__left
       @include fade-to-right-outer
+
 @media(max-width: 767px)
   .card-group
     grid-auto-rows: auto

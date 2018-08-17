@@ -3,6 +3,9 @@
 header
   position: relative
   padding: 30px 40px
+  max-width: 1840px
+  margin-left: auto
+  margin-right: auto
   .user-welcome
     position: absolute
     right: 40px
@@ -49,6 +52,7 @@ header
       color: $mainColor
       padding-left: 23px
       padding-right: 23px
+      @include bold-font()
       img
         margin-right: 7px
     &:hover
@@ -129,6 +133,10 @@ header
       background: linear-gradient(to right,rgba(255,255,255,0), $formColor)
   &__fo
     margin-right: 7px
+    white-space: nowrap
+  &__r
+    margin-right: 7px
+    white-space: nowrap
   &:hover
     .user-tariff__shortsitename
       &:after
@@ -136,6 +144,8 @@ header
   .dropdown-list
     height: 160px
     overflow-y: scroll
+    @include scroll-bar($formColor, $inactiveColor)
+
 
 .lang-menu
   width: 90px
@@ -148,6 +158,7 @@ header
   height: 40px
   background-color: $mainColor
   display: none !important
+  padding-top: 2px
   .hamburger_item
     display: block
     background-color: $accentColor

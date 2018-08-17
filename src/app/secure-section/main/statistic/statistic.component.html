@@ -9,12 +9,12 @@
         <div class="statistic-table-group__head" fxFlex="100%" fxLayout="row" fxLayoutAlign="space-between center">
           <div class="statistic-table-group__head__left" fxLayoutAlign="center center" (click)="onChangeStatisticFiltersVisibility()">
             <img fxHide.gt-sm src="/assets/images/main/filter-icon.svg" alt="">
-            <span>Фильтры</span>
+            <span class="bold">Фильтры</span>
           </div>
           <div class="statistic-table-group__head__right" fxLayoutAlign="center center">
             <input type="checkbox" id="customize-table">
             <label for="customize-table" fxLayoutAlign="center center">
-              <span>Настройка таблицы</span>
+              <span class="bold">Настройка таблицы</span>
               <img src="/assets/images/main/customize-icon.svg" alt="">
             </label>
             <div class="table-filter">
@@ -31,9 +31,9 @@
         
         <section class="statistic-filters" *ngIf="isStatisticFiltersVisible">
           <input type="radio" id="all-filters" checked name="filter-switcher" value="all-filters" #filterSwitcher><label for="all-filters">
-            <span>{{'все' | uppercase}}</span>
+            <span class="bold">{{'все' | uppercase}}</span>
           </label><input type="radio" id="selected-filters" name="filter-switcher" value="selected-filters"><label for="selected-filters">
-            <span>{{'выбранные' | uppercase}}<span class="selected-filters-value" *ngIf="getSelectedFormFields()">({{getSelectedFormFields()}})</span></span>
+            <span class="bold">{{'выбранные' | uppercase}}<span class="selected-filters-value" *ngIf="getSelectedFormFields()">({{getSelectedFormFields()}})</span></span>
           </label>
           <form class="statistic-filters__body" [formGroup]="allFiltersForm">
             <div class="all-filters-content">
@@ -239,7 +239,7 @@
 
     <section class="graph" fxLayout="column">
       <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="graph__head__name">График прибыли</div>
+        <div class="graph__head__name bold">График прибыли</div>
         <div class="graph__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="graph__body">
@@ -249,7 +249,7 @@
 
     <section class="conversion-list table-group">
       <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="table-group__head__name">Kонверсии</div>
+        <div class="table-group__head__name bold">Kонверсии</div>
         <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
       <div class="table-group__body">
@@ -259,7 +259,7 @@
 
     <section class="pt-list table-group">
       <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="table-group__head__name">Pixel Tracking</div>
+        <div class="table-group__head__name bold">Pixel Tracking</div>
         <div class="table-group__head__period">{{queryParams?.fromDate | date:'dd MMM y'}} - {{queryParams?.toDate | date:'dd MMM y'}}</div>
       </div>
 

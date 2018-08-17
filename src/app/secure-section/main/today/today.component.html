@@ -137,9 +137,9 @@
           Новости
         </div>
         <div class="content light-color">
-          <div class="news-date">{{ (todayState$ | async).lastNews.date | date:'medium'}}</div>
+          <div class="news-date regular">{{ (todayState$ | async).lastNews.date | date:'medium'}}</div>
           <div class="news-title">{{ (todayState$ | async).lastNews.title}}</div>
-          <div class="news-content">{{ (todayState$ | async).lastNews.excerpt}}</div>
+          <div class="news-content regular">{{ (todayState$ | async).lastNews.excerpt}}</div>
         </div>
         <div class="footer" [routerLink]="['/main', 'news']">
           <div class="action">
@@ -152,7 +152,7 @@
     </section>
     <section class="graph" fxLayout="column">
       <div class="graph__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="graph__head__name">График прибыли</div>
+        <div class="graph__head__name bold">График прибыли</div>
         <div class="graph__head__period">За последние 24 часа</div>
       </div>
       <div class="graph__body">
@@ -161,7 +161,7 @@
     </section>
     <section class="conversion-list">
       <div class="conversion-list__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-        <div class="conversion-list__head__name">Последние конверсии</div>
+        <div class="conversion-list__head__name bold">Последние конверсии</div>
         <div class="conversion-list__head__period">За последние 24 часа</div>
       </div>
       <div class="conversion-list__body">

@@ -14,9 +14,9 @@
       <div class="card grid-4">
         <img src="/assets/images/main/balance/note.svg" alt="">
         <h4>Важно!</h4>
-        <p>Ваш минимальный вывод - 50$</p>
-        <p>Все платежи обрабатываются в течении 2-х рабочих дней после запроса.</p>
-        <p>Автоматические выводы отправляются 5го числа каждого месяца если баланс аккаунта больше 50$.</p>
+        <p>Ваш минимальный вывод - <b>50$</b></p>
+        <p>Все платежи обрабатываются в течении <b>2-х рабочих</b> дней после запроса.</p>
+        <p>Автоматические выводы отправляются <b>5го числа</b> каждого месяца если баланс аккаунта больше 50$.</p>
       </div>
       <form class="form grid-3" [formGroup]="balanceForm" (ngSubmit)="onSubmitBalanceForm()">
         <div class="title">Withdraw</div>
@@ -71,7 +71,7 @@
 
     <section class="transactions-list table-group">
       <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-          <div class="table-group__head__name">Transactions</div>
+          <div class="table-group__head__name bold">Transactions</div>
           <div class="table-group__head__period">{{transactionQueryParams?.fromDate | date:'dd MMM y'}} - {{transactionQueryParams?.toDate | date:'dd MMM y'}}</div>
         </div>
   

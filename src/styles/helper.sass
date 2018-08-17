@@ -23,6 +23,9 @@ ul, nav
 .medium
   @include medium-font()
 
+.regular
+  @include regular-font()
+
 .light-color
   color: $lightColor
 .primary-color
@@ -154,6 +157,7 @@ button
     font-size: 12px
     line-height: 48px
     cursor: pointer
+    @include regular-font()
     .action
       text-align: right
     .arrow-next
@@ -181,7 +185,7 @@ button
   position: relative
   height: 40px
   padding-left: 15px
-  padding-right: 43px
+  padding-right: 40px
   cursor: pointer
   color: $mainColor
   font-size: 12px
@@ -261,6 +265,7 @@ button
     line-height: 40px
     padding: 0 20px
     font-size: 14px
+    @include bold-font()
     cursor: pointer
     .caret
       position: absolute
@@ -397,6 +402,7 @@ label
     .table__cell
       background-color: $formColor
       cursor: default
+      @include medium-font()
   .table__body
     .table__row
       cursor: pointer
@@ -422,6 +428,9 @@ label
   &__head
     margin-bottom: 20px
 
+.table__footer
+  .table__cell
+    @include medium-font()
 
 .collapse-table
   .table__body

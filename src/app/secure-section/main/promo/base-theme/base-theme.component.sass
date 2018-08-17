@@ -24,6 +24,8 @@
     .instructions
       font-size: 12px
       word-wrap: break-word
+      @include medium-font()
+
       ol
         padding-left: 20px
         li
@@ -41,6 +43,7 @@
       border: 0.5px solid $lightColor
       border-radius: 2px
       text-decoration: none
+      @include medium-font()
       &:hover
         background-color: $accentColor
         color: $mainColor

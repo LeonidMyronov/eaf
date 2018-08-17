@@ -78,7 +78,7 @@
         <form class="form grid-6" [formGroup]="discountGeneratorForm" (ngSubmit)="onSubmit()">
           <div class="title">Генератор скидок</div>
           <div class="small-text sub-title">
-              Доступон купонов: {{discountsData?.availableCoupons - discountsData?.usedCoupons}}/{{discountsData?.availableCoupons}}
+              Доступон купонов: <b>{{discountsData?.availableCoupons - discountsData?.usedCoupons}}/{{discountsData?.availableCoupons}}</b>
           </div>
 
           <div class="form-field">
@@ -96,7 +96,7 @@
                     [ngClass]="{active: i === activeSlideIndex}"
                     (click)="onClickSlide(i)">
                     <img [src]="site.preview" [alt]="site.name">
-                    <p>{{ site.name }}</p>
+                    <p class="bold">{{ site.name }}</p>
                   </div>
                 </div>
               </div>
@@ -108,7 +108,7 @@
             <div class="form-field__descr">5-20 символов:</div>
             <div class="form-field-group" fxLayout="row" fxLayoutAlign="start start">
               <input id="code" type="text" placeholder="XXXXXXXXXXXXXXXXXXXX" formControlName="code">
-              <button type="button" class="accent btn-md">Generate</button>
+              <button type="button" class="accent btn-md bold">Generate</button>
             </div>
             <div class="form-field__actions">
               <div *ngIf="discountGeneratorForm.controls['code'].errors?.required && discountGeneratorForm.controls['code'].touched" class="form-error">
@@ -172,7 +172,7 @@
 
       <section class="active-coupons table-group">
         <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-          <div class="table-group__head__name">Active coupons</div>
+          <div class="table-group__head__name">Active coupons:</div>
         </div>
     
         <section class="table-group__body collapse-table-inside">
@@ -215,7 +215,7 @@
 
       <section class="active-coupons table-group">
         <div class="table-group__head" fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column" fxLayoutAlign.xs="start start">
-          <div class="table-group__head__name">Expired coupons</div>
+          <div class="table-group__head__name">Expired coupons:</div>
         </div>
     
         <section class="table-group__body collapse-table-inside">
